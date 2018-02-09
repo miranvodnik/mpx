@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+## Event Driven Task Multiplexing Library
+
+The code contained in the mpx repository contains a library mpx-lib which allows the parallel execution of any number of software tasks in one or more working threads. In addition, the sftp library and the sftp-test program are also located in this repository, to test this library.
 
 You can use the [editor on GitHub](https://github.com/miranvodnik/mpx/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
