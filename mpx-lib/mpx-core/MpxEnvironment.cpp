@@ -25,7 +25,18 @@
 namespace mpx
 {
 
+/*! @brief mpx-lib one and only one environment object
+ *
+ */
+
 MpxEnvironment* MpxEnvironment::g_mpxEnvironment = new MpxEnvironment ();
+
+/*! @brief mpx-lib environment object constructor
+ *
+ * this constructor initializes m_lock mutex used
+ * to synchronize concurrent access to environment
+ * data structures
+ */
 
 MpxEnvironment::MpxEnvironment ()
 {
@@ -38,9 +49,29 @@ MpxEnvironment::MpxEnvironment ()
 	m_barrierActive = false;
 }
 
+/*! @brief destructor of mpx-lib environment object
+ *
+ */
+
 MpxEnvironment::~MpxEnvironment ()
 {
 }
+
+/*! @brief create new task multiplexer
+ *
+ * this function creates new instance of MpxTaskMultiplexer class. its
+ * reference is saved into internal data structure m_tskmpxset, set of
+ * task multipexing objects. Access to this set is synchronized to
+ * prevent concurrent write operations on it. Every instance of task
+ * multiplexer is associated with unique pipe object used to properly
+ * terminate its execution. Execution termination is further described
+ * in description of MpxTaskMultiplexer class itself
+ *
+ * @param connStr connection string parameter which is transfered to
+ * MpxTaskMultiplexer unchanged and it is not examined by this function
+ * $param isWorker working thread indicator transferred to MpxTaskMultiplexer
+ * constructor
+ */
 
 MpxTaskMultiplexer* MpxEnvironment::_CreateTaskMultiplexer (const char* connStr, bool isWorker)
 {
@@ -56,6 +87,11 @@ MpxTaskMultiplexer* MpxEnvironment::_CreateTaskMultiplexer (const char* connStr,
 
 	return mpx;
 }
+
+/*! @brief starting routine of mpx-lib environment
+ *
+ *
+ */
 
 int MpxEnvironment::_Start (MpxMQTaskI* mqTask)
 {

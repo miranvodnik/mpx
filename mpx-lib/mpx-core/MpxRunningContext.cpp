@@ -95,6 +95,7 @@ MpxRunningContext::MpxRunningContext (initfunc f, exitfunc g, timehookfunc h, ct
 	m_nfds = -1;
 	m_round = 0;
 	m_quit = false;
+	m_epollSetId = 0;
 }
 
 /*! @brief I/O multiplexer destructor
@@ -146,6 +147,10 @@ MpxRunningContext::~MpxRunningContext ()
 			delete i->second;
 		m_tmrset.clear ();
 	}
+
+	if (m_epollSetId != 0)
+		close (m_epollSetId);
+	m_epollSetId = 0;
 }
 
 /*! @brief I/O multiplexer main loop

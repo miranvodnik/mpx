@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lsftp -lmpx-lib -lrt -lpthread -luuid -lssh2 -lssl
+LIBS := -lmpx-lib -lsftp -lssh2 -lssl -luuid -lrt
 

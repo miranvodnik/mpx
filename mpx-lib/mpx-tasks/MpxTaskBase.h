@@ -51,10 +51,18 @@ enum MpxTaskState
 	InvalidState, StartState = (u_int) -1, AnyState = (u_int) -2,
 };
 
+typedef void (*evnfunc) (MpxEventBase *event, mpx_appdt_t appdata);
+
+struct EventDescriptor
+{
+	unsigned int stateCode;
+	unsigned int eventCode;
+	evnfunc f;
+	mpx_appdt_t data;
+};
+
 class MpxTaskBase
 {
-	typedef void (*evnfunc) (MpxEventBase *event, mpx_appdt_t appdata);
-
 	typedef pair <evnfunc, mpx_appdt_t> evndata;
 	typedef map <evnkey, evndata, evncmp> evnset;
 public:
@@ -63,6 +71,7 @@ public:
 	void Dispose (bool release);
 	int Send (MpxTaskBase* task, MpxEventBase* event, bool invoke = false);
 	evndata RegisterEventHandler (unsigned int stateCode, unsigned int eventCode, evnfunc f, mpx_appdt_t data);
+	void RegisterEventHandlers (EventDescriptor evntab[]);
 	evndata RetrieveEventHandler (u_int state, u_int event);
 	int RetrieveExternalTask (const char* connString);
 	int HandleEvent (MpxEventBase* event);

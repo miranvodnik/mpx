@@ -70,6 +70,12 @@ MpxTaskBase::evndata MpxTaskBase::RegisterEventHandler (unsigned int stateCode, 
 	return m_evnset [key] = evndata (f, data);
 }
 
+void MpxTaskBase::RegisterEventHandlers (EventDescriptor evntab[])
+{
+	for (EventDescriptor* evnptr = evntab; evnptr->f != 0; ++evnptr)
+		RegisterEventHandler (evnptr->stateCode, evnptr->eventCode, evnptr->f, (evnptr->data != 0) ? evnptr->data : this);
+}
+
 MpxTaskBase::evndata MpxTaskBase::RetrieveEventHandler (u_int state, u_int event)
 {
 	evnset::iterator it = m_evnset.find (evnkey (state, event));

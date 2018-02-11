@@ -223,15 +223,7 @@ public:
 		m_it = m_sftpSet.end ();
 		m_timer = 0;
 
-		RegisterEventHandler (AnyState, StartEvent, HandleStartEvent, this);
-		RegisterEventHandler (AnyState, StopEvent, HandleStopEvent, this);
-		RegisterEventHandler (AnyState, TimerEvent, HandleTimerEvent, this);
-		RegisterEventHandler (AnyState, SftpInviteReply::InviteReplyEvent, HandleInviteReplyEvent, this);
-		RegisterEventHandler (AnyState, SftpClientStart::ClientStartEvent, HandleClientStartEvent, this);
-		RegisterEventHandler (AnyState, SftpClientStop::ClientStopEvent, HandleClientStopEvent, this);
-		RegisterEventHandler (AnyState, SftpClientRequest::ClientRequestEvent, HandleClientRequestEvent, this);
-		RegisterEventHandler (AnyState, SftpClientReply::ClientReplyEvent, HandleClientReplyEvent, this);
-		RegisterEventHandler (AnyState, SftpJobInfo::JobInfoEvent, HandleJobInfoEvent, this);
+		RegisterEventHandlers (g_events);
 	}
 	~SftpTest ()
 	{
@@ -311,12 +303,26 @@ private:
 	mpx_event_handler(HandleJobInfoEvent, SftpTest)
 
 private:
+	static EventDescriptor g_events [];
 	taskset m_ftpSet;
 	taskset m_sftpSet;
 	FtpRequest* m_request;
 	taskset::iterator m_it;
 	void* m_timer;
 };
+
+EventDescriptor SftpTest::g_events [] =
+{
+{ AnyState, StartEvent, HandleStartEvent, 0 },
+{ AnyState, StopEvent, HandleStopEvent, 0 },
+{ AnyState, TimerEvent, HandleTimerEvent, 0 },
+{ AnyState, SftpInviteReply::InviteReplyEvent, HandleInviteReplyEvent, 0 },
+{ AnyState, SftpClientStart::ClientStartEvent, HandleClientStartEvent, 0 },
+{ AnyState, SftpClientStop::ClientStopEvent, HandleClientStopEvent, 0 },
+{ AnyState, SftpClientRequest::ClientRequestEvent, HandleClientRequestEvent, 0 },
+{ AnyState, SftpClientReply::ClientReplyEvent, HandleClientReplyEvent, 0 },
+{ AnyState, SftpJobInfo::JobInfoEvent, HandleJobInfoEvent, 0 },
+{ 0, 0, 0, 0 }, };
 
 void SftpTest::HandleStartEvent (MpxEventBase* event)
 {
@@ -356,22 +362,22 @@ void SftpTest::HandleInviteReplyEvent (MpxEventBase* event)
 	if (inviteReply == 0)
 		return;
 
-	if (inviteReply->invite() == false)
+	if (inviteReply->invite () == false)
 		cf_sc_printf (SC_SFTP, SC_ERR, "FTP/SFTP Invite Request refused");
 }
 
-void SftpTest::HandleClientStartEvent(MpxEventBase* event)
+void SftpTest::HandleClientStartEvent (MpxEventBase* event)
 {
 }
 
-void SftpTest::HandleClientStopEvent(MpxEventBase* event)
+void SftpTest::HandleClientStopEvent (MpxEventBase* event)
 {
 	m_timer = StartTimer (GetCurrentTime ());
 }
 
-void SftpTest::HandleClientRequestEvent(MpxEventBase* event)
+void SftpTest::HandleClientRequestEvent (MpxEventBase* event)
 {
-	SftpClientRequest* clientRequest = dynamic_cast < SftpClientRequest* > (event);
+	SftpClientRequest* clientRequest = dynamic_cast <SftpClientRequest*> (event);
 	if (clientRequest == 0)
 		return;
 
@@ -383,7 +389,7 @@ void SftpTest::HandleClientRequestEvent(MpxEventBase* event)
 	for (size = 0, ptr = (char**) args; *ptr != 0; size += strlen (*ptr++))
 		;
 	++size;
-	if ((msg = (char*) alloca (size)) == 0)
+	if ((msg = (char*) alloca(size)) == 0)
 		return;
 
 	for (size = 0, ptr = (char**) args; *ptr != 0; size += strlen (*ptr++))
@@ -392,9 +398,9 @@ void SftpTest::HandleClientRequestEvent(MpxEventBase* event)
 	cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> %s", clientRequest->sessionId () % (1000 * 1000), msg);
 }
 
-void SftpTest::HandleClientReplyEvent(MpxEventBase* event)
+void SftpTest::HandleClientReplyEvent (MpxEventBase* event)
 {
-	SftpClientReply* clientReply = dynamic_cast < SftpClientReply* > (event);
+	SftpClientReply* clientReply = dynamic_cast <SftpClientReply*> (event);
 	if (clientReply == 0)
 		return;
 
@@ -406,7 +412,7 @@ void SftpTest::HandleClientReplyEvent(MpxEventBase* event)
 	for (size = 0, ptr = (char**) args; *ptr != 0; size += strlen (*ptr++))
 		;
 	++size;
-	if ((msg = (char*) alloca (size)) == 0)
+	if ((msg = (char*) alloca(size)) == 0)
 		return;
 
 	for (size = 0, ptr = (char**) args; *ptr != 0; size += strlen (*ptr++))
@@ -415,14 +421,14 @@ void SftpTest::HandleClientReplyEvent(MpxEventBase* event)
 	cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: <-- %s", clientReply->sessionId () % (1000 * 1000), msg);
 }
 
-void SftpTest::HandleJobInfoEvent(MpxEventBase* event)
+void SftpTest::HandleJobInfoEvent (MpxEventBase* event)
 {
-	SftpJobInfo* jobInfo = dynamic_cast < SftpJobInfo* > (event);
+	SftpJobInfo* jobInfo = dynamic_cast <SftpJobInfo*> (event);
 	if (jobInfo == 0)
 		return;
 
-	cf_sc_printf (SC_SFTP, SC_ERR, "SSH job %d.%d.%d (S%06d) --- %s", jobInfo->clientId (), jobInfo->jobCount(), jobInfo->sessionId(),
-		jobInfo->sessionId () % (1000 * 1000), jobInfo->msg());
+	cf_sc_printf (SC_SFTP, SC_ERR, "SSH job %d.%d.%d (S%06d) --- %s", jobInfo->clientId (), jobInfo->jobCount (),
+		jobInfo->sessionId (), jobInfo->sessionId () % (1000 * 1000), jobInfo->msg ());
 }
 
 int main (int n, char*p [])
