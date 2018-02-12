@@ -21,10 +21,16 @@
 namespace mpx
 {
 
+EventDescriptor MpxPosixMQProxyTask::g_evntab[] =
+{
+	{ AnyState, PosixMQEvent, HandlePosixMQEvent, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxPosixMQProxyTask::MpxPosixMQProxyTask (MpxTaskBase* task, MpxPosixMQ* posixMQ) :
 	MpxTaskBase (), m_task (task), m_posixMQ (posixMQ)
 {
-	RegisterEventHandler (AnyState, PosixMQEvent, HandlePosixMQEvent, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxPosixMQProxyTask::~MpxPosixMQProxyTask ()

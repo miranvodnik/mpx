@@ -24,6 +24,14 @@
 namespace mpx
 {
 
+EventDescriptor MpxWorkerTask::g_evntab[] =
+{
+	{ StartState, StartEvent, StartEventHandler, 0},
+	{ AnyState, StopEvent, StopEventHandler, 0},
+	{ AnyState, TimerEvent, TimerEventHandler, 0},
+	{ 0, 0, 0, 0}
+};
+
 MpxWorkerTask::MpxWorkerTask (const char* name) :
 	MpxTaskBase (name)
 {
@@ -31,9 +39,7 @@ MpxWorkerTask::MpxWorkerTask (const char* name) :
 	m_sendTimer = 0;
 	m_job = 0;
 
-	RegisterEventHandler (StartState, StartEvent, StartEventHandler, this);
-	RegisterEventHandler (AnyState, StopEvent, StopEventHandler, this);
-	RegisterEventHandler (AnyState, TimerEvent, TimerEventHandler, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxWorkerTask::~MpxWorkerTask ()

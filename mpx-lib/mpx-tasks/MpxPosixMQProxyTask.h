@@ -41,6 +41,7 @@ private:
 	mpx_event_handler(HandlePosixMQEvent, MpxPosixMQProxyTask)
 	;
 private:
+	static EventDescriptor g_evntab[];
 	MpxTaskBase* m_task;
 	MpxPosixMQ* m_posixMQ;
 };

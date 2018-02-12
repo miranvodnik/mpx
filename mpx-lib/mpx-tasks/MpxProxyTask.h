@@ -49,8 +49,13 @@ public:
 	{
 		if (false)
 			cout << "create proxy " << this << endl;
-		RegisterEventHandler (AnyState, StartEvent, HandleStartEvent, this);
-		RegisterEventHandler (AnyState, StopEvent, HandleStopEvent, this);
+		static EventDescriptor g_evntab[] =
+		{
+			{ AnyState, StartEvent, HandleStartEvent, 0 },
+			{ AnyState, StopEvent, HandleStopEvent, 0 },
+			{ 0, 0, 0, 0 }
+		};
+		RegisterEventHandlers (g_evntab);
 	}
 	virtual ~MpxProxyTask ()
 	{

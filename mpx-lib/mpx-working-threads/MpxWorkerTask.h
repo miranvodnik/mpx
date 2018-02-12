@@ -45,6 +45,7 @@ private:
 	void* m_getTimer;
 	void* m_sendTimer;
 	MpxJob* m_job;
+	static EventDescriptor g_evntab[];
 };
 
 } /* namespace mpx */

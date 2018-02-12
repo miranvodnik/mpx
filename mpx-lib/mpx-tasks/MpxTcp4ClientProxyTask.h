@@ -33,6 +33,9 @@ public:
 private:
 	mpx_event_handler(HandleTcp4ClientEvent, MpxTcp4ClientProxyTask)
 	;
+private:
+	static EventDescriptor g_evntab[];
+
 };
 
 } // namespace mpx

@@ -21,11 +21,17 @@
 namespace mpx
 {
 
+EventDescriptor MpxTcp4ClientProxyTask::g_evntab[] =
+{
+	{ AnyState, Tcp4ClientEvent, HandleTcp4ClientEvent, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxTcp4ClientProxyTask::MpxTcp4ClientProxyTask (MpxTaskBase* task, MpxTcp4Client* tcp4Client) :
 	MpxProxyTask (task, tcp4Client)
 {
 	tcp4Client->task (this);
-	RegisterEventHandler (AnyState, Tcp4ClientEvent, HandleTcp4ClientEvent, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxTcp4ClientProxyTask::~MpxTcp4ClientProxyTask ()

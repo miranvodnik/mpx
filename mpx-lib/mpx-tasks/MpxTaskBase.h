@@ -70,7 +70,6 @@ public:
 	virtual ~MpxTaskBase ();
 	void Dispose (bool release);
 	int Send (MpxTaskBase* task, MpxEventBase* event, bool invoke = false);
-	evndata RegisterEventHandler (unsigned int stateCode, unsigned int eventCode, evnfunc f, mpx_appdt_t data);
 	void RegisterEventHandlers (EventDescriptor evntab[]);
 	evndata RetrieveEventHandler (u_int state, u_int event);
 	int RetrieveExternalTask (const char* connString);
@@ -109,6 +108,7 @@ public:
 	static inline int sentCount () { return g_sentCount; }
 
 private:
+	evndata RegisterEventHandler (unsigned int stateCode, unsigned int eventCode, evnfunc f, mpx_appdt_t data);
 	int RetrieveExternalTaskLocal (const char* connString);
 	int RetrieveExternalTaskTcp4 (const char* connString);
 	int RetrieveExternalTaskTcp6 (const char* connString);

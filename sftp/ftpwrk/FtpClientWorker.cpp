@@ -45,7 +45,16 @@ FtpClient::FtpCallback* FtpClientWorker::g_makeWorkingEnvScenario = 0;
 FtpClient::FtpCallback* FtpClientWorker::g_cleanDirScenario = 0;
 
 //	scenario initializer - must follow (not precede) scenario declarations
-FtpClientWorker*	FtpClientWorker::g_scenarioInitializer = new FtpClientWorker (true);
+FtpClientWorker* FtpClientWorker::g_scenarioInitializer = new FtpClientWorker (true);
+
+EventDescriptor FtpClientWorker::g_evntab [] =
+{
+	{ AnyState, StartEvent, HandleStartEvent, 0 },
+	{ AnyState, StopEvent, HandleStopEvent, 0 },
+	{ AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, 0 },
+	{ AnyState, JobFinishedEvent, HandleJobFinishedEvent, 0 },
+	{ 0, 0, 0, 0 },
+};
 
 void FtpClientWorker::GenerateReport ()
 {
@@ -1336,10 +1345,7 @@ FtpClientWorker::FtpClientWorker(u_char* addrinfo, u_int size)
 #else	// FTPQUEUEMAP
 FtpClientWorker::FtpClientWorker ()
 {
-	RegisterEventHandler(AnyState, StartEvent, HandleStartEvent, this);
-	RegisterEventHandler(AnyState, StopEvent, HandleStopEvent, this);
-	RegisterEventHandler(AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, this);
-	RegisterEventHandler (AnyState, JobFinishedEvent, HandleJobFinishedEvent, this);
+	RegisterEventHandlers (g_evntab);
 
 	m_sessionId = 0;
 	m_dirEnd = 0;
@@ -1426,7 +1432,7 @@ void FtpClientWorker::Dispose ()
 
 void FtpClientWorker::Release (int result, const char* const msg [], const char* api, int errnum)
 {
-	char	buffer[2048];
+	char buffer [2048];
 	if (m_released)
 		return;
 	m_released = true;
@@ -1434,7 +1440,7 @@ void FtpClientWorker::Release (int result, const char* const msg [], const char*
 		Send (m_ctrlTask, new SftpClientStop ());
 	m_ctrlTask = 0;
 
-	buffer[0] = 0;
+	buffer [0] = 0;
 	bool sepind = false;
 	sprintf (buffer, "S%06ld: --- released (code = %d, ", m_sessionId % (1000 * 1000), result);
 	if (msg != 0)
@@ -1468,14 +1474,15 @@ void FtpClientWorker::printtrailer (bool force)
 	time_t now = time (0);
 	struct tm lt = *localtime (&now);
 
-	fprintf (stdout, "%04d-%02d-%02d %02d:%02d:%02d S%06ld %s: ", lt.tm_year + 1900, lt.tm_mon + 1, lt.tm_mday, lt.tm_hour, lt.tm_min,
-		lt.tm_sec, m_sessionId % (1000 * 1000),
-		((this == NULL) || (m_ftpConnectionInfo == NULL) || (m_ftpConnectionInfo->hostname == NULL)) ? "" : m_ftpConnectionInfo->hostname);
-	}
+	fprintf (stdout, "%04d-%02d-%02d %02d:%02d:%02d S%06ld %s: ", lt.tm_year + 1900, lt.tm_mon + 1, lt.tm_mday,
+		lt.tm_hour, lt.tm_min, lt.tm_sec, m_sessionId % (1000 * 1000),
+		((this == NULL) || (m_ftpConnectionInfo == NULL) || (m_ftpConnectionInfo->hostname == NULL)) ?
+			"" : m_ftpConnectionInfo->hostname);
+}
 
 void FtpClientWorker::Execute (FtpRequest* req, void* addInfo)
 {
-	char*	reqtxt = FtpRequestInterface::GetFtpRequestText (req, '\t', '\n');
+	char* reqtxt = FtpRequestInterface::GetFtpRequestText (req, '\t', '\n');
 	FtpCallback* scenario;
 
 	++m_jobCount;
@@ -1535,11 +1542,12 @@ void FtpClientWorker::Execute (FtpRequest* req, void* addInfo)
 	}
 	if (reqtxt != 0)
 	{
-		Send (m_ctrlTask, new SftpJobInfo (clientId(), m_jobCount, m_sessionId, reqtxt));
+		Send (m_ctrlTask, new SftpJobInfo (clientId (), m_jobCount, m_sessionId, reqtxt));
 		free (reqtxt);
 	}
 	else
-		Send (m_ctrlTask, new SftpJobInfo (clientId(), m_jobCount, m_sessionId, (char*) "CANNOT GENERATE FTP REQUEST DESCRIPTION"));
+		Send (m_ctrlTask,
+			new SftpJobInfo (clientId (), m_jobCount, m_sessionId, (char*) "CANNOT GENERATE FTP REQUEST DESCRIPTION"));
 
 	Continue (scenario);
 }
@@ -1571,85 +1579,89 @@ void FtpClientWorker::Continue (FtpCallback* scenario)
 	}
 }
 
-void FtpClientWorker::Common_NotImplementedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_NotImplementedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	cf_sc_printf (SC_SFTP, SC_ERR,
-			"--- not implemented, context = %d, status = %d, state = %d, event = %ld",
-			context, status, state, (long) args [0]);
+	cf_sc_printf (SC_SFTP, SC_ERR, "--- not implemented, context = %d, status = %d, state = %d, event = %ld", context,
+		status, state, (long) args [0]);
 }
 
-void FtpClientWorker::Common_CtrlBusyTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_CtrlBusyTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"control connection busy timer expired", 0};
+	const char* const msgs [] =
+	{ "control connection busy timer expired", 0 };
 
 	ftp->Stop ();
 	Release (FtpCtrlConnBusyTimerExpired, msgs, 0, 0);
 }
 
-void FtpClientWorker::Common_CtrlIdleTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_CtrlIdleTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"control connection idle timer expired", 0};
+	const char* const msgs [] =
+	{ "control connection idle timer expired", 0 };
 
 	ftp->Stop ();
 	Release (FtpCtrlConnIdleTimerExpired, msgs, 0, 0);
 }
 
-void FtpClientWorker::Common_DataTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_DataTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"data connection timer expired", 0};
+	const char* const msgs [] =
+	{ "data connection timer expired", 0 };
 
 	ftp->Stop ();
 	Release (FtpDataConnTimerExpired, msgs, 0, 0);
 }
 
-void FtpClientWorker::Common_ListenTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_ListenTimerExpiredEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"listening connection timer expired", 0};
+	const char* const msgs [] =
+	{ "listening connection timer expired", 0 };
 
 	ftp->Stop ();
 	Release (FtpListenConnTimerExpired, msgs, 0, 0);
 }
 
-void FtpClientWorker::Common_RequestEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_RequestEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
-	if (conversation())
+	if (conversation ())
 	{
-		if (detailed())
-			cf_sc_printf (SC_SFTP, SC_ERR,
-					"S%06d: <-- %s", m_sessionId % (1000 * 1000),
-					((state == PassPrepared) ? "pass ******\r\n" : (char*) args[0]));
+		if (detailed ())
+			cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: <-- %s", m_sessionId % (1000 * 1000),
+				((state == PassPrepared) ? "pass ******\r\n" : (char*) args [0]));
 		else
-			cf_sc_printf (SC_SFTP, SC_APL,
-					"S%06d: <-- %s", m_sessionId % (1000 * 1000),
-					((state == PassPrepared) ? "pass ******\r\n" : (char*) args[0]));
+			cf_sc_printf (SC_SFTP, SC_APL, "S%06d: <-- %s", m_sessionId % (1000 * 1000),
+				((state == PassPrepared) ? "pass ******\r\n" : (char*) args [0]));
 	}
 	if (m_ctrlTask != 0)
-		Send (m_ctrlTask, new SftpClientRequest (m_sessionId, (char*) args[0]));
+		Send (m_ctrlTask, new SftpClientRequest (m_sessionId, (char*) args [0]));
 }
 
-void FtpClientWorker::Common_ReplyEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_ReplyEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
-	if (conversation())
+	if (conversation ())
 	{
-		if (detailed())
+		if (detailed ())
 			cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> %s", m_sessionId % (1000 * 1000), (char*) args [0]);
 		else
 			cf_sc_printf (SC_SFTP, SC_APL, "S%06d: --> %s", m_sessionId % (1000 * 1000), (char*) args [0]);
 	}
 	if (m_ctrlTask != 0)
-		Send (m_ctrlTask, new SftpClientReply (m_sessionId, (char*) args[0]));
+		Send (m_ctrlTask, new SftpClientReply (m_sessionId, (char*) args [0]));
 }
 
 //
 //	FTP CALLBACKS COMMON TO ALL SCENARIOS
 //
 
-void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	in_addr_t hostAddr;
 	sockaddr_in* sockaddr4 = 0;
@@ -1670,7 +1682,7 @@ void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext con
 		}
 	}
 
-	char buff[64];
+	char buff [64];
 
 	if (sockaddr4 != 0)
 	{
@@ -1687,7 +1699,8 @@ void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext con
 	else if (sockaddr6 != 0)
 	{
 		++m_connInited;
-		cf_sc_printf (SC_SFTP, SC_APL, "--- starting AAAA: (%s)", inet_ntop (AF_INET6, &sockaddr6->sin6_addr, buff, 64));
+		cf_sc_printf (SC_SFTP, SC_APL, "--- starting AAAA: (%s)",
+			inet_ntop (AF_INET6, &sockaddr6->sin6_addr, buff, 64));
 
 		sockaddr_in6 addr;
 		memset (&addr, 0, sizeof(struct sockaddr_in6));
@@ -1696,7 +1709,7 @@ void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext con
 		addr.sin6_addr = sockaddr6->sin6_addr;
 		ftp->Connect (m_ftpConnectionInfo->hostname, (sockaddr*) &addr, sizeof(sockaddr_in6));
 	}
-	else if ((hostAddr = inet_addr (m_ftpConnectionInfo->hostname)) != (in_addr_t) - 1)
+	else if ((hostAddr = inet_addr (m_ftpConnectionInfo->hostname)) != (in_addr_t) -1)
 	{
 		++m_connInited;
 		cf_sc_printf (SC_SFTP, SC_APL, "--- starting AA: (%s)", m_ftpConnectionInfo->hostname);
@@ -1718,23 +1731,24 @@ void FtpClientWorker::Common_StartupEventHandler (FtpClient *ftp, FtpContext con
 //	else	ftp->Connect(m_ftpConnectionInfo->hostname);
 }
 
-void FtpClientWorker::Common_ConnectedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_ConnectedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	size_t	pos;
+	size_t pos;
 
 	++m_connEstablished;
 	cf_sc_printf (SC_SFTP, SC_APL, "--- connected: %s", m_ftpConnectionInfo->hostname);
-	string	authentication = m_ftpConnectionInfo->authentication;
+	string authentication = m_ftpConnectionInfo->authentication;
 	if ((pos = authentication.find ("ssl-version=", 0)) == string::npos)
 		ftp->Login (m_ftpConnectionInfo->user, m_ftpConnectionInfo->password);
 	else
 	{
-		size_t	spos = authentication.find (';', pos);
+		size_t spos = authentication.find (';', pos);
 		if (spos == string::npos)
 			ftp->Login (m_ftpConnectionInfo->user, m_ftpConnectionInfo->password);
 		else
 		{
-			string	sslVersion = authentication.substr(pos+12, spos);
+			string sslVersion = authentication.substr (pos + 12, spos);
 			if (sslVersion == "none")
 				ftp->Login (m_ftpConnectionInfo->user, m_ftpConnectionInfo->password);
 			else
@@ -1747,7 +1761,7 @@ void FtpClientWorker::Common_ConnectedEventHandler (FtpClient *ftp, FtpContext c
 						m_dataProtection = false;
 					else
 					{
-						string	dataProtection = authentication.substr(pos+16, spos);
+						string dataProtection = authentication.substr (pos + 16, spos);
 						if (dataProtection == "protect")
 							m_dataProtection = true;
 						else
@@ -1761,15 +1775,16 @@ void FtpClientWorker::Common_ConnectedEventHandler (FtpClient *ftp, FtpContext c
 	}
 }
 
-void FtpClientWorker::Common_AuthFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_AuthFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	++m_userAuthenticated;
 	cf_sc_printf (SC_SFTP, SC_APL, "--- authentication in progress: %s", m_ftpConnectionInfo->hostname);
 	ftp->Login (m_ftpConnectionInfo->user, m_ftpConnectionInfo->password);
 }
 
-void FtpClientWorker::Common_ClientAuthenticatedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Common_ClientAuthenticatedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	++m_userAuthenticated;
 	cf_sc_printf (SC_SFTP, SC_APL, "--- authenticated: %s", m_ftpConnectionInfo->hostname);
@@ -1779,19 +1794,22 @@ void FtpClientWorker::Common_ClientAuthenticatedEventHandler (FtpClient *ftp, Ft
 		ftp->System ();
 }
 
-void FtpClientWorker::Common_PbszFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_PbszFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	cf_sc_printf (SC_SFTP, SC_APL, "--- PBSZ (data protection buffer size - 0) OK");
 	ftp->ProtectionLevel ("P");
 }
 
-void FtpClientWorker::Common_ProtFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_ProtFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	cf_sc_printf (SC_SFTP, SC_APL, "--- PROT (data protection level - private) OK");
 	ftp->System ();
 }
 
-void FtpClientWorker::Common_SystFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_SystFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* line = (char*) args [0];
 
@@ -1813,7 +1831,8 @@ void FtpClientWorker::Common_SystFinishedEventHandler (FtpClient *ftp, FtpContex
 //	ftp->Feature();
 }
 
-void FtpClientWorker::Common_FeatFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_FeatFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* line = (char*) args [0];
 
@@ -1821,20 +1840,22 @@ void FtpClientWorker::Common_FeatFinishedEventHandler (FtpClient *ftp, FtpContex
 	ftp->PrintWorkingDirectory ();
 }
 
-void FtpClientWorker::Common_QuitFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_QuitFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"quit", 0};
+	const char* const msgs [] =
+	{ "quit", 0 };
 
 	ftp->Stop ();
 	Release (0, msgs, 0, 0);
 }
 
-void FtpClientWorker::Common_DisposedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Common_DisposedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	++m_connDisposed;
-	cf_sc_printf (SC_SFTP, SC_APL,
-			"--- disposed, context = %d, status = %d, state = %d%s",
-			context, status, state, ((m_released) ? ", allready released" : ""));
+	cf_sc_printf (SC_SFTP, SC_APL, "--- disposed, context = %d, status = %d, state = %d%s", context, status, state,
+		((m_released) ? ", allready released" : ""));
 //	Release (0, 0, 0, 0);
 }
 
@@ -1862,8 +1883,8 @@ void FtpClientWorker::ExtractHomeDir (char* line)
 //	CHECK CONNECTIVITY SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::CheckConnectivity_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CheckConnectivity_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -1871,21 +1892,22 @@ void FtpClientWorker::CheckConnectivity_PwdFinishedEventHandler (FtpClient *ftp,
 	ftp->ChangeWorkingDirectory (".");
 }
 
-void FtpClientWorker::CheckConnectivity_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CheckConnectivity_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"check connection finished", 0};
+	const char* const msgs [] =
+	{ "check connection finished", 0 };
 
 	Release (0, msgs, 0, 0);
 }
 
-void FtpClientWorker::CheckConnectivity_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CheckConnectivity_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	GenErrorReport (args);
 
 	const char* const msgarr [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpCheckConnectivityFailed, msgarr, (char*) args [1], (int) (long) args [2]);
 }
 
@@ -1893,7 +1915,8 @@ void FtpClientWorker::CheckConnectivity_ErrorEventHandler (FtpClient *ftp, FtpCo
 //	MAKE DIRECTORY PATH SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::Mkdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Mkdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -1901,7 +1924,8 @@ void FtpClientWorker::Mkdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext 
 	Mkdir_CwdFinishedEventHandler (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Mkdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Mkdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -1933,7 +1957,8 @@ void FtpClientWorker::Mkdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext 
 		m_mkdPtr = m_mkdEnd;
 		if (*m_mkdEnd == 0)
 		{
-			const char* const msgs [] = {	"mkdir finished", 0};
+			const char* const msgs [] =
+			{ "mkdir finished", 0 };
 
 			Release (0, msgs, 0, 0);
 			return;
@@ -1946,23 +1971,26 @@ void FtpClientWorker::Mkdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext 
 		ftp->ChangeWorkingDirectory (m_mkdPtr);
 		break;
 	default:
-		{
-			const char* const msgs [] = {	"mkdir failed, illegal context", 0};
+	{
+		const char* const msgs [] =
+		{ "mkdir failed, illegal context", 0 };
 
-			Release (FtpIllegalCwdContext, msgs, 0, 0);
-			return; // don't delete this statement
-		}
+		Release (FtpIllegalCwdContext, msgs, 0, 0);
+		return; // don't delete this statement
+	}
 		break;
 	}
 }
 
-void FtpClientWorker::Mkdir_MkdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Mkdir_MkdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	m_cwdContext = CWD_MKDIR;
 	ftp->ChangeWorkingDirectory (m_mkdPtr);
 }
 
-void FtpClientWorker::Mkdir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Mkdir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if ((state == CwdFinished) && (m_cwdContext == CWD_MKDIR))
 	{
@@ -1974,7 +2002,7 @@ void FtpClientWorker::Mkdir_ErrorEventHandler (FtpClient *ftp, FtpContext contex
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpMkdirFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -1983,7 +2011,8 @@ void FtpClientWorker::Mkdir_ErrorEventHandler (FtpClient *ftp, FtpContext contex
 //	GET DIRECTORY LISTING SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::Getdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -1991,7 +2020,8 @@ void FtpClientWorker::Getdir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext
 	ftp->ChangeWorkingDirectory (m_getDir->remoteDirName);
 }
 
-void FtpClientWorker::Getdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -2011,11 +2041,13 @@ void FtpClientWorker::Getdir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext
 	}
 }
 
-void FtpClientWorker::Getdir_ListPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_ListPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 }
 
-void FtpClientWorker::Getdir_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
@@ -2023,37 +2055,44 @@ void FtpClientWorker::Getdir_ListProgressEventHandler (FtpClient *ftp, FtpContex
 	cf_sc_printf (SC_SFTP, SC_APL, buff);
 }
 
-void FtpClientWorker::Getdir_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"getdir(detailed list) finished", 0};
+	const char* const msgs [] =
+	{ "getdir(detailed list) finished", 0 };
 
 	if (context != ctrl)
 		return;
 	Release (0, msgs, 0, 0);
 }
 
-void FtpClientWorker::Getdir_NlstPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_NlstPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 }
 
-void FtpClientWorker::Getdir_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 }
 
-void FtpClientWorker::Getdir_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"getdir(simple list) finished", 0};
+	const char* const msgs [] =
+	{ "getdir(simple list) finished", 0 };
 
 	if (context != ctrl)
 		return;
 	Release (0, msgs, 0, 0);
 }
 
-void FtpClientWorker::Getdir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Getdir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpGetdirFailed, msg, (char*) args [1], (int) (long) args [2]);
 }
 
@@ -2114,7 +2153,8 @@ void FtpClientWorker::Getdir_ErrorEventHandler (FtpClient *ftp, FtpContext conte
 /*              in 'store file' request                         */
 /****************************************************************/
 
-void FtpClientWorker::Store_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -2140,7 +2180,8 @@ void FtpClientWorker::Store_PwdFinishedEventHandler (FtpClient *ftp, FtpContext 
 /* Description: CWD handler in 'store file' operation. It is    */
 /****************************************************************/
 
-void FtpClientWorker::Store_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -2176,14 +2217,16 @@ void FtpClientWorker::Store_CwdFinishedEventHandler (FtpClient *ftp, FtpContext 
 	}
 }
 
-void FtpClientWorker::Store_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
 	m_listReply += (char*) args [0];
 }
 
-void FtpClientWorker::Store_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* line = (char*) m_listReply.c_str ();
 
@@ -2192,20 +2235,22 @@ void FtpClientWorker::Store_NlstFinishedEventHandler (FtpClient *ftp, FtpContext
 	else
 	{
 		const char* const args [] =
-			{ "store failed, remote file '", m_storeFile->remoteFileName, "' not listed", 0 };
+		{ "store failed, remote file '", m_storeFile->remoteFileName, "' not listed", 0 };
 		Release (FtpStoreNotListed, args, 0, 0);
 		return; // don't delete this statement
 	}
 }
 
-void FtpClientWorker::Store_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
 		char* workingDirName = m_storeFile->workingDirName;
 		if ((workingDirName == NULL) || (*workingDirName == 0))
 		{
-			const char* const msgs [] = {	"store: cannot check unnamed working directory", 0};
+			const char* const msgs [] =
+			{ "store: cannot check unnamed working directory", 0 };
 
 			Release (FtpStoreWorkDirEmpty, msgs, 0, 0);
 			return;
@@ -2226,7 +2271,8 @@ void FtpClientWorker::Store_DeleFinishedEventHandler (FtpClient *ftp, FtpContext
 		Store_InvokeRepresentationType (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Store_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_TEXT_FILE_TRANSFER)
 		ftp->RepresentationType (ascii, undefinedFormat, -1);
@@ -2234,7 +2280,8 @@ void FtpClientWorker::Store_InvokeRepresentationType (FtpClient *ftp, FtpContext
 		ftp->RepresentationType (image, undefinedFormat, -1);
 }
 
-void FtpClientWorker::Store_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	string localPathName = m_storeFile->localDirName;
 	localPathName += '/';
@@ -2242,21 +2289,24 @@ void FtpClientWorker::Store_TypeFinishedEventHandler (FtpClient *ftp, FtpContext
 	ftp->Store (localPathName, m_storeFile->remoteFileName);
 }
 
-void FtpClientWorker::Store_StorPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_StorPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_start = ftp->ctx ()->realTime ();
 	ftpcln->m_size = 0;
 }
 
-void FtpClientWorker::Store_StorProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_StorProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
-	long	n = (long) args [1];
+	long n = (long) args [1];
 	ftpcln->m_size += n;
 }
 
-void FtpClientWorker::Store_StorFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_StorFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_stop = ftp->ctx ()->realTime ();
@@ -2269,14 +2319,16 @@ void FtpClientWorker::Store_StorFinishedEventHandler (FtpClient *ftp, FtpContext
 		Store_RenameWorkingFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Store_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
 	m_listReply += (char*) args [0];
 }
 
-void FtpClientWorker::Store_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	DirEntryInfo ent;
@@ -2286,12 +2338,13 @@ void FtpClientWorker::Store_ListFinishedEventHandler (FtpClient *ftp, FtpContext
 	else
 	{
 		const char* const args [] =
-			{ "store failed, illegal list reply: ", m_listReply.c_str (), 0 };
+		{ "store failed, illegal list reply: ", m_listReply.c_str (), 0 };
 		Release (FtpStoreIllList, args, 0, 0);
 	}
 }
 
-void FtpClientWorker::Store_RenameWorkingFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_RenameWorkingFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
@@ -2306,12 +2359,14 @@ void FtpClientWorker::Store_RenameWorkingFile (FtpClient *ftp, FtpContext contex
 		Store_RemoveSourceFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Store_RntoFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_RntoFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	Store_RemoveSourceFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Store_RemoveSourceFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_RemoveSourceFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (m_ftpRequest->flags & FTP_REMOVE_SOURCE_FILE)
 	{
@@ -2322,25 +2377,29 @@ void FtpClientWorker::Store_RemoveSourceFile (FtpClient *ftp, FtpContext context
 		if (unlink (localFile.c_str ()) != 0)
 		{
 			const char* const args [] =
-				{ "store failed, cannot remove local file '", localFile.c_str (), "'", 0 };
+			{ "store failed, cannot remove local file '", localFile.c_str (), "'", 0 };
 			Release (FtpStoreLocalUnlink, args, "unlink", errno);
 			return; // don't delete this statement
 		}
-		if (conversation())
+		if (conversation ())
 		{
-			if (detailed())
-				cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000), m_storeFile->localFileName);
+			if (detailed ())
+				cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000),
+					m_storeFile->localFileName);
 			else
-				cf_sc_printf (SC_SFTP, SC_APL, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000), m_storeFile->localFileName);
+				cf_sc_printf (SC_SFTP, SC_APL, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000),
+					m_storeFile->localFileName);
 		}
 	}
-	const char* const msgs [] = {	"store finished", 0};
+	const char* const msgs [] =
+	{ "store finished", 0 };
 
 	Release (0, msgs, 0, 0);
 	return; // don't delete this statement
 }
 
-void FtpClientWorker::Store_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Store_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	switch (state)
 	{
@@ -2362,7 +2421,7 @@ void FtpClientWorker::Store_ErrorEventHandler (FtpClient *ftp, FtpContext contex
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpStoreFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -2371,7 +2430,8 @@ void FtpClientWorker::Store_ErrorEventHandler (FtpClient *ftp, FtpContext contex
 //	RETRIEVE SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::Retrieve_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Retrieve_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -2379,7 +2439,8 @@ void FtpClientWorker::Retrieve_PwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	ftp->ChangeWorkingDirectory (m_retrieveFile->remoteDirName);
 }
 
-void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -2396,7 +2457,7 @@ void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 			if (access (localFile.c_str (), F_OK) == 0)
 			{
 				const char* const args [] =
-					{ "retrieve failed: cannot access local file '", m_retrieveFile->localFileName, "'", 0 };
+				{ "retrieve failed: cannot access local file '", m_retrieveFile->localFileName, "'", 0 };
 				Release (FtpRetrLocalAccess, args, "access", errno);
 				return;
 			}
@@ -2406,7 +2467,8 @@ void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 			char* workingDir = m_retrieveFile->workingDirName;
 			if ((workingDir == NULL) || (*workingDir == 0))
 			{
-				const char* const msgs [] = {	"retrieve: empty working directory name", 0};
+				const char* const msgs [] =
+				{ "retrieve: empty working directory name", 0 };
 
 				Release (FtpRetrWorkDirEmpty, msgs, 0, 0);
 				return;
@@ -2421,7 +2483,7 @@ void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 				if (mkdir (workingDir, 0777) != 0)
 				{
 					const char* const args [] =
-						{ "retrieve: mkdir '", workingDir, "' failed", 0 };
+					{ "retrieve: mkdir '", workingDir, "' failed", 0 };
 					Release (FtpRetrMkWorkDir, args, "mkdir", errno);
 					return;
 				}
@@ -2434,8 +2496,8 @@ void FtpClientWorker::Retrieve_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	}
 }
 
-void FtpClientWorker::Retrieve_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_TEXT_FILE_TRANSFER)
 		ftp->RepresentationType (ascii, undefinedFormat, -1);
@@ -2443,8 +2505,8 @@ void FtpClientWorker::Retrieve_InvokeRepresentationType (FtpClient *ftp, FtpCont
 		ftp->RepresentationType (image, undefinedFormat, -1);
 }
 
-void FtpClientWorker::Retrieve_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	string localPathName = m_retrieveFile->localDirName;
 	localPathName += '/';
@@ -2457,23 +2519,23 @@ void FtpClientWorker::Retrieve_TypeFinishedEventHandler (FtpClient *ftp, FtpCont
 	ftp->Retrieve (localPathName, m_retrieveFile->remoteFileName);
 }
 
-void FtpClientWorker::Retrieve_RetrPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_RetrPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_start = ftp->ctx ()->realTime ();
 }
 
-void FtpClientWorker::Retrieve_RetrProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_RetrProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
-	long	n = (long) args [1];
+	long n = (long) args [1];
 	ftpcln->m_size += n;
 }
 
-void FtpClientWorker::Retrieve_RetrFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_RetrFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_stop = ftp->ctx ()->realTime ();
@@ -2487,8 +2549,8 @@ void FtpClientWorker::Retrieve_RetrFinishedEventHandler (FtpClient *ftp, FtpCont
 		Retrieve_MoveRetrievedFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::Retrieve_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
@@ -2496,8 +2558,8 @@ void FtpClientWorker::Retrieve_ListProgressEventHandler (FtpClient *ftp, FtpCont
 	cf_sc_printf (SC_SFTP, SC_APL, (char*) m_listReply.c_str ());
 }
 
-void FtpClientWorker::Retrieve_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	DirEntryInfo ent;
 
@@ -2505,13 +2567,15 @@ void FtpClientWorker::Retrieve_ListFinishedEventHandler (FtpClient *ftp, FtpCont
 		Retrieve_MoveRetrievedFile (ftp, context, status, state, args);
 	else
 	{
-		const char* const msgs [] = {	"retrieve: illegal list reply", 0};
+		const char* const msgs [] =
+		{ "retrieve: illegal list reply", 0 };
 
 		Release (FtpRetrIllList, msgs, 0, 0);
 	}
 }
 
-void FtpClientWorker::Retrieve_MoveRetrievedFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Retrieve_MoveRetrievedFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
@@ -2525,11 +2589,10 @@ void FtpClientWorker::Retrieve_MoveRetrievedFile (FtpClient *ftp, FtpContext con
 		localPath += m_retrieveFile->localFileName;
 		if (rename (workingPath.c_str (), localPath.c_str ()) != 0)
 		{
-			cf_sc_printf (SC_SFTP, SC_ERR,
-					"--- rename (%s, %s) failed, errno = %d",
-					workingPath.c_str(), localPath.c_str(), errno);
+			cf_sc_printf (SC_SFTP, SC_ERR, "--- rename (%s, %s) failed, errno = %d", workingPath.c_str (),
+				localPath.c_str (), errno);
 			const char* const args [] =
-				{ "rename (", workingPath.c_str (), ", ", localPath.c_str (), ") failed", 0 };
+			{ "rename (", workingPath.c_str (), ", ", localPath.c_str (), ") failed", 0 };
 			Release (FtpRetrRename, args, "rename", errno);
 			return;
 		}
@@ -2540,30 +2603,33 @@ void FtpClientWorker::Retrieve_MoveRetrievedFile (FtpClient *ftp, FtpContext con
 	}
 	else
 	{
-		const char* const msgs [] = {	"retrieve finished", 0};
+		const char* const msgs [] =
+		{ "retrieve finished", 0 };
 
 		Release (0, msgs, 0, 0);
 		return; // don't delete this statement
 	}
 }
 
-void FtpClientWorker::Retrieve_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::Retrieve_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"retrieve finished", 0};
+	const char* const msgs [] =
+	{ "retrieve finished", 0 };
 
 	Release (0, msgs, 0, 0);
 	return; // don't delete this statement
 }
 
-void FtpClientWorker::Retrieve_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Retrieve_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (state < ClientAuthenticated)
 		Stop ();
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpRetrFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -2572,7 +2638,8 @@ void FtpClientWorker::Retrieve_ErrorEventHandler (FtpClient *ftp, FtpContext con
 //	STORE ALL SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::StoreAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -2589,7 +2656,8 @@ void FtpClientWorker::StoreAll_PwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	ftp->ChangeWorkingDirectory (remoteDir);
 }
 
-void FtpClientWorker::StoreAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -2615,7 +2683,7 @@ void FtpClientWorker::StoreAll_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 			if ((m_localDir = opendir (m_storeAllFiles->localDirName)) == NULL)
 			{
 				const char* const args [] =
-					{ "storeall: opendir (", m_storeAllFiles->localDirName, ") failed", 0 };
+				{ "storeall: opendir (", m_storeAllFiles->localDirName, ") failed", 0 };
 				Release (FtpStoreAllLocDirOpen, args, "opendir", errno);
 				return;
 			}
@@ -2632,7 +2700,8 @@ void FtpClientWorker::StoreAll_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	}
 }
 
-void FtpClientWorker::StoreAll_StoreNextFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_StoreNextFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	ExceptionFileList* exceptions = m_storeAllFiles->exceptions;
 
@@ -2641,13 +2710,14 @@ void FtpClientWorker::StoreAll_StoreNextFile (FtpClient *ftp, FtpContext context
 		if (readdir_r (m_localDir, &m_localDirEntry, &m_localDirEntryPtr) != 0)
 		{
 			const char* const args [] =
-				{ "storeall: readdir (", m_storeAllFiles->localDirName, ") failed", 0 };
+			{ "storeall: readdir (", m_storeAllFiles->localDirName, ") failed", 0 };
 			Release (FtpStoreAllLocDirRead, args, "readdir_r", errno);
 			return;
 		}
 		if (m_localDirEntryPtr == NULL)
 		{
-			const char* const msgs [] = {	"storeall finished", 0};
+			const char* const msgs [] =
+			{ "storeall finished", 0 };
 
 			Release (0, msgs, 0, 0);
 			return;
@@ -2680,7 +2750,7 @@ void FtpClientWorker::StoreAll_StoreNextFile (FtpClient *ftp, FtpContext context
 		if (stat (localPathName.c_str (), &sbuff) != 0)
 		{
 			const char* const args [] =
-				{ "storeall: stat (", (char*) localPathName.c_str (), ") failed", 0 };
+			{ "storeall: stat (", (char*) localPathName.c_str (), ") failed", 0 };
 			Release (FtpStoreAllStat, args, "stat", errno);
 			return;
 		}
@@ -2696,16 +2766,16 @@ void FtpClientWorker::StoreAll_StoreNextFile (FtpClient *ftp, FtpContext context
 		ftp->Delete (m_localDirEntry.d_name);
 }
 
-void FtpClientWorker::StoreAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
 	m_listReply += (char*) args [0];
 }
 
-void FtpClientWorker::StoreAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* line = (char*) m_listReply.c_str ();
 
@@ -2713,15 +2783,16 @@ void FtpClientWorker::StoreAll_NlstFinishedEventHandler (FtpClient *ftp, FtpCont
 		((FtpClientWorker*) ftp)->StoreAll_DeleFinishedEventHandler (ftp, context, status, state, args);
 	else
 	{
-		const char* const msgs [] = {	"storeall: entry exist ", m_localDirEntry.d_name, 0};
+		const char* const msgs [] =
+		{ "storeall: entry exist ", m_localDirEntry.d_name, 0 };
 
 		Release (FtpStoreAllListReply, msgs, 0, 0);
 		return; // don't delete this statement
 	}
 }
 
-void FtpClientWorker::StoreAll_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_TEXT_FILE_TRANSFER)
 		ftp->RepresentationType (ascii, undefinedFormat, -1);
@@ -2729,8 +2800,8 @@ void FtpClientWorker::StoreAll_InvokeRepresentationType (FtpClient *ftp, FtpCont
 		ftp->RepresentationType (image, undefinedFormat, -1);
 }
 
-void FtpClientWorker::StoreAll_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	string localPathName = m_storeAllFiles->localDirName;
 	localPathName += '/';
@@ -2738,24 +2809,24 @@ void FtpClientWorker::StoreAll_TypeFinishedEventHandler (FtpClient *ftp, FtpCont
 	ftp->Store (localPathName, m_localDirEntry.d_name);
 }
 
-void FtpClientWorker::StoreAll_StorPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_StorPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_start = ftp->ctx ()->realTime ();
 	ftpcln->m_size = 0;
 }
 
-void FtpClientWorker::StoreAll_StorProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_StorProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
-	long	n = (long) args [1];
+	long n = (long) args [1];
 	ftpcln->m_size += n;
 }
 
-void FtpClientWorker::StoreAll_StorFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_StorFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_stop = ftp->ctx ()->realTime ();
@@ -2768,17 +2839,17 @@ void FtpClientWorker::StoreAll_StorFinishedEventHandler (FtpClient *ftp, FtpCont
 		StoreAll_RenameWorkingFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::StoreAll_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
 	m_listReply += (char*) args [0];
-	cf_sc_printf (SC_SFTP, SC_APL, "list reply = %s", (char*) m_listReply.c_str());
+	cf_sc_printf (SC_SFTP, SC_APL, "list reply = %s", (char*) m_listReply.c_str ());
 }
 
-void FtpClientWorker::StoreAll_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	DirEntryInfo ent;
@@ -2787,13 +2858,15 @@ void FtpClientWorker::StoreAll_ListFinishedEventHandler (FtpClient *ftp, FtpCont
 		StoreAll_RenameWorkingFile (ftp, context, status, state, args);
 	else
 	{
-		const char* const msgs [] = {	"storeall: entry not found ", (char*) m_listReply.c_str (), 0};
+		const char* const msgs [] =
+		{ "storeall: entry not found ", (char*) m_listReply.c_str (), 0 };
 
 		Release (FtpStoreAllListReply, msgs, 0, 0);
 	}
 }
 
-void FtpClientWorker::StoreAll_RenameWorkingFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_RenameWorkingFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
@@ -2808,16 +2881,16 @@ void FtpClientWorker::StoreAll_RenameWorkingFile (FtpClient *ftp, FtpContext con
 		StoreAll_RemoveSourceFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::StoreAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
 		char* workingDirName = m_storeAllFiles->workingDirName;
 		if ((workingDirName == NULL) || (*workingDirName == 0))
 		{
-			const char* const msgs [] = {	"store: cannot check unnamed working directory", 0};
-
+			const char* const msgs [] =
+			{ "store: cannot check unnamed working directory", 0 };
 
 			Release (FtpStoreAllWorkDirEmpty, msgs, 0, 0);
 			return;
@@ -2839,8 +2912,8 @@ void FtpClientWorker::StoreAll_DeleFinishedEventHandler (FtpClient *ftp, FtpCont
 		StoreAll_InvokeRepresentationType (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::StoreAll_RntoFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::StoreAll_RntoFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	string remoteDir;
 	if (*m_storeAllFiles->remoteDirName == '/')
@@ -2855,7 +2928,8 @@ void FtpClientWorker::StoreAll_RntoFinishedEventHandler (FtpClient *ftp, FtpCont
 	ftp->ChangeWorkingDirectory (remoteDir);
 }
 
-void FtpClientWorker::StoreAll_RemoveSourceFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_RemoveSourceFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (m_ftpRequest->flags & FTP_REMOVE_SOURCE_FILE)
 	{
@@ -2866,22 +2940,25 @@ void FtpClientWorker::StoreAll_RemoveSourceFile (FtpClient *ftp, FtpContext cont
 		if (unlink (localFile.c_str ()) != 0)
 		{
 			const char* const args [] =
-				{ "storeall: remove (", (char*) localFile.c_str (), ") failed", 0 };
+			{ "storeall: remove (", (char*) localFile.c_str (), ") failed", 0 };
 			Release (FtpStoreAllSrcRemove, args, "unlink", errno);
 			return;
 		}
-		if (conversation())
+		if (conversation ())
 		{
-			if (detailed())
-				cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000), m_localDirEntry.d_name);
+			if (detailed ())
+				cf_sc_printf (SC_SFTP, SC_ERR, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000),
+					m_localDirEntry.d_name);
 			else
-				cf_sc_printf (SC_SFTP, SC_APL, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000), m_localDirEntry.d_name);
+				cf_sc_printf (SC_SFTP, SC_APL, "S%06d: --> source file '%s' removed", m_sessionId % (1000 * 1000),
+					m_localDirEntry.d_name);
 		}
 	}
 	StoreAll_StoreNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::StoreAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::StoreAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	switch (state)
 	{
@@ -2903,7 +2980,7 @@ void FtpClientWorker::StoreAll_ErrorEventHandler (FtpClient *ftp, FtpContext con
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpStoreAllFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -2912,8 +2989,8 @@ void FtpClientWorker::StoreAll_ErrorEventHandler (FtpClient *ftp, FtpContext con
 //	RETRIEVE SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::RetrieveAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -2921,8 +2998,8 @@ void FtpClientWorker::RetrieveAll_PwdFinishedEventHandler (FtpClient *ftp, FtpCo
 	ftp->ChangeWorkingDirectory (m_retrieveAllFiles->remoteDirName);
 }
 
-void FtpClientWorker::RetrieveAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -2935,25 +3012,27 @@ void FtpClientWorker::RetrieveAll_CwdFinishedEventHandler (FtpClient *ftp, FtpCo
 		ftp->NameList ("");
 		break;
 	default:
-		{
-			const char* const msgs [] = {	"retrieveall: illegal context", 0};
+	{
+		const char* const msgs [] =
+		{ "retrieveall: illegal context", 0 };
 
-			Release (FtpRetrAllCwdContext, msgs, 0, 0);
-			return; // don't delete this statement
-		}
+		Release (FtpRetrAllCwdContext, msgs, 0, 0);
+		return; // don't delete this statement
+	}
 		break;
 	}
 }
 
-void FtpClientWorker::RetrieveAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* buff = (char*) args [0];
 	int n = (int) (long) args [1];
 
 	if (n == 0)
 	{
-		const char* const msgs [] = {	"empty name list", 0};
+		const char* const msgs [] =
+		{ "empty name list", 0 };
 
 		Release (0, msgs, 0, 0);
 		return;
@@ -2970,7 +3049,8 @@ void FtpClientWorker::RetrieveAll_NlstProgressEventHandler (FtpClient *ftp, FtpC
 		char* buffer = (char*) malloc (needSpace);
 		if (buffer == 0)
 		{
-			const char* const msgs [] = {	"malloc failed", 0};
+			const char* const msgs [] =
+			{ "malloc failed", 0 };
 
 			Release (FtpRetrAllMallocFailed, msgs, 0, 0);
 			return;
@@ -2988,8 +3068,8 @@ void FtpClientWorker::RetrieveAll_NlstProgressEventHandler (FtpClient *ftp, FtpC
 	m_listPtr += n;
 }
 
-void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_PROTECT_EXISTING_FILE)
 	{
@@ -2999,7 +3079,7 @@ void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpC
 		if (access (localFile.c_str (), F_OK) == 0)
 		{
 			const char* const args [] =
-				{ "retrieveall: access (", (char*) localFile.c_str (), ") failed", 0 };
+			{ "retrieveall: access (", (char*) localFile.c_str (), ") failed", 0 };
 			Release (FtpRetrAllLocalAccess, args, "access", errno);
 			return;
 		}
@@ -3009,7 +3089,8 @@ void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpC
 		char* workingDir = m_retrieveAllFiles->workingDirName;
 		if ((workingDir == NULL) || (*workingDir == 0))
 		{
-			const char* const msgs [] = {	"retrieveall: empty working dir name", 0};
+			const char* const msgs [] =
+			{ "retrieveall: empty working dir name", 0 };
 
 			Release (FtpRetrAllWrkDirEmpty, msgs, 0, 0);
 			return;
@@ -3024,7 +3105,7 @@ void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpC
 			if (mkdir (workingDir, 0777) != 0)
 			{
 				const char* const args [] =
-					{ "retrieveall: mkdir (", workingDir, ") failed", 0 };
+				{ "retrieveall: mkdir (", workingDir, ") failed", 0 };
 				Release (FtpRetrAllWrkDirMake, args, "mkdir", errno);
 				return;
 			}
@@ -3034,8 +3115,8 @@ void FtpClientWorker::RetrieveAll_NlstFinishedEventHandler (FtpClient *ftp, FtpC
 	RetrieveAll_InvokeRepresentationType (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::RetrieveAll_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_InvokeRepresentationType (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_TEXT_FILE_TRANSFER)
 		ftp->RepresentationType (ascii, undefinedFormat, -1);
@@ -3043,13 +3124,14 @@ void FtpClientWorker::RetrieveAll_InvokeRepresentationType (FtpClient *ftp, FtpC
 		ftp->RepresentationType (image, undefinedFormat, -1);
 }
 
-void FtpClientWorker::RetrieveAll_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_TypeFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	RetrieveAll_RetrieveNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::RetrieveAll_RetrieveNextFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::RetrieveAll_RetrieveNextFile (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExceptionFileList* exceptions = m_retrieveAllFiles->exceptions;
 
@@ -3057,7 +3139,8 @@ void FtpClientWorker::RetrieveAll_RetrieveNextFile (FtpClient *ftp, FtpContext c
 	{
 		if ((m_listRead == NULL) || (*m_listRead == 0))
 		{
-			const char* const msgs [] = {	"retrieveall finished", 0};
+			const char* const msgs [] =
+			{ "retrieveall finished", 0 };
 
 			Release (0, msgs, 0, 0);
 			return;
@@ -3105,23 +3188,23 @@ void FtpClientWorker::RetrieveAll_RetrieveNextFile (FtpClient *ftp, FtpContext c
 	}
 }
 
-void FtpClientWorker::RetrieveAll_RetrPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_RetrPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_start = ftp->ctx ()->realTime ();
 }
 
-void FtpClientWorker::RetrieveAll_RetrProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_RetrProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
-	long	n = (long) args [1];
+	long n = (long) args [1];
 	ftpcln->m_size += n;
 }
 
-void FtpClientWorker::RetrieveAll_RetrFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_RetrFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	FtpClientWorker* ftpcln = (FtpClientWorker*) ftp;
 	ftpcln->m_stop = ftp->ctx ()->realTime ();
@@ -3135,16 +3218,16 @@ void FtpClientWorker::RetrieveAll_RetrFinishedEventHandler (FtpClient *ftp, FtpC
 		RetrieveAll_MoveRetrievedFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::RetrieveAll_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (context != data)
 		return;
 	m_listReply += (char*) args [0];
 }
 
-void FtpClientWorker::RetrieveAll_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	DirEntryInfo ent;
 
@@ -3152,13 +3235,15 @@ void FtpClientWorker::RetrieveAll_ListFinishedEventHandler (FtpClient *ftp, FtpC
 		RetrieveAll_MoveRetrievedFile (ftp, context, status, state, args);
 	else
 	{
-		const char* const msgs [] = {	"retrieveall: illegal list reply", 0};
+		const char* const msgs [] =
+		{ "retrieveall: illegal list reply", 0 };
 
 		Release (FtpRetrAllIllListReply, msgs, 0, 0);
 	}
 }
 
-void FtpClientWorker::RetrieveAll_MoveRetrievedFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::RetrieveAll_MoveRetrievedFile (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_USE_WORKING_DIR)
 	{
@@ -3173,7 +3258,7 @@ void FtpClientWorker::RetrieveAll_MoveRetrievedFile (FtpClient *ftp, FtpContext 
 		if (rename (workingPath.c_str (), localPath.c_str ()) != 0)
 		{
 			const char* const args [] =
-				{ "retrieveall: rename (", (char*) workingPath.c_str (), ", ", (char*) localPath.c_str (), ") failed", 0 };
+			{ "retrieveall: rename (", (char*) workingPath.c_str (), ", ", (char*) localPath.c_str (), ") failed", 0 };
 			Release (FtpRetrAllLocalRename, args, "rename", errno);
 			return;
 		}
@@ -3184,13 +3269,14 @@ void FtpClientWorker::RetrieveAll_MoveRetrievedFile (FtpClient *ftp, FtpContext 
 		RetrieveAll_RetrieveNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::RetrieveAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::RetrieveAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	RetrieveAll_RetrieveNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::RetrieveAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::RetrieveAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (state == RetrFinished)
 	{
@@ -3202,7 +3288,7 @@ void FtpClientWorker::RetrieveAll_ErrorEventHandler (FtpClient *ftp, FtpContext 
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpRetrAllFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -3211,7 +3297,8 @@ void FtpClientWorker::RetrieveAll_ErrorEventHandler (FtpClient *ftp, FtpContext 
 //	DELETE SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::Delete_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Delete_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -3219,7 +3306,8 @@ void FtpClientWorker::Delete_PwdFinishedEventHandler (FtpClient *ftp, FtpContext
 	ftp->ChangeWorkingDirectory (m_deleteFile->remoteDirName);
 }
 
-void FtpClientWorker::Delete_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Delete_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -3231,32 +3319,36 @@ void FtpClientWorker::Delete_CwdFinishedEventHandler (FtpClient *ftp, FtpContext
 		ftp->Delete (m_deleteFile->remoteFileName);
 		break;
 	default:
-		{
-			const char* const msgs [] = {	"delete: illegal context", 0};
+	{
+		const char* const msgs [] =
+		{ "delete: illegal context", 0 };
 
-			Release (FtpDeleteContext, msgs, 0, 0);
-			return; // don't delete this statement
-		}
+		Release (FtpDeleteContext, msgs, 0, 0);
+		return; // don't delete this statement
+	}
 		break;
 	}
 }
 
-void FtpClientWorker::Delete_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Delete_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
-	const char* const msgs [] = {	"delete finished", 0};
+	const char* const msgs [] =
+	{ "delete finished", 0 };
 
 	Release (0, msgs, 0, 0);
 	return; // don't delete this statement
 }
 
-void FtpClientWorker::Delete_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::Delete_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (state < ClientAuthenticated)
 		Stop ();
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpDeleteFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -3265,8 +3357,8 @@ void FtpClientWorker::Delete_ErrorEventHandler (FtpClient *ftp, FtpContext conte
 //	DELETE ALL SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::DeleteAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::DeleteAll_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 
@@ -3274,8 +3366,8 @@ void FtpClientWorker::DeleteAll_PwdFinishedEventHandler (FtpClient *ftp, FtpCont
 	ftp->ChangeWorkingDirectory (m_deleteAllFiles->remoteDirName);
 }
 
-void FtpClientWorker::DeleteAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::DeleteAll_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -3288,25 +3380,27 @@ void FtpClientWorker::DeleteAll_CwdFinishedEventHandler (FtpClient *ftp, FtpCont
 		ftp->NameList ("");
 		break;
 	default:
-		{
-			const char* const msgs [] = {	"deleteall: illegal context", 0};
+	{
+		const char* const msgs [] =
+		{ "deleteall: illegal context", 0 };
 
-			Release (FtpDeleteAllContext, msgs, 0, 0);
-			return; // don't delete this statement
-		}
+		Release (FtpDeleteAllContext, msgs, 0, 0);
+		return; // don't delete this statement
+	}
 		break;
 	}
 }
 
-void FtpClientWorker::DeleteAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::DeleteAll_NlstProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* buff = (char*) args [0];
 	int n = (int) (long) args [1];
 
 	if (n == 0)
 	{
-		const char* const msgs [] = {	"empty name list", 0};
+		const char* const msgs [] =
+		{ "empty name list", 0 };
 
 		Release (0, msgs, 0, 0);
 		return;
@@ -3323,7 +3417,8 @@ void FtpClientWorker::DeleteAll_NlstProgressEventHandler (FtpClient *ftp, FtpCon
 		char* buffer = (char*) malloc (needSpace);
 		if (buffer == 0)
 		{
-			const char* const msgs [] = {	"malloc failed", 0};
+			const char* const msgs [] =
+			{ "malloc failed", 0 };
 
 			Release (FtpDeleteAllMallocFailed, msgs, 0, 0);
 			return;
@@ -3342,14 +3437,15 @@ void FtpClientWorker::DeleteAll_NlstProgressEventHandler (FtpClient *ftp, FtpCon
 	m_listPtr += n;
 }
 
-void FtpClientWorker::DeleteAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::DeleteAll_NlstFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	m_listRead = m_listBuffer;
 	DeleteAll_DeleteNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::DeleteAll_DeleteNextFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::DeleteAll_DeleteNextFile (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	ExceptionFileList* exceptions = m_deleteAllFiles->exceptions;
 
@@ -3357,7 +3453,8 @@ void FtpClientWorker::DeleteAll_DeleteNextFile (FtpClient *ftp, FtpContext conte
 	{
 		if ((m_listRead == NULL) || (*m_listRead == 0))
 		{
-			const char* const msgs [] = {	"deleteall finished", 0};
+			const char* const msgs [] =
+			{ "deleteall finished", 0 };
 
 			Release (0, msgs, 0, 0);
 			return;
@@ -3397,13 +3494,14 @@ void FtpClientWorker::DeleteAll_DeleteNextFile (FtpClient *ftp, FtpContext conte
 	}
 }
 
-void FtpClientWorker::DeleteAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::DeleteAll_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	DeleteAll_DeleteNextFile (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::DeleteAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::DeleteAll_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	if (state == DeleFinished)
 	{
@@ -3415,7 +3513,7 @@ void FtpClientWorker::DeleteAll_ErrorEventHandler (FtpClient *ftp, FtpContext co
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpDeleteAllFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
@@ -3424,7 +3522,8 @@ void FtpClientWorker::DeleteAll_ErrorEventHandler (FtpClient *ftp, FtpContext co
 //	MAKE WORKING ENVIRONMENT SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::MakeWorkingEnv_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::MakeWorkingEnv_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (state)
 	{
@@ -3455,13 +3554,13 @@ void FtpClientWorker::MakeWorkingEnv_ErrorEventHandler (FtpClient *ftp, FtpConte
 
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpMakeWorkingEnvFailed, msg, (char*) args [1], (int) (long) args [2]);
 	return; // don't delete this statement
 }
 
-void FtpClientWorker::MakeWorkingEnv_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::MakeWorkingEnv_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 	MakeWorkingEnv_CwdFirstRemoteComponent (ftp);
@@ -3569,8 +3668,8 @@ void FtpClientWorker::MakeWorkingEnv_CwdNextWorkingComponent (FtpClient *ftp)
 	}
 }
 
-void FtpClientWorker::MakeWorkingEnv_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::MakeWorkingEnv_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -3589,15 +3688,16 @@ void FtpClientWorker::MakeWorkingEnv_CwdFinishedEventHandler (FtpClient *ftp, Ft
 	}
 }
 
-void FtpClientWorker::MakeWorkingEnv_MkdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::MakeWorkingEnv_MkdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ftp->ChangeWorkingDirectory (m_dirPtr);
 }
 
 void FtpClientWorker::MakeWorkingEnv_Finished (FtpClient *ftp)
 {
-	const char* const msgs [] = {	"make working environment finished", 0};
+	const char* const msgs [] =
+	{ "make working environment finished", 0 };
 
 	Release (0, msgs, 0, 0);
 }
@@ -3606,15 +3706,17 @@ void FtpClientWorker::MakeWorkingEnv_Finished (FtpClient *ftp)
 //	CLEAN DIRECTORY SCENARIO FTP CALLBACKS AND OTHER UTILITIES
 //
 
-void FtpClientWorker::CleanDir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::CleanDir_ErrorEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
+	void* args [])
 {
 	GenErrorReport (args);
 	const char* const msg [] =
-		{ (char*) args [0], 0 };
+	{ (char*) args [0], 0 };
 	Release (FtpCleanDirFailed, msg, (char*) args [1], (int) (long) args [2]);
 }
 
-void FtpClientWorker::CleanDir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::CleanDir_CwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	switch (m_cwdContext)
 	{
@@ -3630,7 +3732,8 @@ void FtpClientWorker::CleanDir_CwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	}
 }
 
-void FtpClientWorker::CleanDir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::CleanDir_PwdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	ExtractHomeDir ((char*) args [0]);
 	m_stackDepth = -1;
@@ -3638,21 +3741,22 @@ void FtpClientWorker::CleanDir_PwdFinishedEventHandler (FtpClient *ftp, FtpConte
 	ftp->ChangeWorkingDirectory (m_cleanDir->remoteDirName);
 }
 
-void FtpClientWorker::CleanDir_ListPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CleanDir_ListPreparedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	m_startIndex = m_listPtr - m_listBuffer;
 }
 
-void FtpClientWorker::CleanDir_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CleanDir_ListProgressEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	char* buff = (char*) args [0];
 	int n = (int) (long) args [1];
 
 	if (n == 0)
 	{
-		const char* const msgs [] = {	"empty name list", 0};
+		const char* const msgs [] =
+		{ "empty name list", 0 };
 
 		Release (0, msgs, 0, 0);
 		return;
@@ -3669,7 +3773,8 @@ void FtpClientWorker::CleanDir_ListProgressEventHandler (FtpClient *ftp, FtpCont
 		char* buffer = (char*) malloc (needSpace);
 		if (buffer == 0)
 		{
-			const char* const msgs [] = {	"malloc failed", 0};
+			const char* const msgs [] =
+			{ "malloc failed", 0 };
 
 			Release (FtpCleanDirMallocFailed, msgs, 0, 0);
 			return;
@@ -3688,15 +3793,15 @@ void FtpClientWorker::CleanDir_ListProgressEventHandler (FtpClient *ftp, FtpCont
 	m_listPtr += n;
 }
 
-void FtpClientWorker::CleanDir_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CleanDir_ListFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	m_listStart = m_listRead = m_listBuffer + m_startIndex;
 	CleanDir_DeleteNextComponent (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::CleanDir_CdupFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CleanDir_CdupFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	if (m_ftpRequest->flags & FTP_DESTRUCTIVE_OPERATION)
 		ftp->RemoveDirectory (m_listName);
@@ -3704,18 +3809,20 @@ void FtpClientWorker::CleanDir_CdupFinishedEventHandler (FtpClient *ftp, FtpCont
 		CleanDir_DeleteNextComponent (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::CleanDir_RmdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::CleanDir_RmdFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	CleanDir_DeleteNextComponent (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::CleanDir_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state,
-	void* args [])
+void FtpClientWorker::CleanDir_DeleFinishedEventHandler (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	CleanDir_DeleteNextComponent (ftp, context, status, state, args);
 }
 
-void FtpClientWorker::CleanDir_DeleteNextComponent (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [])
+void FtpClientWorker::CleanDir_DeleteNextComponent (FtpClient *ftp, FtpContext context, FtpStatus status,
+	FtpState state, void* args [])
 {
 	while (m_listRead < m_listPtr)
 	{
@@ -3741,8 +3848,7 @@ void FtpClientWorker::CleanDir_DeleteNextComponent (FtpClient *ftp, FtpContext c
 			CleanDir_IncStack ();
 			ftp->ChangeWorkingDirectory (ent.name);
 		}
-		else if (ent.type == DT_REG
-			)
+		else if (ent.type == DT_REG)
 			ftp->Delete (ent.name);
 		else
 			continue;
@@ -3753,7 +3859,8 @@ void FtpClientWorker::CleanDir_DeleteNextComponent (FtpClient *ftp, FtpContext c
 	{
 		if (m_stackDepth < 0)
 		{
-			const char* const msgs [] = {	"clean directory finished finished", 0};
+			const char* const msgs [] =
+			{ "clean directory finished finished", 0 };
 
 			Release (0, msgs, 0, 0);
 		}
@@ -3776,7 +3883,8 @@ void FtpClientWorker::CleanDir_IncStack ()
 		int* stack = (int*) malloc (2 * stackSize * sizeof(int));
 		if (stack == 0)
 		{
-			const char* const msgs [] = {	"malloc failed", 0};
+			const char* const msgs [] =
+			{ "malloc failed", 0 };
 
 			Release (FtpCleanDirMallocFailed, msgs, 0, 0);
 			return;
@@ -3806,28 +3914,26 @@ void FtpClientWorker::CleanDir_DecStack ()
 	m_stackDepth--;
 }
 
-void FtpClientWorker::GenErrorReport (void*args[])
+void FtpClientWorker::GenErrorReport (void*args [])
 {
 	char* msg = (char*) args [0];
 	char* sys = (char*) args [1];
 	int err = (int) (long) args [2];
-	char* reqtxt = FtpRequestInterface::GetFtpRequestText(m_ftpRequest, '\t', '\n');
+	char* reqtxt = FtpRequestInterface::GetFtpRequestText (m_ftpRequest, '\t', '\n');
 
 	if (reqtxt != 0)
 	{
-		cf_sc_printf (SC_SFTP, SC_ERR,
-				"FTP job %d.%d.%d (S%06d) --- FTP failed:\n\t%s\n\t%s%s, %s%d\n\t%s",
-				clientId (), m_jobCount, m_sessionId, m_sessionId % (1000 * 1000),
-				msg, sys, ((err != 0) ? " failed" : ""), ((err != 0) ? "errno = " : ""), err, reqtxt);
+		cf_sc_printf (SC_SFTP, SC_ERR, "FTP job %d.%d.%d (S%06d) --- FTP failed:\n\t%s\n\t%s%s, %s%d\n\t%s",
+			clientId (), m_jobCount, m_sessionId, m_sessionId % (1000 * 1000), msg, sys, ((err != 0) ? " failed" : ""),
+			((err != 0) ? "errno = " : ""), err, reqtxt);
 		free (reqtxt);
 	}
 	else
 	{
 		reqtxt = (char*) "CANNOT CREATE FTP REQUEST TEXT";
-		cf_sc_printf (SC_SFTP, SC_ERR,
-				"FTP job %d.%d.%d (S%06d) --- FTP failed:\n\t%s\n\t%s%s, %s%d\n\t%s",
-				clientId (), m_jobCount, m_sessionId, m_sessionId % (1000 * 1000),
-				msg, sys, ((err != 0) ? " failed" : ""), ((err != 0) ? "errno = " : ""), err, reqtxt);
+		cf_sc_printf (SC_SFTP, SC_ERR, "FTP job %d.%d.%d (S%06d) --- FTP failed:\n\t%s\n\t%s%s, %s%d\n\t%s",
+			clientId (), m_jobCount, m_sessionId, m_sessionId % (1000 * 1000), msg, sys, ((err != 0) ? " failed" : ""),
+			((err != 0) ? "errno = " : ""), err, reqtxt);
 	}
 }
 
@@ -3944,7 +4050,7 @@ bool FtpClientWorker::ReadWindowsListLine (char* parts [], int count, DirEntryIn
 
 void FtpClientWorker::HandleStartEvent (MpxEventBase* event)
 {
-	ctx (((MpxTaskMultiplexer*)mpx())->ctx());
+	ctx (((MpxTaskMultiplexer*) mpx ())->ctx ());
 }
 
 void FtpClientWorker::HandleStopEvent (MpxEventBase* event)
@@ -3954,7 +4060,7 @@ void FtpClientWorker::HandleStopEvent (MpxEventBase* event)
 
 void FtpClientWorker::HandleInviteRequestEvent (MpxEventBase* event)
 {
-	SftpInviteRequest* inviteRequest = dynamic_cast < SftpInviteRequest* > (event);
+	SftpInviteRequest* inviteRequest = dynamic_cast <SftpInviteRequest*> (event);
 	if (inviteRequest == 0)
 		return;
 
@@ -3963,7 +4069,7 @@ void FtpClientWorker::HandleInviteRequestEvent (MpxEventBase* event)
 	else
 	{
 		if (m_request != 0)
-			xdr_free ((xdrproc_t)xdr_FtpRequest, (char*) m_request);
+			xdr_free ((xdrproc_t) xdr_FtpRequest, (char*) m_request);
 		delete m_request;
 		if ((m_request = inviteRequest->request ()) == 0)
 			Send ((MpxTaskBase*) event->src (), new SftpInviteReply (false));
@@ -3977,15 +4083,15 @@ void FtpClientWorker::HandleInviteRequestEvent (MpxEventBase* event)
 
 void FtpClientWorker::HandleJobFinishedEvent (MpxEventBase* event)
 {
-	MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
+	MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast <MpxJobFinishedEvent*> (event);
 	if (jobFinishedEvent == 0)
 		return;
 
-	MpxJobGetAddrInfo* jobGetAddrInfo = dynamic_cast < MpxJobGetAddrInfo* > (jobFinishedEvent->job());
+	MpxJobGetAddrInfo* jobGetAddrInfo = dynamic_cast <MpxJobGetAddrInfo*> (jobFinishedEvent->job ());
 	if (jobGetAddrInfo == 0)
 		return;
 
-	m_addrinfo = jobGetAddrInfo->results();
+	m_addrinfo = jobGetAddrInfo->results ();
 	delete jobGetAddrInfo;
 	Send (m_ctrlTask, new SftpClientStart ());
 	Execute (m_request);

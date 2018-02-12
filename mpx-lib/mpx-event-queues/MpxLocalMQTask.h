@@ -57,6 +57,7 @@ private:
 	;mpx_event_handler (LocalClientEventHandler, MpxLocalMQTask)
 	;
 private:
+	static EventDescriptor g_evntab[];
 	static const char* g_localPath;
 	MpxLocalListener* m_listener;
 	epset m_epset;

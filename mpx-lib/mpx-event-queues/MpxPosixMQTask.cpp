@@ -22,12 +22,18 @@
 namespace mpx
 {
 
+EventDescriptor MpxPosixMQTask::g_evntab[] =
+{
+	{ StartState, StartEvent, StartEventHandler, 0 },
+	{ AnyState, StopEvent, StopEventHandler, 0 },
+	{ AnyState, PosixMQEvent, PosixMQEventHandler, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxPosixMQTask::MpxPosixMQTask () :
 	MpxMQTaskI ()
 {
-	RegisterEventHandler (StartState, StartEvent, StartEventHandler, this);
-	RegisterEventHandler (AnyState, StopEvent, StopEventHandler, this);
-	RegisterEventHandler (AnyState, PosixMQEvent, PosixMQEventHandler, this);
+	RegisterEventHandlers (g_evntab);
 	m_listener = 0;
 }
 

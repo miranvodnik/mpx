@@ -313,16 +313,17 @@ private:
 
 EventDescriptor SftpTest::g_events [] =
 {
-{ AnyState, StartEvent, HandleStartEvent, 0 },
-{ AnyState, StopEvent, HandleStopEvent, 0 },
-{ AnyState, TimerEvent, HandleTimerEvent, 0 },
-{ AnyState, SftpInviteReply::InviteReplyEvent, HandleInviteReplyEvent, 0 },
-{ AnyState, SftpClientStart::ClientStartEvent, HandleClientStartEvent, 0 },
-{ AnyState, SftpClientStop::ClientStopEvent, HandleClientStopEvent, 0 },
-{ AnyState, SftpClientRequest::ClientRequestEvent, HandleClientRequestEvent, 0 },
-{ AnyState, SftpClientReply::ClientReplyEvent, HandleClientReplyEvent, 0 },
-{ AnyState, SftpJobInfo::JobInfoEvent, HandleJobInfoEvent, 0 },
-{ 0, 0, 0, 0 }, };
+	{ AnyState, StartEvent, HandleStartEvent, 0 },
+	{ AnyState, StopEvent, HandleStopEvent, 0 },
+	{ AnyState, TimerEvent, HandleTimerEvent, 0 },
+	{ AnyState, SftpInviteReply::InviteReplyEvent, HandleInviteReplyEvent, 0 },
+	{ AnyState, SftpClientStart::ClientStartEvent, HandleClientStartEvent, 0 },
+	{ AnyState, SftpClientStop::ClientStopEvent, HandleClientStopEvent, 0 },
+	{ AnyState, SftpClientRequest::ClientRequestEvent, HandleClientRequestEvent, 0 },
+	{ AnyState, SftpClientReply::ClientReplyEvent, HandleClientReplyEvent, 0 },
+	{ AnyState, SftpJobInfo::JobInfoEvent, HandleJobInfoEvent, 0 },
+	{ 0, 0, 0, 0 }
+};
 
 void SftpTest::HandleStartEvent (MpxEventBase* event)
 {

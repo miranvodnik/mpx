@@ -408,6 +408,8 @@ private:
 	static u_long m_userAuthenticated;
 	static u_long m_connDisposed;
 	static u_long m_connUnresolved;
+
+	static EventDescriptor g_evntab[];
 };
 
 } /* namespace sftp */

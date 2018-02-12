@@ -27,16 +27,21 @@ namespace mpx
 
 const char* MpxLocalMQTask::g_localPath = "/var/run/";
 
+EventDescriptor MpxLocalMQTask::g_evntab[] =
+{
+	{ StartState, StartEvent, StartEventHandler, 0 },
+	{ AnyState, StopEvent, StopEventHandler, 0 },
+	{ AnyState, LocalListenerEvent, LocalListenerEventHandler, 0 },
+	{ AnyState, LocalEndPointEvent, LocalEndPointEventHandler, 0 },
+	{ AnyState, LocalClientEvent, LocalClientEventHandler, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxLocalMQTask::MpxLocalMQTask () :
 	MpxMQTaskI ()
 {
 	m_listener = 0;
-
-	RegisterEventHandler (StartState, StartEvent, StartEventHandler, this);
-	RegisterEventHandler (AnyState, StopEvent, StopEventHandler, this);
-	RegisterEventHandler (AnyState, LocalListenerEvent, LocalListenerEventHandler, this);
-	RegisterEventHandler (AnyState, LocalEndPointEvent, LocalEndPointEventHandler, this);
-	RegisterEventHandler (AnyState, LocalClientEvent, LocalClientEventHandler, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxLocalMQTask::~MpxLocalMQTask ()

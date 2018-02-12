@@ -105,6 +105,7 @@ private:
 	static const char* g_pathField;
 	static const char* g_addressField;
 	static const char* g_portField;
+	static EventDescriptor g_evntab[];
 
 	string m_connStr;
 	bool m_started;

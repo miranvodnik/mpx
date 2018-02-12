@@ -22,11 +22,17 @@
 namespace mpx
 {
 
+EventDescriptor MpxLocalEndPointProxyTask::g_evntab[] =
+{
+	{ AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxLocalEndPointProxyTask::MpxLocalEndPointProxyTask (MpxTaskBase* task, MpxLocalEndPoint* localEndPoint) :
 	MpxProxyTask (task, localEndPoint)
 {
 	localEndPoint->task (this);
-	RegisterEventHandler (AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxLocalEndPointProxyTask::~MpxLocalEndPointProxyTask ()

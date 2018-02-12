@@ -43,33 +43,34 @@ const char* MpxExternalTask::g_pathField = "path:";
 const char* MpxExternalTask::g_addressField = "address:";
 const char* MpxExternalTask::g_portField = "port:";
 
+EventDescriptor MpxExternalTask::g_evntab[] =
+{
+	{ AnyState, StartEvent, HandleStartEvent, 0 },
+	{ AnyState, StopEvent, HandleStopEvent, 0 },
+	{ AnyState, LocalTaskQueryEvent, HandleLocalTaskQueryEvent, 0 },
+	{ AnyState, Tcp4TaskQueryEvent, HandleTcp4TaskQueryEvent, 0 },
+	{ AnyState, Tcp6TaskQueryEvent, HandleTcp6TaskQueryEvent, 0 },
+	{ AnyState, LocalListenerEvent, HandleLocalListenerEvent, 0 },
+	{ AnyState, LocalClientEvent, HandleLocalClientEvent, 0 },
+	{ AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, 0 },
+	{ AnyState, Tcp4ListenerEvent, HandleTcp4ListenerEvent, 0 },
+	{ AnyState, Tcp4ClientEvent, HandleTcp4ClientEvent, 0 },
+	{ AnyState, Tcp4EndPointEvent, HandleTcp4EndPointEvent, 0 },
+	{ AnyState, Tcp6ListenerEvent, HandleTcp6ListenerEvent, 0 },
+	{ AnyState, Tcp6ClientEvent, HandleTcp6ClientEvent, 0 },
+	{ AnyState, Tcp6EndPointEvent, HandleTcp6EndPointEvent, 0 },
+	{ AnyState, TaskQueryEvent, HandleTaskQueryEvent, 0 },
+	{ AnyState, TaskResponseEvent, HandleTaskResponseEvent, 0 },
+	{ 0, 0, 0, 0 }
+};
+
 MpxExternalTask::MpxExternalTask (const char* connStr) :
 	MpxTaskBase ()
 {
 	m_connStr = (connStr != 0) ? connStr : "";
 	m_started = false;
 
-	RegisterEventHandler (AnyState, StartEvent, HandleStartEvent, this);
-	RegisterEventHandler (AnyState, StopEvent, HandleStopEvent, this);
-
-	RegisterEventHandler (AnyState, LocalTaskQueryEvent, HandleLocalTaskQueryEvent, this);
-	RegisterEventHandler (AnyState, Tcp4TaskQueryEvent, HandleTcp4TaskQueryEvent, this);
-	RegisterEventHandler (AnyState, Tcp6TaskQueryEvent, HandleTcp6TaskQueryEvent, this);
-
-	RegisterEventHandler (AnyState, LocalListenerEvent, HandleLocalListenerEvent, this);
-	RegisterEventHandler (AnyState, LocalClientEvent, HandleLocalClientEvent, this);
-	RegisterEventHandler (AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, this);
-
-	RegisterEventHandler (AnyState, Tcp4ListenerEvent, HandleTcp4ListenerEvent, this);
-	RegisterEventHandler (AnyState, Tcp4ClientEvent, HandleTcp4ClientEvent, this);
-	RegisterEventHandler (AnyState, Tcp4EndPointEvent, HandleTcp4EndPointEvent, this);
-
-	RegisterEventHandler (AnyState, Tcp6ListenerEvent, HandleTcp6ListenerEvent, this);
-	RegisterEventHandler (AnyState, Tcp6ClientEvent, HandleTcp6ClientEvent, this);
-	RegisterEventHandler (AnyState, Tcp6EndPointEvent, HandleTcp6EndPointEvent, this);
-
-	RegisterEventHandler (AnyState, TaskQueryEvent, HandleTaskQueryEvent, this);
-	RegisterEventHandler (AnyState, TaskResponseEvent, HandleTaskResponseEvent, this);
+	RegisterEventHandlers (g_evntab);
 }
 
 MpxExternalTask::~MpxExternalTask ()

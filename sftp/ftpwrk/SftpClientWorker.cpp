@@ -54,6 +54,15 @@ SftpClient::SftpCallback* SftpClientWorker::g_cleanDirScenario = 0;
 //	scenario initializer - must follow (not precede) scenario declarations
 SftpClientWorker* SftpClientWorker::g_scenarioInitializer = new SftpClientWorker (true);
 
+EventDescriptor SftpClientWorker::g_evntab [] =
+{
+	{ AnyState, StartEvent, HandleStartEvent, 0 },
+	{ AnyState, StopEvent, HandleStopEvent, 0 },
+	{ AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, 0 },
+	{ AnyState, JobFinishedEvent, HandleJobFinishedEvent, 0 },
+	{ 0, 0, 0, 0 },
+};
+
 SftpClientWorker::SftpClientWorker (bool initialize)
 {
 	if (!initialize)
@@ -746,10 +755,7 @@ void SftpClientWorker::InitCleanDirScenario ()
 
 SftpClientWorker::SftpClientWorker ()
 {
-	RegisterEventHandler (AnyState, StartEvent, HandleStartEvent, this);
-	RegisterEventHandler (AnyState, StopEvent, HandleStopEvent, this);
-	RegisterEventHandler (AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, this);
-	RegisterEventHandler (AnyState, JobFinishedEvent, HandleJobFinishedEvent, this);
+	RegisterEventHandlers (g_evntab);
 
 	m_size = 0;
 	m_sessionId = 0;

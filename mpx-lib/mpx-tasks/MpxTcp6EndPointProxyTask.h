@@ -33,6 +33,8 @@ public:
 private:
 	mpx_event_handler(HandleTcp6EndPointEvent, MpxTcp6EndPointProxyTask)
 	;
+private:
+	static EventDescriptor g_evntab [];
 };
 
 } // namespace mpx
