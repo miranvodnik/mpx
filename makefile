@@ -8,5 +8,5 @@ all clean: subdirs
 subdirs: $(SUBDIRS)
 
 $(SUBDIRS):
-	cd $@/Debug; $(MAKE) $(MAKECMDGOALS)
+	cd $@/$(CONFIGURATION); $(MAKE) $(MAKECMDGOALS)
 
