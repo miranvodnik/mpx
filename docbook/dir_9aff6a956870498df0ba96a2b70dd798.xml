@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dir_9aff6a956870498df0ba96a2b70dd798">
+    <title>mpx-lib/Release/mpx-events Directory Reference</title>
+<para>Directory dependency diagram for mpx-lib/Release/mpx-events</para>
+<para>
+    <figure>
+        <title>Directory Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dir_9aff6a956870498df0ba96a2b70dd798_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> File </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d8/dfa/mpx-events__xdr_8d">mpx-events_xdr.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/da8/_mpx_event_base_8d">MpxEventBase.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d5/d98/_mpx_external_task_event_8d">MpxExternalTaskEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="de/dc9/_mpx_job_finished_event_8d">MpxJobFinishedEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d2/d97/_mpx_local_client_event_8d">MpxLocalClientEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d9/db3/_mpx_local_end_point_event_8d">MpxLocalEndPointEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d8/d2f/_mpx_local_listener_event_8d">MpxLocalListenerEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="df/dec/_mpx_local_task_query_event_8d">MpxLocalTaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/ddd/_mpx_posix_m_q_event_8d">MpxPosixMQEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d1/d3a/_mpx_posix_m_q_task_query_event_8d">MpxPosixMQTaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d5/da0/_mpx_start_event_8d">MpxStartEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="de/d9f/_mpx_stop_event_8d">MpxStopEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d7/d39/_mpx_task_query_event_8d">MpxTaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d7/deb/_mpx_task_response_event_8d">MpxTaskResponseEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dc/d09/_mpx_tcp4_client_event_8d">MpxTcp4ClientEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dd/d12/_mpx_tcp4_end_point_event_8d">MpxTcp4EndPointEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d9/dbd/_mpx_tcp4_listener_event_8d">MpxTcp4ListenerEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d92/_mpx_tcp4_task_query_event_8d">MpxTcp4TaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d55/_mpx_tcp6_client_event_8d">MpxTcp6ClientEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="db/de1/_mpx_tcp6_end_point_event_8d">MpxTcp6EndPointEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d5/d6d/_mpx_tcp6_listener_event_8d">MpxTcp6ListenerEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d0/dfd/_mpx_tcp6_task_query_event_8d">MpxTcp6TaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d8/d54/_mpx_timer_event_8d">MpxTimerEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d1/d1e/_mpx_udp4_task_query_event_8d">MpxUdp4TaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="da/d12/_mpx_udp6_task_query_event_8d">MpxUdp6TaskQueryEvent.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Directory location is /home/miran/eclipse-workspace/mpx/mpx-lib/Release/mpx-events/</para>
+    </simplesect>
+</section>

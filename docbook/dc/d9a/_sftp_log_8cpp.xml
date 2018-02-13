@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dc/d9a/_sftp_log_8cpp">
+    <title>SftpLog.cpp File Reference</title>
+    <programlisting>#include &lt;ftplog/SftpLog.h&gt;</programlisting>
+<para>Include dependency diagram for SftpLog.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d6b/_sftp_log_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for SftpLog.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d56/_sftp_log_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d7/d36/class___sftp_log_init">_SftpLogInit</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Variables</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="dc/d9a/_sftp_log_8cpp_1a4123cde6ca34887033f1cbc51a07a25a">g_sftp_print_disabled</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const char * <link linkend="dc/d9a/_sftp_log_8cpp_1a58a07e38e3d1767b96b9150626ea5c04">modulName</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d9a/_sftp_log_8cpp_1a772137fc1b4eb1600fab96d1c9080bba">disableSftpPrint</link> (
+int disable)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d9a/_sftp_log_8cpp_1aaf5692d60640d51bddbb64bd53706b3a">SftpPrintf</link> (
+int module, int severity, const char * format, va_list msg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dc/d9a/_sftp_log_8cpp_1a9755b200f8d643d448e18954ea71ed96">cf_sc_printf</link> (
+int module, int severity, const char * format, ... )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftplog/SftpLog.cpp</para>
+    </simplesect>
+</section>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/d79/_mpx_task_multiplexer_8cpp">
+    <title>MpxTaskMultiplexer.cpp File Reference</title>
+    <programlisting>#include &lt;mpx-core/MpxEnvironment.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxTaskMultiplexer.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxExternalTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-event-queues/MpxEventQueueRepository.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxStartEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxStopEvent.h&gt;</programlisting>
+<para>Include dependency diagram for MpxTaskMultiplexer.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../da/da0/_mpx_task_multiplexer_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxTaskMultiplexer.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/dff/_mpx_task_multiplexer_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-core/MpxTaskMultiplexer.cpp</para>
+    </simplesect>
+</section>

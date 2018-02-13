@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d3/d4b/mpx-messages__xdr_8c">
+    <title>mpx-messages_xdr.c File Reference</title>
+    <programlisting>#include &quot;mpx-tasks/mpx-messages.h&quot;</programlisting>
+<para>Include dependency diagram for mpx-messages_xdr.c</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/de4/mpx-messages__xdr_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for mpx-messages_xdr.c</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/de7/mpx-messages__xdr_8c__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d3/d4b/mpx-messages__xdr_8c_1ae9eec0b9c530de4fa6145dda87fcd150">xdr_MpxMessageCode</link> (
+XDR * xdrs, <link linkend="df/dae/mpx-messages_8h_1a995796cb5b553385ee10ad8011b00d63">MpxMessageCode</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d3/d4b/mpx-messages__xdr_8c_1a67c06fb7bc0bed9a4dad6c4cffd4a9e6">xdr_MpxExternalTaskRequest</link> (
+XDR * xdrs, <link linkend="dd/d3d/struct_mpx_external_task_request">MpxExternalTaskRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d3/d4b/mpx-messages__xdr_8c_1a2babf7c0bca675e767ae6976624e7e4f">xdr_MpxExternalTaskReply</link> (
+XDR * xdrs, <link linkend="d4/d1d/struct_mpx_external_task_reply">MpxExternalTaskReply</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d3/d4b/mpx-messages__xdr_8c_1a22aa603d4018e35cc37736c540293e2c">xdr_MpxMessage</link> (
+XDR * xdrs, <link linkend="d9/da3/struct_mpx_message">MpxMessage</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-tasks/mpx-messages_xdr.c</para>
+    </simplesect>
+</section>

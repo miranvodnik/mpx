@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/d25/classmpx_1_1_mpx_local_client_proxy_task">
+<title>mpx::MpxLocalClientProxyTask class Reference</title>
+<para>
+    <programlisting>#include <link linkend="da/d77/_mpx_local_client_proxy_task_8h">&lt;MpxLocalClientProxyTask.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxLocalClientProxyTask</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/d8f/classmpx_1_1_mpx_local_client_proxy_task__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxLocalClientProxyTask</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d5e/classmpx_1_1_mpx_local_client_proxy_task__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static EventDescriptor g_evntab[]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1a56b3064f30dc5fc5739c05d8b5af8855">MpxLocalClientProxyTask</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="d9/d31/classmpx_1_1_mpx_local_client">MpxLocalClient</link> * localClient)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1a981b5e6f9a30bedc81b7b034b343876e">~MpxLocalClientProxyTask</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1aef21e410c1a32031b0d2d81c355c0698">mpx_event_handler</link> (
+HandleLocalClientEvent , <link linkend="de/d25/classmpx_1_1_mpx_local_client_proxy_task">MpxLocalClientProxyTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1a56b3064f30dc5fc5739c05d8b5af8855">
+                <title>mpx::MpxLocalClientProxyTask::MpxLocalClientProxyTask (MpxTaskBase *task, MpxLocalClient *localClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1a981b5e6f9a30bedc81b7b034b343876e">
+                <title>mpx::MpxLocalClientProxyTask::~MpxLocalClientProxyTask ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/d25/classmpx_1_1_mpx_local_client_proxy_task_1aef21e410c1a32031b0d2d81c355c0698">
+                <title>mpx::MpxLocalClientProxyTask::mpx_event_handler (HandleLocalClientEvent, MpxLocalClientProxyTask)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

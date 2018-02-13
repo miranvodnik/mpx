@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d2/d31/classmpx_1_1_mpx_task_query_event">
+<title>mpx::MpxTaskQueryEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="de/d0f/_mpx_task_query_event_8h">&lt;MpxTaskQueryEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTaskQueryEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/d83/classmpx_1_1_mpx_task_query_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTaskQueryEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d5a/classmpx_1_1_mpx_task_query_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_taskName</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskQueryEventType m_queryType</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1ac18cbed2860ee7551dcb4bd764da3a92">MpxTaskQueryEvent</link> (
+const char * taskName, <link linkend="d8/d67/namespacempx_1a79201c1e2fee2b32ff0330f226f9cb67">MpxTaskQueryEventType</link> queryType, void * endPoint)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1a704722b1dff217d88e2fbc6c859c39e2">~MpxTaskQueryEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1ac6b019cc43c67e8d79aa5fd39b5edad2">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1a9c73a5de93d50d2a42226acbb1ee8ceb">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1a99192c4fdfba67f0c3f7f7503a4a112a">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1a0cc19224d39e73dd4deccacde084068e">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1af7e4fff367faefb3aa7a1a88dee25ba5">taskName</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1a79201c1e2fee2b32ff0330f226f9cb67">MpxTaskQueryEventType</link> <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1af8999fe2f86bf13d6f1096c3d0f8a93b">queryType</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="d2/d31/classmpx_1_1_mpx_task_query_event_1ad6613fbcfde34e2bac2ddbfbe461a70c">endPoint</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1ac18cbed2860ee7551dcb4bd764da3a92">
+                <title>mpx::MpxTaskQueryEvent::MpxTaskQueryEvent (const char *taskName, MpxTaskQueryEventType queryType, void *endPoint)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1a704722b1dff217d88e2fbc6c859c39e2">
+                <title>virtual mpx::MpxTaskQueryEvent::~MpxTaskQueryEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1ac6b019cc43c67e8d79aa5fd39b5edad2">
+                <title>virtual const char* mpx::MpxTaskQueryEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1a9c73a5de93d50d2a42226acbb1ee8ceb">
+                <title>virtual MpxEventBase* mpx::MpxTaskQueryEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1a99192c4fdfba67f0c3f7f7503a4a112a">
+                <title>virtual int mpx::MpxTaskQueryEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1a0cc19224d39e73dd4deccacde084068e">
+                <title>virtual int mpx::MpxTaskQueryEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1af7e4fff367faefb3aa7a1a88dee25ba5">
+                <title>const char* mpx::MpxTaskQueryEvent::taskName ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1af8999fe2f86bf13d6f1096c3d0f8a93b">
+                <title>MpxTaskQueryEventType mpx::MpxTaskQueryEvent::queryType ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d31/classmpx_1_1_mpx_task_query_event_1ad6613fbcfde34e2bac2ddbfbe461a70c">
+                <title>void* mpx::MpxTaskQueryEvent::endPoint ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

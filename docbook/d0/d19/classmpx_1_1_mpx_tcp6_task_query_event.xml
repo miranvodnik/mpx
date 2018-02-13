@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event">
+<title>mpx::MpxTcp6TaskQueryEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d1/d12/_mpx_tcp6_task_query_event_8h">&lt;MpxTcp6TaskQueryEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp6TaskQueryEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/dee/classmpx_1_1_mpx_tcp6_task_query_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp6TaskQueryEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d7a/classmpx_1_1_mpx_tcp6_task_query_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_hostname</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_port</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_name</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1aaa4d56acfe4ca549572f41ab4d32ac8b">MpxTcp6TaskQueryEvent</link> (
+const char * hostname, char * port, char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a82d8e0dcdf5f0918e122fc6f9199c1d1">~MpxTcp6TaskQueryEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1ac5a0540348403691f091bd9bceb5a7c5">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a52aeb6ae1ffa71fc96512ba6b9d50528">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a49d155c96ea4c3af2a27afc9b9ec0d11">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4c1770c231c9bfbad45c73130ee4fe8d">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1adbc2da2a627fde2827f23825869e7eb1">hostname</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4868a0bb8dd4f091ea8bb0aeeadcb653">port</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4fd2bd13dfcc637117f4781b9bb651fa">name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1aaa4d56acfe4ca549572f41ab4d32ac8b">
+                <title>mpx::MpxTcp6TaskQueryEvent::MpxTcp6TaskQueryEvent (const char *hostname, char *port, char *name)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a82d8e0dcdf5f0918e122fc6f9199c1d1">
+                <title>mpx::MpxTcp6TaskQueryEvent::~MpxTcp6TaskQueryEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1ac5a0540348403691f091bd9bceb5a7c5">
+                <title>virtual const char* mpx::MpxTcp6TaskQueryEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a52aeb6ae1ffa71fc96512ba6b9d50528">
+                <title>virtual MpxEventBase* mpx::MpxTcp6TaskQueryEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a49d155c96ea4c3af2a27afc9b9ec0d11">
+                <title>virtual int mpx::MpxTcp6TaskQueryEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4c1770c231c9bfbad45c73130ee4fe8d">
+                <title>virtual int mpx::MpxTcp6TaskQueryEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1adbc2da2a627fde2827f23825869e7eb1">
+                <title>const char* mpx::MpxTcp6TaskQueryEvent::hostname ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4868a0bb8dd4f091ea8bb0aeeadcb653">
+                <title>const char* mpx::MpxTcp6TaskQueryEvent::port ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d19/classmpx_1_1_mpx_tcp6_task_query_event_1a4fd2bd13dfcc637117f4781b9bb651fa">
+                <title>const char* mpx::MpxTcp6TaskQueryEvent::name ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d3/d00/_sftp_client_8h">
+    <title>SftpClient.h File Reference</title>
+    <programlisting>#include &quot;libssh2_config.h&quot;</programlisting>
+    <programlisting>#include &lt;libssh2.h&gt;</programlisting>
+    <programlisting>#include &lt;libssh2_sftp.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/types.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/stat.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/socket.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/ioctl.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/utsname.h&gt;</programlisting>
+    <programlisting>#include &lt;netinet/in.h&gt;</programlisting>
+    <programlisting>#include &lt;net/if.h&gt;</programlisting>
+    <programlisting>#include &lt;netdb.h&gt;</programlisting>
+    <programlisting>#include &lt;arpa/inet.h&gt;</programlisting>
+    <programlisting>#include &lt;unistd.h&gt;</programlisting>
+    <programlisting>#include &lt;fcntl.h&gt;</programlisting>
+    <programlisting>#include &lt;stropts.h&gt;</programlisting>
+    <programlisting>#include &lt;errno.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxRunningContext.h&gt;</programlisting>
+    <programlisting>#include &quot;FtpClientInterface.h&quot;</programlisting>
+    <programlisting>#include &lt;string&gt;</programlisting>
+    <programlisting>#include &lt;map&gt;</programlisting>
+<para>Include dependency diagram for SftpClient.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/db8/_sftp_client_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for SftpClient.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/d20/_sftp_client_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info">sftp::CBInvokeInfo</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="da/ddd/classsftp_1_1_sftp_client">sftp::SftpClient</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d0/d1d/classsftp_1_1_sftp_trash">sftp::SftpTrash</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/dec/namespacesftp">sftp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d3/d00/_sftp_client_8h_1a4dceafa5696d525c95f8562ac1de551b">sftp_callback</link> inline	static	void	x (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state, void* args[], void* appData) \
+{ \
+	((y*)appData)-&gt;x (ftp, context, status, state, args); \
+} \
+void	x (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state, void* args[]);</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d3/d00/_sftp_client_8h_1ad905b3314618f70e1c54e07f329ae687">IPPORT_SFTP</link> 22	/* SSH File Transfer Protocol */</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftpcln/SftpClient.h</para>
+    </simplesect>
+</section>

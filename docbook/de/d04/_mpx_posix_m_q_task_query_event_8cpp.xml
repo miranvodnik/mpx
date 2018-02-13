@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/d04/_mpx_posix_m_q_task_query_event_8cpp">
+    <title>MpxPosixMQTaskQueryEvent.cpp File Reference</title>
+    <programlisting>#include &lt;mpx-events/MpxPosixMQTaskQueryEvent.h&gt;</programlisting>
+<para>Include dependency diagram for MpxPosixMQTaskQueryEvent.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d5/d60/_mpx_posix_m_q_task_query_event_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxPosixMQTaskQueryEvent.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/de3/_mpx_posix_m_q_task_query_event_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-events/MpxPosixMQTaskQueryEvent.cpp</para>
+    </simplesect>
+</section>

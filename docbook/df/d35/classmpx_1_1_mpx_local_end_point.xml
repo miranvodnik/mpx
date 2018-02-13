@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="df/d35/classmpx_1_1_mpx_local_end_point">
+<title>mpx::MpxLocalEndPoint class Reference</title>
+<para>
+    <programlisting>#include <link linkend="da/d33/_mpx_local_end_point_8h">&lt;MpxLocalEndPoint.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxLocalEndPoint</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/d52/classmpx_1_1_mpx_local_end_point__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxLocalEndPoint</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d97/classmpx_1_1_mpx_local_end_point__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="df/d35/classmpx_1_1_mpx_local_end_point_1a2cd67ddbdf64f4b114ab6dbc0de84f99">MpxLocalEndPoint</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, int endPoint, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="df/d35/classmpx_1_1_mpx_local_end_point_1a54b4e5d5c5da5624cce741d3239ba1b0">~MpxLocalEndPoint</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="df/d35/classmpx_1_1_mpx_local_end_point_1af378a2ab0654368339c9577009129d2c">endPoint</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="df/d35/classmpx_1_1_mpx_local_end_point_1af260d6b3ab46237106649c61c716b397">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="df/d35/classmpx_1_1_mpx_local_end_point_1a2cd67ddbdf64f4b114ab6dbc0de84f99">
+                <title>mpx::MpxLocalEndPoint::MpxLocalEndPoint (MpxTaskBase *task, int endPoint, bool fast=false, long int timeOut=1000 *1000 *1000, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d35/classmpx_1_1_mpx_local_end_point_1a54b4e5d5c5da5624cce741d3239ba1b0">
+                <title>mpx::MpxLocalEndPoint::~MpxLocalEndPoint ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d35/classmpx_1_1_mpx_local_end_point_1af378a2ab0654368339c9577009129d2c">
+                <title>int mpx::MpxLocalEndPoint::endPoint ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d35/classmpx_1_1_mpx_local_end_point_1af260d6b3ab46237106649c61c716b397">
+                <title>void mpx::MpxLocalEndPoint::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

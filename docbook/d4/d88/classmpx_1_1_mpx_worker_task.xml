@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d4/d88/classmpx_1_1_mpx_worker_task">
+<title>mpx::MpxWorkerTask class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d7/d74/_mpx_worker_task_8h">&lt;MpxWorkerTask.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxWorkerTask</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../db/d9c/classmpx_1_1_mpx_worker_task__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxWorkerTask</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d14/classmpx_1_1_mpx_worker_task__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_getTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_sendTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxJob * m_job</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static EventDescriptor g_evntab[]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1a9cea758d65649ca0f2ab072b6bacbf7f">MpxWorkerTask</link> (
+const char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1a978f0ea19a76d0b4f20faf319c155713">~MpxWorkerTask</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1a17659fa33fc13b102621addfed9df224">mpx_event_handler</link> (
+StartEventHandler , <link linkend="d4/d88/classmpx_1_1_mpx_worker_task">MpxWorkerTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1a6856fe0257753c1aaad2a029b6c03eef">mpx_event_handler</link> (
+StopEventHandler , <link linkend="d4/d88/classmpx_1_1_mpx_worker_task">MpxWorkerTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1ad265d0efc30778cc5ac6a2d4210dce48">mpx_event_handler</link> (
+TimerEventHandler , <link linkend="d4/d88/classmpx_1_1_mpx_worker_task">MpxWorkerTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1aa60ea4c3ab1123e7727842a3272330e8">_CleanupExecute</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d4/d88/classmpx_1_1_mpx_worker_task_1aa2910fa4700f45d9734931606a301337">CleanupExecute</link> (
+void * arg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1a9cea758d65649ca0f2ab072b6bacbf7f">
+                <title>mpx::MpxWorkerTask::MpxWorkerTask (const char *name=0)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1a978f0ea19a76d0b4f20faf319c155713">
+                <title>mpx::MpxWorkerTask::~MpxWorkerTask ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1a17659fa33fc13b102621addfed9df224">
+                <title>mpx::MpxWorkerTask::mpx_event_handler (StartEventHandler, MpxWorkerTask)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1a6856fe0257753c1aaad2a029b6c03eef">
+                <title>mpx::MpxWorkerTask::mpx_event_handler (StopEventHandler, MpxWorkerTask)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1ad265d0efc30778cc5ac6a2d4210dce48">
+                <title>mpx::MpxWorkerTask::mpx_event_handler (TimerEventHandler, MpxWorkerTask)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1aa60ea4c3ab1123e7727842a3272330e8">
+                <title>void mpx::MpxWorkerTask::_CleanupExecute ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/d88/classmpx_1_1_mpx_worker_task_1aa2910fa4700f45d9734931606a301337">
+                <title>static void mpx::MpxWorkerTask::CleanupExecute (void *arg)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

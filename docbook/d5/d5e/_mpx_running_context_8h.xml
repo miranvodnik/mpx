@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d5/d5e/_mpx_running_context_8h">
+    <title>MpxRunningContext.h File Reference</title>
+    <programlisting>#include &lt;sys/ioctl.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/types.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/syscall.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/stat.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/epoll.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/select.h&gt;</programlisting>
+    <programlisting>#include &lt;fcntl.h&gt;</programlisting>
+    <programlisting>#include &lt;mqueue.h&gt;</programlisting>
+    <programlisting>#include &lt;time.h&gt;</programlisting>
+    <programlisting>#include &lt;signal.h&gt;</programlisting>
+    <programlisting>#include &lt;unistd.h&gt;</programlisting>
+    <programlisting>#include &lt;stdlib.h&gt;</programlisting>
+    <programlisting>#include &lt;uuid/uuid.h&gt;</programlisting>
+    <programlisting>#include &lt;errno.h&gt;</programlisting>
+    <programlisting>#include &lt;stdio.h&gt;</programlisting>
+    <programlisting>#include &lt;string.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxUtilities.h&gt;</programlisting>
+    <programlisting>#include &lt;string&gt;</programlisting>
+    <programlisting>#include &lt;map&gt;</programlisting>
+    <programlisting>#include &lt;set&gt;</programlisting>
+    <programlisting>#include &lt;vector&gt;</programlisting>
+    <programlisting>#include &lt;functional&gt;</programlisting>
+    <programlisting>#include &lt;algorithm&gt;</programlisting>
+    <programlisting>#include &lt;iostream&gt;</programlisting>
+    <programlisting>#include &lt;sstream&gt;</programlisting>
+<para>Include dependency diagram for MpxRunningContext.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/d2f/_mpx_running_context_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxRunningContext.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/dae/_mpx_running_context_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d40/classmpx_1_1_mpx_running_context">mpx::MpxRunningContext</link></para>
+<para><emphasis>I/O multiplexer superclass.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d03/classmpx_1_1_mpx_running_context_1_1_mpx_descriptor">mpx::MpxRunningContext::MpxDescriptor</link></para>
+<para><emphasis>I/O handler class.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d9/d11/classmpx_1_1_mpx_running_context_1_1_mpx_timer">mpx::MpxRunningContext::MpxTimer</link></para>
+<para><emphasis>timer class</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d4/d30/structmpx_1_1_mpx_running_context_1_1timecmp">mpx::MpxRunningContext::timecmp</link></para>
+<para><emphasis>compare two time-out values</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d0/da1/classmpx_1_1_mpx_running_context_1_1_mpx_signal_context">mpx::MpxRunningContext::MpxSignalContext</link></para>
+<para><emphasis>signal handler</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a175215ab4debacfa1496cb0dd5fb829f">SEC_TO_NSEC</link> (1000L * 1000L * 1000L)<para><emphasis>number of nanoseconds in one second</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a1e52eda1e3982ee0339391bc28e91cd2">_STR2</link> #line<para><emphasis>display file name and line number</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1accd59c1e6612aba6402653f3d79d2d17">_STR</link> <link linkend="d5/d5e/_mpx_running_context_8h_1a1e52eda1e3982ee0339391bc28e91cd2">_STR2</link>(line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a13e157113ee6e560853f39a0b12cdb07">ctx_info</link> __FILE__ &quot;:&quot; <link linkend="d5/d5e/_mpx_running_context_8h_1accd59c1e6612aba6402653f3d79d2d17">_STR</link>(__LINE__)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1ab89a8ac5de01278a65b734ddc093a02b">ctx_starter</link> inline	static	void	x (MpxRunningContext *ctx, ctx_appdt_t appdata) \
+{ \
+	((y*)appdata)-&gt;x (ctx); \
+} \
+void	x (MpxRunningContext *ctx);<para><emphasis>I/O multiplexer starter function.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a767220cae0b88248034b6baf3816c5f6">ctx_finisher</link> inline	static	void	x (MpxRunningContext *ctx, ctx_appdt_t appdata) \
+{ \
+	((y*)appdata)-&gt;x (ctx); \
+} \
+void	x (MpxRunningContext *ctx);<para><emphasis>I/O multiplexer end function.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1ab130a56c14438d7d47b531513121ab98">ctx_timehook</link> inline	static	void	x (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime, long long timeDiff, ctx_appdt_t appdata) \
+{ \
+	((y*)appdata)-&gt;x (ctx, oldTime, newTime, timeDiff); \
+} \
+void	x (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime, long long timeDiff);<para><emphasis>I/O multiplexer time hook function.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a86b1c238a7ffefa781566b21e71e2045">timer_handler</link> inline	static	void	x (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, ctx_appdt_t appdata) \
+{ \
+	((y*) appdata)-&gt;x (ctx, handler, t); \
+} \
+void	x (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t);</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a1b970deab47201e3e9db4ada0772bb31">fd_handler</link> inline	static	void	x (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd, ctx_appdt_t appdata) \
+{ \
+	((y*)appdata)-&gt;x (ctx, flags, handler, fd); \
+} \
+void	x (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd);</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d5/d5e/_mpx_running_context_8h_1a99347f679d3c9c29352edef0bd68ddbd">sig_handler</link> inline	static	void	x (MpxRunningContext *ctx, ctx_sig_t handler, siginfo_t* info, ctx_appdt_t appdata) \
+{ \
+	((y*)appdata)-&gt;x (ctx, handler, info); \
+} \
+void	x (MpxRunningContext *ctx, ctx_fddes_t handler, siginfo_t* info);</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-core/MpxRunningContext.h</para>
+    </simplesect>
+</section>

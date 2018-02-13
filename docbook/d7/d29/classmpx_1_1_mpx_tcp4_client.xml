@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client">
+<title>mpx::MpxTcp4Client class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d3/d6f/_mpx_tcp4_client_8h">&lt;MpxTcp4Client.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp4Client</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/dfe/classmpx_1_1_mpx_tcp4_client__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp4Client</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/d19/classmpx_1_1_mpx_tcp4_client__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_hostname</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t m_port</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1a5b8560cd1510a597a4c84280e1b75ca9">MpxTcp4Client</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1a6481fbcdc294efc5c71a0f923aa8b887">~MpxTcp4Client</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1abf215485a5e33efb9e682a7fecff9860">Connect</link> (
+const char * hostname, uint16_t port)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1ae2056881408ea795e64cb3ed568be658">Connect</link> (
+const sockaddr_in * addr, uint16_t port)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1ade3542c94c09212b53860801ec9a9a5a">Shutdown</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="d7/d29/classmpx_1_1_mpx_tcp4_client_1a48986887383252eef88f1ceeb40bc182">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1a5b8560cd1510a597a4c84280e1b75ca9">
+                <title>mpx::MpxTcp4Client::MpxTcp4Client (MpxTaskBase *task, bool fast, long int timeOut, bool seqPacket)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1a6481fbcdc294efc5c71a0f923aa8b887">
+                <title>mpx::MpxTcp4Client::~MpxTcp4Client ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1abf215485a5e33efb9e682a7fecff9860">
+                <title>int mpx::MpxTcp4Client::Connect (const char *hostname, uint16_t port)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1ae2056881408ea795e64cb3ed568be658">
+                <title>int mpx::MpxTcp4Client::Connect (const sockaddr_in *addr, uint16_t port)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1ade3542c94c09212b53860801ec9a9a5a">
+                <title>void mpx::MpxTcp4Client::Shutdown ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d29/classmpx_1_1_mpx_tcp4_client_1a48986887383252eef88f1ceeb40bc182">
+                <title>void mpx::MpxTcp4Client::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

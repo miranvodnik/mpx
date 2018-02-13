@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d0/d1d/classsftp_1_1_sftp_trash">
+<title>sftp::SftpTrash class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d3/d00/_sftp_client_8h">&lt;SftpClient.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::SftpTrash</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/d03/classsftp_1_1_sftp_trash__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::SftpTrash</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/da4/classsftp_1_1_sftp_trash__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9e">Stage</link> {
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea2c01a19605606eac754952b877162ba3">InitialStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea30a2a90873445edee5a27c9bec612221">ReleaseRemoteFileHandleStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea47390ce83326e422aa11ca982312ccae">ReleaseDirHandleStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9eaa20a40e978efa98c9c16b929cb71d813">ReleaseSftpStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea7bc9c903f6d40c527e9d3551fd096845">ReleaseSessionStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea8615f082a342524650fb063a31d1bca0">ReleaseConnSocketStage</link>,
+<link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9eab6e871f131a8dfa418672e06c7219a2c">FinalStage</link>
+}</literallayout>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool g_debug</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static long g_trashId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long m_trashId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxRunningContext * m_ctx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_connSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>LIBSSH2_SESSION * m_session</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>LIBSSH2_SFTP * m_sftp</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>LIBSSH2_SFTP_HANDLE * m_dirHandle</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>LIBSSH2_SFTP_HANDLE * m_remoteFileHandle</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_stageTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_connTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_connHandle</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Stage m_stage</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a88487b873b6f0416845738d6afcdcdbb">SftpTrash</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx, int connSocket, LIBSSH2_SESSION * session, LIBSSH2_SFTP * sftp, LIBSSH2_SFTP_HANDLE * dirHandle, LIBSSH2_SFTP_HANDLE * remoteFileHandle)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1ab82a82860f9627c2c69790496496bc42">~SftpTrash</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a6b300701af324cbf3c1959599bcd2754">CleanUp</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a7f708ed3fac2adf7bf20e8550d38307f">debug</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1ad4c2744b71e7c0d6c3d23f4276639714">debug</link> (
+bool debug)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a557e380d5626b19906cde6611b4a362b">fd_handler</link> (
+HandleClientConnection , <link linkend="d0/d1d/classsftp_1_1_sftp_trash">SftpTrash</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d0/d1d/classsftp_1_1_sftp_trash">SftpTrash</link> <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1aa8e13bb332a7418f92eb8905152637f5">timer_handler</link> (
+ConnectionTimer , <link linkend="d0/d1d/classsftp_1_1_sftp_trash">SftpTrash</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a1daef0852a82a8d91565edabc34ac8ef">ReleaseRemoteFileHandle</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1ad5fbbaf6b57ed72dc59725012db2b840">ReleaseDirHandle</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a4d9769171095ffb08021a1e42a100390">ReleaseSftp</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a2c19ddc22042b65bcf08e892593d4d4e">ReleaseSession</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/d1d/classsftp_1_1_sftp_trash_1a280a89dc3720864049e96f21b0b0aca5">ReleaseConnSocket</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9e">
+               <title>enum Stage </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea2c01a19605606eac754952b877162ba3">
+                            <term>InitialStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea30a2a90873445edee5a27c9bec612221">
+                            <term>ReleaseRemoteFileHandleStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea47390ce83326e422aa11ca982312ccae">
+                            <term>ReleaseDirHandleStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9eaa20a40e978efa98c9c16b929cb71d813">
+                            <term>ReleaseSftpStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea7bc9c903f6d40c527e9d3551fd096845">
+                            <term>ReleaseSessionStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9ea8615f082a342524650fb063a31d1bca0">
+                            <term>ReleaseConnSocketStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a395ace7db5a9201e36dc1bcf164e7a9eab6e871f131a8dfa418672e06c7219a2c">
+                            <term>FinalStage</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 361 of file SftpClient.h
+                    <computeroutput><literallayout>
+{
+InitialStage, 
+ReleaseRemoteFileHandleStage, 
+ReleaseDirHandleStage, 
+ReleaseSftpStage, 
+ReleaseSessionStage, 
+ReleaseConnSocketStage, 
+FinalStage, 
+}Stage;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a88487b873b6f0416845738d6afcdcdbb">
+                <title>sftp::SftpTrash::SftpTrash (MpxRunningContext *ctx, int connSocket, LIBSSH2_SESSION *session, LIBSSH2_SFTP *sftp, LIBSSH2_SFTP_HANDLE *dirHandle, LIBSSH2_SFTP_HANDLE *remoteFileHandle)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1ab82a82860f9627c2c69790496496bc42">
+                <title>sftp::SftpTrash::~SftpTrash ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a6b300701af324cbf3c1959599bcd2754">
+                <title>void sftp::SftpTrash::CleanUp ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a7f708ed3fac2adf7bf20e8550d38307f">
+                <title>static bool sftp::SftpTrash::debug ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1ad4c2744b71e7c0d6c3d23f4276639714">
+                <title>static void sftp::SftpTrash::debug (bool debug)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a557e380d5626b19906cde6611b4a362b">
+                <title>sftp::SftpTrash::fd_handler (HandleClientConnection, SftpTrash) timer_handler(StageTimer</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1aa8e13bb332a7418f92eb8905152637f5">
+                <title>SftpTrash sftp::SftpTrash::timer_handler (ConnectionTimer, SftpTrash) void InvokeStageOperation()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a1daef0852a82a8d91565edabc34ac8ef">
+                <title>int sftp::SftpTrash::ReleaseRemoteFileHandle ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1ad5fbbaf6b57ed72dc59725012db2b840">
+                <title>int sftp::SftpTrash::ReleaseDirHandle ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a4d9769171095ffb08021a1e42a100390">
+                <title>int sftp::SftpTrash::ReleaseSftp ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a2c19ddc22042b65bcf08e892593d4d4e">
+                <title>int sftp::SftpTrash::ReleaseSession ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/d1d/classsftp_1_1_sftp_trash_1a280a89dc3720864049e96f21b0b0aca5">
+                <title>int sftp::SftpTrash::ReleaseConnSocket ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

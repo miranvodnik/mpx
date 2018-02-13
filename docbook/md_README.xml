@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Event Driven Task Multiplexing Library</title>
+
+<para>The code contained in the mpx repository contains a library mpx-lib which allows the parallel execution of any number of software tasks in one or more working threads. In addition, the sftp library and the sftp-test program are also located in this repository, to test this library.</para>
+
+<para>You can use the https://github.com/miranvodnik/mpx/edit/master/README.md &quot;editor on GitHub&quot; to maintain and preview the content for your website in Markdown files.</para>
+
+<para>Whenever you commit to this repository, GitHub Pages will run <link xlink:href="https://jekyllrb.com/">Jekyll</link> to rebuild the pages in your site, from the content in your Markdown files.</para>
+
+<para><formalpara><title>Markdown</title></formalpara>
+</para>
+
+<para>Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for</para>
+
+<para><literallayout><computeroutput>Syntax&#32;highlighted&#32;code&#32;block
+
+#&#32;Header&#32;1
+##&#32;Header&#32;2
+###&#32;Header&#32;3
+
+-&#32;Bulleted
+-&#32;List
+
+1.&#32;Numbered
+2.&#32;List
+
+**Bold**&#32;and&#32;_Italic_&#32;and&#32;`Code`&#32;text
+
+[Link](url)&#32;and&#32;![Image](src)
+</computeroutput></literallayout></para>
+
+<para>For more details see <link xlink:href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored Markdown</link>.</para>
+
+<para><formalpara><title>Jekyll Themes</title></formalpara>
+</para>
+
+<para>Your Pages site will use the layout and styles from the Jekyll theme you have selected in your <link xlink:href="https://github.com/miranvodnik/mpx/settings">repository settings</link>. The name of this theme is saved in the Jekyll <computeroutput>_config.yml</computeroutput> configuration file.</para>
+
+<para><formalpara><title>Support or Contact</title></formalpara>
+</para>
+
+<para>Having trouble with Pages? Check out our <link xlink:href="https://help.github.com/categories/github-pages-basics/">documentation</link> or <link xlink:href="https://github.com/contact">contact support</link> and we’ll help you sort it out. </para>
+
+</chapter>

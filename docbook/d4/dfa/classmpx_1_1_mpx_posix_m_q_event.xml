@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event">
+<title>mpx::MpxPosixMQEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d9/d61/_mpx_posix_m_q_event_8h">&lt;MpxPosixMQEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxPosixMQEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/d24/classmpx_1_1_mpx_posix_m_q_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxPosixMQEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d3d/classmpx_1_1_mpx_posix_m_q_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_listener</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_flags</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_error</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_size</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_buffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a876d479772cdbb455d9769589f95d73f">MpxPosixMQEvent</link> (
+<link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event">MpxPosixMQEvent</link> &amp; event)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a5c8142c6684dfdb3b238b8390e50cfa7">MpxPosixMQEvent</link> (
+void * listener, u_int flags, u_int error, u_int size, u_char * buffer)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a9c5751d27de90962a87c3b43f3a7fa36">~MpxPosixMQEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ab9ef4339ce072817e8aa4cab9ccaa418">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ac1a015cdd58d78188dd343fb0f6dee38">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ad0807c4d342dca46de5e994c21a5b503">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a63942c175ff1d80184fb0718975d1e60">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a7454a93b3296394fd76aad9a57502cc6">listener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a611c3e13df1374e7bf1d8e2b880dda79">flags</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a234c613e9681a8cd9014a5f1aaa36435">error</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a26c1521234395397d17cf8f9904a9e77">size</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * <link linkend="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a3883525f39701ee82e1b33611b57b607">buffer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a876d479772cdbb455d9769589f95d73f">
+                <title>mpx::MpxPosixMQEvent::MpxPosixMQEvent (MpxPosixMQEvent &amp;event)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a5c8142c6684dfdb3b238b8390e50cfa7">
+                <title>mpx::MpxPosixMQEvent::MpxPosixMQEvent (void *listener, u_int flags, u_int error, u_int size, u_char *buffer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a9c5751d27de90962a87c3b43f3a7fa36">
+                <title>mpx::MpxPosixMQEvent::~MpxPosixMQEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ab9ef4339ce072817e8aa4cab9ccaa418">
+                <title>virtual const char* mpx::MpxPosixMQEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ac1a015cdd58d78188dd343fb0f6dee38">
+                <title>virtual MpxEventBase* mpx::MpxPosixMQEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1ad0807c4d342dca46de5e994c21a5b503">
+                <title>virtual int mpx::MpxPosixMQEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a63942c175ff1d80184fb0718975d1e60">
+                <title>virtual int mpx::MpxPosixMQEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a7454a93b3296394fd76aad9a57502cc6">
+                <title>void* mpx::MpxPosixMQEvent::listener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a611c3e13df1374e7bf1d8e2b880dda79">
+                <title>u_int mpx::MpxPosixMQEvent::flags ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a234c613e9681a8cd9014a5f1aaa36435">
+                <title>u_int mpx::MpxPosixMQEvent::error ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a26c1521234395397d17cf8f9904a9e77">
+                <title>u_int mpx::MpxPosixMQEvent::size ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d4/dfa/classmpx_1_1_mpx_posix_m_q_event_1a3883525f39701ee82e1b33611b57b607">
+                <title>u_char* mpx::MpxPosixMQEvent::buffer ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

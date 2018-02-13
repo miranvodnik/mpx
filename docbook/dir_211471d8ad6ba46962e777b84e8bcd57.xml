@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dir_211471d8ad6ba46962e777b84e8bcd57">
+    <title>mpx-lib/Release/mpx-tasks Directory Reference</title>
+<para>Directory dependency diagram for mpx-lib/Release/mpx-tasks</para>
+<para>
+    <figure>
+        <title>Directory Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dir_211471d8ad6ba46962e777b84e8bcd57_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> File </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/df4/mpx-messages__xdr_8d">mpx-messages_xdr.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="de/d42/_mpx_external_task_8d">MpxExternalTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d5/d9c/_mpx_ext_task_i_8d">MpxExtTaskI.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d3b/_mpx_local_client_proxy_task_8d">MpxLocalClientProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dd/d79/_mpx_local_end_point_proxy_task_8d">MpxLocalEndPointProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d1d/_mpx_posix_m_q_proxy_task_8d">MpxPosixMQProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d4/d14/_mpx_task_base_8d">MpxTaskBase.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="de/d2a/_mpx_tcp4_client_proxy_task_8d">MpxTcp4ClientProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d8a/_mpx_tcp4_end_point_proxy_task_8d">MpxTcp4EndPointProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d9/d5e/_mpx_tcp6_client_proxy_task_8d">MpxTcp6ClientProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d7/da6/_mpx_tcp6_end_point_proxy_task_8d">MpxTcp6EndPointProxyTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Directory location is /home/miran/eclipse-workspace/mpx/mpx-lib/Release/mpx-tasks/</para>
+    </simplesect>
+</section>

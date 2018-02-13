@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="da/d3e/_mpx_timer_event_8h">
+    <title>MpxTimerEvent.h File Reference</title>
+    <programlisting>#include &quot;mpx-core/MpxUtilities.h&quot;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxRunningContext.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxEventBase.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTaskBase.h&gt;</programlisting>
+<para>Include dependency diagram for MpxTimerEvent.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dc/da8/_mpx_timer_event_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxTimerEvent.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/da8/_mpx_timer_event_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d4/d73/classmpx_1_1_mpx_timer_event">mpx::MpxTimerEvent</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-events/MpxTimerEvent.h</para>
+    </simplesect>
+</section>

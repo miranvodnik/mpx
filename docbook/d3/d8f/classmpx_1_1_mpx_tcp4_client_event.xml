@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event">
+<title>mpx::MpxTcp4ClientEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dc/d36/_mpx_tcp4_client_event_8h">&lt;MpxTcp4ClientEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp4ClientEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/de5/classmpx_1_1_mpx_tcp4_client_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp4ClientEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../db/df7/classmpx_1_1_mpx_tcp4_client_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_flags</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_error</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_size</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_buffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a4a905a866c1d931d556c15b0fa7a421e">MpxTcp4ClientEvent</link> (
+<link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event">MpxTcp4ClientEvent</link> &amp; cln)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ae12cc51757f3617929fa3f2d7fd5c28e">MpxTcp4ClientEvent</link> (
+void * endPoint, u_int flags, u_int error, u_int size, u_char * buffer)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a4de42d72e28487af7b23aacc5afd6da5">~MpxTcp4ClientEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1afc12d7d833e409203b33b69b38345d26">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ad29efe42b8ad756e124e09847b28c82a">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1adbcf12dbd0ce106d0923374cd0f571e5">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ade15cce3c6b6738b749f94c44e82c5fc">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a962cf9af3b29a8c4058591d62b95e5c4">endPoint</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a2f8f69ac1f58517fd4d105939b92ac08">flags</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a99cfd50b5521215d5df184f5d6e8e11a">error</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a439833d22fdfa1934663205943eeefcf">size</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * <link linkend="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1adb67e2bcf9777642a278d71b010c1643">buffer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a4a905a866c1d931d556c15b0fa7a421e">
+                <title>mpx::MpxTcp4ClientEvent::MpxTcp4ClientEvent (MpxTcp4ClientEvent &amp;cln)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ae12cc51757f3617929fa3f2d7fd5c28e">
+                <title>mpx::MpxTcp4ClientEvent::MpxTcp4ClientEvent (void *endPoint, u_int flags, u_int error, u_int size, u_char *buffer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a4de42d72e28487af7b23aacc5afd6da5">
+                <title>mpx::MpxTcp4ClientEvent::~MpxTcp4ClientEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1afc12d7d833e409203b33b69b38345d26">
+                <title>virtual const char* mpx::MpxTcp4ClientEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ad29efe42b8ad756e124e09847b28c82a">
+                <title>virtual MpxEventBase* mpx::MpxTcp4ClientEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1adbcf12dbd0ce106d0923374cd0f571e5">
+                <title>virtual int mpx::MpxTcp4ClientEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1ade15cce3c6b6738b749f94c44e82c5fc">
+                <title>virtual int mpx::MpxTcp4ClientEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a962cf9af3b29a8c4058591d62b95e5c4">
+                <title>void* mpx::MpxTcp4ClientEvent::endPoint ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a2f8f69ac1f58517fd4d105939b92ac08">
+                <title>u_int mpx::MpxTcp4ClientEvent::flags ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a99cfd50b5521215d5df184f5d6e8e11a">
+                <title>u_int mpx::MpxTcp4ClientEvent::error ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1a439833d22fdfa1934663205943eeefcf">
+                <title>u_int mpx::MpxTcp4ClientEvent::size ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d8f/classmpx_1_1_mpx_tcp4_client_event_1adb67e2bcf9777642a278d71b010c1643">
+                <title>u_char* mpx::MpxTcp4ClientEvent::buffer ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

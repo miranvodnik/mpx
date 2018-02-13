@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task">
+<title>mpx::MpxPosixMQProxyTask class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d3/d5d/_mpx_posix_m_q_proxy_task_8h">&lt;MpxPosixMQProxyTask.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxPosixMQProxyTask</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/d1a/classmpx_1_1_mpx_posix_m_q_proxy_task__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxPosixMQProxyTask</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d1b/classmpx_1_1_mpx_posix_m_q_proxy_task__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static EventDescriptor g_evntab[]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskBase * m_task</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxPosixMQ * m_posixMQ</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1abf5b4101370fbd282c20e33b92dcb37a">MpxPosixMQProxyTask</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="db/d2e/classmpx_1_1_mpx_posix_m_q">MpxPosixMQ</link> * posixMQ)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1ac5f8af018950438f624eabf974a49cbd">~MpxPosixMQProxyTask</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1a2822ce1a732a2cae6389df99e24a4157">task</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="db/d2e/classmpx_1_1_mpx_posix_m_q">MpxPosixMQ</link> * <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1ac109bb867796fb90f0899ad9d5d4d231">posixMQ</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1a5dee308228b6c028fc25b7dfe35e64c9">mpx_event_handler</link> (
+HandlePosixMQEvent , <link linkend="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task">MpxPosixMQProxyTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1abf5b4101370fbd282c20e33b92dcb37a">
+                <title>mpx::MpxPosixMQProxyTask::MpxPosixMQProxyTask (MpxTaskBase *task, MpxPosixMQ *posixMQ)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1ac5f8af018950438f624eabf974a49cbd">
+                <title>mpx::MpxPosixMQProxyTask::~MpxPosixMQProxyTask ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1a2822ce1a732a2cae6389df99e24a4157">
+                <title>MpxTaskBase* mpx::MpxPosixMQProxyTask::task ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1ac109bb867796fb90f0899ad9d5d4d231">
+                <title>MpxPosixMQ* mpx::MpxPosixMQProxyTask::posixMQ ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task_1a5dee308228b6c028fc25b7dfe35e64c9">
+                <title>mpx::MpxPosixMQProxyTask::mpx_event_handler (HandlePosixMQEvent, MpxPosixMQProxyTask)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

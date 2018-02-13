@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="df/deb/sftp-test_8cpp">
+    <title>sftp-test.cpp File Reference</title>
+    <programlisting>#include &lt;mpx-events/MpxEvents.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-event-queues/MpxLocalMQTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxEnvironment.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxTaskMultiplexer.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTaskBase.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-working-threads/MpxJobGetAddrInfo.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-working-threads/MpxWorkingQueue.h&gt;</programlisting>
+    <programlisting>#include &lt;ftpwrk/FtpClientWorker.h&gt;</programlisting>
+    <programlisting>#include &lt;ftpwrk/SftpClientWorker.h&gt;</programlisting>
+    <programlisting>#include &lt;ftplog/SftpLog.h&gt;</programlisting>
+    <programlisting>#include &lt;map&gt;</programlisting>
+<para>Include dependency diagram for sftp-test.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../da/d3b/sftp-test_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for sftp-test.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/d4c/sftp-test_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d56/class_sftp_test">SftpTest</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Typedefs</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef set&lt; <link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * &gt;  <link linkend="df/deb/sftp-test_8cpp_1a3d30ac6fa91dcec0d42c1135522b9a56">taskset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="d0/d97/struct_ftp_request">FtpRequest</link> * <link linkend="df/deb/sftp-test_8cpp_1aea5e1ff003e23c25df162605785b2b86">CreateFtpRequest</link> (
+int n, char * p)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="df/deb/sftp-test_8cpp_1ac257620d1701f347875ba6cb193f94df">main</link> (
+int n, char * p)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp-test/sftp-test.cpp</para>
+    </simplesect>
+</section>

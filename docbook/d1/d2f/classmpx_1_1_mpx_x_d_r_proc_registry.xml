@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry">
+<title>mpx::MpxXDRProcRegistry class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/de9/_mpx_x_d_r_proc_registry_8h">&lt;MpxXDRProcRegistry.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxXDRProcRegistry</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d5b/classmpx_1_1_mpx_x_d_r_proc_registry__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxXDRProcRegistry</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/db3/classmpx_1_1_mpx_x_d_r_proc_registry__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxXDRProcRegistry * g_XDRProcRegistry</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_rwlock_t m_rwlock</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>xdrset m_xdrset</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a460d3bb62ac45e3307fbb0a2754db31e">MpxXDRProcRegistry</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a250718a26a4e33a747a7a54a89b0e22b">~MpxXDRProcRegistry</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1aa274612fcc983a2ab21c1f27865ba166">_Register</link> (
+int id, xdrproc_t proc, <link linkend="d8/d67/namespacempx_1aed1a0a999ebac2c3d1d2077046e4d658">xdralloc_t</link> xdralloc, <link linkend="d8/d67/namespacempx_1a493588dba616ff6ef1523674c95f988d">evnalloc_t</link> evnalloc)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1a99884df05f0450daf4623eb5ae03c964">xdrpair_t</link> <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a70df24771e14d88e7f08b9c0e961550a">_Retrieve</link> (
+int id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1acda7bce34ba0530a0f42f35ddcfb87fa">Register</link> (
+int id, xdrproc_t proc, <link linkend="d8/d67/namespacempx_1aed1a0a999ebac2c3d1d2077046e4d658">xdralloc_t</link> xdralloc, <link linkend="d8/d67/namespacempx_1a493588dba616ff6ef1523674c95f988d">evnalloc_t</link> evnalloc)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="d8/d67/namespacempx_1a99884df05f0450daf4623eb5ae03c964">xdrpair_t</link> <link linkend="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a642c2be900ec9a17466b193a8b5a2119">Retrieve</link> (
+int id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a460d3bb62ac45e3307fbb0a2754db31e">
+                <title>mpx::MpxXDRProcRegistry::MpxXDRProcRegistry ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a250718a26a4e33a747a7a54a89b0e22b">
+                <title>mpx::MpxXDRProcRegistry::~MpxXDRProcRegistry ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1aa274612fcc983a2ab21c1f27865ba166">
+                <title>int mpx::MpxXDRProcRegistry::_Register (int id, xdrproc_t proc, xdralloc_t xdralloc, evnalloc_t evnalloc)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a70df24771e14d88e7f08b9c0e961550a">
+                <title>xdrpair_t mpx::MpxXDRProcRegistry::_Retrieve (int id)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1acda7bce34ba0530a0f42f35ddcfb87fa">
+                <title>static int mpx::MpxXDRProcRegistry::Register (int id, xdrproc_t proc, xdralloc_t xdralloc, evnalloc_t evnalloc)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/d2f/classmpx_1_1_mpx_x_d_r_proc_registry_1a642c2be900ec9a17466b193a8b5a2119">
+                <title>static xdrpair_t mpx::MpxXDRProcRegistry::Retrieve (int id)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

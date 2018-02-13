@@ -1,0 +1,2121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="da/d15/classsftp_1_1_ftp_client">
+<title>sftp::FtpClient class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d8/dd7/_ftp_client_8h">&lt;FtpClient.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::FtpClient</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d70/classsftp_1_1_ftp_client__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::FtpClient</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d31/classsftp_1_1_ftp_client__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(FtpClient::*  <link linkend="da/d15/classsftp_1_1_ftp_client_1a3750e7390c665fe4eb640d6a4708cd22">ReplyHandler</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">FtpCallback</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef map&lt; <link linkend="d3/dec/namespacesftp_1a64dd44196578bbfce5056f2aa3c98e3a">FtpEventIndex</link>, pair&lt; <link linkend="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">FtpCallback</link>, void * &gt; * &gt;  <link linkend="da/d15/classsftp_1_1_ftp_client_1a8715bd5e2e97bd43edc0ed181a8db890">ftpcbset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef pair&lt; <link linkend="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">FtpCallback</link>, void * &gt;  <link linkend="da/d15/classsftp_1_1_ftp_client_1aa01bdbbb883374ee5240d74af974a167">ftpcbdes</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static FtpClient * m_initializer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static FtpClient * g_disposedScenarioInitializer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static FtpCallback * g_disposedScenario</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxRunningContext * m_ctx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_ctrlProtection</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_dataProtection</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ftpcbdes * m_ftpEvents[FtpEventCount]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FtpCallback * m_scenarioEvents</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_appData</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_hostname</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_user</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_password</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_ctrlSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_dataSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_listenSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SSL_CTX * m_sslCtx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>BIO * m_ctrlBioSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>BIO * m_dataBioSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SSL * m_ctrlSslSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SSL * m_dataSslSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FtpStatus m_status</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FtpState m_state</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ReplyHandler m_replyHandler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_ctrlRequest</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_ctrlReply</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_ctrlDes</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_dataDes</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_listenDes</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_dataBusy</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_busyLine</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_dataProgress</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_ctrlTmr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_dataTmr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_listenTmr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FtpDataCommand m_dataCommand</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_dataArgs[2]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_passiveEnabled</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FILE * m_ftpFile</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_ftpBuffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_ftpBufferPtr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_ftpBufferEnd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1abe44e04a1a6c2b97ca829306f14b975c">FtpClient</link> (
+bool initialize)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a83ac91ab8b67b959fc00df22fed6b9c0">Dispose</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a97780fee4609798a2fcb0271aa6538bf">DisposeData</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a9758e4818c9e3c597a7c1a7b1240bd65">DisposeCtrl</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a58dd0522fa3661ae1a3910e6c44cc1a4">DisposePort</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1af25809f2e293e0e2f2dea60d1057186c">fd_handler</link> (
+CtrlSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a522e8cf8ab40c343cd740995b39b5480">fd_handler</link> (
+CtrlSslSocketConnectHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1ad0edbab6e6394f924c9e4cae2f02fe44">fd_handler</link> (
+DataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a4cdc633bcd81723adfaf7355844f52d8">fd_handler</link> (
+RetrieveDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1ade5f3a0c9a34aae4d752d86b20d2cadb">fd_handler</link> (
+StoreDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a8b970a6b177e28a4554b6bd1dc5b0694">fd_handler</link> (
+StoreUniqueDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1af080ca3a6bf505f246c548789d65f8c7">fd_handler</link> (
+AppendDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1aba458ca012e1f5bbc096f81d87dc761e">fd_handler</link> (
+ListDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1aaeebdd6f909eeb76a9b84aa195b527f8">fd_handler</link> (
+NameListDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a4c42dc9a68faefd6fd28c8acc0ee7a62">fd_handler</link> (
+DataSslSocketConnectHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1aea3ae4ab42674a7ed4f44626081affcc">fd_handler</link> (
+RetrieveSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1af69ec9df6586063e0e0acdeba71db880">fd_handler</link> (
+StoreSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1ab131dab7964575d01fefccf2cd361035">fd_handler</link> (
+StoreUniqueSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a62b576c787401dc372840d5c6a8bd0a2">fd_handler</link> (
+AppendSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1aec9b7a809820a0ee766df525ee6eed8b">fd_handler</link> (
+ListSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1afd349eb7a8f66a84b1f7f2245ed6358c">fd_handler</link> (
+NameListSslDataSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a8f64ac7d510e468e6f45b2dbca3bfb8c">fd_handler</link> (
+ListenSocketHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a292b9a55bfb9f7adba22f240c3189a50">timer_handler</link> (
+CtrlIdleTimerHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a170e10de4de723fc775d56de87baf237">timer_handler</link> (
+DataTimerHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1af69ff2bd56d7024fe9aedc45e50ddfcb">timer_handler</link> (
+ListenTimerHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a5db03faaee31a58ea45ac008af6d3f80">ftp_callback</link> (
+FinalTimerExpiredEventHandler , <link linkend="da/d15/classsftp_1_1_ftp_client">FtpClient</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="da/d15/classsftp_1_1_ftp_client_1a18b931ce95551f8f0bc97ae7b7b43a0b">Start</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5e394c3bde77b12f8fb95aaab4246c56">Stop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="da/d15/classsftp_1_1_ftp_client_1a954c31b238b7c58cd1fcfb61e8d7ce87">Execute</link> (
+<link linkend="d0/d97/struct_ftp_request">FtpRequest</link> * req, void * addInfo)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae14da75a139e276e11ce98dbf5be5116">RegisterFtpCallback</link> (
+<link linkend="d3/dec/namespacesftp_1a64dd44196578bbfce5056f2aa3c98e3a">FtpEventIndex</link> index, <link linkend="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">FtpCallback</link> cb, void * appData)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a08fedfa1e2f342bf21add9646d66e420">UnregisterFtpCallback</link> (
+<link linkend="d3/dec/namespacesftp_1a64dd44196578bbfce5056f2aa3c98e3a">FtpEventIndex</link> index)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae044f423115c62e38e77be12df817310">UnregisterAllFtpCallbacks</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a776ddcccb9d3b40668461007727529c4">RegisterFtpScenario</link> (
+<link linkend="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">FtpCallback</link> * scenarioEvents, void * appData)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a129b78f8b4540aa60ef2c5b3c89fb8fa">UnregisterFtpScenario</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1abefd75eed0b423ec04f166db71e66fcd">Connect</link> (
+string hostname)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1af3500a0eb64870ca1374a50a396e9c8e">Connect</link> (
+string hostname, sockaddr * addr, socklen_t addrlen)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a919123e7f4cfc6165b7dd6468e82610e">Login</link> (
+string user, string password)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a676dd13ffbc0920f2f812d4b18112e94">ChangeWorkingDirectory</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a06346f4a75e2f492222eb97e58ff4fad">ChangeToParentDirectory</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a29f4ae3798644f87caa5d9582ccd23e8">StructureMount</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a06ed23aedc07dc15ea69a86493852d94">Reinitialize</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a41876a307b8a225b84c097c9848c6dc5">Logout</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1acf77d12814ff9b61b0f8a7f624d06821">RepresentationType</link> (
+<link linkend="d3/dec/namespacesftp_1af8217ef66322439027b052f2b47189cb">FtpType</link> type, <link linkend="d3/dec/namespacesftp_1aeeaaf5e18079cba3bf9663527627466a">FtpFormat</link> format, int byteSize)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a0f414e33951a1bb6779601aeb4f1aa81">FileStructure</link> (
+<link linkend="d3/dec/namespacesftp_1aefa29ab9ec4aa31ba22399410e3ce50a">FtpStructure</link> str)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a26c9ec5a9d2dace0204a7903ba62cbaf">TransferMode</link> (
+<link linkend="d3/dec/namespacesftp_1a0fbd6da9dc894b98c0c296d6a31bc865">FtpMode</link> mode)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a1beda835a8ba48039fd7e26a02438512">Retrieve</link> (
+string remotePathName, string localPathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1af5705e6a42e716c8dc134df0475cb53f">Store</link> (
+string localPathName, string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a9d82f75604dbb0296ca22008dc5c300e">StoreUnique</link> (
+string localPathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a2534fefbcf13ea486c01f981870c92ef">Append</link> (
+string localPathName, string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a751a6f6eed65304b28402aada1561ae3">List</link> (
+string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1af65a4b7e4e3decd67ea00584f4ad1d40">NameList</link> (
+string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a73f36cc11c0f5ee121f7bfe90acf2a46">Allocate</link> (
+int fileSize, int recordSize)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a08764eb968150b108da5ba79dcd12f45">System</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a3844701fe1e677fa31e208e29bdfe052">Status</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1af85818e8195d6be3a093805449b5692a">Rename</link> (
+string oldPathName, string newPathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ad4faa65e902a7e80bc98b220c139a624">Abort</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aedab03ea9ee391fc2005600a34ac9a3a">Delete</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a649351deb5e81574cb8c660c38d497f0">RemoveDirectory</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a17945cf3cc0680c70bbdca1a8b4aa2bb">MakeDirectory</link> (
+string pathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a184d6cf28e7040bdc2eadd2ff57b5078">PrintWorkingDirectory</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a67b5946827c479ac0b6e5dc50b43456a">Help</link> (
+string help)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a13e2095e56d66c46f30c34905f322040">Noop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a9c2995b89ca2632336f10eb42997d054">Feature</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aa51658a882b992b20354c8d2be91de6c">Options</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a6c2a0a12c522702419feffa85a0e0ff1">AuthMechanism</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a52280d5072bc96c45ba5cd6a74b4fc5b">AuthData</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a930ba230faa0c1fcc2fb8d14fba0ff5e">ProtectionLevel</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1afd8c5bc99f5c76791f16b96314a5a840">ProtectionBufferSize</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a1462c6f322b1a4b09107b45c84dddd5e">ClearCommandChannel</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5fe1ad2813bcbaeb429e524cc1995bde">IntegrityProtectedCommand</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a0323698252972a966e0e82f72fd390c3">ConfidentialityProtectedCommand</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a0a3d14af6079ecba1aa780d2cb65cb27">PrivacyProtectedCommand</link> (
+string command)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a8f7b06fda1c74708e8e8e01fabf6dd81">InvokeFtpCallback</link> (
+<link linkend="d3/dec/namespacesftp_1a64dd44196578bbfce5056f2aa3c98e3a">FtpEventIndex</link> index, <link linkend="d3/dec/namespacesftp_1a90f0c03d243b029a073ded9f6102add2">FtpContext</link> context, <link linkend="d3/dec/namespacesftp_1af680449d0f8f2f8d90369d30ea412085">FtpStatus</link> status, <link linkend="d3/dec/namespacesftp_1accb8e27dcfa139160e21479b9d0d43ee">FtpState</link> state, void * args)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aaf037ca1135a36da311ca759c21bf277">PostCtrlRequest</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aae9463b639c365ea89be402beaeef317">HandleRawReply</link> (
+char * buffer, void * appData)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a2edd1296de9ded4b2d5eeedd236a5bcb">PreparePasswordRequest</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae816c2e19bdb66c8a381dceee0743426">PrepareAccountRequest</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5b9285cfdb43643713f452188deddf45">InitCtrlTlsHandshake</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aac88a10c12caf49f4ddc3ff328f9c35a">InitDataTlsHandshake</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae2284df5bf772b492cceb0194ce43955">DataPort</link> (
+ulong hostAddress, ulong port)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1afe83ae109168506ddd7b53fff4dd0d77">Passive</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a8a942de53f199191eb46bf24cec98648">PreparePasvDataCommand</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae7b058e87e32cffbbb40e5dc4821e98c">PrepareDataCommand</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a0ae7f784fbcf568a2771cdf38d5c4bf7">PrepareRetrRequest</link> (
+string remotePathName, string localPathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a9518df3c4f1f44b2bac0da02492d800d">PrepareStorRequest</link> (
+string localPathName, string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a6c0b0c943df80fa55e3d2096335d0d51">PrepareStouRequest</link> (
+string localPathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a1cc9ac033885cd8d453bc18f1c2e1f0f">PrepareAppeRequest</link> (
+string localPathName, string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aa33b72b4dbf4fe6f0d7d6f0a51acc08d">PrepareListRequest</link> (
+string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5b03209c214f5b73a31ab765d9513cfc">PrepareNlstRequest</link> (
+string remotePathName)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a0e8b4937ba4ef9ce3cb536e52740d362">PrepareDataHandler</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5fd1747d74ad92235e04955e483f1870">PrepareSslDataHandler</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a47ffded481e965688fb2766c2664dd67">InitiatePassiveDataTransfer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a3338deaf3362a0191de2842f0bc6c127">InitiateActiveDataTransfer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab88d120fb72e67eec979f38c45eefbd8">PrepareRenameToRequest</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a8e026358745ca0bd9f2ceff405ed13e1">HandleConnectReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a711293e5748283bd0634184e92dcdaa6">HandleUserReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ac6a7f247d00de598215e9b16d20370ea">HandlePasswordReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aeceffa9abeb8c0a5d1db764a84cdba8e">HandleAccountReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1abf6f36ff3d5b3a5a301f945087675b54">HandleChangeWorkingDirectoryReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a078ebbf43ad54a45077ef46b1c045262">HandleChangeToParentDirectoryReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a4f0866317fc73e72162d36ea711b9ee0">HandleStructureMountReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a8c8cd334f1af50a7b0d6fcc2bb0261c2">HandleReinitializeReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae60059825a781a7f4101c36af93199f9">HandleLogoutReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a1fb325dcca303a5952d3b320ce71ddf9">HandleDataPortReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ac6be22d1dc01c2be677abf5fb79868d1">HandlePassiveReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a9b51bc4fa4659f269e4c28989cab720b">HandleRetrieveReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1abb77f56d92abddfc14b3a7543c87ee4b">HandleStoreReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a19fd26e55c60547b72e1022dea1fe798">HandleStoreUniqueReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a323d190417bad100acf28b2b33f44dff">HandleAppendReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a7f8ee0676c8a5f97e84402d2b9deec06">HandleListReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a73b9d106819fb171a5b2665ce8a92131">HandleNameListReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a3368c38e733cdb68ca1f754134f51a18">HandleRepresentationTypeReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab11caaa01926085f3fd06eb49659e2c2">HandleFileStructureReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab3d26960a7132318cec1c52ef034f04c">HandleTransferModeReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a88a141a19a05d105d13bbb8343c1d8ad">HandleAllocateReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aa6309e7d67b205545eef3b34dcac3be2">HandleSystemReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a5d87fa1acc408aa61a74a16a4023539b">HandleStatusReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1abf845f119ebd4f4e6524af9cd49fa52f">HandleRenameFromReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aefd486e7bd1f9283802705ddd623d6d5">HandleRenameToReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a08599879f82deef3217c20201548d6a9">HandleAbortReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a10d0f8aa3bc0add8e88b10eee69e833e">HandleDeleteReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab3d6e3ad521d89830579e28217c664b9">HandleRemoveDirectoryReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1aea57acfddc7d12aae25f68f12d749e3f">HandleMakeDirectoryReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1af0863685d0d3ad87ab218e6362dabbe8">HandlePrintWorkingDirectoryReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a6be979f12aa95f581ad5c61f4068d9ab">HandleHelpReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab9748dc500e855ebc8a4a2abcad805e0">HandleNoopReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ac6ce5f617fb619e383e8c738d8887ad0">HandleFeatureReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae0418dd8d8fc00a648e94e9e54096149">HandleOptionsReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a514d8ae5c7d48076360522ab6141a8ff">HandleAuthReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ab581bfc6f2043edd1d38342de295b32a">HandleSSLAuthReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a403b5253ab0341e1d92c7fe87bec0b9c">HandleAdatReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a518a5fc05a585a6b6ed7705c8348a6c9">HandleProtReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a6775e468b90b6c9bb14756128dfce727">HandlePbszReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a17380582382181e3cf5b715eef082919">HandleCccReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ad5c64d551d61b5acba4f9fa3f2655071">HandleMicReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a479166611a67f8d76f7fa873155d73e5">HandleConfReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a1ece3ba215a57b25b725096681cccd14">HandleEncReply</link> (
+const char * line)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1a8adc16f63ae9c91dce64c7ec3d07f440">InitDisposedScenario</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d15/classsftp_1_1_ftp_client_1a66b3c512ffaeda6c4549c14852d99d26">FtpClient</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="da/d15/classsftp_1_1_ftp_client_1ac55892184f847ddf19ec70911a15fa00">~FtpClient</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * <link linkend="da/d15/classsftp_1_1_ftp_client_1a26ee9b9b10c6503bfea79110e490ad6e">ctx</link> (
+void )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1acb73c12bdc66389c1bd46dd2dfe21d11">ctx</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/d15/classsftp_1_1_ftp_client_1ae94d1261e3729ad7a920ade676033b7f">passiveEnabled</link> (
+bool passive)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool <link linkend="da/d15/classsftp_1_1_ftp_client_1a144b561ad998016c3ba92abe06b8affb">passiveEnabled</link> (
+void )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="da/d15/classsftp_1_1_ftp_client_1a2cdda825c5776e08bef2befa80b3db4b">verifyCallback</link> (
+int depth, X509_STORE_CTX * storeCtx)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a3750e7390c665fe4eb640d6a4708cd22">
+                <title>typedef void(FtpClient::* sftp::FtpClient::ReplyHandler) (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aafc0a89c775f40305e7bcfac66c22a70">
+                <title>typedef void(* sftp::FtpClient::FtpCallback) (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void *args[], void *appData)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8715bd5e2e97bd43edc0ed181a8db890">
+                <title>typedef map&lt; FtpEventIndex, pair &lt; FtpCallback, void* &gt; * &gt; sftp::FtpClient::ftpcbset</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aa01bdbbb883374ee5240d74af974a167">
+                <title>typedef pair&lt; FtpCallback, void* &gt; sftp::FtpClient::ftpcbdes</title> <emphasis></emphasis>
+                
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1abe44e04a1a6c2b97ca829306f14b975c">
+                <title>sftp::FtpClient::FtpClient (bool initialize)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a83ac91ab8b67b959fc00df22fed6b9c0">
+                <title>void sftp::FtpClient::Dispose ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a97780fee4609798a2fcb0271aa6538bf">
+                <title>void sftp::FtpClient::DisposeData ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a9758e4818c9e3c597a7c1a7b1240bd65">
+                <title>void sftp::FtpClient::DisposeCtrl ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a58dd0522fa3661ae1a3910e6c44cc1a4">
+                <title>void sftp::FtpClient::DisposePort ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af25809f2e293e0e2f2dea60d1057186c">
+                <title>sftp::FtpClient::fd_handler (CtrlSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a522e8cf8ab40c343cd740995b39b5480">
+                <title>sftp::FtpClient::fd_handler (CtrlSslSocketConnectHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ad0edbab6e6394f924c9e4cae2f02fe44">
+                <title>sftp::FtpClient::fd_handler (DataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a4cdc633bcd81723adfaf7355844f52d8">
+                <title>sftp::FtpClient::fd_handler (RetrieveDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ade5f3a0c9a34aae4d752d86b20d2cadb">
+                <title>sftp::FtpClient::fd_handler (StoreDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8b970a6b177e28a4554b6bd1dc5b0694">
+                <title>sftp::FtpClient::fd_handler (StoreUniqueDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af080ca3a6bf505f246c548789d65f8c7">
+                <title>sftp::FtpClient::fd_handler (AppendDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aba458ca012e1f5bbc096f81d87dc761e">
+                <title>sftp::FtpClient::fd_handler (ListDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aaeebdd6f909eeb76a9b84aa195b527f8">
+                <title>sftp::FtpClient::fd_handler (NameListDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a4c42dc9a68faefd6fd28c8acc0ee7a62">
+                <title>sftp::FtpClient::fd_handler (DataSslSocketConnectHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aea3ae4ab42674a7ed4f44626081affcc">
+                <title>sftp::FtpClient::fd_handler (RetrieveSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af69ec9df6586063e0e0acdeba71db880">
+                <title>sftp::FtpClient::fd_handler (StoreSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab131dab7964575d01fefccf2cd361035">
+                <title>sftp::FtpClient::fd_handler (StoreUniqueSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a62b576c787401dc372840d5c6a8bd0a2">
+                <title>sftp::FtpClient::fd_handler (AppendSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aec9b7a809820a0ee766df525ee6eed8b">
+                <title>sftp::FtpClient::fd_handler (ListSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1afd349eb7a8f66a84b1f7f2245ed6358c">
+                <title>sftp::FtpClient::fd_handler (NameListSslDataSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8f64ac7d510e468e6f45b2dbca3bfb8c">
+                <title>sftp::FtpClient::fd_handler (ListenSocketHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a292b9a55bfb9f7adba22f240c3189a50">
+                <title>sftp::FtpClient::timer_handler (CtrlIdleTimerHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a170e10de4de723fc775d56de87baf237">
+                <title>sftp::FtpClient::timer_handler (DataTimerHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af69ff2bd56d7024fe9aedc45e50ddfcb">
+                <title>sftp::FtpClient::timer_handler (ListenTimerHandler, FtpClient)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5db03faaee31a58ea45ac008af6d3f80">
+                <title>sftp::FtpClient::ftp_callback (FinalTimerExpiredEventHandler, FtpClient) public</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a18b931ce95551f8f0bc97ae7b7b43a0b">
+                <title>void sftp::FtpClient::Start ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5e394c3bde77b12f8fb95aaab4246c56">
+                <title>void sftp::FtpClient::Stop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a954c31b238b7c58cd1fcfb61e8d7ce87">
+                <title>virtual void sftp::FtpClient::Execute (FtpRequest *req, void *addInfo=0)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae14da75a139e276e11ce98dbf5be5116">
+                <title>void sftp::FtpClient::RegisterFtpCallback (FtpEventIndex index, FtpCallback cb, void *appData)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a08fedfa1e2f342bf21add9646d66e420">
+                <title>void sftp::FtpClient::UnregisterFtpCallback (FtpEventIndex index)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae044f423115c62e38e77be12df817310">
+                <title>void sftp::FtpClient::UnregisterAllFtpCallbacks ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a776ddcccb9d3b40668461007727529c4">
+                <title>void sftp::FtpClient::RegisterFtpScenario (FtpCallback *scenarioEvents, void *appData)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a129b78f8b4540aa60ef2c5b3c89fb8fa">
+                <title>void sftp::FtpClient::UnregisterFtpScenario ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1abefd75eed0b423ec04f166db71e66fcd">
+                <title>void sftp::FtpClient::Connect (string hostname)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af3500a0eb64870ca1374a50a396e9c8e">
+                <title>void sftp::FtpClient::Connect (string hostname, sockaddr *addr, socklen_t addrlen)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a919123e7f4cfc6165b7dd6468e82610e">
+                <title>void sftp::FtpClient::Login (string user, string password)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a676dd13ffbc0920f2f812d4b18112e94">
+                <title>void sftp::FtpClient::ChangeWorkingDirectory (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a06346f4a75e2f492222eb97e58ff4fad">
+                <title>void sftp::FtpClient::ChangeToParentDirectory ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a29f4ae3798644f87caa5d9582ccd23e8">
+                <title>void sftp::FtpClient::StructureMount (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a06ed23aedc07dc15ea69a86493852d94">
+                <title>void sftp::FtpClient::Reinitialize ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a41876a307b8a225b84c097c9848c6dc5">
+                <title>void sftp::FtpClient::Logout ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1acf77d12814ff9b61b0f8a7f624d06821">
+                <title>void sftp::FtpClient::RepresentationType (FtpType type, FtpFormat format, int byteSize)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a0f414e33951a1bb6779601aeb4f1aa81">
+                <title>void sftp::FtpClient::FileStructure (FtpStructure str)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a26c9ec5a9d2dace0204a7903ba62cbaf">
+                <title>void sftp::FtpClient::TransferMode (FtpMode mode)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a1beda835a8ba48039fd7e26a02438512">
+                <title>void sftp::FtpClient::Retrieve (string remotePathName, string localPathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af5705e6a42e716c8dc134df0475cb53f">
+                <title>void sftp::FtpClient::Store (string localPathName, string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a9d82f75604dbb0296ca22008dc5c300e">
+                <title>void sftp::FtpClient::StoreUnique (string localPathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a2534fefbcf13ea486c01f981870c92ef">
+                <title>void sftp::FtpClient::Append (string localPathName, string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a751a6f6eed65304b28402aada1561ae3">
+                <title>void sftp::FtpClient::List (string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af65a4b7e4e3decd67ea00584f4ad1d40">
+                <title>void sftp::FtpClient::NameList (string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a73f36cc11c0f5ee121f7bfe90acf2a46">
+                <title>void sftp::FtpClient::Allocate (int fileSize, int recordSize)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a08764eb968150b108da5ba79dcd12f45">
+                <title>void sftp::FtpClient::System ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a3844701fe1e677fa31e208e29bdfe052">
+                <title>void sftp::FtpClient::Status (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af85818e8195d6be3a093805449b5692a">
+                <title>void sftp::FtpClient::Rename (string oldPathName, string newPathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ad4faa65e902a7e80bc98b220c139a624">
+                <title>void sftp::FtpClient::Abort ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aedab03ea9ee391fc2005600a34ac9a3a">
+                <title>void sftp::FtpClient::Delete (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a649351deb5e81574cb8c660c38d497f0">
+                <title>void sftp::FtpClient::RemoveDirectory (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a17945cf3cc0680c70bbdca1a8b4aa2bb">
+                <title>void sftp::FtpClient::MakeDirectory (string pathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a184d6cf28e7040bdc2eadd2ff57b5078">
+                <title>void sftp::FtpClient::PrintWorkingDirectory ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a67b5946827c479ac0b6e5dc50b43456a">
+                <title>void sftp::FtpClient::Help (string help)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a13e2095e56d66c46f30c34905f322040">
+                <title>void sftp::FtpClient::Noop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a9c2995b89ca2632336f10eb42997d054">
+                <title>void sftp::FtpClient::Feature ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aa51658a882b992b20354c8d2be91de6c">
+                <title>void sftp::FtpClient::Options (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a6c2a0a12c522702419feffa85a0e0ff1">
+                <title>void sftp::FtpClient::AuthMechanism (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a52280d5072bc96c45ba5cd6a74b4fc5b">
+                <title>void sftp::FtpClient::AuthData (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a930ba230faa0c1fcc2fb8d14fba0ff5e">
+                <title>void sftp::FtpClient::ProtectionLevel (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1afd8c5bc99f5c76791f16b96314a5a840">
+                <title>void sftp::FtpClient::ProtectionBufferSize (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a1462c6f322b1a4b09107b45c84dddd5e">
+                <title>void sftp::FtpClient::ClearCommandChannel (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5fe1ad2813bcbaeb429e524cc1995bde">
+                <title>void sftp::FtpClient::IntegrityProtectedCommand (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a0323698252972a966e0e82f72fd390c3">
+                <title>void sftp::FtpClient::ConfidentialityProtectedCommand (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a0a3d14af6079ecba1aa780d2cb65cb27">
+                <title>void sftp::FtpClient::PrivacyProtectedCommand (string command)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8f7b06fda1c74708e8e8e01fabf6dd81">
+                <title>void sftp::FtpClient::InvokeFtpCallback (FtpEventIndex index, FtpContext context, FtpStatus status, FtpState state, void *args[])</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aaf037ca1135a36da311ca759c21bf277">
+                <title>void sftp::FtpClient::PostCtrlRequest ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aae9463b639c365ea89be402beaeef317">
+                <title>void sftp::FtpClient::HandleRawReply (char *buffer, void *appData)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a2edd1296de9ded4b2d5eeedd236a5bcb">
+                <title>void sftp::FtpClient::PreparePasswordRequest ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae816c2e19bdb66c8a381dceee0743426">
+                <title>void sftp::FtpClient::PrepareAccountRequest ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5b9285cfdb43643713f452188deddf45">
+                <title>void sftp::FtpClient::InitCtrlTlsHandshake ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aac88a10c12caf49f4ddc3ff328f9c35a">
+                <title>void sftp::FtpClient::InitDataTlsHandshake ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae2284df5bf772b492cceb0194ce43955">
+                <title>void sftp::FtpClient::DataPort (ulong hostAddress, ulong port)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1afe83ae109168506ddd7b53fff4dd0d77">
+                <title>void sftp::FtpClient::Passive ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8a942de53f199191eb46bf24cec98648">
+                <title>void sftp::FtpClient::PreparePasvDataCommand ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae7b058e87e32cffbbb40e5dc4821e98c">
+                <title>void sftp::FtpClient::PrepareDataCommand ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a0ae7f784fbcf568a2771cdf38d5c4bf7">
+                <title>void sftp::FtpClient::PrepareRetrRequest (string remotePathName, string localPathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a9518df3c4f1f44b2bac0da02492d800d">
+                <title>void sftp::FtpClient::PrepareStorRequest (string localPathName, string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a6c0b0c943df80fa55e3d2096335d0d51">
+                <title>void sftp::FtpClient::PrepareStouRequest (string localPathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a1cc9ac033885cd8d453bc18f1c2e1f0f">
+                <title>void sftp::FtpClient::PrepareAppeRequest (string localPathName, string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aa33b72b4dbf4fe6f0d7d6f0a51acc08d">
+                <title>void sftp::FtpClient::PrepareListRequest (string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5b03209c214f5b73a31ab765d9513cfc">
+                <title>void sftp::FtpClient::PrepareNlstRequest (string remotePathName)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a0e8b4937ba4ef9ce3cb536e52740d362">
+                <title>void sftp::FtpClient::PrepareDataHandler ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5fd1747d74ad92235e04955e483f1870">
+                <title>void sftp::FtpClient::PrepareSslDataHandler ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a47ffded481e965688fb2766c2664dd67">
+                <title>void sftp::FtpClient::InitiatePassiveDataTransfer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a3338deaf3362a0191de2842f0bc6c127">
+                <title>void sftp::FtpClient::InitiateActiveDataTransfer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab88d120fb72e67eec979f38c45eefbd8">
+                <title>void sftp::FtpClient::PrepareRenameToRequest ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8e026358745ca0bd9f2ceff405ed13e1">
+                <title>void sftp::FtpClient::HandleConnectReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a711293e5748283bd0634184e92dcdaa6">
+                <title>void sftp::FtpClient::HandleUserReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ac6a7f247d00de598215e9b16d20370ea">
+                <title>void sftp::FtpClient::HandlePasswordReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aeceffa9abeb8c0a5d1db764a84cdba8e">
+                <title>void sftp::FtpClient::HandleAccountReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1abf6f36ff3d5b3a5a301f945087675b54">
+                <title>void sftp::FtpClient::HandleChangeWorkingDirectoryReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a078ebbf43ad54a45077ef46b1c045262">
+                <title>void sftp::FtpClient::HandleChangeToParentDirectoryReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a4f0866317fc73e72162d36ea711b9ee0">
+                <title>void sftp::FtpClient::HandleStructureMountReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8c8cd334f1af50a7b0d6fcc2bb0261c2">
+                <title>void sftp::FtpClient::HandleReinitializeReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae60059825a781a7f4101c36af93199f9">
+                <title>void sftp::FtpClient::HandleLogoutReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a1fb325dcca303a5952d3b320ce71ddf9">
+                <title>void sftp::FtpClient::HandleDataPortReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ac6be22d1dc01c2be677abf5fb79868d1">
+                <title>void sftp::FtpClient::HandlePassiveReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a9b51bc4fa4659f269e4c28989cab720b">
+                <title>void sftp::FtpClient::HandleRetrieveReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1abb77f56d92abddfc14b3a7543c87ee4b">
+                <title>void sftp::FtpClient::HandleStoreReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a19fd26e55c60547b72e1022dea1fe798">
+                <title>void sftp::FtpClient::HandleStoreUniqueReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a323d190417bad100acf28b2b33f44dff">
+                <title>void sftp::FtpClient::HandleAppendReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a7f8ee0676c8a5f97e84402d2b9deec06">
+                <title>void sftp::FtpClient::HandleListReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a73b9d106819fb171a5b2665ce8a92131">
+                <title>void sftp::FtpClient::HandleNameListReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a3368c38e733cdb68ca1f754134f51a18">
+                <title>void sftp::FtpClient::HandleRepresentationTypeReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab11caaa01926085f3fd06eb49659e2c2">
+                <title>void sftp::FtpClient::HandleFileStructureReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab3d26960a7132318cec1c52ef034f04c">
+                <title>void sftp::FtpClient::HandleTransferModeReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a88a141a19a05d105d13bbb8343c1d8ad">
+                <title>void sftp::FtpClient::HandleAllocateReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aa6309e7d67b205545eef3b34dcac3be2">
+                <title>void sftp::FtpClient::HandleSystemReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a5d87fa1acc408aa61a74a16a4023539b">
+                <title>void sftp::FtpClient::HandleStatusReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1abf845f119ebd4f4e6524af9cd49fa52f">
+                <title>void sftp::FtpClient::HandleRenameFromReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aefd486e7bd1f9283802705ddd623d6d5">
+                <title>void sftp::FtpClient::HandleRenameToReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a08599879f82deef3217c20201548d6a9">
+                <title>void sftp::FtpClient::HandleAbortReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a10d0f8aa3bc0add8e88b10eee69e833e">
+                <title>void sftp::FtpClient::HandleDeleteReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab3d6e3ad521d89830579e28217c664b9">
+                <title>void sftp::FtpClient::HandleRemoveDirectoryReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1aea57acfddc7d12aae25f68f12d749e3f">
+                <title>void sftp::FtpClient::HandleMakeDirectoryReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1af0863685d0d3ad87ab218e6362dabbe8">
+                <title>void sftp::FtpClient::HandlePrintWorkingDirectoryReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a6be979f12aa95f581ad5c61f4068d9ab">
+                <title>void sftp::FtpClient::HandleHelpReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab9748dc500e855ebc8a4a2abcad805e0">
+                <title>void sftp::FtpClient::HandleNoopReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ac6ce5f617fb619e383e8c738d8887ad0">
+                <title>void sftp::FtpClient::HandleFeatureReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae0418dd8d8fc00a648e94e9e54096149">
+                <title>void sftp::FtpClient::HandleOptionsReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a514d8ae5c7d48076360522ab6141a8ff">
+                <title>void sftp::FtpClient::HandleAuthReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ab581bfc6f2043edd1d38342de295b32a">
+                <title>void sftp::FtpClient::HandleSSLAuthReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a403b5253ab0341e1d92c7fe87bec0b9c">
+                <title>void sftp::FtpClient::HandleAdatReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a518a5fc05a585a6b6ed7705c8348a6c9">
+                <title>void sftp::FtpClient::HandleProtReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a6775e468b90b6c9bb14756128dfce727">
+                <title>void sftp::FtpClient::HandlePbszReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a17380582382181e3cf5b715eef082919">
+                <title>void sftp::FtpClient::HandleCccReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ad5c64d551d61b5acba4f9fa3f2655071">
+                <title>void sftp::FtpClient::HandleMicReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a479166611a67f8d76f7fa873155d73e5">
+                <title>void sftp::FtpClient::HandleConfReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a1ece3ba215a57b25b725096681cccd14">
+                <title>void sftp::FtpClient::HandleEncReply (const char *line)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a8adc16f63ae9c91dce64c7ec3d07f440">
+                <title>void sftp::FtpClient::InitDisposedScenario ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a66b3c512ffaeda6c4549c14852d99d26">
+                <title>sftp::FtpClient::FtpClient ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ac55892184f847ddf19ec70911a15fa00">
+                <title>sftp::FtpClient::~FtpClient ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a26ee9b9b10c6503bfea79110e490ad6e">
+                <title>MpxRunningContext* sftp::FtpClient::ctx (void)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1acb73c12bdc66389c1bd46dd2dfe21d11">
+                <title>void sftp::FtpClient::ctx (MpxRunningContext *ctx)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1ae94d1261e3729ad7a920ade676033b7f">
+                <title>void sftp::FtpClient::passiveEnabled (bool passive)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a144b561ad998016c3ba92abe06b8affb">
+                <title>bool sftp::FtpClient::passiveEnabled (void)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d15/classsftp_1_1_ftp_client_1a2cdda825c5776e08bef2befa80b3db4b">
+                <title>int sftp::FtpClient::verifyCallback (int depth, X509_STORE_CTX *storeCtx)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

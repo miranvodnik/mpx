@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dir_b796c0f9ff185f43829ee104e58effbc">
+    <title>mpx-lib/Release/mpx-working-threads Directory Reference</title>
+<para>Directory dependency diagram for mpx-lib/Release/mpx-working-threads</para>
+<para>
+    <figure>
+        <title>Directory Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dir_b796c0f9ff185f43829ee104e58effbc_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> File </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d7/da6/_mpx_job_8d">MpxJob.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d8/d25/_mpx_job_get_addr_info_8d">MpxJobGetAddrInfo.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d2/d77/_mpx_worker_task_8d">MpxWorkerTask.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d0/dc7/_mpx_working_queue_8d">MpxWorkingQueue.d</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Directory location is /home/miran/eclipse-workspace/mpx/mpx-lib/Release/mpx-working-threads/</para>
+    </simplesect>
+</section>

@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d9/df4/classsftp_1_1_c_b_invoke_info">
+<title>sftp::CBInvokeInfo class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d3/d00/_sftp_client_8h">&lt;SftpClient.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::CBInvokeInfo</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d19/classsftp_1_1_c_b_invoke_info__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::CBInvokeInfo</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../da/d60/classsftp_1_1_c_b_invoke_info__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int g_counter</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SftpEventIndex m_index</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SftpContext m_context</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SftpStatus m_status</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>SftpState m_state</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void ** m_args</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * m_this</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a70b543d765ba5b2a4f6a0e9af4c1d852">CBInvokeInfo</link> (
+<link linkend="d3/dec/namespacesftp_1ab3be7ae42f723c756a53726359277017">SftpEventIndex</link> index, <link linkend="d3/dec/namespacesftp_1a3509775c482fd55e524b5dc1381f83a6">SftpContext</link> context, <link linkend="d3/dec/namespacesftp_1aca837956d51f9e9a423a81fb1dc92acf">SftpStatus</link> status, <link linkend="d3/dec/namespacesftp_1a3866296104c928dc043686851a9aaadd">SftpState</link> state, void * args, void * _this)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/dec/namespacesftp_1ab3be7ae42f723c756a53726359277017">SftpEventIndex</link> <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a611b7a08acb19cf00a369f92d250446a">index</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/dec/namespacesftp_1a3509775c482fd55e524b5dc1381f83a6">SftpContext</link> <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a96211b192e55734b16d8d53b81bd68a5">context</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/dec/namespacesftp_1aca837956d51f9e9a423a81fb1dc92acf">SftpStatus</link> <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1aa3029ae85dd0866f866760fea6a216e1">status</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/dec/namespacesftp_1a3866296104c928dc043686851a9aaadd">SftpState</link> <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a4089ee313d1197ea93de883dbe4f5acb">state</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void ** <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a5ba7972773612c04669a3762d9216905">args</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1a1e8ca9095028c3085941a79878e7cb92">_this</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d9/df4/classsftp_1_1_c_b_invoke_info_1ad9638e022a8a8639e8ae3dae94d4c5a2">counter</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a70b543d765ba5b2a4f6a0e9af4c1d852">
+                <title>sftp::CBInvokeInfo::CBInvokeInfo (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void *args[], void *_this)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a611b7a08acb19cf00a369f92d250446a">
+                <title>SftpEventIndex sftp::CBInvokeInfo::index ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a96211b192e55734b16d8d53b81bd68a5">
+                <title>SftpContext sftp::CBInvokeInfo::context ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1aa3029ae85dd0866f866760fea6a216e1">
+                <title>SftpStatus sftp::CBInvokeInfo::status ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a4089ee313d1197ea93de883dbe4f5acb">
+                <title>SftpState sftp::CBInvokeInfo::state ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a5ba7972773612c04669a3762d9216905">
+                <title>void** sftp::CBInvokeInfo::args ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1a1e8ca9095028c3085941a79878e7cb92">
+                <title>void* sftp::CBInvokeInfo::_this ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/df4/classsftp_1_1_c_b_invoke_info_1ad9638e022a8a8639e8ae3dae94d4c5a2">
+                <title>static int sftp::CBInvokeInfo::counter ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

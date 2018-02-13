@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event">
+<title>mpx::MpxLocalListenerEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dc/dff/_mpx_local_listener_event_8h">&lt;MpxLocalListenerEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxLocalListenerEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d89/classmpx_1_1_mpx_local_listener_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxLocalListenerEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/d55/classmpx_1_1_mpx_local_listener_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_fd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1aa48880cea1bd7c2addb7dc293db37a3f">MpxLocalListenerEvent</link> (
+int fd)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a6e8cbc29a19eb1ba7cedc3d5b1e2519c">~MpxLocalListenerEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1ad071b5f168ebe334a66d11f7d65d24cb">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a4944b8ddefb4579d1dfaef9694e695a6">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a33e483dbc0eb2d3eb73ffa7c310a9d26">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a14628dca41d7c78c63d1d3d472b3d53c">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d7/d5a/classmpx_1_1_mpx_local_listener_event_1ae937b1729d15e623c346b4bd19c57fb6">fd</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1aa48880cea1bd7c2addb7dc293db37a3f">
+                <title>mpx::MpxLocalListenerEvent::MpxLocalListenerEvent (int fd)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a6e8cbc29a19eb1ba7cedc3d5b1e2519c">
+                <title>virtual mpx::MpxLocalListenerEvent::~MpxLocalListenerEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1ad071b5f168ebe334a66d11f7d65d24cb">
+                <title>virtual const char* mpx::MpxLocalListenerEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a4944b8ddefb4579d1dfaef9694e695a6">
+                <title>virtual MpxEventBase* mpx::MpxLocalListenerEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a33e483dbc0eb2d3eb73ffa7c310a9d26">
+                <title>virtual int mpx::MpxLocalListenerEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1a14628dca41d7c78c63d1d3d472b3d53c">
+                <title>virtual int mpx::MpxLocalListenerEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d5a/classmpx_1_1_mpx_local_listener_event_1ae937b1729d15e623c346b4bd19c57fb6">
+                <title>int mpx::MpxLocalListenerEvent::fd ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

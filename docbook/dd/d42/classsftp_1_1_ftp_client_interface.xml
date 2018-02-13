@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/d42/classsftp_1_1_ftp_client_interface">
+<title>sftp::FtpClientInterface class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dd/dbe/_ftp_client_interface_8h">&lt;FtpClientInterface.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::FtpClientInterface</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/d73/classsftp_1_1_ftp_client_interface__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::FtpClientInterface</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/df8/classsftp_1_1_ftp_client_interface__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static u_long g_clientId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static u_long g_sessionId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool g_debug</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool g_conversation</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool g_detailed</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Protected Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_long m_jobCount</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_long m_clientId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>FtpClientProtocol m_protocol</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a2dbf1f05e456465b5e60e410d0e0f7ed">FtpClientInterface</link> (
+<link linkend="d3/dec/namespacesftp_1a4284a01a4f5e7e959a6dd5fd26212ae6">FtpClientProtocol</link> protocol)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a839fd9da00d1c75431dfbc377751fb99">~FtpClientInterface</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual bool <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1afafcddb5b4555a42479be9c14c685afb">IsAlive</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a7fb6324adee790d01f7a65c7f50bb02f">Start</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1ae584c577e5040fd76d80156851b9a354">Stop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1abe71b7b70f577458273063ed5e592d59">Execute</link> (
+<link linkend="d0/d97/struct_ftp_request">FtpRequest</link> * req, void * addInfo)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/dec/namespacesftp_1a4284a01a4f5e7e959a6dd5fd26212ae6">FtpClientProtocol</link> <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a69e39e7903c77f7ad0b422a8aa2ece9c">protocol</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_long <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a9546523c8e8bc66320b76a6197324ee9">clientId</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1ae44fe2471d9ce2af323bd9812fc5306f">debug</link> (
+bool debug)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a02958b28fa9f9078aa82330a85013093">debug</link> (
+void )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1af477b1ee58b69fe6e4ea3b13933279fc">conversation</link> (
+bool conversation)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1aaed6cf0f661da5be6b2011d77ea43f99">conversation</link> (
+void )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a60c94d8ae860586f8acd1511b1527e84">detailed</link> (
+bool detailed)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool <link linkend="dd/d42/classsftp_1_1_ftp_client_interface_1a9fe59678d789782e638c99713f5fbbb1">detailed</link> (
+void )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a2dbf1f05e456465b5e60e410d0e0f7ed">
+                <title>sftp::FtpClientInterface::FtpClientInterface (FtpClientProtocol protocol)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a839fd9da00d1c75431dfbc377751fb99">
+                <title>virtual sftp::FtpClientInterface::~FtpClientInterface ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1afafcddb5b4555a42479be9c14c685afb">
+                <title>virtual bool sftp::FtpClientInterface::IsAlive ()=0</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a7fb6324adee790d01f7a65c7f50bb02f">
+                <title>virtual void sftp::FtpClientInterface::Start ()=0</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1ae584c577e5040fd76d80156851b9a354">
+                <title>virtual void sftp::FtpClientInterface::Stop ()=0</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1abe71b7b70f577458273063ed5e592d59">
+                <title>virtual void sftp::FtpClientInterface::Execute (FtpRequest *req, void *addInfo=0)=0</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a69e39e7903c77f7ad0b422a8aa2ece9c">
+                <title>FtpClientProtocol sftp::FtpClientInterface::protocol ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a9546523c8e8bc66320b76a6197324ee9">
+                <title>u_long sftp::FtpClientInterface::clientId ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1ae44fe2471d9ce2af323bd9812fc5306f">
+                <title>static void sftp::FtpClientInterface::debug (bool debug)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a02958b28fa9f9078aa82330a85013093">
+                <title>static bool sftp::FtpClientInterface::debug (void)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1af477b1ee58b69fe6e4ea3b13933279fc">
+                <title>static void sftp::FtpClientInterface::conversation (bool conversation)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1aaed6cf0f661da5be6b2011d77ea43f99">
+                <title>static bool sftp::FtpClientInterface::conversation (void)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a60c94d8ae860586f8acd1511b1527e84">
+                <title>static void sftp::FtpClientInterface::detailed (bool detailed)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d42/classsftp_1_1_ftp_client_interface_1a9fe59678d789782e638c99713f5fbbb1">
+                <title>static bool sftp::FtpClientInterface::detailed (void)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

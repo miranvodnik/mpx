@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d6/d7f/_mpx_tcp4_client_proxy_task_8h">
+    <title>MpxTcp4ClientProxyTask.h File Reference</title>
+    <programlisting>#include &lt;mpx-tasks/MpxProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-sockets/MpxTcp4Client.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4ClientEvent.h&gt;</programlisting>
+<para>Include dependency diagram for MpxTcp4ClientProxyTask.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dc/da7/_mpx_tcp4_client_proxy_task_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxTcp4ClientProxyTask.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d5a/_mpx_tcp4_client_proxy_task_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d7/d48/classmpx_1_1_mpx_tcp4_client_proxy_task">mpx::MpxTcp4ClientProxyTask</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-tasks/MpxTcp4ClientProxyTask.h</para>
+    </simplesect>
+</section>

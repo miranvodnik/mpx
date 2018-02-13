@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/df9/classmpx_1_1_mpx_proxy_task_base">
+<title>mpx::MpxProxyTaskBase class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dc/dbe/_mpx_proxy_task_8h">&lt;MpxProxyTask.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxProxyTaskBase</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d6a/classmpx_1_1_mpx_proxy_task_base__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxProxyTaskBase</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/d6e/classmpx_1_1_mpx_proxy_task_base__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/df9/classmpx_1_1_mpx_proxy_task_base_1a72c70a5c02c3e8f05ba26e08c1d65b32">MpxProxyTaskBase</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/df9/classmpx_1_1_mpx_proxy_task_base_1ab763ee2e97c5b4bec275a35b0d13fcfe">~MpxProxyTaskBase</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="de/df9/classmpx_1_1_mpx_proxy_task_base_1afe425bf2797b479f2a5ff2f9b73cdf9f">SendProxy</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * event, bool invoke)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="de/df9/classmpx_1_1_mpx_proxy_task_base_1a72c70a5c02c3e8f05ba26e08c1d65b32">
+                <title>mpx::MpxProxyTaskBase::MpxProxyTaskBase ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/df9/classmpx_1_1_mpx_proxy_task_base_1ab763ee2e97c5b4bec275a35b0d13fcfe">
+                <title>mpx::MpxProxyTaskBase::~MpxProxyTaskBase ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/df9/classmpx_1_1_mpx_proxy_task_base_1afe425bf2797b479f2a5ff2f9b73cdf9f">
+                <title>virtual int mpx::MpxProxyTaskBase::SendProxy (MpxTaskBase *task, MpxEventBase *event, bool invoke=false)=0</title> <emphasis></emphasis>
+                
+            </section>
+</section>

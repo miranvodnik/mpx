@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="da/da6/classmpx_1_1_mpx_job_finished_event">
+<title>mpx::MpxJobFinishedEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d5/dd0/_mpx_job_finished_event_8h">&lt;MpxJobFinishedEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxJobFinishedEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/df7/classmpx_1_1_mpx_job_finished_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxJobFinishedEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d5/df8/classmpx_1_1_mpx_job_finished_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxJob * m_job</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1aeaeb3e6da316ca8ecad3e475a96f490a">MpxJobFinishedEvent</link> (
+<link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * job)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1a8b26375557cb7082ed96d75b82bea5db">~MpxJobFinishedEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1adcc334e8264109f368d38d9752c14ff1">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1a3154c00263db89d892a3c47664e8eb12">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1a4c44bdfef82f4925561950f838bc4908">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1adcfcec20d58e38bedce80431fd763d93">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * <link linkend="da/da6/classmpx_1_1_mpx_job_finished_event_1ab9ba461868430e67a9bc481ccdadbf5a">job</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1aeaeb3e6da316ca8ecad3e475a96f490a">
+                <title>mpx::MpxJobFinishedEvent::MpxJobFinishedEvent (MpxJob *job)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1a8b26375557cb7082ed96d75b82bea5db">
+                <title>virtual mpx::MpxJobFinishedEvent::~MpxJobFinishedEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1adcc334e8264109f368d38d9752c14ff1">
+                <title>virtual const char* mpx::MpxJobFinishedEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1a3154c00263db89d892a3c47664e8eb12">
+                <title>virtual MpxEventBase* mpx::MpxJobFinishedEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1a4c44bdfef82f4925561950f838bc4908">
+                <title>virtual int mpx::MpxJobFinishedEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1adcfcec20d58e38bedce80431fd763d93">
+                <title>virtual int mpx::MpxJobFinishedEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/da6/classmpx_1_1_mpx_job_finished_event_1ab9ba461868430e67a9bc481ccdadbf5a">
+                <title>MpxJob* mpx::MpxJobFinishedEvent::job ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

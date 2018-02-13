@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d2/d37/libssh2__config_8h">
+    <title>libssh2_config.h File Reference</title>
+<para>Include dependency diagram for libssh2_config.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/da1/libssh2__config_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for libssh2_config.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/d6f/libssh2__config_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1aaf5250164f8a3c52b7820317aee7d9ce">HAVE_ALLOCA</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a277c3d138498b9267fe43589b6b7d91e">HAVE_ALLOCA_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a7d1a71461e07569d0c9003da24c30a59">HAVE_ARPA_INET_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a0ee1617ff2f6885ef384a3dd46f9b9d7">HAVE_DLFCN_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ae655a511fd230d2fd6b99ff2801df201">HAVE_ERRNO_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a765d75020849aa0a9b6becd9a5b7a193">HAVE_FCNTL_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a32e7ff1da5763e68f44097cb23826415">HAVE_GETTIMEOFDAY</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ab90a030ff2790ebdc176660a6dd2a478">HAVE_INTTYPES_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a599f6f40ec072a355a69090fe0034fae">HAVE_LIBSSL</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ab52774670674c949e48837976b331e33">HAVE_LIBZ</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a236af46074faa00979cea086e8209361">HAVE_LONGLONG</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ae93a78f9d076138897af441c9f86f285">HAVE_MEMORY_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a0938658b988a082864efcee2d1b2bfd2">HAVE_NETINET_IN_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a7ecb7f706f6ecbc88460cfb07765948f">HAVE_O_NONBLOCK</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a87db0532cf3aac7fcf3f6355265ddefc">HAVE_POLL</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1aee3a7313d861afa18971031528fd0cd5">HAVE_SELECT</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ab6cd6d1c63c1e26ea2d4537b77148354">HAVE_STDINT_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ae021ce4fe74984428cc97427b7358fda">HAVE_STDIO_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a9e0e434ec1a6ddbd97db12b5a32905e0">HAVE_STDLIB_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a405d10d46190bcb0320524c54eafc850">HAVE_STRINGS_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ad4c234dd1625255dc626a15886306e7d">HAVE_STRING_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ad7c2edb2365c947f4bff624c7be9f890">HAVE_STRTOLL</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a3c53bc046c95078b26f13b3cfecdf210">HAVE_SYS_IOCTL_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a927b0f172f6c47a024166a841f261bb7">HAVE_SYS_SELECT_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1afb96c2bc08ebf33cca68c714f624a58d">HAVE_SYS_SOCKET_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ace156430ba007d19b4348a950d0c692b">HAVE_SYS_STAT_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a2aae46056558e9d6fef6380f9678ffe3">HAVE_SYS_TIME_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a69dc70bea5d1f8bd2be9740e974fa666">HAVE_SYS_TYPES_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1afbddcd6b820386442dfdab7bf43670cc">HAVE_SYS_UIO_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a95093913a3bf813693d2988f65edd6b1">HAVE_SYS_UN_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a219b06937831d0da94d801ab13987639">HAVE_UNISTD_H</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a62a1d2b850655da153326f26ee0ba98f">LIBSSH2_DH_GEX_NEW</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a6a507ad86daf18fef8a4efa64e870995">LIBSSH2_HAVE_ZLIB</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ac2d5925d76379847dd9fc4747b061659">LT_OBJDIR</link> &quot;.libs/&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1aca8570fb706c81df371b7f9bc454ae03">PACKAGE</link> &quot;libssh2&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a1d1d2d7f8d2f95b376954d649ab03233">PACKAGE_BUGREPORT</link> &quot;libssh2-devel@cool.haxx.se&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a1c0439e4355794c09b64274849eb0279">PACKAGE_NAME</link> &quot;libssh2&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1ac73e6f903c16eca7710f92e36e1c6fbf">PACKAGE_STRING</link> &quot;libssh2 -&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1af415af6bfede0e8d5453708afe68651c">PACKAGE_TARNAME</link> &quot;libssh2&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a5c93853116d5a50307b6744f147840aa">PACKAGE_URL</link> &quot;&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1aa326a05d5e30f9e9a4bb0b4469d5d0c0">PACKAGE_VERSION</link> &quot;-&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a550e5c272cc3cf3814651721167dcd23">STDC_HEADERS</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</link> &quot;-&quot;</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a41a19566302a3a56b518eb92c8a4cb2b">_DARWIN_USE_64_BIT_INODE</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="d2/d37/libssh2__config_8h_1a44d01ba0a136b8e27ad362f5a823d14e">_FILE_OFFSET_BITS</link> 64</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftpcln/libssh2_config.h</para>
+    </simplesect>
+</section>

@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d7/d1b/classsftp_1_1_sftp_job_info">
+<title>sftp::SftpJobInfo class Reference</title>
+<para>
+    <programlisting>#include <link linkend="df/d91/_sftp_job_info_8h">&lt;SftpJobInfo.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::SftpJobInfo</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/d15/classsftp_1_1_sftp_job_info__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::SftpJobInfo</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/de9/classsftp_1_1_sftp_job_info__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int JobInfoEvent</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_clientId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_jobCount</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_sessionId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * m_msg</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1a5667b3b9a1e741ed97d6e04712222093">SftpJobInfo</link> (
+u_int clientId, u_int jobCount, u_int sessionId, char * msg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1a3d542a8aa7f9234e3c3fe15fc7a8cfaa">~SftpJobInfo</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1aa0f77b9fe13c5b64caa5a13f79fb2459">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1af775261560c39c03b7c703c60667daa0">MpxEventBase</link> * <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1ada904fe430d70d2a8768275e38ebeac1">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1a4ae80cef4076c42e5a1655db2f116359">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1ac7e8bbc31b97b86b4cc0eb276fa40240">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1ae78b17d38076caab20e142b73f350c20">clientId</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1aa24327a75789534e27c5a8d35d7c5aa5">jobCount</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1a0c0bd7369c89f111ee6ea8eb636d2850">sessionId</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="d7/d1b/classsftp_1_1_sftp_job_info_1a50f522a935d3aa67b128b280ee2bb2a5">msg</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1a5667b3b9a1e741ed97d6e04712222093">
+                <title>sftp::SftpJobInfo::SftpJobInfo (u_int clientId, u_int jobCount, u_int sessionId, char *msg)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1a3d542a8aa7f9234e3c3fe15fc7a8cfaa">
+                <title>sftp::SftpJobInfo::~SftpJobInfo ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1aa0f77b9fe13c5b64caa5a13f79fb2459">
+                <title>virtual const char* sftp::SftpJobInfo::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1ada904fe430d70d2a8768275e38ebeac1">
+                <title>virtual MpxEventBase* sftp::SftpJobInfo::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1a4ae80cef4076c42e5a1655db2f116359">
+                <title>virtual int sftp::SftpJobInfo::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1ac7e8bbc31b97b86b4cc0eb276fa40240">
+                <title>virtual int sftp::SftpJobInfo::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1ae78b17d38076caab20e142b73f350c20">
+                <title>u_int sftp::SftpJobInfo::clientId ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1aa24327a75789534e27c5a8d35d7c5aa5">
+                <title>u_int sftp::SftpJobInfo::jobCount ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1a0c0bd7369c89f111ee6ea8eb636d2850">
+                <title>u_int sftp::SftpJobInfo::sessionId ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/d1b/classsftp_1_1_sftp_job_info_1a50f522a935d3aa67b128b280ee2bb2a5">
+                <title>char* sftp::SftpJobInfo::msg ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

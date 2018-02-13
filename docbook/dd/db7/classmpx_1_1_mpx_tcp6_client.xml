@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client">
+<title>mpx::MpxTcp6Client class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/dbe/_mpx_tcp6_client_8h">&lt;MpxTcp6Client.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp6Client</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d5/d74/classmpx_1_1_mpx_tcp6_client__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp6Client</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d9b/classmpx_1_1_mpx_tcp6_client__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_hostname</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t m_port</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1ac18df969dd3cddeef367d773790c06f1">MpxTcp6Client</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1a166d669d0856e1cb983e04c36b2de47e">~MpxTcp6Client</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1ae3f45f80e9ea6decd533602e768e9de6">Connect</link> (
+const char * hostname, uint16_t port)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1acbd18166a57425ba8deaf4dbe079d0eb">Connect</link> (
+const sockaddr_in6 * addr, uint16_t port)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1a45c1bf533752a4cad0e7897809aff6d9">Shutdown</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="dd/db7/classmpx_1_1_mpx_tcp6_client_1ab4b99fbfd4dedb14f47c9af35f8ae927">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1ac18df969dd3cddeef367d773790c06f1">
+                <title>mpx::MpxTcp6Client::MpxTcp6Client (MpxTaskBase *task, bool fast=false, long int timeOut=1000 *1000 *1000, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1a166d669d0856e1cb983e04c36b2de47e">
+                <title>mpx::MpxTcp6Client::~MpxTcp6Client ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1ae3f45f80e9ea6decd533602e768e9de6">
+                <title>int mpx::MpxTcp6Client::Connect (const char *hostname, uint16_t port)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1acbd18166a57425ba8deaf4dbe079d0eb">
+                <title>int mpx::MpxTcp6Client::Connect (const sockaddr_in6 *addr, uint16_t port)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1a45c1bf533752a4cad0e7897809aff6d9">
+                <title>void mpx::MpxTcp6Client::Shutdown ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/db7/classmpx_1_1_mpx_tcp6_client_1ab4b99fbfd4dedb14f47c9af35f8ae927">
+                <title>void mpx::MpxTcp6Client::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

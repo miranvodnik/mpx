@@ -1,0 +1,710 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d6/d41/mpx-events_8h">
+    <title>mpx-events.h File Reference</title>
+    <programlisting>#include &lt;rpc/rpc.h&gt;</programlisting>
+<para>Include dependency diagram for mpx-events.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d1d/mpx-events_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for mpx-events.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d93/mpx-events_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d7/d14/struct_mpx_event_base_struct">MpxEventBaseStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d1/de1/struct_mpx_external_task_event_struct">MpxExternalTaskEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d2/dea/struct_mpx_job_finished_event_struct">MpxJobFinishedEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="da/dd6/struct_mpx_local_client_event_struct">MpxLocalClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d6/d2a/struct_mpx_local_end_point_event_struct">MpxLocalEndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="da/daa/struct_mpx_local_listener_event_struct">MpxLocalListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d6e/struct_mpx_local_task_query_event_struct">MpxLocalTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d5/daf/struct_mpx_posix_m_q_event_struct">MpxPosixMQEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d2/d9a/struct_mpx_posix_m_q_task_query_event_struct">MpxPosixMQTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d60/struct_mpx_start_event_struct">MpxStartEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="db/d1d/struct_mpx_stop_event_struct">MpxStopEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="da/d9e/struct_mpx_task_query_event_struct">MpxTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="db/da2/struct_mpx_task_response_event_struct">MpxTaskResponseEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d7/d33/struct_mpx_tcp4_client_event_struct">MpxTcp4ClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d1/d7f/struct_mpx_tcp4_end_point_event_struct">MpxTcp4EndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d48/struct_mpx_tcp4_listener_event_struct">MpxTcp4ListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="de/df0/struct_mpx_tcp4_task_query_event_struct">MpxTcp4TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d1/d4d/struct_mpx_tcp6_client_event_struct">MpxTcp6ClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="dc/d37/struct_mpx_tcp6_end_point_event_struct">MpxTcp6EndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="db/d00/struct_mpx_tcp6_listener_event_struct">MpxTcp6ListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="de/d75/struct_mpx_tcp6_task_query_event_struct">MpxTcp6TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="de/d78/struct_mpx_timer_event_struct">MpxTimerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d4/d6e/struct_mpx_udp4_task_query_event_struct">MpxUdp4TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="db/dcc/struct_mpx_udp6_task_query_event_struct">MpxUdp6TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="dd/dfb/struct_mpx_consumer_event_struct">MpxConsumerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Enumerations</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99">MpxEventCode</link> {
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a86134c66aa1562839ab00f3138cb7beb">MpxEventBaseCode</link>= 0,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99adb54b8cccf68ee76388ca9ba0b34a17e">MpxStartEventCode</link>= -1,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a83a32942b568b2bce49242d4cc6d98ce">MpxTimerEventCode</link>= -2,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a2f835c244f0565dd036184236dec8ee7">MpxStopEventCode</link>= -3,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99aebd0f7c1e6bc373594b71e6d77653e82">MpxTcp4ListenerEventCode</link>= -4,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99afdb6c22146fee0f210e0be84d0e618ff">MpxTcp4EndPointEventCode</link>= -5,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99ad1c2c44897dd7b2fdec39a2dc4a96681">MpxTcp4ClientEventCode</link>= -6,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a71433445c74c8201f84a375611a6e22b">MpxTcp6ListenerEventCode</link>= -7,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99ab9dbbf8a4d7849b6018f236aef038d49">MpxTcp6EndPointEventCode</link>= -8,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a4ba80fb2f8e44cb96f4111e5a39f13db">MpxTcp6ClientEventCode</link>= -9,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a4569a91ab61edb63d9b62cbfa6b3051f">MpxLocalListenerEventCode</link>= -10,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a2f9ec87fdf642893b670220c736b50cf">MpxLocalEndPointEventCode</link>= -11,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a0dc541bb6ac5a65ed7688e83c4cd3517">MpxLocalClientEventCode</link>= -12,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a0b25719d9aeeebab048ac1c6aaffb6be">MpxPosixMQEventCode</link>= -13,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99ac800559444deae227591ac2496517899">MpxJobFinishedEventCode</link>= -14,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a08fe71d717153fe9e2586a94f36a6e61">MpxLocalTaskQueryEventCode</link>= -15,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99aea31431925b4643ada3d9724bd2381f1">MpxPosixMQTaskQueryEventCode</link>= -16,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a1f9137fd87292da8ae851a2c83baaf8a">MpxTcp4TaskQueryEventCode</link>= -17,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a235d956784e2f5fe70dc286ecbc13d5a">MpxTcp6TaskQueryEventCode</link>= -18,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99aa2bf8c3e302043a44e96bfe6d965fedc">MpxUdp4TaskQueryEventCode</link>= -19,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a91e05b427a9f28682cfacdbea1658708">MpxUdp6TaskQueryEventCode</link>= -20,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a86b643b292937498b36ae2dd3ac570a2">MpxExternalTaskEventCode</link>= -21,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99ad7817619cd1eee517d1060e847e62c51">MpxTaskQueryEventCode</link>= -22,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a90e82e3fbbc946e0fea26a4b4f2793ae">MpxTaskResponseEventCode</link>= -23,
+<link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99a1ac0ea9c08af1904c42256e596071ca7">MpxConsumerEventCode</link>= 1
+}</literallayout>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3a">MpxTaskQueryEventType</link> {
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aa282befb5114b9589497b53b373b72c56">TaskQueryEventNone</link>= 0,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aa7431bc94a033abed908a3fa0cd270afa">TaskQueryEventLocal</link>= 1,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aa7f527290a2319fe5b3a52e193af40b00">TaskQueryEventPosixMQ</link>= 2,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aac751e7c1c4096c408aa161655441dee1">TaskQueryEventTcp4</link>= 3,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aac3bda3d36b35521c73a97d3d31c329ab">TaskQueryEventUdp4</link>= 4,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aa176626e261b485c044ca3ef373f423d5">TaskQueryEventTcp6</link>= 5,
+<link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3aa89acfc4c80dc4a931e83ac34c362fc6d">TaskQueryEventUdp6</link>= 6
+}</literallayout>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Typedefs</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef enum <link linkend="d6/d41/mpx-events_8h_1ae3da584170faa5477e44181aa5b6fa99">MpxEventCode</link>  <link linkend="d6/d41/mpx-events_8h_1ac2d56424118d9ad720d3df38cfcc2030">MpxEventCode</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef u_long  <link linkend="d6/d41/mpx-events_8h_1ac94d681c8f7574485cac6da405c342ce">taskid_t</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d7/d14/struct_mpx_event_base_struct">MpxEventBaseStruct</link>  <link linkend="d6/d41/mpx-events_8h_1ad3ef700c8a2d7aca0ef588736ab31a9c">MpxEventBaseStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d1/de1/struct_mpx_external_task_event_struct">MpxExternalTaskEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a7617959bc7ecdef9b7c749da7c2e98ef">MpxExternalTaskEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d2/dea/struct_mpx_job_finished_event_struct">MpxJobFinishedEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1ab5a346bf44e292070f4e2ae80af1e011">MpxJobFinishedEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="da/dd6/struct_mpx_local_client_event_struct">MpxLocalClientEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1aa819c8df9278add5d974daa64cd31ba5">MpxLocalClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d6/d2a/struct_mpx_local_end_point_event_struct">MpxLocalEndPointEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a83db61f9c2ef84b58d87d8e125b6f4b4">MpxLocalEndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="da/daa/struct_mpx_local_listener_event_struct">MpxLocalListenerEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a3b9cdb31a70038719ea5619693110031">MpxLocalListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d3/d6e/struct_mpx_local_task_query_event_struct">MpxLocalTaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a725259066353e70f89d6b7917103f252">MpxLocalTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d5/daf/struct_mpx_posix_m_q_event_struct">MpxPosixMQEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a9f11d0879799c387b7e302da1af8ec65">MpxPosixMQEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d2/d9a/struct_mpx_posix_m_q_task_query_event_struct">MpxPosixMQTaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a468da3b895aa444e699e5b5ce70358ec">MpxPosixMQTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d3/d60/struct_mpx_start_event_struct">MpxStartEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a5ce3aee01e6b93e12b3b2fe63e1e3a68">MpxStartEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="db/d1d/struct_mpx_stop_event_struct">MpxStopEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a5626195b9da3dedbcff442483beb3d1b">MpxStopEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef enum <link linkend="d6/d41/mpx-events_8h_1ab76fd839a17ef0b86688f7ff746efd3a">MpxTaskQueryEventType</link>  <link linkend="d6/d41/mpx-events_8h_1a8da9e348c5f78a2e52dc8b1dbc95e1c6">MpxTaskQueryEventType</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="da/d9e/struct_mpx_task_query_event_struct">MpxTaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1adc8f885eae75432077519068f9c646fe">MpxTaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="db/da2/struct_mpx_task_response_event_struct">MpxTaskResponseEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1afead70166798d45330b088444d74a3f6">MpxTaskResponseEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d7/d33/struct_mpx_tcp4_client_event_struct">MpxTcp4ClientEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1af4af7aac4d1ec43a7b53754b83ac52ec">MpxTcp4ClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d1/d7f/struct_mpx_tcp4_end_point_event_struct">MpxTcp4EndPointEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1aabad2224feb4d6aaa39c315d64cc6466">MpxTcp4EndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d3/d48/struct_mpx_tcp4_listener_event_struct">MpxTcp4ListenerEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a4a1f45daa58c70904f897307e4d1f693">MpxTcp4ListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="de/df0/struct_mpx_tcp4_task_query_event_struct">MpxTcp4TaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1ad2eb437de69f5fa59ce1d2b8ffdc2856">MpxTcp4TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d1/d4d/struct_mpx_tcp6_client_event_struct">MpxTcp6ClientEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1aa4753add187fe876c542c4f5b13fdbec">MpxTcp6ClientEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="dc/d37/struct_mpx_tcp6_end_point_event_struct">MpxTcp6EndPointEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a5efd3a322b35e06c95b9dfd070ad35bf">MpxTcp6EndPointEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="db/d00/struct_mpx_tcp6_listener_event_struct">MpxTcp6ListenerEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1abf3f0a07339b67b22520caf4cf771e91">MpxTcp6ListenerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="de/d75/struct_mpx_tcp6_task_query_event_struct">MpxTcp6TaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a77bbf77220db3a129ed396c539433ab8">MpxTcp6TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="de/d78/struct_mpx_timer_event_struct">MpxTimerEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a136666ddcab86a495753edad1c4818dc">MpxTimerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d4/d6e/struct_mpx_udp4_task_query_event_struct">MpxUdp4TaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a23f0051dd0c53e3b634e03c5161b052e">MpxUdp4TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="db/dcc/struct_mpx_udp6_task_query_event_struct">MpxUdp6TaskQueryEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a202a2f94b55d21ce15a1e34349d87442">MpxUdp6TaskQueryEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="dd/dfb/struct_mpx_consumer_event_struct">MpxConsumerEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a07aac8988a7e1305d31fb741b1180cdd">MpxConsumerEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link>  <link linkend="d6/d41/mpx-events_8h_1a9aa57566d17e672df37d7c90e2aa46a1">MpxEventStruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a85e16a41bf034b9245c3af63bdeab587">xdr_MpxEventCode</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1ac3462af21ee54b9580753acfd7b04c30">xdr_taskid_t</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a35cb780381caee8a4e36d2d743c87217">xdr_MpxEventBaseStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1aae21c905c25b90da548ec40d32d4a8ec">xdr_MpxExternalTaskEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a13186353b63b99a1ccdd1eb0a2490afc">xdr_MpxJobFinishedEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a65b73b924c21614afff961404e4d1952">xdr_MpxLocalClientEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1aa2a7fbcbcd2f796e477e802ceb4293f4">xdr_MpxLocalEndPointEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a692a17e9cf7b190e01bb380abfe84759">xdr_MpxLocalListenerEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a2e426ea3b69dd57db33901e36e1e4675">xdr_MpxLocalTaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1aefd9d885020554da5fbca35d2c77a5db">xdr_MpxPosixMQEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1aaf393fa5ba501f1f96bb831b5aea95c4">xdr_MpxPosixMQTaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a3b1687751b2e200c76460659dddadb87">xdr_MpxStartEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a15f114b769a9755fa93a308d0e3a8f65">xdr_MpxStopEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a663cbc8d512520241e328400d54f4d81">xdr_MpxTaskQueryEventType</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a88fa21fba101c4bbf4c873119e61bca1">xdr_MpxTaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a468461cff92bce124f7e61d21cb98da5">xdr_MpxTaskResponseEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a98fa11fc4459fce714a335d1b3fb4e3d">xdr_MpxTcp4ClientEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a051b104ead42235a9f59cabf93f9f22b">xdr_MpxTcp4EndPointEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a4bc9fabd2900fb0f4c91f09fa5399852">xdr_MpxTcp4ListenerEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1ae8eab051015556c46affe6bef9a4049a">xdr_MpxTcp4TaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a5a1d469ee68f7b5be5b74e8f6c63021d">xdr_MpxTcp6ClientEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a4f6db18fc60626b65ebb98536b143b69">xdr_MpxTcp6EndPointEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1acf1f8f907e2e0e8f7cec5430647fe650">xdr_MpxTcp6ListenerEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1ab6c58816acad0311d28e5294ba3cf8d8">xdr_MpxTcp6TaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a0894d7001cc60262cc2a7cc2c4a8829e">xdr_MpxTimerEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1aea888559b645d360f3d5be95c5d89cb9">xdr_MpxUdp4TaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1ae06a9df9deaada6d61be39ebe889eb8e">xdr_MpxUdp6TaskQueryEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1afd63685214a659ca70bf2fa0f49801d8">xdr_MpxConsumerEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d6/d41/mpx-events_8h_1a5e588aec6628c071a7711196193430ca">xdr_MpxEventStruct</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-events/mpx-events.h</para>
+    </simplesect>
+</section>

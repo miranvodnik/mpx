@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository">
+<title>mpx::MpxEventQueueRepository class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/d47/_mpx_event_queue_repository_8h">&lt;MpxEventQueueRepository.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxEventQueueRepository</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/de7/classmpx_1_1_mpx_event_queue_repository__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxEventQueueRepository</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d8f/classmpx_1_1_mpx_event_queue_repository__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef map&lt; <link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link>, const char * &gt;  <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a8e504a1e532efba1de67f5ca66919d66">mpxset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxEventQueueRepository * g_mpxEventQueueRepository</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_mutex_t m_lock</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>mpxset m_mpxset</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a71a797b4ccac51df504bac11af4d571a">MpxEventQueueRepository</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1aa37813421f4f1ae8c908a82d94d148cb">~MpxEventQueueRepository</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a34d13f2c0bb3d6e2633d3eb9febfac20">_RegisterEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id, const char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a7a21b1a2c2212d3c4565200f34727a81">_UnregisterEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>const char * <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a928353cfb2ad71fe54eff78c0e74ff07">_RetrieveEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const char * <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1a3cdc539f9e28da644f9e2369abc7f104">RegisterEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id, const char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static bool <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1af1dbed773bc50b8122c5e2e6f982035a">UnregisterEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const char * <link linkend="df/d17/classmpx_1_1_mpx_event_queue_repository_1afb550e125359c18c30de46b319d8896a">RetrieveEventQueue</link> (
+<link linkend="d8/d67/namespacempx_1abf853c00938b0039892eb7fde35ad629">tskmpx_t</link> id)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a8e504a1e532efba1de67f5ca66919d66">
+                <title>typedef map&lt;tskmpx_t, const char*&gt; mpx::MpxEventQueueRepository::mpxset</title> <emphasis></emphasis>
+                
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a71a797b4ccac51df504bac11af4d571a">
+                <title>mpx::MpxEventQueueRepository::MpxEventQueueRepository ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1aa37813421f4f1ae8c908a82d94d148cb">
+                <title>mpx::MpxEventQueueRepository::~MpxEventQueueRepository ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a34d13f2c0bb3d6e2633d3eb9febfac20">
+                <title>const char * mpx::MpxEventQueueRepository::_RegisterEventQueue (tskmpx_t id, const char *name=0)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a7a21b1a2c2212d3c4565200f34727a81">
+                <title>bool mpx::MpxEventQueueRepository::_UnregisterEventQueue (tskmpx_t id)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a928353cfb2ad71fe54eff78c0e74ff07">
+                <title>const char * mpx::MpxEventQueueRepository::_RetrieveEventQueue (tskmpx_t id)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1a3cdc539f9e28da644f9e2369abc7f104">
+                <title>static const char* mpx::MpxEventQueueRepository::RegisterEventQueue (tskmpx_t id, const char *name=0)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1af1dbed773bc50b8122c5e2e6f982035a">
+                <title>static bool mpx::MpxEventQueueRepository::UnregisterEventQueue (tskmpx_t id)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="df/d17/classmpx_1_1_mpx_event_queue_repository_1afb550e125359c18c30de46b319d8896a">
+                <title>static const char* mpx::MpxEventQueueRepository::RetrieveEventQueue (tskmpx_t id)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

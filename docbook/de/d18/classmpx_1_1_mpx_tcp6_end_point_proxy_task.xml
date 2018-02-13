@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task">
+<title>mpx::MpxTcp6EndPointProxyTask class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d9/d06/_mpx_tcp6_end_point_proxy_task_8h">&lt;MpxTcp6EndPointProxyTask.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp6EndPointProxyTask</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/d67/classmpx_1_1_mpx_tcp6_end_point_proxy_task__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp6EndPointProxyTask</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/d8c/classmpx_1_1_mpx_tcp6_end_point_proxy_task__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static EventDescriptor g_evntab[]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a3bd3cf30e554cd2c8f35e0bbb12f328c">MpxTcp6EndPointProxyTask</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="d0/d0e/classmpx_1_1_mpx_tcp6_end_point">MpxTcp6EndPoint</link> * tcp6EndPoint)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a911abfc1f77ce2bb9ad5601bb497f710">~MpxTcp6EndPointProxyTask</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a65b1b053ea516480a2929204982af5d1">mpx_event_handler</link> (
+HandleTcp6EndPointEvent , <link linkend="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task">MpxTcp6EndPointProxyTask</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a3bd3cf30e554cd2c8f35e0bbb12f328c">
+                <title>mpx::MpxTcp6EndPointProxyTask::MpxTcp6EndPointProxyTask (MpxTaskBase *task, MpxTcp6EndPoint *tcp6EndPoint)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a911abfc1f77ce2bb9ad5601bb497f710">
+                <title>mpx::MpxTcp6EndPointProxyTask::~MpxTcp6EndPointProxyTask ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task_1a65b1b053ea516480a2929204982af5d1">
+                <title>mpx::MpxTcp6EndPointProxyTask::mpx_event_handler (HandleTcp6EndPointEvent, MpxTcp6EndPointProxyTask)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

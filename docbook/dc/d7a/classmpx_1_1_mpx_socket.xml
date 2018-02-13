@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dc/d7a/classmpx_1_1_mpx_socket">
+<title>mpx::MpxSocket class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d7/dd7/_mpx_socket_8h">&lt;MpxSocket.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxSocket</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dc/d32/classmpx_1_1_mpx_socket__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxSocket</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/d0e/classmpx_1_1_mpx_socket__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef T  <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1aeb0bd1e87214bba419b429598f1568d9">MpxSocketEvent</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Protected Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskBase * m_task</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_fast</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long int m_timeOut</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_seqPacket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_sent</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_rcvd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxRunningContext * m_ctx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_idleTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_IOHandle</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_readBuffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_readBufferUse</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_readBufferPtr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_readBufferEnd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_writeBuffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_writeBufferPtr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_writeBufferEnd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a79f51d6261d9499dc60f748ceb23f1b4">MpxSocket</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1ac19a7046b53971e5261cfe8be9cda90c">~MpxSocket</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>size_t <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1ab027d3e4866ca6abaf1361c6ed95af1d">size</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a3560183980052802889679292a4147c6">FastRead</link> (
+size_t size)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1afb244d47b850eb07c7f8eee6c34053a2">Read</link> (
+u_char * buffer, size_t size)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a7fd07dc8abeb3fbb6fdf3dd46a732533">Write</link> (
+u_char * buffer, size_t size)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1af08807511162530a9db1c6e80993071b">PostXdrRequest</link> (
+xdrproc_t proc, void * data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a5fd800d29c0bc49d29c728df963fcc51">ReadXdrRequest</link> (
+xdrproc_t proc, void * data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1af5cd2a092dbf5d24b24494da92fcd708">task</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a354060589e2b9ffeb8a741212ce521f0">task</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a34aeae23bfbbd15315b76aa4cfe98416">fast</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a0aaf12ef7ff23bc3edd3b976b6987cda">sent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a9cce5cece33bc03d522602527f9f8d66">rcvd</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1ae7d43ec7c435ae05b2e8fcdbd168c08e">readlost</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a567609c789100e34060dd87c3615e7a7">writelost</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a98691a5c0509f68c107dbf8badc5b88e">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a30a5610f67d08e31aca7703732328d8f">StartTimer</link> (
+timespec t)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a6a4b0835d3803e6875b0c23ab5e6221e">IdleTimer</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx, <link linkend="d8/d67/namespacempx_1a34a8cda0da4a07f815b71fdffe5dd05a">ctx_timer_t</link> handler, struct timespec t)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1a57c494d4df708aba26049455de10cf92">HandleSocketIO</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx, uint flags, <link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> handler, int fd)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1af22e81e97aa30f6658a1c5f66796f897">IdleTimer</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx, <link linkend="d8/d67/namespacempx_1a34a8cda0da4a07f815b71fdffe5dd05a">ctx_timer_t</link> handler, struct timespec t, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="dc/d7a/classmpx_1_1_mpx_socket_1adad8ab7cc68e71652ba1f058f64f6a98">HandleSocketIO</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx, uint flags, <link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> handler, int fd, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1aeb0bd1e87214bba419b429598f1568d9">
+                <title>typedef T mpx::MpxSocket&lt; T &gt;::MpxSocketEvent</title> <emphasis></emphasis>
+                
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a79f51d6261d9499dc60f748ceb23f1b4">
+                <title>mpx::MpxSocket&lt; T &gt;::MpxSocket (MpxTaskBase *task, bool fast=false, long int timeOut=1000 *1000 *1000, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1ac19a7046b53971e5261cfe8be9cda90c">
+                <title>virtual mpx::MpxSocket&lt; T &gt;::~MpxSocket ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1ab027d3e4866ca6abaf1361c6ed95af1d">
+                <title>size_t mpx::MpxSocket&lt; T &gt;::size ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a3560183980052802889679292a4147c6">
+                <title>u_char* mpx::MpxSocket&lt; T &gt;::FastRead (size_t size)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1afb244d47b850eb07c7f8eee6c34053a2">
+                <title>int mpx::MpxSocket&lt; T &gt;::Read (u_char *buffer, size_t size)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a7fd07dc8abeb3fbb6fdf3dd46a732533">
+                <title>int mpx::MpxSocket&lt; T &gt;::Write (u_char *buffer, size_t size)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1af08807511162530a9db1c6e80993071b">
+                <title>int mpx::MpxSocket&lt; T &gt;::PostXdrRequest (xdrproc_t proc, void *data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a5fd800d29c0bc49d29c728df963fcc51">
+                <title>int mpx::MpxSocket&lt; T &gt;::ReadXdrRequest (xdrproc_t proc, void *data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1af5cd2a092dbf5d24b24494da92fcd708">
+                <title>MpxTaskBase* mpx::MpxSocket&lt; T &gt;::task ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a354060589e2b9ffeb8a741212ce521f0">
+                <title>void mpx::MpxSocket&lt; T &gt;::task (MpxTaskBase *task)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a34aeae23bfbbd15315b76aa4cfe98416">
+                <title>bool mpx::MpxSocket&lt; T &gt;::fast ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a0aaf12ef7ff23bc3edd3b976b6987cda">
+                <title>u_int mpx::MpxSocket&lt; T &gt;::sent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a9cce5cece33bc03d522602527f9f8d66">
+                <title>u_int mpx::MpxSocket&lt; T &gt;::rcvd ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1ae7d43ec7c435ae05b2e8fcdbd168c08e">
+                <title>u_int mpx::MpxSocket&lt; T &gt;::readlost ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a567609c789100e34060dd87c3615e7a7">
+                <title>u_int mpx::MpxSocket&lt; T &gt;::writelost ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a98691a5c0509f68c107dbf8badc5b88e">
+                <title>virtual void mpx::MpxSocket&lt; T &gt;::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a30a5610f67d08e31aca7703732328d8f">
+                <title>void mpx::MpxSocket&lt; T &gt;::StartTimer (timespec t)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a6a4b0835d3803e6875b0c23ab5e6221e">
+                <title>void mpx::MpxSocket&lt; T &gt;::IdleTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1a57c494d4df708aba26049455de10cf92">
+                <title>void mpx::MpxSocket&lt; T &gt;::HandleSocketIO (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1af22e81e97aa30f6658a1c5f66796f897">
+                <title>static void mpx::MpxSocket&lt; T &gt;::IdleTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, ctx_appdt_t appdata)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dc/d7a/classmpx_1_1_mpx_socket_1adad8ab7cc68e71652ba1f058f64f6a98">
+                <title>static void mpx::MpxSocket&lt; T &gt;::HandleSocketIO (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd, ctx_appdt_t appdata)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

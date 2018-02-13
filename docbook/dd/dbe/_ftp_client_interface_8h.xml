@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/dbe/_ftp_client_interface_8h">
+    <title>FtpClientInterface.h File Reference</title>
+    <programlisting>#include &lt;ftpmsg/FtpRequestInterface.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTaskBase.h&gt;</programlisting>
+<para>Include dependency diagram for FtpClientInterface.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d81/_ftp_client_interface_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for FtpClientInterface.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/d63/_ftp_client_interface_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="dd/d42/classsftp_1_1_ftp_client_interface">sftp::FtpClientInterface</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/dec/namespacesftp">sftp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1af6b8c1d8cca296f54a12e8ed8d86f1f7">CWD_HOME_DIR</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1a0cdff9585b33ff492cca16a7c9d397e1">CWD_HOME_DIR_AGAIN</link> 2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1abfe51d1af53efeafaeae72e6fe13d174">CWD_MKDIR</link> 3</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1a510aa7766041dc721dd786ac36db3340">CWD_REMOTE_DIR</link> 4</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1ac5d27f74f251925ec6f3908514397eb1">CWD_REMOTE_DIR_AGAIN</link> 5</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1aee6572be8aa5782de2c57648ab8883f6">CWD_ROOT</link> 6</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1ad0a52c8029948e21138726d5998bf63a">CWD_WORKING_DIR</link> 7</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1aac9a7ca98157fb1f19c4777fbf94e781">LIST_PROTECT_EXISTING_FILE</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="dd/dbe/_ftp_client_interface_8h_1afbe9407d757f119a8cffc1a6228e0848">LIST_CHECK_FILE_SIZE</link> 2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftpcln/FtpClientInterface.h</para>
+    </simplesect>
+</section>

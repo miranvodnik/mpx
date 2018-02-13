@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dir_0a82e97be0af5b1fb897d37ef1d4fd50">
+    <title>mpx-lib/mpx-tasks Directory Reference</title>
+<para>Directory dependency diagram for mpx-lib/mpx-tasks</para>
+<para>
+    <figure>
+        <title>Directory Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dir_0a82e97be0af5b1fb897d37ef1d4fd50_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> File </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="df/dae/mpx-messages_8h">mpx-messages.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/d4b/mpx-messages__xdr_8c">mpx-messages_xdr.c</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d5/dea/_mpx_external_task_8cpp">MpxExternalTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d9/da9/_mpx_external_task_8h">MpxExternalTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d2/dc3/_mpx_ext_task_i_8cpp">MpxExtTaskI.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="da/de6/_mpx_ext_task_i_8h">MpxExtTaskI.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dd/dfb/_mpx_local_client_proxy_task_8cpp">MpxLocalClientProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="da/d77/_mpx_local_client_proxy_task_8h">MpxLocalClientProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/d63/_mpx_local_end_point_proxy_task_8cpp">MpxLocalEndPointProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d1/db2/_mpx_local_end_point_proxy_task_8h">MpxLocalEndPointProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/d6b/_mpx_posix_m_q_proxy_task_8cpp">MpxPosixMQProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/d5d/_mpx_posix_m_q_proxy_task_8h">MpxPosixMQProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dc/dbe/_mpx_proxy_task_8h">MpxProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="db/d65/_mpx_task_base_8cpp">MpxTaskBase.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d4/daa/_mpx_task_base_8h">MpxTaskBase.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d7/ddd/_mpx_tcp4_client_proxy_task_8cpp">MpxTcp4ClientProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d6/d7f/_mpx_tcp4_client_proxy_task_8h">MpxTcp4ClientProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dc/d78/_mpx_tcp4_end_point_proxy_task_8cpp">MpxTcp4EndPointProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d3/d74/_mpx_tcp4_end_point_proxy_task_8h">MpxTcp4EndPointProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="dc/d51/_mpx_tcp6_client_proxy_task_8cpp">MpxTcp6ClientProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="da/d6f/_mpx_tcp6_client_proxy_task_8h">MpxTcp6ClientProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="db/d0e/_mpx_tcp6_end_point_proxy_task_8cpp">MpxTcp6EndPointProxyTask.cpp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>file <link linkend="d9/d06/_mpx_tcp6_end_point_proxy_task_8h">MpxTcp6EndPointProxyTask.h</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Directory location is /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-tasks/</para>
+    </simplesect>
+</section>

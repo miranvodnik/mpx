@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener">
+<title>mpx::MpxTcp4Listener class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d3/de4/_mpx_tcp4_listener_8h">&lt;MpxTcp4Listener.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp4Listener</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/dbb/classmpx_1_1_mpx_tcp4_listener__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp4Listener</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d64/classmpx_1_1_mpx_tcp4_listener__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskBase * m_task</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_seqPacket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>in_port_t m_listenPort</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_listenSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_handler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a4d0a9feaaec655027f4818120f375981">MpxTcp4Listener</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a01d0d1e5f37d44f6bf199c401377f84a">~MpxTcp4Listener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a896555bc8da3151a8c2888944d256641">CreateListener</link> (
+in_port_t listenPort)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a3a35437e08eb73a693df8bed9b3c61a5">CreateListener</link> (
+const char * localAddress, in_port_t listenPort)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1ab30cec9a3a65271cc0ff5a56cf0b8782">CreateListener</link> (
+struct sockaddr * localAddress, in_port_t listenPort)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1acee64339643f8c8091d07331bdf972b5">StartListener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1ade4b3f8b3e5259eb1d73230cc3cf8da0">StopListener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a8b857331dace333fe5ab7195c22af1d6">fd_handler</link> (
+HandleListener , <link linkend="dd/dfb/classmpx_1_1_mpx_tcp4_listener">MpxTcp4Listener</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a4d0a9feaaec655027f4818120f375981">
+                <title>mpx::MpxTcp4Listener::MpxTcp4Listener (MpxTaskBase *task, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a01d0d1e5f37d44f6bf199c401377f84a">
+                <title>mpx::MpxTcp4Listener::~MpxTcp4Listener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a896555bc8da3151a8c2888944d256641">
+                <title>int mpx::MpxTcp4Listener::CreateListener (in_port_t listenPort)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a3a35437e08eb73a693df8bed9b3c61a5">
+                <title>int mpx::MpxTcp4Listener::CreateListener (const char *localAddress, in_port_t listenPort)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1ab30cec9a3a65271cc0ff5a56cf0b8782">
+                <title>int mpx::MpxTcp4Listener::CreateListener (struct sockaddr *localAddress, in_port_t listenPort)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1acee64339643f8c8091d07331bdf972b5">
+                <title>int mpx::MpxTcp4Listener::StartListener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1ade4b3f8b3e5259eb1d73230cc3cf8da0">
+                <title>int mpx::MpxTcp4Listener::StopListener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/dfb/classmpx_1_1_mpx_tcp4_listener_1a8b857331dace333fe5ab7195c22af1d6">
+                <title>mpx::MpxTcp4Listener::fd_handler (HandleListener, MpxTcp4Listener)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

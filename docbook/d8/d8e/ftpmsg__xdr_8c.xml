@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d8/d8e/ftpmsg__xdr_8c">
+    <title>ftpmsg_xdr.c File Reference</title>
+    <programlisting>#include &quot;ftpmsg/ftpmsg.h&quot;</programlisting>
+<para>Include dependency diagram for ftpmsg_xdr.c</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/dc1/ftpmsg__xdr_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for ftpmsg_xdr.c</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d21/ftpmsg__xdr_8c__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d8/d8e/ftpmsg__xdr_8c_1a951a40c88ae784afab56e743197fbac1">dump_FtpRequest</link> (
+<link linkend="d0/d97/struct_ftp_request">FtpRequest</link> * req, char * msg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a9667a42cf287424dc49885859e41eade">xdr_FtpRequestCode</link> (
+XDR * xdrs, <link linkend="dd/d42/ftpmsg_8h_1a95f7d16a9c64fc3c6a9a91bb86220d33">FtpRequestCode</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a565e384375c92dfcd637a9d0c621fbd0">xdr_FtpExceptionAction</link> (
+XDR * xdrs, <link linkend="dd/d42/ftpmsg_8h_1a68b2fad010dec52cc0d8d45940d37944">FtpExceptionAction</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1ad97a8f4a2d73d96b12d75f2f486f3305">xdr_ExceptionFileList</link> (
+XDR * xdrs, <link linkend="de/d00/struct_exception_file_list">ExceptionFileList</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a5c0f91555df50e9d11af7a6ee7f3b59a">xdr_FtpConnectionInfo</link> (
+XDR * xdrs, <link linkend="d8/d4c/struct_ftp_connection_info">FtpConnectionInfo</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1ac10bb001d6a9b43fbf32817e9142fa3f">xdr_CheckConnectivityRequest</link> (
+XDR * xdrs, <link linkend="d0/dd3/struct_check_connectivity_request">CheckConnectivityRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1aab608722b43cf4e7d31393a3e8b24439">xdr_MakeDirRequest</link> (
+XDR * xdrs, <link linkend="d4/d27/struct_make_dir_request">MakeDirRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a61ee1d9f549a395d900cda510e63af36">xdr_GetDirRequest</link> (
+XDR * xdrs, <link linkend="d0/d14/struct_get_dir_request">GetDirRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1af1abfb605af7d41515a76d7edc95ab95">xdr_StoreFileRequest</link> (
+XDR * xdrs, <link linkend="da/daf/struct_store_file_request">StoreFileRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a9168f10c6b5f0e841a2e95dcfe98efd9">xdr_RetrieveFileRequest</link> (
+XDR * xdrs, <link linkend="db/d02/struct_retrieve_file_request">RetrieveFileRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a1cd62502739c0974c24736497f0c2c2d">xdr_StoreAllFilesRequest</link> (
+XDR * xdrs, <link linkend="de/df9/struct_store_all_files_request">StoreAllFilesRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a60f1a4396721a5ef219d924f707b104f">xdr_RetrieveAllFilesRequest</link> (
+XDR * xdrs, <link linkend="d1/dae/struct_retrieve_all_files_request">RetrieveAllFilesRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a3895eb6f4380d23781cfbef3a085c924">xdr_DeleteFileRequest</link> (
+XDR * xdrs, <link linkend="de/df1/struct_delete_file_request">DeleteFileRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a3e39784e091d0c77d423b5679cb38b67">xdr_DeleteAllFilesRequest</link> (
+XDR * xdrs, <link linkend="d1/d9b/struct_delete_all_files_request">DeleteAllFilesRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a9090b02826bdf9b0a3d2937a0f9fe1aa">xdr_MakeWorkingEnvRequest</link> (
+XDR * xdrs, <link linkend="d4/d7c/struct_make_working_env_request">MakeWorkingEnvRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a16b7081bf6dfc0764f393db0e12d9b97">xdr_CleanDirRequest</link> (
+XDR * xdrs, <link linkend="de/da5/struct_clean_dir_request">CleanDirRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a17e8e265f213d5159eca81ebae935478">xdr_EmptyFtpRequest</link> (
+XDR * xdrs, <link linkend="d6/d4b/struct_empty_ftp_request">EmptyFtpRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1a7294bc9412020390c1ad4e091eb0a827">xdr_FtpRequestUnion</link> (
+XDR * xdrs, <link linkend="d3/d5f/struct_ftp_request_union">FtpRequestUnion</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool_t <link linkend="d8/d8e/ftpmsg__xdr_8c_1aa794b046dd26fe152504c1892f689488">xdr_FtpRequest</link> (
+XDR * xdrs, <link linkend="d0/d97/struct_ftp_request">FtpRequest</link> * objp)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftpmsg/ftpmsg_xdr.c</para>
+    </simplesect>
+</section>

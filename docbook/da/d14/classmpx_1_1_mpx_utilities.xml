@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="da/d14/classmpx_1_1_mpx_utilities">
+<title>mpx::MpxUtilities class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dd/d5c/_mpx_utilities_8h">&lt;MpxUtilities.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxUtilities</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../da/dfe/classmpx_1_1_mpx_utilities__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxUtilities</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/da7/classmpx_1_1_mpx_utilities__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/d14/classmpx_1_1_mpx_utilities_1ad649f7485e9a5c4636c4722635e247d3">MpxUtilities</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="da/d14/classmpx_1_1_mpx_utilities_1a3f1920d85be548263fb50279f300c998">~MpxUtilities</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="da/d14/classmpx_1_1_mpx_utilities_1a3bc88b3fd2e2bac358391d52324d433a">memcpy</link> (
+void * dest, const void * src, size_t n)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="da/d14/classmpx_1_1_mpx_utilities_1ad649f7485e9a5c4636c4722635e247d3">
+                <title>mpx::MpxUtilities::MpxUtilities ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d14/classmpx_1_1_mpx_utilities_1a3f1920d85be548263fb50279f300c998">
+                <title>virtual mpx::MpxUtilities::~MpxUtilities ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/d14/classmpx_1_1_mpx_utilities_1a3bc88b3fd2e2bac358391d52324d433a">
+                <title>void mpx::MpxUtilities::memcpy (void *dest, const void *src, size_t n)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

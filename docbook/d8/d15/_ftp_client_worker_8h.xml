@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d8/d15/_ftp_client_worker_8h">
+    <title>FtpClientWorker.h File Reference</title>
+    <programlisting>#include &lt;mpx-events/MpxEvents.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxTaskMultiplexer.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-working-threads/MpxWorkingQueue.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-working-threads/MpxJobGetAddrInfo.h&gt;</programlisting>
+    <programlisting>#include &lt;events/SftpEvents.h&gt;</programlisting>
+    <programlisting>#include &lt;dirent.h&gt;</programlisting>
+    <programlisting>#include &lt;regex.h&gt;</programlisting>
+    <programlisting>#include &lt;ftpcln/FtpClient.h&gt;</programlisting>
+    <programlisting>#include &lt;string&gt;</programlisting>
+<para>Include dependency diagram for FtpClientWorker.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/dc3/_ftp_client_worker_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for FtpClientWorker.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/d27/_ftp_client_worker_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d28/classsftp_1_1_dir_entry_info">sftp::DirEntryInfo</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d46/classsftp_1_1_ftp_client_worker">sftp::FtpClientWorker</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/dec/namespacesftp">sftp</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/sftp/ftpwrk/FtpClientWorker.h</para>
+    </simplesect>
+</section>

@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event">
+<title>mpx::MpxTcp4ListenerEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d1/d93/_mpx_tcp4_listener_event_8h">&lt;MpxTcp4ListenerEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp4ListenerEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/d88/classmpx_1_1_mpx_tcp4_listener_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp4ListenerEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d02/classmpx_1_1_mpx_tcp4_listener_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_fd</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1add45993bf611caa4a1c6555a18707cb0">MpxTcp4ListenerEvent</link> (
+int fd)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a8bcee802c3e2ac6520e429ccb164b6d3">~MpxTcp4ListenerEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a5cc7d7d92c523560e5e7f6492fdfeda0">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a9ed215acdfff94c61c5bf4b133244c21">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a252c43bcb7f0b8268a8324f23127aa9e">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a8558db90ccac025a0b69d51a21a7100c">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a4ef1ed2bd670e21bd7df4bd57754500a">fd</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1add45993bf611caa4a1c6555a18707cb0">
+                <title>mpx::MpxTcp4ListenerEvent::MpxTcp4ListenerEvent (int fd)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a8bcee802c3e2ac6520e429ccb164b6d3">
+                <title>virtual mpx::MpxTcp4ListenerEvent::~MpxTcp4ListenerEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a5cc7d7d92c523560e5e7f6492fdfeda0">
+                <title>virtual const char* mpx::MpxTcp4ListenerEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a9ed215acdfff94c61c5bf4b133244c21">
+                <title>virtual MpxEventBase* mpx::MpxTcp4ListenerEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a252c43bcb7f0b8268a8324f23127aa9e">
+                <title>virtual int mpx::MpxTcp4ListenerEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a8558db90ccac025a0b69d51a21a7100c">
+                <title>virtual int mpx::MpxTcp4ListenerEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df8/classmpx_1_1_mpx_tcp4_listener_event_1a4ef1ed2bd670e21bd7df4bd57754500a">
+                <title>int mpx::MpxTcp4ListenerEvent::fd ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

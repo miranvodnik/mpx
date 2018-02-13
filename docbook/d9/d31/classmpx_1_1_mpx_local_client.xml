@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d9/d31/classmpx_1_1_mpx_local_client">
+<title>mpx::MpxLocalClient class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/d7f/_mpx_local_client_8h">&lt;MpxLocalClient.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxLocalClient</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d67/classmpx_1_1_mpx_local_client__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxLocalClient</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/d81/classmpx_1_1_mpx_local_client__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_localPath</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d9/d31/classmpx_1_1_mpx_local_client_1ac34ca98560890e317a0055c9de170344">MpxLocalClient</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/d31/classmpx_1_1_mpx_local_client_1a536f35dc79a386197e836356ed026eb0">~MpxLocalClient</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d9/d31/classmpx_1_1_mpx_local_client_1afc4fbbbf22f9365443477645bb33606b">Connect</link> (
+const char * localPath)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="d9/d31/classmpx_1_1_mpx_local_client_1a0adfb936a80021e4fa112c17956f41f8">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d9/d31/classmpx_1_1_mpx_local_client_1ac34ca98560890e317a0055c9de170344">
+                <title>mpx::MpxLocalClient::MpxLocalClient (MpxTaskBase *task, bool fast=false, long int timeOut=1000 *1000 *1000, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/d31/classmpx_1_1_mpx_local_client_1a536f35dc79a386197e836356ed026eb0">
+                <title>mpx::MpxLocalClient::~MpxLocalClient ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/d31/classmpx_1_1_mpx_local_client_1afc4fbbbf22f9365443477645bb33606b">
+                <title>int mpx::MpxLocalClient::Connect (const char *localPath)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d9/d31/classmpx_1_1_mpx_local_client_1a0adfb936a80021e4fa112c17956f41f8">
+                <title>void mpx::MpxLocalClient::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

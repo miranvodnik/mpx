@@ -1,0 +1,506 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer">
+<title>mpx::MpxTaskMultiplexer class Reference</title>
+<para>
+    <programlisting>#include <link linkend="da/d56/_mpx_task_multiplexer_8h">&lt;MpxTaskMultiplexer.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTaskMultiplexer</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/dbf/classmpx_1_1_mpx_task_multiplexer__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTaskMultiplexer</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/d77/classmpx_1_1_mpx_task_multiplexer__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef set&lt; <link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * &gt;  <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ad07a81205e95cf8876e5b1fb1b355ce3">taskset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef map&lt; string, <link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * &gt;  <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a94599593d6758208ef204a2b0e5ed0c3">taskmap</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskBase * m_externalTask</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxMQTaskI * m_mqImplTask</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_fd[2]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_connStr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_isWorker</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxRunningContext * m_ctx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>taskset m_taskset</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>taskmap m_taskmap</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_timer_t m_taskTimer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_pipeHandler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a44212e26c4cd09b29bf9ab789350cddd">MpxTaskMultiplexer</link> (
+int fd, const char * connStr, bool isWorker)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a19ea49169cf44693bd5a09db4548be64">~MpxTaskMultiplexer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1adf8f3b8d0110bfce4988090822fafbc0">ctx</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a5630b536756289034b96c595fae407cd">RegisterTask</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a0c15de14c0dd00d3daa05a18b259126c">RetrieveTask</link> (
+const char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ae7af5a9423f88faece1cb930c6717c22">DisposeTask</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool release)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a5a963e061d19da4d0faabb32ceb45c70">Send</link> (
+<link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> * dst, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * event)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a4ab3a39d4bf819c5cdc2c27120b416be">GetCurrentTime</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a9c8137e17198a7ebc11d87e8ba46b739">StartTimer</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, struct timespec timer)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1af01d9751ab03a73cc126ed8909f194c5">StopTimer</link> (
+void * timer)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a7b67c55276c62093158a8c4c6d0bac28">Stop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a28ae6f8a7d45c2ad377578c5fd59e903">Broadcast</link> (
+<link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * event, bool invoke)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a138aba0549dda2212035f955865902b0">isWorker</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1acc95fb592342253b41b19c5c962efd62">mqImplTask</link> (
+<link linkend="d2/dc7/classmpx_1_1_mpx_m_q_task_i">MpxMQTaskI</link> * mqImplTask)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a2993dedbf26a83c2e54e7d928ab5bbf5">externalTask</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a58cda2b3f4938a6051905ee71185d5e8">InitInstance</link> (
+void )<para><emphasis>initialize subclass prior to running thread</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a668bf053275e69c1220dbc351ccfd835">ExitInstance</link> (
+void )<para><emphasis>function called when associated thread terminates</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1afd727b81dab49378559d3615727b64c3">Run</link> (
+void )<para><emphasis>thread running loop
+this function is the only function of this interface which must
+be implemented by derived class. This function implements the
+running logic of associated program thread although this is not
+the base function of associated thread. The actual base function
+of associated thread is _Run(). But nevertheless, function Run()
+must be implemented as if it is the base function of associated
+thread. Normally it executes an infinite loop, executing some job,
+but always prepared to terminate immediately after any iteration
+or even in the middle of the job, especially when executing lengthy
+jobs</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a8e2350f4ce3aca5e03738a067d13de0f">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1adcf6e0b1faeb3582b6b7d2b1e758ea19">_CleanupMultiplexer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a1d1e16cec7456d15beda966b88dd3f84">ctx_starter</link> (
+StartTaskMultiplexer , <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a74db214b890001f7916e31c7b2ec1911">ctx_finisher</link> (
+StopTaskMultiplexer , <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ab7200ac3df192ceed61305a82998adc1">ctx_timehook</link> (
+TimeHookTaskMultiplexer , <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a07017fe150de4e4540e636c211e0e790">fd_handler</link> (
+ReadEnvPipe , <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ab38db784e925974afbf65966cb8ef4b0">timer_handler</link> (
+WaitTaskSet , <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a935966d2ff3a1cee269e142a5c6a4488">CleanupMultiplexer</link> (
+void * arg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ad07a81205e95cf8876e5b1fb1b355ce3">
+                <title>typedef set&lt;MpxTaskBase*&gt; mpx::MpxTaskMultiplexer::taskset</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a94599593d6758208ef204a2b0e5ed0c3">
+                <title>typedef map&lt;string, MpxTaskBase*&gt; mpx::MpxTaskMultiplexer::taskmap</title> <emphasis></emphasis>
+                
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a44212e26c4cd09b29bf9ab789350cddd">
+                <title>mpx::MpxTaskMultiplexer::MpxTaskMultiplexer (int fd[], const char *connStr=0, bool isWorker=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a19ea49169cf44693bd5a09db4548be64">
+                <title>mpx::MpxTaskMultiplexer::~MpxTaskMultiplexer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1adf8f3b8d0110bfce4988090822fafbc0">
+                <title>MpxRunningContext* mpx::MpxTaskMultiplexer::ctx ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a5630b536756289034b96c595fae407cd">
+                <title>int mpx::MpxTaskMultiplexer::RegisterTask (MpxTaskBase *task)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a0c15de14c0dd00d3daa05a18b259126c">
+                <title>MpxTaskBase * mpx::MpxTaskMultiplexer::RetrieveTask (const char *name)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ae7af5a9423f88faece1cb930c6717c22">
+                <title>void mpx::MpxTaskMultiplexer::DisposeTask (MpxTaskBase *task, bool release)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a5a963e061d19da4d0faabb32ceb45c70">
+                <title>int mpx::MpxTaskMultiplexer::Send (MpxTaskMultiplexer *dst, MpxEventBase *event)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a4ab3a39d4bf819c5cdc2c27120b416be">
+                <title>struct timespec mpx::MpxTaskMultiplexer::GetCurrentTime ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a9c8137e17198a7ebc11d87e8ba46b739">
+                <title>void * mpx::MpxTaskMultiplexer::StartTimer (MpxTaskBase *task, struct timespec timer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1af01d9751ab03a73cc126ed8909f194c5">
+                <title>void mpx::MpxTaskMultiplexer::StopTimer (void *timer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a7b67c55276c62093158a8c4c6d0bac28">
+                <title>void mpx::MpxTaskMultiplexer::Stop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a28ae6f8a7d45c2ad377578c5fd59e903">
+                <title>void mpx::MpxTaskMultiplexer::Broadcast (MpxEventBase *event, bool invoke=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a138aba0549dda2212035f955865902b0">
+                <title>bool mpx::MpxTaskMultiplexer::isWorker ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1acc95fb592342253b41b19c5c962efd62">
+                <title>void mpx::MpxTaskMultiplexer::mqImplTask (MpxMQTaskI *mqImplTask)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a2993dedbf26a83c2e54e7d928ab5bbf5">
+                <title>MpxTaskBase* mpx::MpxTaskMultiplexer::externalTask ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a58cda2b3f4938a6051905ee71185d5e8">
+                <title>int mpx::MpxTaskMultiplexer::InitInstance (void)</title> <emphasis>initialize subclass prior to running thread</emphasis>
+                
+<para>Default implementation of this function does nothing and returns 0, thus telling to the calling environment that associated thread can be created and executed. If it is implemented by derived class we must obey these facts:<itemizedlist>
+<listitem>
+<para>this function is supposed to initialize some resources used by associated thread</para>
+</listitem><listitem>
+<para>return code of this function is used to determine if associated thread will be created at all. Returning 0 signals the calling environment to proceed with thread creation and execution. Other return values signal to the calling environment that the normal thread creation sequence must be terminated with error code returned by this function</para>
+</listitem><listitem>
+<para>function is not running in the context of associated thread since it has not been created yet. Initialization which depends on the context of the associated thread should be performed from Run() or some function called within it.</para>
+</listitem></itemizedlist>
+</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>0 successful initialization. Associated program thread will be created and executed </para>
+<simplesect/>
+<para>other initialization fault. Associated thread will not be created and thus not executed </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a668bf053275e69c1220dbc351ccfd835">
+                <title>int mpx::MpxTaskMultiplexer::ExitInstance (void)</title> <emphasis>function called when associated thread terminates</emphasis>
+                
+<para>This function is provided to finish the execution of associated thread. It is called immediately after Run() terminates in the context of associated thread. Default implementation does nothing. This function gives to program the last chance to perform some actions which should be done when associated thread terminates</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>code Default implementation of this function returns return code of Run(). If it is implemented by derived class it can return any integer value </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1afd727b81dab49378559d3615727b64c3">
+                <title>int mpx::MpxTaskMultiplexer::Run (void)</title> <emphasis>thread running loop
+this function is the only function of this interface which must
+be implemented by derived class. This function implements the
+running logic of associated program thread although this is not
+the base function of associated thread. The actual base function
+of associated thread is _Run(). But nevertheless, function Run()
+must be implemented as if it is the base function of associated
+thread. Normally it executes an infinite loop, executing some job,
+but always prepared to terminate immediately after any iteration
+or even in the middle of the job, especially when executing lengthy
+jobs</emphasis>
+                
+<para><formalpara><title>Returns: </title>
+
+<para>code return code of function Run() implemented by derived class </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a8e2350f4ce3aca5e03738a067d13de0f">
+                <title>void mpx::MpxTaskMultiplexer::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1adcf6e0b1faeb3582b6b7d2b1e758ea19">
+                <title>void mpx::MpxTaskMultiplexer::_CleanupMultiplexer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a1d1e16cec7456d15beda966b88dd3f84">
+                <title>mpx::MpxTaskMultiplexer::ctx_starter (StartTaskMultiplexer, MpxTaskMultiplexer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a74db214b890001f7916e31c7b2ec1911">
+                <title>mpx::MpxTaskMultiplexer::ctx_finisher (StopTaskMultiplexer, MpxTaskMultiplexer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ab7200ac3df192ceed61305a82998adc1">
+                <title>mpx::MpxTaskMultiplexer::ctx_timehook (TimeHookTaskMultiplexer, MpxTaskMultiplexer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a07017fe150de4e4540e636c211e0e790">
+                <title>mpx::MpxTaskMultiplexer::fd_handler (ReadEnvPipe, MpxTaskMultiplexer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1ab38db784e925974afbf65966cb8ef4b0">
+                <title>mpx::MpxTaskMultiplexer::timer_handler (WaitTaskSet, MpxTaskMultiplexer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="da/dd3/classmpx_1_1_mpx_task_multiplexer_1a935966d2ff3a1cee269e142a5c6a4488">
+                <title>static void mpx::MpxTaskMultiplexer::CleanupMultiplexer (void *arg)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

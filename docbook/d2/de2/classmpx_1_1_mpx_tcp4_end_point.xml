@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d2/de2/classmpx_1_1_mpx_tcp4_end_point">
+<title>mpx::MpxTcp4EndPoint class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d1/d85/_mpx_tcp4_end_point_8h">&lt;MpxTcp4EndPoint.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxTcp4EndPoint</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/d32/classmpx_1_1_mpx_tcp4_end_point__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxTcp4EndPoint</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/dc8/classmpx_1_1_mpx_tcp4_end_point__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_endPoint</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1a7e3219774a94aa29d32228e87ec0ef81">MpxTcp4EndPoint</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, int endPoint, bool fast, long int timeOut, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1ab3b4737d20aa26fa279cd45f46db4b14">~MpxTcp4EndPoint</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual void <link linkend="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1a5cae6b1ffb0b0ffed327854a689ef928">Release</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1a7e3219774a94aa29d32228e87ec0ef81">
+                <title>mpx::MpxTcp4EndPoint::MpxTcp4EndPoint (MpxTaskBase *task, int endPoint, bool fast=false, long int timeOut=1000 *1000 *1000, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1ab3b4737d20aa26fa279cd45f46db4b14">
+                <title>mpx::MpxTcp4EndPoint::~MpxTcp4EndPoint ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/de2/classmpx_1_1_mpx_tcp4_end_point_1a5cae6b1ffb0b0ffed327854a689ef928">
+                <title>void mpx::MpxTcp4EndPoint::Release ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

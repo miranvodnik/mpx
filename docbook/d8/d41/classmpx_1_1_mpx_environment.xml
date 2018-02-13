@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d8/d41/classmpx_1_1_mpx_environment">
+<title>mpx::MpxEnvironment class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/d1e/_mpx_environment_8h">&lt;MpxEnvironment.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxEnvironment</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d69/classmpx_1_1_mpx_environment__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxEnvironment</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d8/db6/classmpx_1_1_mpx_environment__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef set&lt; <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> * &gt;  <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a0fc75b37e7d6a14ceb36c7fb52807a5c">tskmpxset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef set&lt; pthread_t &gt;  <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a5b8a4387919a459e45c786fd178a05cb">thrset</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxEnvironment * g_mpxEnvironment<para><emphasis>mpx-lib one and only one environment object</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>tskmpxset m_tskmpxset</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>thrset m_thrset</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_mutex_t m_lock</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_barrier_t m_barrier</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_barrier_t m_tbarrier</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_barrierActive</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d8/d41/classmpx_1_1_mpx_environment_1abfaa052916c108e7642892b097e9e244">MpxEnvironment</link> (
+)<para><emphasis>mpx-lib environment object constructor</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d8/d41/classmpx_1_1_mpx_environment_1afeec777eb3cd15955088f984f3a0e737">~MpxEnvironment</link> (
+)<para><emphasis>destructor of mpx-lib environment object</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> * <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a6f8ea49742c8e0ac486e396f323cf92b">_CreateTaskMultiplexer</link> (
+const char * connStr, bool isWorker)<para><emphasis>create new task multiplexer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a181e761fe25938df7f3d46a9ea7da894">_Start</link> (
+<link linkend="d2/dc7/classmpx_1_1_mpx_m_q_task_i">MpxMQTaskI</link> * mqTask)<para><emphasis>starting routine of mpx-lib environment</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a79f3f148ffaa263f3fea1f4984d8c840">_WaitMultiplexerBarrier</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a5ae2de78bb1fb1d1a5201ac109c5c162">_WaitTasksBarrier</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d8/d41/classmpx_1_1_mpx_environment_1aa482f10d5a2b5fd9e9e6813c871af006">_Stop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ae00f40d5870f34026515fba449da2934">_Wait</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ad76515a1d4890d8d54af0ce49780da28">_BroadcastExternalEvent</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * event)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> * <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a07d47e304e153c1e0418b3a6bcb4f962">CreateTaskMultiplexer</link> (
+const char * connStr, bool isWorker)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1a1dc345c499e35ea5d9db07048f4bd236">Start</link> (
+<link linkend="d2/dc7/classmpx_1_1_mpx_m_q_task_i">MpxMQTaskI</link> * mqTask)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ad3a9dacdeffc269ebcfbb2328123b133">WaitMultiplexerBarrier</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ae82d4ef0343efd814187ba49646e8a1d">WaitTasksBarrier</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d8/d41/classmpx_1_1_mpx_environment_1aca3e281643624bd525446a61b2d349f6">Stop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ac1cd526ff25ccb2cd90b15c5fe6ca11f">Wait</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d8/d41/classmpx_1_1_mpx_environment_1ac903a46572eb6ea84f8292250f6af61f">BroadcastExternalEvent</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * event)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a0fc75b37e7d6a14ceb36c7fb52807a5c">
+                <title>typedef set&lt;MpxTaskMultiplexer*&gt; mpx::MpxEnvironment::tskmpxset</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a5b8a4387919a459e45c786fd178a05cb">
+                <title>typedef set&lt;pthread_t&gt; mpx::MpxEnvironment::thrset</title> <emphasis></emphasis>
+                
+            </section>
+            <simplesect>
+                <title>MpxEnvironment * mpx::MpxEnvironment::g_mpxEnvironment</title>                
+                <para>Definition at line 76 of file MpxEnvironment.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxEnvironment.h</para></listitem></itemizedlist></para>
+            </simplesect>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1abfaa052916c108e7642892b097e9e244">
+                <title>mpx::MpxEnvironment::MpxEnvironment ()</title> <emphasis>mpx-lib environment object constructor</emphasis>
+                
+<para>this constructor initializes m_lock mutex used to synchronize concurrent access to environment data structures </para>
+
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1afeec777eb3cd15955088f984f3a0e737">
+                <title>mpx::MpxEnvironment::~MpxEnvironment ()</title> <emphasis>destructor of mpx-lib environment object</emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a6f8ea49742c8e0ac486e396f323cf92b">
+                <title>MpxTaskMultiplexer * mpx::MpxEnvironment::_CreateTaskMultiplexer (const char *connStr, bool isWorker)</title> <emphasis>create new task multiplexer</emphasis>
+                
+<para>this function creates new instance of <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> class. its reference is saved into internal data structure m_tskmpxset, set of task multipexing objects. Access to this set is synchronized to prevent concurrent write operations on it. Every instance of task multiplexer is associated with unique pipe object used to properly terminate its execution. Execution termination is further described in description of <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> class itself</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>connStr</entry>
+                                <entry>
+<para>connection string parameter which is transfered to <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> unchanged and it is not examined by this function $param isWorker working thread indicator transferred to <link linkend="da/dd3/classmpx_1_1_mpx_task_multiplexer">MpxTaskMultiplexer</link> constructor </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a181e761fe25938df7f3d46a9ea7da894">
+                <title>int mpx::MpxEnvironment::_Start (MpxMQTaskI *mqTask)</title> <emphasis>starting routine of mpx-lib environment</emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a79f3f148ffaa263f3fea1f4984d8c840">
+                <title>int mpx::MpxEnvironment::_WaitMultiplexerBarrier ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a5ae2de78bb1fb1d1a5201ac109c5c162">
+                <title>int mpx::MpxEnvironment::_WaitTasksBarrier ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1aa482f10d5a2b5fd9e9e6813c871af006">
+                <title>void mpx::MpxEnvironment::_Stop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ae00f40d5870f34026515fba449da2934">
+                <title>void mpx::MpxEnvironment::_Wait ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ad76515a1d4890d8d54af0ce49780da28">
+                <title>int mpx::MpxEnvironment::_BroadcastExternalEvent (MpxTaskBase *task, MpxEventBase *event)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a07d47e304e153c1e0418b3a6bcb4f962">
+                <title>static MpxTaskMultiplexer* mpx::MpxEnvironment::CreateTaskMultiplexer (const char *connStr=0, bool isWorker=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1a1dc345c499e35ea5d9db07048f4bd236">
+                <title>static int mpx::MpxEnvironment::Start (MpxMQTaskI *mqTask)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ad3a9dacdeffc269ebcfbb2328123b133">
+                <title>static int mpx::MpxEnvironment::WaitMultiplexerBarrier ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ae82d4ef0343efd814187ba49646e8a1d">
+                <title>static int mpx::MpxEnvironment::WaitTasksBarrier ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1aca3e281643624bd525446a61b2d349f6">
+                <title>static void mpx::MpxEnvironment::Stop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ac1cd526ff25ccb2cd90b15c5fe6ca11f">
+                <title>static void mpx::MpxEnvironment::Wait ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d8/d41/classmpx_1_1_mpx_environment_1ac903a46572eb6ea84f8292250f6af61f">
+                <title>static int mpx::MpxEnvironment::BroadcastExternalEvent (MpxTaskBase *task, MpxEventBase *event)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

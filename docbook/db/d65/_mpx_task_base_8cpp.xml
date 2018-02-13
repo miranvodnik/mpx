@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="db/d65/_mpx_task_base_8cpp">
+    <title>MpxTaskBase.cpp File Reference</title>
+    <programlisting>#include &lt;mpx-core/MpxTaskMultiplexer.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTaskBase.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-event-queues/MpxEventQueueRepository.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxLocalTaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4TaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6TaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;typeinfo&gt;</programlisting>
+<para>Include dependency diagram for MpxTaskBase.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/de8/_mpx_task_base_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxTaskBase.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d35/_mpx_task_base_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-tasks/MpxTaskBase.cpp</para>
+    </simplesect>
+</section>

@@ -1,0 +1,1727 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d3/d40/classmpx_1_1_mpx_running_context">
+<title>mpx::MpxRunningContext class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d5/d5e/_mpx_running_context_8h">&lt;MpxRunningContext.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxRunningContext</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/d31/classmpx_1_1_mpx_running_context__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxRunningContext</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/d56/classmpx_1_1_mpx_running_context__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d3/d03/classmpx_1_1_mpx_running_context_1_1_mpx_descriptor">mpx::MpxRunningContext::MpxDescriptor</link></para>
+<para><emphasis>I/O handler class.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d0/da1/classmpx_1_1_mpx_running_context_1_1_mpx_signal_context">mpx::MpxRunningContext::MpxSignalContext</link></para>
+<para><emphasis>signal handler</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d9/d11/classmpx_1_1_mpx_running_context_1_1_mpx_timer">mpx::MpxRunningContext::MpxTimer</link></para>
+<para><emphasis>timer class</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d4/d30/structmpx_1_1_mpx_running_context_1_1timecmp">mpx::MpxRunningContext::timecmp</link></para>
+<para><emphasis>compare two time-out values</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1aab0d7c200c138d421825185797a59ead">initfunc</link><para><emphasis>prototype for starting function of I/O multiplexer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a412ee60de1a8303592d3f0d8a915b5a8">exitfunc</link><para><emphasis>prototype for end function of I/O multiplexer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a83db51c5fabe4d14ea70755edf36127e">timehookfunc</link><para><emphasis>prototype for time-hook function of I/O multiplexer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a31a2ee430aae6ae753f629045bbc03e7">cbfunc</link><para><emphasis>I/O call-back function prototype.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a828aa5ae79b025b083fbac771517ecf0">tmrfunc</link><para><emphasis>timer call-back function prototype</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef void(*  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a93d37efc87f8cc0ef845223371a9b73f">sigfunc</link><para><emphasis>signal call-back function prototype</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef multimap&lt; int, MpxDescriptor * &gt;  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a1da97ce0e1c1112db6f30524207fc2b9">cbset</link><para><emphasis>type representing set of I/O handlers</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef vector&lt; MpxDescriptor * &gt;  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ad84720827a304b93e5ace02797599f1a">cblist</link><para><emphasis>type representing list of prepared I/O handlers</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef mpx::MpxRunningContext::timecmp  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1aa4360abc565331676597606827d2a124">timecmp</link><para><emphasis>compare two time-out values</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef multimap&lt; struct timespec, MpxTimer *, timecmp &gt;  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a6ce14803b9959c4c15f59ac159663c38">tmrset</link><para><emphasis>ordered set of timers</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef vector&lt; MpxTimer * &gt;  <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a37c44091e704d2f9ef68678b0b3b6f62">tmrlist</link><para><emphasis>unordered list of timers</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int g_epollSize<para><emphasis>initial size of EPOLL set</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static pthread_mutex_t g_lock<para><emphasis>signal list synchronization lock</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static sigset_t g_sigset<para><emphasis>global signal mask for all I/O multiplexers</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxSignalContext * g_sigActions[_NSIG]<para><emphasis>global list of signal handlers</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxRunningContext * g_initializer<para><emphasis>signal handler initialization object</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pid_t m_tid</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_epollSetId<para><emphasis>ID of EPOLL set used by I/O multiplexer.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>epoll_event m_epollSet[g_epollSize]<para><emphasis>EPOLL set.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>initfunc m_initfunc<para><emphasis>&apos;initial state&apos; function</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>exitfunc m_exitfunc<para><emphasis>&apos;final state&apos; function</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>timehookfunc m_timehookfunc<para><emphasis>&apos;time hook&apos; function</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_appdt_t m_appldata<para><emphasis>application (context specific) data</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec m_timer<para><emphasis>time stamp for the first expired timer(s)</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec m_realTime<para><emphasis>real-clock current time</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec m_cpuTime<para><emphasis>CPU time for this process.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_nfds<para><emphasis>nr. of active I/O handlers</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>cblist m_cblist<para><emphasis>I/O handlers prepared for next iteration.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>cbset m_cbset<para><emphasis>current I/O handlers</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>tmrlist m_tmrlist<para><emphasis>timer handlers prepared for next iteration</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>tmrset m_tmrset<para><emphasis>current timer handlers</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_round<para><emphasis>round number of current iteration of I/O multiplexer</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_quit<para><emphasis>quit indicator set by Quit()</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxSignalContext * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1aa3b50b634dc951aefa1857f4e9ba7d11">signext</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>reference to next signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxSignalContext * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ac7a151311b7ac341f7d0ad16ac7de163">siglink</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx, MpxSignalContext * sig)<para><emphasis>link signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a7ecf9f83df48da0aa95a96f63601ff15">sigctx</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>reference to owning I/O multiplexer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1afa072b62a434cb85478cd62feeb66c23">sigsigno</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>signal number of handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a93d37efc87f8cc0ef845223371a9b73f">sigfunc</link> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a4a0c5f46bb6758a226ebc9942cb90cf0">sigf</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>call-back function of signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a00c3bb7c388967381b4d78b19a3dfbb6">sigdata</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>application data of signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct sigaction * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a27d31d34287bfee5c6c657756c582306">sigsigAction</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>sigaction of current signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct sigaction * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a67cc6d54eb5347113c104c29ee2792ae">sigoldAction</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> ctx)<para><emphasis>sigaction of previous signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a940029c28b45799e083310bf5c24e270">MpxRunningContext</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context_1aab0d7c200c138d421825185797a59ead">initfunc</link> f, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a412ee60de1a8303592d3f0d8a915b5a8">exitfunc</link> g, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a83db51c5fabe4d14ea70755edf36127e">timehookfunc</link> h, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata, const char * name)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a327aea9c048f51d916bfdf4f1e7312be">~MpxRunningContext</link> (
+)<para><emphasis>I/O multiplexer destructor.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pid_t <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a06aa613bac4bcdbf5466d19992510cb1">tid</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a508eed0385c670bf00ea75fb7672b22a">MainLoop</link> (
+void )<para><emphasis>I/O multiplexer main loop.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a7518abf4e81aaa5247092428ef260760">Quit</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a8d405e44a9fe509406a791ae78f27edc">RegisterDescriptor</link> (
+uint flags, int fd, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a31a2ee430aae6ae753f629045bbc03e7">cbfunc</link> f, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata, const char * info)<para><emphasis>register call-back function for file descriptor</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ab8b283a4e9920d42feb15e99f5ec340a">ChangeDescriptorHandler</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> des, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a31a2ee430aae6ae753f629045bbc03e7">cbfunc</link> f)<para><emphasis>change I/O call-back function of I/O handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a66aa8447be7e5bdec6e23ddf53e98be5">ChangeDescriptorAppData</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> des, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata)<para><emphasis>change application data reference of I/O handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1abbde49a361573e5c48e508b6f4660db4">EnableDescriptor</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> hdlr, uint flags)<para><emphasis>enable I/O handler activity</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a21fef22384a5dcf97176b2ecb1adfb6f">DisableDescriptor</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> hdlr, uint flags)<para><emphasis>disable I/O handler activity</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1af352b88ea000067360907f56d9ac0d9e">RemoveDescriptor</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> hdlr)<para><emphasis>remove I/O handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ae2ea192b2e0438fecdfa344b554dffa5">ReplyDescriptor</link> (
+<link linkend="d8/d67/namespacempx_1af309eb9122875e7362f4fb717aac2cc2">ctx_fddes_t</link> hdlr, unsigned int flags, int fd)<para><emphasis>invoke I/O handler outside of I/O multiplexer environment</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1a34a8cda0da4a07f815b71fdffe5dd05a">ctx_timer_t</link> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1af74b4fba0a66c07b58dde9121d43ae8b">RegisterTimer</link> (
+struct timespec timer, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a828aa5ae79b025b083fbac771517ecf0">tmrfunc</link> f, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata, const char * info)<para><emphasis>register timer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ac89f2ef0b037a6f3fcb5a956f00b85ff">EnableTimer</link> (
+<link linkend="d8/d67/namespacempx_1a34a8cda0da4a07f815b71fdffe5dd05a">ctx_timer_t</link> tmr)<para><emphasis>enable timer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a3f9b0cc01996159495be00ea6d3b67ea">DisableTimer</link> (
+<link linkend="d8/d67/namespacempx_1a34a8cda0da4a07f815b71fdffe5dd05a">ctx_timer_t</link> tmr)<para><emphasis>disable timer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a15525c8178bf648b8879bd10116bc93c">realTime</link> (
+void )<para><emphasis>real time stamp</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1aa6b93ce95ebaa2d66ce75ef4d40aa821">RegisterSignal</link> (
+int sig, <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a93d37efc87f8cc0ef845223371a9b73f">sigfunc</link> f, <link linkend="d8/d67/namespacempx_1a405b26d5c58c1ff17c6d641040913a23">ctx_appdt_t</link> appdata)<para><emphasis>register signal handler</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a270682ef44f8005b373b4e4910938d3e">RemoveSignal</link> (
+<link linkend="d8/d67/namespacempx_1abb0251c29fdbbc3f25a580c408327b23">ctx_sig_t</link> hdlr)<para><emphasis>remove signal handler from shared list</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a02c764f877ebb6a92a24b939bbbdcc75">stat</link> (
+const char * msg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a4d72e385324ce90da927bfc726de5ffc">round</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a561266838a9809bfd9d6b8b1892723b1">timer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a7d2b59713422951f35c37c6f336838eb">MpxRunningContext</link> (
+bool initialize)<para><emphasis>private constructor for signal stuff initializer</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1adf91ff0c74152a3e07514f5cd1953628">CheckTimeValidity</link> (
+)<para><emphasis>check validity of time</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a4921e4ddb6c3fc64aff9ee2c4e953618">HandleDescriptors</link> (
+int count)<para><emphasis>invoke I/O call-back functions</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a3dc0d53bfdd5f3d95b86e19254a3a5d6">ActivateDescriptors</link> (
+void )<para><emphasis>active file descriptors</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct timespec * <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a9ced04c552838f36ff7263ae58bb599e">HandleTimers</link> (
+void )<para><emphasis>invoke timer call-back functions</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1ae76917e11fd107e9ea267764eda2bc33">CompensateTimers</link> (
+long long timeDiff)<para><emphasis>compensate timers</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1adec6c12473bfb2d9a415280d698643f5">HandleSignal</link> (
+int sig, siginfo_t * info, void * data)<para><emphasis>OS signal handler for any signal
+function is sigaction form of signal handler for specified signal.
+Its only purpose is to remember siginfo_t information reported
+by OS. This job is performed in signal context and must be as
+short as possible. It simply moves information reported by OS
+into list of currently pending signal information objects and
+terminates. This information will be handled later when
+epoll_wait() will be interrupted by function HandleAllSignals()</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a6c96a645a2cf4564e6f644b5ea3c6042">HandleAllSignals</link> (
+<link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> * ctx)<para><emphasis>handle all signals in sync with application</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a50c3e1d38dc158f1b32188a60a3c38d8">sigLock</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a08121c54b044034c9a55f1ed046cb900">sigUnlock</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+
+<para>I/O multiplexer superclass. </para>
+    </simplesect>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>it implements basic I/O multiplexing functionality and should be subclassed by every subclass which want to use thi functionality.</para>
+
+<para>Main purpose of this class is to deal I/O activity of any number of open file descriptors (disk files, network sockets, POSIX message queues, etc. - in general every entity which should be expressed with file descriptor) in such a way that it look like they work at the same time. At the same time it can manage any number of timers and signal handlers. All of them (I/O activities, timers and signals) are actually serialized, they does not interrupt each other, so that we do not need to synchronize their activity. Access to data structures made by them should not be guarded by mutexes, semaphores and other synchronization mechanisms. </para>
+                <para>Definition at line 335 of file MpxRunningContext.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxRunningContext.h</para></listitem></itemizedlist></para>
+        </simplesect>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1aab0d7c200c138d421825185797a59ead">
+                <title>typedef void(* mpx::MpxRunningContext::initfunc) (MpxRunningContext *ctx, ctx_appdt_t appdata)</title> <emphasis>prototype for starting function of I/O multiplexer</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a412ee60de1a8303592d3f0d8a915b5a8">
+                <title>typedef void(* mpx::MpxRunningContext::exitfunc) (MpxRunningContext *ctx, ctx_appdt_t appdata)</title> <emphasis>prototype for end function of I/O multiplexer</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a83db51c5fabe4d14ea70755edf36127e">
+                <title>typedef void(* mpx::MpxRunningContext::timehookfunc) (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime, long long timeDiff, ctx_appdt_t appdata)</title> <emphasis>prototype for time-hook function of I/O multiplexer</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a31a2ee430aae6ae753f629045bbc03e7">
+                <title>typedef void(* mpx::MpxRunningContext::cbfunc) (MpxRunningContext *ctx, unsigned int flags, ctx_fddes_t handler, int n, ctx_appdt_t appdata)</title> <emphasis>I/O call-back function prototype.</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a828aa5ae79b025b083fbac771517ecf0">
+                <title>typedef void(* mpx::MpxRunningContext::tmrfunc) (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, ctx_appdt_t appdata)</title> <emphasis>timer call-back function prototype</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a93d37efc87f8cc0ef845223371a9b73f">
+                <title>typedef void(* mpx::MpxRunningContext::sigfunc) (MpxRunningContext *ctx, ctx_sig_t handler, siginfo_t *info, ctx_appdt_t appdata)</title> <emphasis>signal call-back function prototype</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a1da97ce0e1c1112db6f30524207fc2b9">
+                <title>typedef multimap&lt;int, MpxDescriptor*&gt; mpx::MpxRunningContext::cbset</title> <emphasis>type representing set of I/O handlers</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ad84720827a304b93e5ace02797599f1a">
+                <title>typedef vector&lt;MpxDescriptor*&gt; mpx::MpxRunningContext::cblist</title> <emphasis>type representing list of prepared I/O handlers</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1aa4360abc565331676597606827d2a124">
+                <title>typedef  mpx::MpxRunningContext::timecmp  mpx::MpxRunningContext::timecmp</title> <emphasis>compare two time-out values</emphasis>
+                
+<para>function represents &apos;less then&apos; relation for timer expiration time-stamps and is used as a predicate function in sets containing timers. </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a6ce14803b9959c4c15f59ac159663c38">
+                <title>typedef multimap&lt;struct timespec, MpxTimer*, timecmp&gt; mpx::MpxRunningContext::tmrset</title> <emphasis>ordered set of timers</emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a37c44091e704d2f9ef68678b0b3b6f62">
+                <title>typedef vector&lt;MpxTimer*&gt; mpx::MpxRunningContext::tmrlist</title> <emphasis>unordered list of timers</emphasis>
+                
+            </section>
+            <simplesect>
+                <title>pthread_mutex_t mpx::MpxRunningContext::g_lock</title>                
+<para>mutex used in signal manipulation routines </para>
+
+                <para>Definition at line 918 of file MpxRunningContext.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxRunningContext.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>sigset_t mpx::MpxRunningContext::g_sigset</title>                
+<para>signals handled by all instances of <link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link> </para>
+
+                <para>Definition at line 919 of file MpxRunningContext.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxRunningContext.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>MpxRunningContext::MpxSignalContext * mpx::MpxRunningContext::g_sigActions</title>                
+<para>signal actions of all signals </para>
+
+                <para>Definition at line 920 of file MpxRunningContext.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxRunningContext.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>MpxRunningContext * mpx::MpxRunningContext::g_initializer</title>                
+<para>signals stuff initializer </para>
+
+                <para>Definition at line 921 of file MpxRunningContext.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>MpxRunningContext.h</para></listitem></itemizedlist></para>
+            </simplesect>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1aa3b50b634dc951aefa1857f4e9ba7d11">
+                <title>MpxSignalContext* mpx::MpxRunningContext::signext (ctx_sig_t ctx)</title> <emphasis>reference to next signal handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>0 no handler follows this one </para>
+<simplesect/>
+<para>other reference to signal handler following this one </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ac7a151311b7ac341f7d0ad16ac7de163">
+                <title>MpxSignalContext* mpx::MpxRunningContext::siglink (ctx_sig_t ctx, MpxSignalContext *sig)</title> <emphasis>link signal handler</emphasis>
+                
+<para>signal handler is always linked at the beginning of the list of signal handlers</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler list (the first signal handler within it) </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>sig</entry>
+                                <entry>
+<para>signal handler to be linked</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>CSignalContext* reference to signal handler at the beginning of list, actually the reference to handler being linked </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a7ecf9f83df48da0aa95a96f63601ff15">
+                <title>MpxRunningContext* mpx::MpxRunningContext::sigctx (ctx_sig_t ctx)</title> <emphasis>reference to owning I/O multiplexer</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>CSignalContext* reference to I/O multiplexer owning this handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1afa072b62a434cb85478cd62feeb66c23">
+                <title>int mpx::MpxRunningContext::sigsigno (ctx_sig_t ctx)</title> <emphasis>signal number of handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>int number of signal handled by this handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a4a0c5f46bb6758a226ebc9942cb90cf0">
+                <title>sigfunc mpx::MpxRunningContext::sigf (ctx_sig_t ctx)</title> <emphasis>call-back function of signal handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>sigfunc call-back function of signal handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a00c3bb7c388967381b4d78b19a3dfbb6">
+                <title>ctx_appdt_t mpx::MpxRunningContext::sigdata (ctx_sig_t ctx)</title> <emphasis>application data of signal handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>ctx_appdt_t generalized reference to application data of signal handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a27d31d34287bfee5c6c657756c582306">
+                <title>struct sigaction* mpx::MpxRunningContext::sigsigAction (ctx_sig_t ctx)</title> <emphasis>sigaction of current signal handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>sigaction* generalized reference to sigaction structure of current signal handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a67cc6d54eb5347113c104c29ee2792ae">
+                <title>struct sigaction* mpx::MpxRunningContext::sigoldAction (ctx_sig_t ctx)</title> <emphasis>sigaction of previous signal handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>ctx</entry>
+                                <entry>
+<para>generalized reference to signal handler</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>sigaction* generalized reference to sigaction structure of previous signal handler </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a940029c28b45799e083310bf5c24e270">
+                <title>mpx::MpxRunningContext::MpxRunningContext (initfunc f, exitfunc g, timehookfunc h, ctx_appdt_t appdata, const char *name=0)</title> <emphasis></emphasis>
+                
+<para>brief create an instance of I/O multiplexer</para>
+
+<para>initializes internal structures of I/O multiplexer, especially:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>initfunc f: initialization function which will be called by calling environment (<link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a508eed0385c670bf00ea75fb7672b22a">MainLoop()</link> function). Function is used as one shot initialization provided by caller. This function should initialize whatever is supposed to be used by I/O multiplexer and functionality encapsulated into it by the caller through different FD, timer and signal handling call-back functions.</para>
+</listitem><listitem>
+<para>exitfunc g: function called at the end of I/O multiplexer main loop. This function should release all resources allocated by initializer and any functionality encapsulated in I/O multiplexer by caller</para>
+</listitem><listitem>
+<para>timehookfunc h: function triggered whenever system time changes</para>
+</listitem><listitem>
+<para>ctx_appdt_t appdata: application data provided by caller. It should be anything which seems to be useful for the caller. This data will be later used as last parameter in calls of above functions (initfunc, exitfunc, timehookfunc) and is thus accessed by caller and meaningful only to the caller. </para>
+</listitem></itemizedlist>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a327aea9c048f51d916bfdf4f1e7312be">
+                <title>mpx::MpxRunningContext::~MpxRunningContext ()</title> <emphasis>I/O multiplexer destructor.</emphasis>
+                
+<para>stop internal message queue and release all internal data structures </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a06aa613bac4bcdbf5466d19992510cb1">
+                <title>pid_t mpx::MpxRunningContext::tid ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a508eed0385c670bf00ea75fb7672b22a">
+                <title>int mpx::MpxRunningContext::MainLoop (void)</title> <emphasis>I/O multiplexer main loop.</emphasis>
+                
+<para>main loop of I/O multiplexer. It handles virtually unlimited number of file descriptors of any kind, timers and signal handlers simultaneously. The main logic of this function is very simple: it iterates indefinitely until something happens on one or more file descriptors, timers or signals registered within it. It then invokes appropriate actions associated with these file descriptors, timers and signals. This actions are call-back functions registered to handle I/O events on file descriptors, timers and signals. After that loop is repeated until there are any registered call-back functions. New one can be registered or unregistered at any time. Function performs as follows:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>it remembers time stamps for monotonic and real system time. This time is initial time stamp to compute timers.</para>
+</listitem><listitem>
+<para>it creates internal message queue</para>
+</listitem><listitem>
+<para>it calls initialization function provided by user when creating this object. This function is appropriate space where first I/O call-back functions, timers and signals should be registered. They will be executed in the main loop of I/O multiplexer</para>
+</listitem><listitem>
+<para>it blocks all signals registered by all instances of <link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link></para>
+</listitem><listitem>
+<para>it finally creates polling mechanism for I/O multiplexer</para>
+</listitem></itemizedlist>
+</para>
+
+<para>These were initialization steps of I/O multiplexer. This phase is followed by this iteration. Each step of iteration is composed of these steps:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>call-back functions for all timers expired in this iteration are invoked. After that time stamp for the next timer (one or more if they expire at the same time) is calculated.</para>
+</listitem><listitem>
+<para>call-back functions for I/O handlers changed in previous iteration are updated. New one are added, unneeded are removed.</para>
+</listitem><listitem>
+<para>if immediate termination is requested in previous step or if there are no I/O activity or no timer then loop will be broken</para>
+</listitem><listitem>
+<para>next it is calculated maximal time interval to wait before next iteration: if there are no timers, loop will wait indefinitely until some I/O activity happens, otherwise it will pause execution until next timer expiration or until next I/O activity whichever happens first</para>
+</listitem><listitem>
+<para>before waiting for new I/O activity or timer expiration (system call epoll_wait()) signals are allowed to trigger. This is the only place in the whole iteration loop where registered signals should trigger</para>
+</listitem><listitem>
+<para>if epoll_wait() fails, error code is checked. If this code indicates that epoll_wait() was interrupted by signal, signal call-backs are executed and loop begins next iteration</para>
+</listitem><listitem>
+<para>if epoll_wait() succeeds, I/O call-back functions for file descriptors which require I/O activity are invoked. This call-back functions should register new one or deactivate existing one, they should activate new timers or deactivate existing one, and finally they can activate new signal handling call-back functions or deactivate existing one. The same is true also for timer and signal handling call-back functions. After call-back functions for file descriptors activated in current iteration have been invoked I/O multiplexer starts execution of next iteration</para>
+</listitem><listitem>
+<para>whenever epoll_wait() terminates, system time is checked to see if it agrees with application time.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>When loop terminates exit function is called. This function is provided by caller and should contain code which will </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a7518abf4e81aaa5247092428ef260760">
+                <title>void mpx::MpxRunningContext::Quit ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a8d405e44a9fe509406a791ae78f27edc">
+                <title>ctx_fddes_t mpx::MpxRunningContext::RegisterDescriptor (uint flags, int fd, cbfunc f, ctx_appdt_t appdata, const char *info=0)</title> <emphasis>register call-back function for file descriptor</emphasis>
+                
+<para>function creates new instance of CDescriptor object associated with given file descriptor and puts it into list of prepared CDescriptor objects. At the beginning of next iteration of I/O multiplexer main loop these objects will be transferred into set of active call-back objects</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>flags</entry>
+                                <entry>
+<para>EPOLL flags, either EPOLLIN (requests input, e.g. read()), EPOLLOUT (requests output, e.g. write()) or both </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>fd</entry>
+                                <entry>
+<para>I/O file descriptor </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>f</entry>
+                                <entry>
+<para>call-back function </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>appdata</entry>
+                                <entry>
+<para>general reference to some data provided by user </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>info</entry>
+                                <entry>
+<para>any text which should be displayed by <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a02c764f877ebb6a92a24b939bbbdcc75">stat()</link></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>0 cannot register file descriptor </para>
+<simplesect/>
+<para>other address of newly created instance of CDescriptor </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ab8b283a4e9920d42feb15e99f5ec340a">
+                <title>void mpx::MpxRunningContext::ChangeDescriptorHandler (ctx_fddes_t des, cbfunc f)</title> <emphasis>change I/O call-back function of I/O handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>des</entry>
+                                <entry>
+<para>generalized reference to I/O handler </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>f</entry>
+                                <entry>
+<para>reference to new call-back function </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a66aa8447be7e5bdec6e23ddf53e98be5">
+                <title>void mpx::MpxRunningContext::ChangeDescriptorAppData (ctx_fddes_t des, ctx_appdt_t appdata)</title> <emphasis>change application data reference of I/O handler</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>des</entry>
+                                <entry>
+<para>generalized reference to I/O handler </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>appdata</entry>
+                                <entry>
+<para>new application data reference </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1abbde49a361573e5c48e508b6f4660db4">
+                <title>void mpx::MpxRunningContext::EnableDescriptor (ctx_fddes_t hdlr, uint flags)</title> <emphasis>enable I/O handler activity</emphasis>
+                
+<para>modifies EPOLL activity of file descriptor associated with I/O handler</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>h</entry>
+                                <entry>
+<para>I/O handler reference associated with file descriptor </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>flags</entry>
+                                <entry>
+<para>EPOLL flags. Reasonable values are EPOLLIN (enable input, e.g. read()) and EPOLLOUT (enable output, e.g. write()) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a21fef22384a5dcf97176b2ecb1adfb6f">
+                <title>void mpx::MpxRunningContext::DisableDescriptor (ctx_fddes_t hdlr, uint flags)</title> <emphasis>disable I/O handler activity</emphasis>
+                
+<para>modifies EPOLL activity of file descriptor associated with I/O handler</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>h</entry>
+                                <entry>
+<para>I/O handler reference associated with file descriptor </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>flags</entry>
+                                <entry>
+<para>EPOLL flags. Reasonable values are EPOLLIN (disable input, e.g. read()) and EPOLLOUT (disable output, e.g. write()) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1af352b88ea000067360907f56d9ac0d9e">
+                <title>void mpx::MpxRunningContext::RemoveDescriptor (ctx_fddes_t hdlr)</title> <emphasis>remove I/O handler</emphasis>
+                
+<para>remove I/O handler from set of active handlers. Handler is marked for deletion and its reference will be put into set of prepared file descriptors. At the beginning of the next iteration of I/O multiplexer main loop it will be actually deleted in function ActivateDescriptors()</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>h</entry>
+                                <entry>
+<para>I/O handler reference </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ae2ea192b2e0438fecdfa344b554dffa5">
+                <title>void mpx::MpxRunningContext::ReplyDescriptor (ctx_fddes_t hdlr, unsigned int flags, int fd)</title> <emphasis>invoke I/O handler outside of I/O multiplexer environment</emphasis>
+                
+<para>file descriptor call-back functions can be invoked also from the application environment, for example from other call-back functions</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>hdlr</entry>
+                                <entry>
+<para>I/O handler reference </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>flags</entry>
+                                <entry>
+<para>EPOLL flags </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>fd</entry>
+                                <entry>
+<para>file handler </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1af74b4fba0a66c07b58dde9121d43ae8b">
+                <title>ctx_timer_t mpx::MpxRunningContext::RegisterTimer (struct timespec timer, tmrfunc f, ctx_appdt_t appdata, const char *info=0)</title> <emphasis>register timer</emphasis>
+                
+<para>create timer object and put it into list of prepared timers. This timer will be put into the set of active timers at the beginning of the next iteration of I/O multiplexer and invoked in one of next iterations</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>timer</entry>
+                                <entry>
+<para>time-stamp of invocation </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>f</entry>
+                                <entry>
+<para>timer call-back function </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>appdata</entry>
+                                <entry>
+<para>general reference to application data. It is remembered and used as one of parameters in invocation of timer call-back function </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>info</entry>
+                                <entry>
+<para>additional information which will be displayed by <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1a02c764f877ebb6a92a24b939bbbdcc75">stat()</link> </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ac89f2ef0b037a6f3fcb5a956f00b85ff">
+                <title>void mpx::MpxRunningContext::EnableTimer (ctx_timer_t tmr)</title> <emphasis>enable timer</emphasis>
+                
+<para>function activates previously inactive timer</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>tmr</entry>
+                                <entry>
+<para>generalized reference to timer handler </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a3f9b0cc01996159495be00ea6d3b67ea">
+                <title>void mpx::MpxRunningContext::DisableTimer (ctx_timer_t tmr)</title> <emphasis>disable timer</emphasis>
+                
+<para>function deactivates previously active timer</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>tmr</entry>
+                                <entry>
+<para>generalized reference to timer handler </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a15525c8178bf648b8879bd10116bc93c">
+                <title>struct timespec mpx::MpxRunningContext::realTime (void)</title> <emphasis>real time stamp</emphasis>
+                
+<para><formalpara><title>Returns: </title>
+
+<para>timespec function returns real time stamp of of current iteration of I/O multiplexer. Within this step time does not change. All call-back functions invoked in single step of I/O multiplexer have same real time stamp especially timer call-back functions. Using this function is preferred way to compute real time stamps within call-back functions because it compensates possible time delays caused by very busy iterations </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1aa6b93ce95ebaa2d66ce75ef4d40aa821">
+                <title>ctx_sig_t mpx::MpxRunningContext::RegisterSignal (int sig, sigfunc f, ctx_appdt_t appdata)</title> <emphasis>register signal handler</emphasis>
+                
+<para>registers signal handler using sigaction paradigm and creates an instance of CSignalContext (signal handler in terms of I/O multiplexer). This instance is then pushed in list of signal handlers registered by all instances of I/O multiplexer. Access to this list must be synchronized since it is shared by all of them</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>sig</entry>
+                                <entry>
+<para>signal number </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>f</entry>
+                                <entry>
+<para>call-back function associated with this signal </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>appdata</entry>
+                                <entry>
+<para>general reference to application data</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>0 signal handler cannot be created </para>
+<simplesect/>
+<para>other generalized reference to an instance of CSignalHandler (signal handler in terms of I/O multiplexer) </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a270682ef44f8005b373b4e4910938d3e">
+                <title>void mpx::MpxRunningContext::RemoveSignal (ctx_sig_t hdlr)</title> <emphasis>remove signal handler from shared list</emphasis>
+                
+<para>signal handler (reference to CSignalContext) is removed from shared list of signal handlers. Since it is shared between all instances of I/O multiplexer access to it must be synchronized</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>hdlr</entry>
+                                <entry>
+<para>signal handler reference </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a02c764f877ebb6a92a24b939bbbdcc75">
+                <title>void mpx::MpxRunningContext::stat (const char *msg)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a4d72e385324ce90da927bfc726de5ffc">
+                <title>int mpx::MpxRunningContext::round ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a561266838a9809bfd9d6b8b1892723b1">
+                <title>struct timespec mpx::MpxRunningContext::timer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a7d2b59713422951f35c37c6f336838eb">
+                <title>mpx::MpxRunningContext::MpxRunningContext (bool initialize)</title> <emphasis>private constructor for signal stuff initializer</emphasis>
+                
+<para>this constructor is private and cannot be used to create object instances Its purpose is to create single signal stuff initializer which initializes some data sets associated with signal handling functionality prior to process start. It initializes:<itemizedlist>
+<listitem>
+<para>g_lock mutex which will synchronize assess to signal handling data structures</para>
+</listitem><listitem>
+<para>g_sigset signal set which will hold identities of all signals handled by any instance of <link linkend="d3/d40/classmpx_1_1_mpx_running_context">MpxRunningContext</link></para>
+</listitem><listitem>
+<para>g_sigactions which hold signal actions for all possible signal from 1 to _NSIG</para>
+</listitem><listitem>
+<para>g_sigsMessages temporary linked list of signal descriptors </para>
+</listitem></itemizedlist>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1adf91ff0c74152a3e07514f5cd1953628">
+                <title>void mpx::MpxRunningContext::CheckTimeValidity ()</title> <emphasis>check validity of time</emphasis>
+                
+<para>function checks difference between CPU and real time. If CPU and real times elapsed from last iteration of I/O multiplexer loop differ for more than one second all timers are recalculated to meet the new value of real time. Time hook function provided by user is called with old and new time stamps. </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a4921e4ddb6c3fc64aff9ee2c4e953618">
+                <title>void mpx::MpxRunningContext::HandleDescriptors (int count)</title> <emphasis>invoke I/O call-back functions</emphasis>
+                
+<para>function will invoke call-back functions for all file descriptors which are ready for requested I/O operation in the current iteration of I/O multiplexer main loop. It will iterate through m_epollSet as much times as needed. At every iteration it will execute all call-back functions provided for file descriptor determined in given iteration</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>count</entry>
+                                <entry>
+<para>number of file descriptors ready for I/O in current invocation of I/O multiplexer main loop </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a3dc0d53bfdd5f3d95b86e19254a3a5d6">
+                <title>void mpx::MpxRunningContext::ActivateDescriptors (void)</title> <emphasis>active file descriptors</emphasis>
+                
+<para>at the beginning of every iteration of I/O multiplexer main loop objects associated with file descriptor call-back functions from prepared list will be put into set of active objects. This is done in the following way.</para>
+
+<para>For every object in list of prepared objects the following steps are made:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>if it is one of active handlers associated with its file descriptor marked for deletion(!), it is removed from set of active objects m_cbset. This is a way how to remove active object. If application wants to remove call-back function for some file descriptor it calls <link linkend="d3/d40/classmpx_1_1_mpx_running_context_1af352b88ea000067360907f56d9ac0d9e">RemoveDescriptor()</link> for object associated with this call-back function. This function will mark associated object as deleted(!) and write its reference into list of prepared objects signaling to ActivateDescriptors() to actually delete this object. Reason for this complication is in the fact that generally the set m_cbset cannot be modified arbitrarily, especially when iterating through it. This set is iterated when calling call-back functions of file descriptors. This functions are only reasonable places where deletion of self or other call-back functions can happen and that is why it must be done very carefully to avoid disastrous results.</para>
+</listitem><listitem>
+<para>if handler is not marked for deletion and if it does not exist in the set of active handlers, it is added to the set</para>
+</listitem><listitem>
+<para>if handler is not marked for deletion but it does exist in the set of active handlers, it is modified </para>
+</listitem></itemizedlist>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a9ced04c552838f36ff7263ae58bb599e">
+                <title>struct timespec * mpx::MpxRunningContext::HandleTimers (void)</title> <emphasis>invoke timer call-back functions</emphasis>
+                
+<para>this function is called at the beginning of each iteration of I/O multiplexer main loop. Shortly before this function call new real-time time-stamp is calculated. This time-stamp is used to determine all timers which expire in current iteration of I/O multiplexer main loop. This is done very simply. Since set of active timers, namely m_tmrset, is arranged by rising expiration times it is sufficient to compute upper bound of this set given real-time time-stamp. All call-back functions for timers from the beginning to the upper bound from this set will be invoked and corresponding timers are removed from this set so that they will not be invoked again in the next iteration of I/O multiplexer main loop.</para>
+
+<para>After that all prepared timers from the list m_tmrlist will be put into the set of active timers m_tmrset and will be executed in one of next iterations.</para>
+
+<para>Finally it is computed new time interval which represents maximal time to wait before execution of next iteration of I/O multiplexer main loop. It is the difference between time-stamp of the earliest timer expiration an real-time time-stamp. Time-stamp of earliest timer is simply the expiration time of first active timer in the set of active timers m_tmrset. If there is one (set is not empty) its expiration time is taken and the difference between it and real-time time-stamp is calculated. If this difference has negative value it means that loop is so busy that missed expiration of some timers and so the next iteration must be executed immediately which can be achieved by setting this difference to 0. This difference is finally saved into m_timer.</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>null there are no active timers in this instance of I/O multiplexer. Next iteration will wait forever until some I/O activity happens or until interrupted by signal </para>
+<simplesect/>
+<para>other maximal time to wait until next iteration of I/O multiplexer main loop </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1ae76917e11fd107e9ea267764eda2bc33">
+                <title>void mpx::MpxRunningContext::CompensateTimers (long long timeDiff)</title> <emphasis>compensate timers</emphasis>
+                
+<para>functions adjusts expiration times for all timers registered by an instance of I/O multiplexer. All timers are restarted: they are removed from active timer list and put into list of prepared timers</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>timeDiff</entry>
+                                <entry>
+<para>real-time time stamp difference between two consecutive iterations of I/O multiplexer loop </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1adec6c12473bfb2d9a415280d698643f5">
+                <title>void mpx::MpxRunningContext::HandleSignal (int sig, siginfo_t *info, void *data)</title> <emphasis>OS signal handler for any signal
+function is sigaction form of signal handler for specified signal.
+Its only purpose is to remember siginfo_t information reported
+by OS. This job is performed in signal context and must be as
+short as possible. It simply moves information reported by OS
+into list of currently pending signal information objects and
+terminates. This information will be handled later when
+epoll_wait() will be interrupted by function HandleAllSignals()</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>sig</entry>
+                                <entry>
+<para>signal number </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>info</entry>
+                                <entry>
+<para>siginfo as reported by OS </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>data</entry>
+                                <entry>
+<para>additional data as reported by OS </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a6c96a645a2cf4564e6f644b5ea3c6042">
+                <title>void mpx::MpxRunningContext::HandleAllSignals (MpxRunningContext *ctx)</title> <emphasis>handle all signals in sync with application</emphasis>
+                
+<para>function invokes signal handler call-back functions after epoll_wait() has been interrupted and are thus invoked in sync with application. Since is synchronized with current I/O multiplexer, there is no need to use special synchronization mechanisms between call-back function used by this I/O multiplexer. Signals with lower numbers are delivered first. Order of delivery for signal handlers with same signal number is not specified. Signals which are registered by other instances of I/O multiplexer (one or more) are delivered to them using MQSend() which will sync them with these instances.</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>currentContext</entry>
+                                <entry>
+<para>signal handler context. Actually it is a reference to this instance of I/O multiplexer and is thus used to distinguish between signal invocation and signal redirection </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a50c3e1d38dc158f1b32188a60a3c38d8">
+                <title>static void mpx::MpxRunningContext::sigLock ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d3/d40/classmpx_1_1_mpx_running_context_1a08121c54b044034c9a55f1ed046cb900">
+                <title>static void mpx::MpxRunningContext::sigUnlock ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dd/d20/classsftp_1_1_sftp_client_start">
+<title>sftp::SftpClientStart class Reference</title>
+<para>
+    <programlisting>#include <link linkend="de/ddd/_sftp_client_start_8h">&lt;SftpClientStart.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::SftpClientStart</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/d0a/classsftp_1_1_sftp_client_start__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::SftpClientStart</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/da7/classsftp_1_1_sftp_client_start__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int ClientStartEvent</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1a3034c596152c4990b3aa71b4c709cfe3">SftpClientStart</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1a99395f6784f195a4cac598acdeb34e00">~SftpClientStart</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1ae32aa83752f0b928e7299bf6601c5f37">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1af775261560c39c03b7c703c60667daa0">MpxEventBase</link> * <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1a87ce3b6991480f22fa96bfe9b1269491">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1a4823ca9aad94890071b8985ee6742440">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="dd/d20/classsftp_1_1_sftp_client_start_1a7385f81ba747590804b41a0b81b3fc17">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1a3034c596152c4990b3aa71b4c709cfe3">
+                <title>sftp::SftpClientStart::SftpClientStart ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1a99395f6784f195a4cac598acdeb34e00">
+                <title>sftp::SftpClientStart::~SftpClientStart ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1ae32aa83752f0b928e7299bf6601c5f37">
+                <title>virtual const char* sftp::SftpClientStart::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1a87ce3b6991480f22fa96bfe9b1269491">
+                <title>virtual MpxEventBase* sftp::SftpClientStart::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1a4823ca9aad94890071b8985ee6742440">
+                <title>virtual int sftp::SftpClientStart::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="dd/d20/classsftp_1_1_sftp_client_start_1a7385f81ba747590804b41a0b81b3fc17">
+                <title>virtual int sftp::SftpClientStart::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

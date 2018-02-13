@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event">
+<title>mpx::MpxExternalTaskEvent class Reference</title>
+<para>
+    <programlisting>#include <link linkend="dc/d09/_mpx_external_task_event_8h">&lt;MpxExternalTaskEvent.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxExternalTaskEvent</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/d02/classmpx_1_1_mpx_external_task_event__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxExternalTaskEvent</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../df/d20/classmpx_1_1_mpx_external_task_event__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int g_xdrId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_flags</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_error</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int m_size</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * m_buffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1af35d4f5f71162e74e576c64ffb0ee549">MpxExternalTaskEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a5645736749ba8ccf4a1eeb327b9591ae">MpxExternalTaskEvent</link> (
+u_int flags, u_int error, u_int size, u_char * buffer)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a00934ef6ce8de5c995045a9d2c21c977">~MpxExternalTaskEvent</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a3760842c5e4b26334e97b815a605159d">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a297d900884da7fa91364f481853d23b3">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1af38043e2564274a644b248b6222bdbe4">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a7482cd31e1a84195f2decd45edb7a14b">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1abb89298d487ccdcfa134f9ec97cece19">flags</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a07c100e2d3b28983e0e41d72777c8cf2">error</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_int <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a9b7fbfea4204f3c70ef0fd2433bd599d">size</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_char * <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1ad0dfea0dc2e43a983be218e04c3218c5">buffer</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="d9/dfd/classmpx_1_1_mpx_event_base">MpxEventBase</link> * <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a23f9373727ae5baf5201630c9a8b5ce0">ObjAllocator</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void * <link linkend="d7/dd9/classmpx_1_1_mpx_external_task_event_1a34002c039c8746a41cef551c247f58d5">XdrAllocator</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1af35d4f5f71162e74e576c64ffb0ee549">
+                <title>mpx::MpxExternalTaskEvent::MpxExternalTaskEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a5645736749ba8ccf4a1eeb327b9591ae">
+                <title>mpx::MpxExternalTaskEvent::MpxExternalTaskEvent (u_int flags, u_int error, u_int size, u_char *buffer)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a00934ef6ce8de5c995045a9d2c21c977">
+                <title>virtual mpx::MpxExternalTaskEvent::~MpxExternalTaskEvent ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a3760842c5e4b26334e97b815a605159d">
+                <title>virtual const char* mpx::MpxExternalTaskEvent::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a297d900884da7fa91364f481853d23b3">
+                <title>virtual MpxEventBase* mpx::MpxExternalTaskEvent::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1af38043e2564274a644b248b6222bdbe4">
+                <title>int mpx::MpxExternalTaskEvent::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a7482cd31e1a84195f2decd45edb7a14b">
+                <title>int mpx::MpxExternalTaskEvent::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1abb89298d487ccdcfa134f9ec97cece19">
+                <title>u_int mpx::MpxExternalTaskEvent::flags ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a07c100e2d3b28983e0e41d72777c8cf2">
+                <title>u_int mpx::MpxExternalTaskEvent::error ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a9b7fbfea4204f3c70ef0fd2433bd599d">
+                <title>u_int mpx::MpxExternalTaskEvent::size ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1ad0dfea0dc2e43a983be218e04c3218c5">
+                <title>u_char* mpx::MpxExternalTaskEvent::buffer ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a23f9373727ae5baf5201630c9a8b5ce0">
+                <title>static MpxEventBase* mpx::MpxExternalTaskEvent::ObjAllocator ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d7/dd9/classmpx_1_1_mpx_external_task_event_1a34002c039c8746a41cef551c247f58d5">
+                <title>static void* mpx::MpxExternalTaskEvent::XdrAllocator ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

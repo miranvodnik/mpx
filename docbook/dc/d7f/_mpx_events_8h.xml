@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="dc/d7f/_mpx_events_8h">
+    <title>MpxEvents.h File Reference</title>
+    <programlisting>#include &lt;mpx-events/MpxExternalTaskEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxJobFinishedEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxLocalClientEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxLocalEndPointEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxLocalListenerEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxLocalTaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxPosixMQEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxPosixMQTaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxStartEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxStopEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTaskResponseEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4ClientEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4EndPointEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4ListenerEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp4TaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6ClientEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6EndPointEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6ListenerEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6TaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTimerEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxUdp4TaskQueryEvent.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxUdp6TaskQueryEvent.h&gt;</programlisting>
+<para>Include dependency diagram for MpxEvents.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d0/dda/_mpx_events_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxEvents.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d7e/_mpx_events_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-events/MpxEvents.h</para>
+    </simplesect>
+</section>

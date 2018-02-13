@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d5/dea/_mpx_external_task_8cpp">
+    <title>MpxExternalTask.cpp File Reference</title>
+    <programlisting>#include &lt;sys/types.h&gt;</programlisting>
+    <programlisting>#include &lt;ifaddrs.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxEnvironment.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxExternalTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxLocalClientProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxLocalEndPointProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTcp4ClientProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTcp4EndPointProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTcp6ClientProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTcp6EndPointProxyTask.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-sockets/MpxLocalClient.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-sockets/MpxTcp4Client.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-sockets/MpxTcp6Client.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxEvents.h&gt;</programlisting>
+<para>Include dependency diagram for MpxExternalTask.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../dd/d78/_mpx_external_task_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxExternalTask.cpp</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../db/d4e/_mpx_external_task_8cpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-tasks/MpxExternalTask.cpp</para>
+    </simplesect>
+</section>

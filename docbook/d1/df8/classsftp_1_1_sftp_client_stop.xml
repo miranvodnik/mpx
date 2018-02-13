@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d1/df8/classsftp_1_1_sftp_client_stop">
+<title>sftp::SftpClientStop class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d8/d88/_sftp_client_stop_8h">&lt;SftpClientStop.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::SftpClientStop</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d3/dcd/classsftp_1_1_sftp_client_stop__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::SftpClientStop</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d7/dbb/classsftp_1_1_sftp_client_stop__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int ClientStopEvent</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1ae3d7d08070980a3abeaafc1eff3b6829">SftpClientStop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1a57c02f59a545adce2bcb3d590ea849b4">~SftpClientStop</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1a120c7515768e4cccf6d7851dde26dc4a">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1af775261560c39c03b7c703c60667daa0">MpxEventBase</link> * <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1ae57b0cbdf1c13bf86203c3f897315d74">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1a36d48ac08414dd0115668c34c4a7c33a">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d1/df8/classsftp_1_1_sftp_client_stop_1ab21e4dc40bcb1b0d77022216f65d021f">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1ae3d7d08070980a3abeaafc1eff3b6829">
+                <title>sftp::SftpClientStop::SftpClientStop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1a57c02f59a545adce2bcb3d590ea849b4">
+                <title>sftp::SftpClientStop::~SftpClientStop ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1a120c7515768e4cccf6d7851dde26dc4a">
+                <title>virtual const char* sftp::SftpClientStop::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1ae57b0cbdf1c13bf86203c3f897315d74">
+                <title>virtual MpxEventBase* sftp::SftpClientStop::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1a36d48ac08414dd0115668c34c4a7c33a">
+                <title>virtual int sftp::SftpClientStop::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/df8/classsftp_1_1_sftp_client_stop_1ab21e4dc40bcb1b0d77022216f65d021f">
+                <title>virtual int sftp::SftpClientStop::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

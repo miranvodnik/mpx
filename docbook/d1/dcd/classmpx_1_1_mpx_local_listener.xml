@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d1/dcd/classmpx_1_1_mpx_local_listener">
+<title>mpx::MpxLocalListener class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d4/d53/_mpx_local_listener_8h">&lt;MpxLocalListener.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxLocalListener</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d1/d11/classmpx_1_1_mpx_local_listener__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxLocalListener</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d9/d05/classmpx_1_1_mpx_local_listener__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>MpxTaskBase * m_task</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>bool m_seqPacket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>string m_listenPath</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int m_listenSocket</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>ctx_fddes_t m_handler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1ab6ddf320c27906f23aa6a4a7865a1bf4">MpxLocalListener</link> (
+<link linkend="dc/d8c/classmpx_1_1_mpx_task_base">MpxTaskBase</link> * task, bool seqPacket)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1a97d0f3387218fdf737bb7a82c4c01088">~MpxLocalListener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1a55955a32678bd6c55c47c6ce8794a1dd">CreateListener</link> (
+const char * path)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1a44452e54b606ec3eeca2961295d7b25e">StartListener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1a0733c8fde58d853df464762cb6f7c71f">StopListener</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener_1a84eac0cd29bad24caf747d21293aee58">fd_handler</link> (
+HandleListener , <link linkend="d1/dcd/classmpx_1_1_mpx_local_listener">MpxLocalListener</link> )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1ab6ddf320c27906f23aa6a4a7865a1bf4">
+                <title>mpx::MpxLocalListener::MpxLocalListener (MpxTaskBase *task, bool seqPacket=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1a97d0f3387218fdf737bb7a82c4c01088">
+                <title>mpx::MpxLocalListener::~MpxLocalListener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1a55955a32678bd6c55c47c6ce8794a1dd">
+                <title>int mpx::MpxLocalListener::CreateListener (const char *path)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1a44452e54b606ec3eeca2961295d7b25e">
+                <title>int mpx::MpxLocalListener::StartListener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1a0733c8fde58d853df464762cb6f7c71f">
+                <title>int mpx::MpxLocalListener::StopListener ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d1/dcd/classmpx_1_1_mpx_local_listener_1a84eac0cd29bad24caf747d21293aee58">
+                <title>mpx::MpxLocalListener::fd_handler (HandleListener, MpxLocalListener)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

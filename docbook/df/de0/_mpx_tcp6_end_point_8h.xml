@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="df/de0/_mpx_tcp6_end_point_8h">
+    <title>MpxTcp6EndPoint.h File Reference</title>
+    <programlisting>#include &lt;sys/types.h&gt;</programlisting>
+    <programlisting>#include &lt;sys/socket.h&gt;</programlisting>
+    <programlisting>#include &lt;netinet/in.h&gt;</programlisting>
+    <programlisting>#include &lt;arpa/inet.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-core/MpxUtilities.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-tasks/MpxTaskBase.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-sockets/MpxSocket.h&gt;</programlisting>
+    <programlisting>#include &lt;mpx-events/MpxTcp6EndPointEvent.h&gt;</programlisting>
+<para>Include dependency diagram for MpxTcp6EndPoint.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d07/_mpx_tcp6_end_point_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Included by dependency diagram for MpxTcp6EndPoint.h</para>
+<para>
+    <figure>
+        <title>Dependency diagram</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d5/d65/_mpx_tcp6_end_point_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title> Classes </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d0/d0e/classmpx_1_1_mpx_tcp6_end_point">mpx::MpxTcp6EndPoint</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title> Namespaces </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="d8/d67/namespacempx">mpx</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file /home/miran/eclipse-workspace/mpx/mpx-lib/mpx-sockets/MpxTcp6EndPoint.h</para>
+    </simplesect>
+</section>

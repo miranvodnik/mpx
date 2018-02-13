@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d2/d8f/classsftp_1_1_sftp_client_reply">
+<title>sftp::SftpClientReply class Reference</title>
+<para>
+    <programlisting>#include <link linkend="d6/d80/_sftp_client_reply_8h">&lt;SftpClientReply.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for sftp::SftpClientReply</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../de/d32/classsftp_1_1_sftp_client_reply__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for sftp::SftpClientReply</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d2/d7b/classsftp_1_1_sftp_client_reply__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static const int ClientReplyEvent</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_long m_sessionId</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char ** m_args</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1aeae5225702be87bae3fdab1174ef7640">SftpClientReply</link> (
+u_long sessionId, char * args)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1ac342430b04759d7c1d0d5d0ee619268c">SftpClientReply</link> (
+u_long sessionId, char * args)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1a108aac26c93d3ac5846ff7b87c2e64b3">~SftpClientReply</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual const char * <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1a82ac9876f5739ca42edf3d7b92c3cef8">Name</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1af775261560c39c03b7c703c60667daa0">MpxEventBase</link> * <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1ade9e8d4f54eabb6533fa2cd5405f3b80">Copy</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1a4c7f15fcd9111d667ea6c52f1d13c731">Encode</link> (
+xdrproc_t &amp; proc, <link linkend="d9/dfd/classmpx_1_1_mpx_event_base_1a232350d072db55dac55f58b15efb1ed6">xdrdata_t</link> &amp; data)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual int <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1a3efbf69e8a250a440cf0f2f441bccafe">Decode</link> (
+<link linkend="d9/d42/struct_mpx_event_struct">MpxEventStruct</link> * eventStruct)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>u_long <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1aab4cf4552a7a3cb387ff98a3b9c96389">sessionId</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char ** <link linkend="d2/d8f/classsftp_1_1_sftp_client_reply_1a24d5c2652437cfa3f741b83430960603">args</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1aeae5225702be87bae3fdab1174ef7640">
+                <title>sftp::SftpClientReply::SftpClientReply (u_long sessionId, char *args[])</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1ac342430b04759d7c1d0d5d0ee619268c">
+                <title>sftp::SftpClientReply::SftpClientReply (u_long sessionId, char *args)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1a108aac26c93d3ac5846ff7b87c2e64b3">
+                <title>sftp::SftpClientReply::~SftpClientReply ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1a82ac9876f5739ca42edf3d7b92c3cef8">
+                <title>virtual const char* sftp::SftpClientReply::Name ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1ade9e8d4f54eabb6533fa2cd5405f3b80">
+                <title>virtual MpxEventBase* sftp::SftpClientReply::Copy ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1a4c7f15fcd9111d667ea6c52f1d13c731">
+                <title>virtual int sftp::SftpClientReply::Encode (xdrproc_t &amp;proc, xdrdata_t &amp;data)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1a3efbf69e8a250a440cf0f2f441bccafe">
+                <title>virtual int sftp::SftpClientReply::Decode (MpxEventStruct *eventStruct)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1aab4cf4552a7a3cb387ff98a3b9c96389">
+                <title>u_long sftp::SftpClientReply::sessionId ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d2/d8f/classsftp_1_1_sftp_client_reply_1a24d5c2652437cfa3f741b83430960603">
+                <title>char** sftp::SftpClientReply::args ()</title> <emphasis></emphasis>
+                
+            </section>
+</section>

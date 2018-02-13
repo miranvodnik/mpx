@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="d0/df3/classmpx_1_1_mpx_working_queue">
+<title>mpx::MpxWorkingQueue class Reference</title>
+<para>
+    <programlisting>#include <link linkend="da/dc5/_mpx_working_queue_8h">&lt;MpxWorkingQueue.h&gt;</link></programlisting>
+</para>
+<para>Inheritance diagram for mpx::MpxWorkingQueue</para>
+<para>
+    <figure>
+        <title>Inheritance graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d6/db6/classmpx_1_1_mpx_working_queue__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+<para>Collaboration diagram for mpx::MpxWorkingQueue</para>
+<para>
+    <figure>
+        <title>Collaboration graph</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="1" fileref="../../d4/d1f/classmpx_1_1_mpx_working_queue__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </figure>
+</para>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef deque&lt; <link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * &gt;  <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1a99748807dcb8363ca47dbb955b73e94a">wqueue</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static MpxWorkingQueue * g_workingQueue</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Private Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>wqueue m_wqueue</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_mutex_t m_mutex</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>pthread_cond_t m_cond</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1a19ddab45a3c57017c0a6b52f111392ea">MpxWorkingQueue</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>virtual <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1ac05c6c773ef3ee5c9deb0105653d9737">~MpxWorkingQueue</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1ac51f679e385fb1e39cbab737e038b6c8">_Put</link> (
+<link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * job)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1af0b107e2ddd3c47b019713dfc2470317">_Get</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1a7024d1a277b07738221bf5f8c2545555">_Cleanup</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static int <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1a2129d0a865898ca481d61c9076df2f2b">Put</link> (
+<link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * job)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="d3/d8e/classmpx_1_1_mpx_job">MpxJob</link> * <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1a65776321bffa5fc660925b65b5490f0e">Get</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="d0/df3/classmpx_1_1_mpx_working_queue_1aa3f2855e392c294f240897d8912ad20e">Cleanup</link> (
+void * arg)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1a99748807dcb8363ca47dbb955b73e94a">
+                <title>typedef deque&lt;MpxJob*&gt; mpx::MpxWorkingQueue::wqueue</title> <emphasis></emphasis>
+                
+            </section>
+        <section>
+            <title>Member Data Documentation</title>
+        </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1a19ddab45a3c57017c0a6b52f111392ea">
+                <title>mpx::MpxWorkingQueue::MpxWorkingQueue ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1ac05c6c773ef3ee5c9deb0105653d9737">
+                <title>mpx::MpxWorkingQueue::~MpxWorkingQueue ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1ac51f679e385fb1e39cbab737e038b6c8">
+                <title>int mpx::MpxWorkingQueue::_Put (MpxJob *job)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1af0b107e2ddd3c47b019713dfc2470317">
+                <title>MpxJob * mpx::MpxWorkingQueue::_Get ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1a7024d1a277b07738221bf5f8c2545555">
+                <title>void mpx::MpxWorkingQueue::_Cleanup ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1a2129d0a865898ca481d61c9076df2f2b">
+                <title>static int mpx::MpxWorkingQueue::Put (MpxJob *job)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1a65776321bffa5fc660925b65b5490f0e">
+                <title>static MpxJob* mpx::MpxWorkingQueue::Get ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="d0/df3/classmpx_1_1_mpx_working_queue_1aa3f2855e392c294f240897d8912ad20e">
+                <title>static void mpx::MpxWorkingQueue::Cleanup (void *arg)</title> <emphasis></emphasis>
+                
+            </section>
+</section>
