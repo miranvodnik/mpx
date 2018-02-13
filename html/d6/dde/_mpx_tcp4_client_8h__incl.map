@@ -1,0 +1,15 @@
+<map id="mpx&#45;lib/mpx&#45;sockets/MpxTcp4Client.h" name="mpx&#45;lib/mpx&#45;sockets/MpxTcp4Client.h">
+<area shape="rect" id="node7" href="$dd/d5c/_mpx_utilities_8h.html" title="mpx&#45;core/MpxUtilities.h" alt="" coords="216,483,376,509"/>
+<area shape="rect" id="node13" href="$d4/daa/_mpx_task_base_8h.html" title="mpx&#45;tasks/MpxTaskBase.h" alt="" coords="489,326,671,353"/>
+<area shape="rect" id="node16" href="$d7/dd7/_mpx_socket_8h.html" title="mpx&#45;sockets/MpxSocket.h" alt="" coords="708,95,887,121"/>
+<area shape="rect" id="node44" href="$dc/d36/_mpx_tcp4_client_event_8h.html" title="mpx&#45;events/MpxTcp4Client\lEvent.h" alt="" coords="174,319,357,360"/>
+<area shape="rect" id="node9" href="$df/dae/mpx-messages_8h.html" title="mpx&#45;tasks/mpx&#45;messages.h" alt="" coords="203,557,389,584"/>
+<area shape="rect" id="node14" href="$d3/dd5/_mpx_event_base_8h.html" title="mpx&#45;events/MpxEventBase.h" alt="" coords="483,408,677,435"/>
+<area shape="rect" id="node15" href="$d6/d41/mpx-events_8h.html" title="mpx&#45;events/mpx&#45;events.h" alt="" coords="5,557,179,584"/>
+<area shape="rect" id="node17" href="$d5/d5e/_mpx_running_context_8h.html" title="mpx&#45;core/MpxRunningContext.h" alt="" coords="1212,408,1423,435"/>
+<area shape="rect" id="node38" href="$da/d56/_mpx_task_multiplexer_8h.html" title="mpx&#45;core/MpxTaskMultiplexer.h" alt="" coords="929,169,1137,196"/>
+<area shape="rect" id="node43" href="$d4/de9/_mpx_x_d_r_proc_registry_8h.html" title="mpx&#45;core/MpxXDRProcRegistry.h" alt="" coords="2459,326,2680,353"/>
+<area shape="rect" id="node39" href="$dc/dd0/_mpx_runnable_8h.html" title="mpx&#45;core/MpxRunnable.h" alt="" coords="2131,408,2301,435"/>
+<area shape="rect" id="node41" href="$d2/dd9/_mpx_m_q_task_i_8h.html" title="mpx&#45;event&#45;queues/MpxMQTaskI.h" alt="" coords="533,244,755,271"/>
+<area shape="rect" id="node42" href="$da/d3e/_mpx_timer_event_8h.html" title="mpx&#45;events/MpxTimerEvent.h" alt="" coords="829,244,1027,271"/>
+</map>

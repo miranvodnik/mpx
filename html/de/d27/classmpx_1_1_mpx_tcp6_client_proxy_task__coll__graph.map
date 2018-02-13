@@ -1,0 +1,7 @@
+<map id="mpx::MpxTcp6ClientProxyTask" name="mpx::MpxTcp6ClientProxyTask">
+<area shape="rect" id="node2" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxTcp6ClientEvent \&gt;" alt="" coords="79,199,239,240"/>
+<area shape="rect" id="node3" href="$de/df9/classmpx_1_1_mpx_proxy_task_base.html" title="mpx::MpxProxyTaskBase" alt="" coords="72,102,246,129"/>
+<area shape="rect" id="node4" href="$dc/d8c/classmpx_1_1_mpx_task_base.html" title="mpx::MpxTaskBase" alt="" coords="90,5,228,32"/>
+<area shape="rect" id="node5" href="$dc/d7a/classmpx_1_1_mpx_socket.html" title="mpx::MpxSocket\&lt; MpxTcp6Client\lEvent \&gt;" alt="" coords="270,95,491,136"/>
+<area shape="rect" id="node6" href="$d3/d40/classmpx_1_1_mpx_running_context.html" title="I/O multiplexer superclass. " alt="" coords="293,5,468,32"/>
+</map>

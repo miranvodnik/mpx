@@ -1,0 +1,29 @@
+<map id="mpx::MpxTaskBase" name="mpx::MpxTaskBase">
+<area shape="rect" id="node2" href="$d9/dde/classmpx_1_1_mpx_external_task.html" title="mpx::MpxExternalTask" alt="" coords="212,93,369,120"/>
+<area shape="rect" id="node3" href="$dd/dfc/classmpx_1_1_mpx_ext_task_i.html" title="mpx::MpxExtTaskI" alt="" coords="224,144,357,171"/>
+<area shape="rect" id="node4" href="$d2/dc7/classmpx_1_1_mpx_m_q_task_i.html" title="mpx::MpxMQTaskI" alt="" coords="223,195,358,221"/>
+<area shape="rect" id="node7" href="$d5/dc0/classmpx_1_1_mpx_posix_m_q_proxy_task.html" title="mpx::MpxPosixMQProxyTask" alt="" coords="192,245,389,272"/>
+<area shape="rect" id="node8" href="$de/df9/classmpx_1_1_mpx_proxy_task_base.html" title="mpx::MpxProxyTaskBase" alt="" coords="204,296,377,323"/>
+<area shape="rect" id="node22" href="$d4/d88/classmpx_1_1_mpx_worker_task.html" title="mpx::MpxWorkerTask" alt="" coords="215,347,366,373"/>
+<area shape="rect" id="node23" href="$dd/d42/classsftp_1_1_ftp_client_interface.html" title="sftp::FtpClientInterface" alt="" coords="213,473,369,500"/>
+<area shape="rect" id="node28" href="$d8/d56/class_sftp_test.html" title="SftpTest" alt="" coords="255,524,327,551"/>
+<area shape="rect" id="node5" href="$d6/dd6/classmpx_1_1_mpx_local_m_q_task.html" title="mpx::MpxLocalMQTask" alt="" coords="447,5,609,32"/>
+<area shape="rect" id="node6" href="$d3/db3/classmpx_1_1_mpx_posix_m_q_task.html" title="mpx::MpxPosixMQTask" alt="" coords="447,56,609,83"/>
+<area shape="rect" id="node9" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt; T \&gt;" alt="" coords="441,107,615,133"/>
+<area shape="rect" id="node10" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxLocalClientEvent \&gt;" alt="" coords="447,158,609,199"/>
+<area shape="rect" id="node12" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxLocalEndPointEvent \&gt;" alt="" coords="437,223,619,265"/>
+<area shape="rect" id="node14" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxTcp4ClientEvent \&gt;" alt="" coords="448,289,608,330"/>
+<area shape="rect" id="node16" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxTcp4EndPointEvent \&gt;" alt="" coords="439,354,617,395"/>
+<area shape="rect" id="node18" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxTcp6ClientEvent \&gt;" alt="" coords="448,419,608,461"/>
+<area shape="rect" id="node20" href="$d9/d4f/classmpx_1_1_mpx_proxy_task.html" title="mpx::MpxProxyTask\&lt;\l MpxTcp6EndPointEvent \&gt;" alt="" coords="439,485,617,526"/>
+<area shape="rect" id="node11" href="$de/d25/classmpx_1_1_mpx_local_client_proxy_task.html" title="mpx::MpxLocalClientProxyTask" alt="" coords="676,165,884,192"/>
+<area shape="rect" id="node13" href="$db/db0/classmpx_1_1_mpx_local_end_point_proxy_task.html" title="mpx::MpxLocalEndPointProxyTask" alt="" coords="667,231,893,257"/>
+<area shape="rect" id="node15" href="$d7/d48/classmpx_1_1_mpx_tcp4_client_proxy_task.html" title="mpx::MpxTcp4ClientProxyTask" alt="" coords="677,296,883,323"/>
+<area shape="rect" id="node17" href="$d7/d98/classmpx_1_1_mpx_tcp4_end_point_proxy_task.html" title="mpx::MpxTcp4EndPointProxyTask" alt="" coords="667,361,893,388"/>
+<area shape="rect" id="node19" href="$dc/d56/classmpx_1_1_mpx_tcp6_client_proxy_task.html" title="mpx::MpxTcp6ClientProxyTask" alt="" coords="677,427,883,453"/>
+<area shape="rect" id="node21" href="$de/d18/classmpx_1_1_mpx_tcp6_end_point_proxy_task.html" title="mpx::MpxTcp6EndPointProxyTask" alt="" coords="667,492,893,519"/>
+<area shape="rect" id="node24" href="$da/d15/classsftp_1_1_ftp_client.html" title="sftp::FtpClient" alt="" coords="475,551,581,577"/>
+<area shape="rect" id="node26" href="$da/ddd/classsftp_1_1_sftp_client.html" title="sftp::SftpClient" alt="" coords="473,601,583,628"/>
+<area shape="rect" id="node25" href="$d3/d46/classsftp_1_1_ftp_client_worker.html" title="sftp::FtpClientWorker" alt="" coords="707,551,853,577"/>
+<area shape="rect" id="node27" href="$dd/d68/classsftp_1_1_sftp_client_worker.html" title="sftp::SftpClientWorker" alt="" coords="704,601,856,628"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="sftp::FtpClientInterface" name="sftp::FtpClientInterface">
+<area shape="rect" id="node3" href="$da/d15/classsftp_1_1_ftp_client.html" title="sftp::FtpClient" alt="" coords="37,155,142,181"/>
+<area shape="rect" id="node5" href="$da/ddd/classsftp_1_1_sftp_client.html" title="sftp::SftpClient" alt="" coords="186,155,297,181"/>
+<area shape="rect" id="node2" href="$dc/d8c/classmpx_1_1_mpx_task_base.html" title="mpx::MpxTaskBase" alt="" coords="85,5,224,32"/>
+<area shape="rect" id="node4" href="$d3/d46/classsftp_1_1_ftp_client_worker.html" title="sftp::FtpClientWorker" alt="" coords="5,229,152,256"/>
+<area shape="rect" id="node6" href="$dd/d68/classsftp_1_1_sftp_client_worker.html" title="sftp::SftpClientWorker" alt="" coords="176,229,328,256"/>
+</map>
