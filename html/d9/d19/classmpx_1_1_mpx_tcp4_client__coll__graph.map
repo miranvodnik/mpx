@@ -1,5 +1,0 @@
-<map id="mpx::MpxTcp4Client" name="mpx::MpxTcp4Client">
-<area shape="rect" id="node2" href="$dc/d7a/classmpx_1_1_mpx_socket.html" title="mpx::MpxSocket\&lt; MpxTcp4Client\lEvent \&gt;" alt="" coords="73,95,294,136"/>
-<area shape="rect" id="node3" href="$d3/d40/classmpx_1_1_mpx_running_context.html" title="I/O multiplexer superclass. " alt="" coords="5,5,180,32"/>
-<area shape="rect" id="node4" href="$dc/d8c/classmpx_1_1_mpx_task_base.html" title="mpx::MpxTaskBase" alt="" coords="205,5,343,32"/>
-</map>
