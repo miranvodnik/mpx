@@ -1,0 +1,18 @@
+<map id="MpxLocalEndPointProxyTask.cpp" name="MpxLocalEndPointProxyTask.cpp">
+<area shape="rect" id="node2" href="$d0/d1a/MpxXDRProcRegistry_8h.html" title="mpx&#45;core/MpxXDRProcRegistry.h" alt="" coords="5,483,227,509"/>
+<area shape="rect" id="node13" href="$d5/da6/MpxLocalEndPointProxyTask_8h.html" title="mpx&#45;tasks/MpxLocalEndPoint\lProxyTask.h" alt="" coords="659,80,855,121"/>
+<area shape="rect" id="node5" href="$d7/db0/MpxEventBase_8h.html" title="mpx&#45;events/MpxEventBase.h" alt="" coords="311,557,505,584"/>
+<area shape="rect" id="node6" href="$d3/dc0/MpxUtilities_8h.html" title="mpx&#45;core/MpxUtilities.h" alt="" coords="440,632,600,659"/>
+<area shape="rect" id="node12" href="$d6/d41/mpx-events_8h.html" title="mpx&#45;events/mpx&#45;events.h" alt="" coords="157,707,331,733"/>
+<area shape="rect" id="node9" href="$df/dae/mpx-messages_8h.html" title="mpx&#45;tasks/mpx&#45;messages.h" alt="" coords="427,707,613,733"/>
+<area shape="rect" id="node14" href="$dd/d0c/MpxProxyTask_8h.html" title="mpx&#45;tasks/MpxProxyTask.h" alt="" coords="599,169,785,196"/>
+<area shape="rect" id="node45" href="$d8/d04/MpxLocalEndPoint_8h.html" title="mpx&#45;sockets/MpxLocalEndPoint.h" alt="" coords="1283,169,1504,196"/>
+<area shape="rect" id="node47" href="$d7/dd3/MpxLocalEndPointEvent_8h.html" title="mpx&#45;events/MpxLocalEndPoint\lEvent.h" alt="" coords="1073,393,1276,435"/>
+<area shape="rect" id="node15" href="$d5/def/MpxTaskBase_8h.html" title="mpx&#45;tasks/MpxTaskBase.h" alt="" coords="319,483,502,509"/>
+<area shape="rect" id="node16" href="$da/d4e/MpxSocket_8h.html" title="mpx&#45;sockets/MpxSocket.h" alt="" coords="1229,244,1408,271"/>
+<area shape="rect" id="node20" href="$d1/d63/MpxRunningContext_8h.html" title="mpx&#45;core/MpxRunningContext.h" alt="" coords="1351,557,1561,584"/>
+<area shape="rect" id="node41" href="$d5/d90/MpxTaskMultiplexer_8h.html" title="mpx&#45;core/MpxTaskMultiplexer.h" alt="" coords="577,319,785,345"/>
+<area shape="rect" id="node42" href="$d3/d15/MpxRunnable_8h.html" title="mpx&#45;core/MpxRunnable.h" alt="" coords="2293,557,2464,584"/>
+<area shape="rect" id="node43" href="$d6/d10/MpxMQTaskI_8h.html" title="mpx&#45;event&#45;queues/MpxMQTaskI.h" alt="" coords="453,401,675,427"/>
+<area shape="rect" id="node44" href="$de/d20/MpxTimerEvent_8h.html" title="mpx&#45;events/MpxTimerEvent.h" alt="" coords="700,401,897,427"/>
+</map>

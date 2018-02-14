@@ -1,0 +1,10 @@
+<map id="mpx::MpxLocalClient" name="mpx::MpxLocalClient">
+<area shape="rect" id="node2" href="$d4/d8b/classmpx_1_1MpxSocket.html" title="mpx::MpxSocket\&lt; MpxLocal\lClientEvent \&gt;" alt="" coords="779,53,968,95"/>
+<area shape="rect" id="node3" href="$d4/dc1/classmpx_1_1MpxRunningContext.html" title="I/O multiplexer superclass. " alt="" coords="476,338,651,365"/>
+<area shape="rect" id="node5" href="$df/d1a/classmpx_1_1MpxRunningContext_1_1MpxDescriptor.html" title="I/O handler class. " alt="" coords="786,400,961,441"/>
+<area shape="rect" id="node6" href="$d7/de7/classmpx_1_1MpxRunningContext_1_1MpxSignalContext.html" title="signal handler " alt="" coords="786,504,961,545"/>
+<area shape="rect" id="node8" href="$de/dfc/classmpx_1_1MpxRunningContext_1_1MpxTimer.html" title="timer class " alt="" coords="786,208,961,249"/>
+<area shape="rect" id="node11" href="$d7/dfa/classmpx_1_1MpxTaskBase.html" title="mpx::MpxTaskBase" alt="" coords="494,57,633,83"/>
+<area shape="rect" id="node12" title="STL class. " alt="" coords="234,13,314,39"/>
+<area shape="rect" id="node13" title="STL class. " alt="" coords="5,5,132,47"/>
+</map>

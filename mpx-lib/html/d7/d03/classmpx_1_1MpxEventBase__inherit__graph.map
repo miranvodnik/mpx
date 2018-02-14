@@ -1,0 +1,25 @@
+<map id="mpx::MpxEventBase" name="mpx::MpxEventBase">
+<area shape="rect" id="node2" href="$d9/de0/classmpx_1_1MpxExternalTaskEvent.html" title="mpx::MpxExternalTaskEvent" alt="" coords="207,5,397,32"/>
+<area shape="rect" id="node3" href="$d7/d6b/classmpx_1_1MpxJobFinishedEvent.html" title="mpx::MpxJobFinishedEvent" alt="" coords="210,56,394,83"/>
+<area shape="rect" id="node4" href="$dc/df1/classmpx_1_1MpxLocalClientEvent.html" title="mpx::MpxLocalClientEvent" alt="" coords="213,107,391,133"/>
+<area shape="rect" id="node5" href="$d7/df7/classmpx_1_1MpxLocalEndPointEvent.html" title="mpx::MpxLocalEndPointEvent" alt="" coords="203,157,401,184"/>
+<area shape="rect" id="node6" href="$da/dc2/classmpx_1_1MpxLocalListenerEvent.html" title="mpx::MpxLocalListenerEvent" alt="" coords="207,208,397,235"/>
+<area shape="rect" id="node7" href="$dc/d6c/classmpx_1_1MpxLocalTaskQueryEvent.html" title="mpx::MpxLocalTaskQueryEvent" alt="" coords="197,259,407,285"/>
+<area shape="rect" id="node8" href="$db/da8/classmpx_1_1MpxPosixMQEvent.html" title="mpx::MpxPosixMQEvent" alt="" coords="218,309,386,336"/>
+<area shape="rect" id="node9" href="$d6/dfb/classmpx_1_1MpxPosixMQTaskQueryEvent.html" title="mpx::MpxPosixMQTaskQuery\lEvent" alt="" coords="203,361,401,402"/>
+<area shape="rect" id="node10" href="$d3/d32/classmpx_1_1MpxStartEvent.html" title="mpx::MpxStartEvent" alt="" coords="231,427,373,453"/>
+<area shape="rect" id="node11" href="$de/d68/classmpx_1_1MpxStopEvent.html" title="mpx::MpxStopEvent" alt="" coords="231,477,373,504"/>
+<area shape="rect" id="node12" href="$df/db1/classmpx_1_1MpxTaskQueryEvent.html" title="mpx::MpxTaskQueryEvent" alt="" coords="213,528,391,555"/>
+<area shape="rect" id="node13" href="$dd/dcf/classmpx_1_1MpxTaskResponseEvent.html" title="mpx::MpxTaskResponseEvent" alt="" coords="201,579,403,605"/>
+<area shape="rect" id="node14" href="$d1/df2/classmpx_1_1MpxTcp4ClientEvent.html" title="mpx::MpxTcp4ClientEvent" alt="" coords="213,629,391,656"/>
+<area shape="rect" id="node15" href="$df/dc1/classmpx_1_1MpxTcp4EndPointEvent.html" title="mpx::MpxTcp4EndPointEvent" alt="" coords="204,680,400,707"/>
+<area shape="rect" id="node16" href="$d9/d88/classmpx_1_1MpxTcp4ListenerEvent.html" title="mpx::MpxTcp4ListenerEvent" alt="" coords="207,731,397,757"/>
+<area shape="rect" id="node17" href="$d7/d7e/classmpx_1_1MpxTcp4TaskQueryEvent.html" title="mpx::MpxTcp4TaskQueryEvent" alt="" coords="199,781,405,808"/>
+<area shape="rect" id="node18" href="$de/d9d/classmpx_1_1MpxTcp6ClientEvent.html" title="mpx::MpxTcp6ClientEvent" alt="" coords="213,832,391,859"/>
+<area shape="rect" id="node19" href="$da/ddb/classmpx_1_1MpxTcp6EndPointEvent.html" title="mpx::MpxTcp6EndPointEvent" alt="" coords="204,883,400,909"/>
+<area shape="rect" id="node20" href="$d2/d16/classmpx_1_1MpxTcp6ListenerEvent.html" title="mpx::MpxTcp6ListenerEvent" alt="" coords="207,933,397,960"/>
+<area shape="rect" id="node21" href="$d1/d4a/classmpx_1_1MpxTcp6TaskQueryEvent.html" title="mpx::MpxTcp6TaskQueryEvent" alt="" coords="199,984,405,1011"/>
+<area shape="rect" id="node22" href="$db/df6/classmpx_1_1MpxTimerEvent.html" title="mpx::MpxTimerEvent" alt="" coords="229,1035,375,1061"/>
+<area shape="rect" id="node23" href="$d9/d75/classmpx_1_1MpxUdp4TaskQueryEvent.html" title="mpx::MpxUdp4TaskQueryEvent" alt="" coords="197,1085,407,1112"/>
+<area shape="rect" id="node24" href="$d1/d18/classmpx_1_1MpxUdp6TaskQueryEvent.html" title="mpx::MpxUdp6TaskQueryEvent" alt="" coords="197,1136,407,1163"/>
+</map>

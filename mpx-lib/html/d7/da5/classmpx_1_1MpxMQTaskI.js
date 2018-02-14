@@ -1,0 +1,25 @@
+var classmpx_1_1MpxMQTaskI =
+[
+    [ "MpxMQTaskI", "d7/da5/classmpx_1_1MpxMQTaskI.html#a57b5ceeed97ae9134e6afd6b277a35b4", null ],
+    [ "~MpxMQTaskI", "d7/da5/classmpx_1_1MpxMQTaskI.html#a95239ad23fbd369ca69f77e01bdf2a64", null ],
+    [ "Copy", "d7/da5/classmpx_1_1MpxMQTaskI.html#a4d91e1f4983ebdb7eb68b9c1043a5c94", null ],
+    [ "DisableSend", "d7/da5/classmpx_1_1MpxMQTaskI.html#a1f709227a9bb771bfa23f85e4f281c2f", null ],
+    [ "Dispose", "d7/da5/classmpx_1_1MpxMQTaskI.html#a9befb1f09352f9820b9b153850d75adb", null ],
+    [ "EnableSend", "d7/da5/classmpx_1_1MpxMQTaskI.html#a7ce0cfa5308c55280c1b6a074f8f553b", null ],
+    [ "GetCurrentTime", "d7/da5/classmpx_1_1MpxMQTaskI.html#a2d03188176c57fcb179ffe532124aa40", null ],
+    [ "HandleEvent", "d7/da5/classmpx_1_1MpxMQTaskI.html#a6856f2ece041a745f2195ab4009b43a3", null ],
+    [ "mpx", "d7/da5/classmpx_1_1MpxMQTaskI.html#ad3f1b641595a14cc5efb0ee228d2249b", null ],
+    [ "mpx", "d7/da5/classmpx_1_1MpxMQTaskI.html#ac6dab776121d77c6cbb845359976ae82", null ],
+    [ "MQSend", "d7/da5/classmpx_1_1MpxMQTaskI.html#ae8321ca4a45a7913ee0402a6c7abe620", null ],
+    [ "name", "d7/da5/classmpx_1_1MpxMQTaskI.html#a72a5b4dcb94f36194d986d447e52ba94", null ],
+    [ "RegisterEventHandlers", "d7/da5/classmpx_1_1MpxMQTaskI.html#a6eec6320c433f50bbcb4daa24e96af9d", null ],
+    [ "RetrieveEventHandler", "d7/da5/classmpx_1_1MpxMQTaskI.html#a470093fbccfc37dddde4618947eb9fc0", null ],
+    [ "RetrieveExternalTask", "d7/da5/classmpx_1_1MpxMQTaskI.html#a191e3e85add4e9700a5b9a179ad27478", null ],
+    [ "RetrieveTask", "d7/da5/classmpx_1_1MpxMQTaskI.html#a95062a0db059664f0b34acfdc263d015", null ],
+    [ "Send", "d7/da5/classmpx_1_1MpxMQTaskI.html#a1af10a45d6be9d40496729e36c71c9bf", null ],
+    [ "sentCount", "d7/da5/classmpx_1_1MpxMQTaskI.html#aa6b5589b8317e64f8edf4e097a853eeb", null ],
+    [ "StartTimer", "d7/da5/classmpx_1_1MpxMQTaskI.html#a7a7a3e7252b8ebffa9910338b73a0674", null ],
+    [ "state", "d7/da5/classmpx_1_1MpxMQTaskI.html#a41779a9c31aa8ac15a43d810062306d9", null ],
+    [ "state", "d7/da5/classmpx_1_1MpxMQTaskI.html#a765491d8df0b02051447097c6e75f22f", null ],
+    [ "StopTimer", "d7/da5/classmpx_1_1MpxMQTaskI.html#a1bf98fdf9f1a27c34fe0f85504213081", null ]
+];

@@ -1,0 +1,16 @@
+<map id="MpxTcp4Client.cpp" name="MpxTcp4Client.cpp">
+<area shape="rect" id="node2" href="$d5/d90/MpxTaskMultiplexer_8h.html" title="mpx&#45;core/MpxTaskMultiplexer.h" alt="" coords="688,229,896,256"/>
+<area shape="rect" id="node38" href="$dc/da6/MpxTcp4Client_8h.html" title="mpx&#45;sockets/MpxTcp4Client.h" alt="" coords="1512,80,1712,107"/>
+<area shape="rect" id="node3" href="$d3/d15/MpxRunnable_8h.html" title="mpx&#45;core/MpxRunnable.h" alt="" coords="793,468,964,495"/>
+<area shape="rect" id="node11" href="$d3/dc0/MpxUtilities_8h.html" title="mpx&#45;core/MpxUtilities.h" alt="" coords="129,543,289,569"/>
+<area shape="rect" id="node17" href="$d1/d63/MpxRunningContext_8h.html" title="mpx&#45;core/MpxRunningContext.h" alt="" coords="1319,468,1529,495"/>
+<area shape="rect" id="node33" href="$d5/def/MpxTaskBase_8h.html" title="mpx&#45;tasks/MpxTaskBase.h" alt="" coords="273,386,455,413"/>
+<area shape="rect" id="node36" href="$d6/d10/MpxMQTaskI_8h.html" title="mpx&#45;event&#45;queues/MpxMQTaskI.h" alt="" coords="401,304,623,331"/>
+<area shape="rect" id="node37" href="$de/d20/MpxTimerEvent_8h.html" title="mpx&#45;events/MpxTimerEvent.h" alt="" coords="648,304,845,331"/>
+<area shape="rect" id="node13" href="$df/dae/mpx-messages_8h.html" title="mpx&#45;tasks/mpx&#45;messages.h" alt="" coords="203,617,389,644"/>
+<area shape="rect" id="node34" href="$d7/db0/MpxEventBase_8h.html" title="mpx&#45;events/MpxEventBase.h" alt="" coords="315,468,509,495"/>
+<area shape="rect" id="node35" href="$d6/d41/mpx-events_8h.html" title="mpx&#45;events/mpx&#45;events.h" alt="" coords="5,617,179,644"/>
+<area shape="rect" id="node43" href="$da/d4e/MpxSocket_8h.html" title="mpx&#45;sockets/MpxSocket.h" alt="" coords="1391,155,1569,181"/>
+<area shape="rect" id="node45" href="$d6/d5d/MpxTcp4ClientEvent_8h.html" title="mpx&#45;events/MpxTcp4Client\lEvent.h" alt="" coords="642,379,825,420"/>
+<area shape="rect" id="node44" href="$d0/d1a/MpxXDRProcRegistry_8h.html" title="mpx&#45;core/MpxXDRProcRegistry.h" alt="" coords="1512,386,1733,413"/>
+</map>
