@@ -1,3 +1,0 @@
-[submodule "sftp-lib"]
-	path = sftp-lib
-	url = https://github.com/miranvodnik/sftp.git
