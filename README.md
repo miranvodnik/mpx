@@ -8,5 +8,5 @@ The code contained in the mpx repository contains a library mpx-lib which allows
 - **sftp-test** test program which uses **sftp** and **mpx-lib** libraries to demonstrate how can virtually any number of FTP/SFTP clients operate simultaneously using limited number of working threads and how can program communicate with them thus controlling their behaivior
 
 ### Documentation
-Please, see [doxygen documentation](./html/index.html)
+Please, see [doxygen documentation](./mpx-lib/html/index.html)
 
