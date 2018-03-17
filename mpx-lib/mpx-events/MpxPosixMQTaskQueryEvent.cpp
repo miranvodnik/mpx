@@ -22,7 +22,7 @@ namespace mpx
 {
 
 MpxPosixMQTaskQueryEvent::MpxPosixMQTaskQueryEvent (const char* path, const char* name) :
-	MpxEventBase (PosixMQTaskQueryEvent), m_path (path), m_name (name)
+	MpxEventBase (MpxPosixMQTaskQueryEvent::EventCode), m_path (path), m_name (name)
 {
 }
 

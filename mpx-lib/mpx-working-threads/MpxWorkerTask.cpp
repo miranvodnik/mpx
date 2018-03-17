@@ -19,27 +19,25 @@
 #include <mpx-working-threads/MpxWorkerTask.h>
 #include <mpx-working-threads/MpxWorkingQueue.h>
 #include <mpx-events/MpxJobFinishedEvent.h>
-#include <mpx-events/MpxTimerEvent.h>
+#include <mpx-events/MpxEvents.h>
 
 namespace mpx
 {
 
 EventDescriptor MpxWorkerTask::g_evntab[] =
 {
-	{ StartState, StartEvent, StartEventHandler, 0},
-	{ AnyState, StopEvent, StopEventHandler, 0},
-	{ AnyState, TimerEvent, TimerEventHandler, 0},
-	{ 0, 0, 0, 0}
+	{ AnyState, MpxTimerEvent::EventCode, TimerEventHandler},
+	{ 0, 0, 0}
 };
 
+MpxTaskBase::evnset MpxWorkerTask::g_evnset = MpxTaskBase::CreateEventSet(MpxWorkerTask::g_evntab);
+
 MpxWorkerTask::MpxWorkerTask (const char* name) :
-	MpxTaskBase (name)
+	MpxTaskBase (g_evnset, name)
 {
 	m_getTimer = 0;
 	m_sendTimer = 0;
 	m_job = 0;
-
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxWorkerTask::~MpxWorkerTask ()
@@ -56,12 +54,12 @@ MpxWorkerTask::~MpxWorkerTask ()
 	m_job = 0;
 }
 
-void MpxWorkerTask::StartEventHandler (MpxEventBase *event)
+void MpxWorkerTask::StartTask ()
 {
 	m_getTimer = StartTimer (GetCurrentTime ());
 }
 
-void MpxWorkerTask::StopEventHandler (MpxEventBase *event)
+void MpxWorkerTask::StopTask ()
 {
 
 }

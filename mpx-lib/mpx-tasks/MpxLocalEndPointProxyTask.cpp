@@ -16,27 +16,40 @@
 //
 //    contact: miran.vodnik@siol.net
 
-#include <mpx-core/MpxXDRProcRegistry.h>
 #include <mpx-tasks/MpxLocalEndPointProxyTask.h>
+#include <mpx-working-threads/MpxWorkingQueue.h>
+#include <mpx-jobs/MpxJobs.h>
 
 namespace mpx
 {
 
 EventDescriptor MpxLocalEndPointProxyTask::g_evntab[] =
 {
-	{ AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxLocalEndPointEvent::EventCode, HandleLocalEndPointEvent},
+	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+	{ 0, 0, 0}
 };
 
-MpxLocalEndPointProxyTask::MpxLocalEndPointProxyTask (MpxTaskBase* task, MpxLocalEndPoint* localEndPoint) :
-	MpxProxyTask (task, localEndPoint)
+MpxTaskBase::evnset MpxLocalEndPointProxyTask::g_evnset = MpxTaskBase::CreateEventSet(MpxLocalEndPointProxyTask::g_evntab);
+
+MpxLocalEndPointProxyTask::MpxLocalEndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxLocalEndPoint* localEndPoint) :
+	MpxProxyTask (g_evnset, task, localEndPoint), m_encdeclib (encdeclib)
 {
 	localEndPoint->task (this);
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxLocalEndPointProxyTask::~MpxLocalEndPointProxyTask ()
 {
+}
+
+void MpxLocalEndPointProxyTask::StartTask ()
+{
+	MpxWorkingQueue::Put (new MpxOpenLibrary (this, m_encdeclib.c_str()));
+}
+
+void MpxLocalEndPointProxyTask::StopTask ()
+{
+
 }
 
 void MpxLocalEndPointProxyTask::HandleLocalEndPointEvent (MpxEventBase *event)
@@ -55,33 +68,9 @@ void MpxLocalEndPointProxyTask::HandleLocalEndPointEvent (MpxEventBase *event)
 	case EPOLLIN:
 		if ((localEndPointEvent->error () == 0) && (localEndPointEvent->size () != 0))
 		{
-			MpxEventStruct* req = new MpxEventStruct;
-			memset (req, 0, sizeof(MpxEventStruct));
-			if (localEndPoint->ReadXdrRequest ((xdrproc_t) xdr_MpxEventStruct, (void*) req) < 0)
-			{
-				delete req;
-				if (false)
-					cout << "proxy " << this << " event: local end point input error" << endl;
-			}
-			else
-			{
-				if (false)
-					cout << "proxy " << this << " event: local end point input ok" << endl;
-				xdrpair_t xdrPair = MpxXDRProcRegistry::Retrieve (req->m_code);
-				evnalloc_t evnAlloc = xdrPair.second.second;
-				if (evnAlloc == 0)
-				{
-					if (false)
-						cout << "proxy " << this << " missing event allocator" << endl;
-				}
-				else
-				{
-					MpxEventBase* event = evnAlloc ();
-					event->Decode (req);
-					Send (m_task, event, false);
-				}
-				xdr_free ((xdrproc_t) xdr_int, (char*) req);
-			}
+			MpxEventBase* event;
+			while ((event = localEndPoint->DecodeEvent(m_eventXDR)) != 0)
+				Send (m_task, event, false);
 		}
 		break;
 	case EPOLLOUT:
@@ -93,6 +82,35 @@ void MpxLocalEndPointProxyTask::HandleLocalEndPointEvent (MpxEventBase *event)
 			cout << "proxy " << this << " event: local end point default" << endl;
 		break;
 	}
+}
+
+void MpxLocalEndPointProxyTask::HandleJobFinishedEvent (MpxEventBase *event)
+{
+	while (true)
+	{
+		MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
+		if (jobFinishedEvent == 0)
+			break;
+		MpxOpenLibrary* openLibrary = dynamic_cast < MpxOpenLibrary* > (jobFinishedEvent->job());
+		if (openLibrary == 0)
+			break;
+		if ((m_lib = openLibrary->lib()) == 0)
+			break;
+		if ((m_fcn = (edfunc) openLibrary->fcn()) == 0)
+			break;
+		if ((m_eventXDR = (*m_fcn) ()) == 0)
+			break;
+
+		MpxMessage msg;
+		msg.m_Code = ExternalTaskReplyCode;
+		msg.MpxMessage_u.m_externalTaskReply.task = (long) m_task;
+		msg.MpxMessage_u.m_externalTaskReply.encdeclib = strdup (m_encdeclib.c_str());
+		if (m_socket->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
+			break;
+
+		return;
+	}
+	Dispose (false);
 }
 
 } // namespace mpx

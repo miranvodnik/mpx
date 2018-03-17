@@ -29,7 +29,7 @@ namespace sftp
 {
 
 SftpClientStart::SftpClientStart () :
-	MpxEventBase (ClientStartEvent)
+	MpxEventBase (EventCode)
 {
 }
 

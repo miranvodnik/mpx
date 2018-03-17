@@ -49,12 +49,12 @@ FtpClientWorker* FtpClientWorker::g_scenarioInitializer = new FtpClientWorker (t
 
 EventDescriptor FtpClientWorker::g_evntab [] =
 {
-	{ AnyState, StartEvent, HandleStartEvent, 0 },
-	{ AnyState, StopEvent, HandleStopEvent, 0 },
-	{ AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, 0 },
-	{ AnyState, JobFinishedEvent, HandleJobFinishedEvent, 0 },
-	{ 0, 0, 0, 0 },
+	{ AnyState, SftpInviteRequest::EventCode, HandleInviteRequestEvent },
+	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+	{ 0, 0, 0 },
 };
+
+MpxTaskBase::evnset FtpClientWorker::g_evnset = MpxTaskBase::CreateEventSet (FtpClientWorker::g_evntab);
 
 void FtpClientWorker::GenerateReport ()
 {
@@ -66,7 +66,7 @@ void FtpClientWorker::GenerateReport ()
 	cout << "\tFTP unresolved: " << m_connUnresolved << endl;
 }
 
-FtpClientWorker::FtpClientWorker (bool initialize)
+FtpClientWorker::FtpClientWorker (bool initialize) : FtpClient (g_evnset)
 {
 	if (!initialize)
 		return;
@@ -1343,10 +1343,8 @@ FtpClientWorker::FtpClientWorker(u_char* addrinfo, u_int size)
 }
 
 #else	// FTPQUEUEMAP
-FtpClientWorker::FtpClientWorker ()
+FtpClientWorker::FtpClientWorker () : FtpClient (g_evnset)
 {
-	RegisterEventHandlers (g_evntab);
-
 	m_sessionId = 0;
 	m_dirEnd = 0;
 	m_mkdPtr = 0;
@@ -4048,12 +4046,12 @@ bool FtpClientWorker::ReadWindowsListLine (char* parts [], int count, DirEntryIn
 	return true;
 }
 
-void FtpClientWorker::HandleStartEvent (MpxEventBase* event)
+void FtpClientWorker::StartTask ()
 {
 	ctx (((MpxTaskMultiplexer*) mpx ())->ctx ());
 }
 
-void FtpClientWorker::HandleStopEvent (MpxEventBase* event)
+void FtpClientWorker::StopTask ()
 {
 	Dispose ();
 }

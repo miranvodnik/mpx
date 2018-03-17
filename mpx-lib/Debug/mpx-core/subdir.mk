@@ -8,24 +8,21 @@ CPP_SRCS += \
 ../mpx-core/MpxRunnable.cpp \
 ../mpx-core/MpxRunningContext.cpp \
 ../mpx-core/MpxTaskMultiplexer.cpp \
-../mpx-core/MpxUtilities.cpp \
-../mpx-core/MpxXDRProcRegistry.cpp 
+../mpx-core/MpxUtilities.cpp 
 
 OBJS += \
 ./mpx-core/MpxEnvironment.o \
 ./mpx-core/MpxRunnable.o \
 ./mpx-core/MpxRunningContext.o \
 ./mpx-core/MpxTaskMultiplexer.o \
-./mpx-core/MpxUtilities.o \
-./mpx-core/MpxXDRProcRegistry.o 
+./mpx-core/MpxUtilities.o 
 
 CPP_DEPS += \
 ./mpx-core/MpxEnvironment.d \
 ./mpx-core/MpxRunnable.d \
 ./mpx-core/MpxRunningContext.d \
 ./mpx-core/MpxTaskMultiplexer.d \
-./mpx-core/MpxUtilities.d \
-./mpx-core/MpxXDRProcRegistry.d 
+./mpx-core/MpxUtilities.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

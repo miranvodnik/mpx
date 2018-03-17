@@ -28,7 +28,7 @@ namespace mpx
 class MpxTcp4TaskQueryEvent: public mpx::MpxEventBase
 {
 public:
-	MpxTcp4TaskQueryEvent (const char* hostname, char* port, char* name);
+	MpxTcp4TaskQueryEvent (const char* hostname, char* port, char* name, const char* encdeclib);
 	virtual ~MpxTcp4TaskQueryEvent ();
 	virtual const char* Name ()
 	{
@@ -37,14 +37,6 @@ public:
 	virtual MpxEventBase* Copy ()
 	{
 		return new MpxTcp4TaskQueryEvent (*this);
-	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
 	}
 	inline const char* hostname ()
 	{
@@ -58,10 +50,17 @@ public:
 	{
 		return m_name.c_str ();
 	}
+	inline const char* encdeclib ()
+	{
+		return m_encdeclib.c_str ();
+	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTcp4TaskQueryEventCode;
 private:
 	string m_hostname;
 	string m_port;
 	string m_name;
+	string m_encdeclib;
 };
 
 } /* namespace mpx */

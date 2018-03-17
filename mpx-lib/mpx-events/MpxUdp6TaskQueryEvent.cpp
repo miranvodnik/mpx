@@ -22,7 +22,7 @@ namespace mpx
 {
 
 MpxUdp6TaskQueryEvent::MpxUdp6TaskQueryEvent (const char* hostname, char* port, char* name) :
-	MpxEventBase (Udp6TaskQueryEvent), m_hostname (hostname), m_port (port), m_name (name)
+	MpxEventBase (MpxUdp6TaskQueryEvent::EventCode), m_hostname (hostname), m_port (port), m_name (name)
 {
 }
 

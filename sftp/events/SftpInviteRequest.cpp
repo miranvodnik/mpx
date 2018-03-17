@@ -22,7 +22,7 @@ namespace sftp
 {
 
 SftpInviteRequest::SftpInviteRequest (FtpRequest* request) :
-	MpxEventBase (InviteRequestEvent), m_request (request)
+	MpxEventBase (EventCode), m_request (request)
 {
 }
 

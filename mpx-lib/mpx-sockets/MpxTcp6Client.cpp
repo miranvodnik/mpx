@@ -120,7 +120,7 @@ int MpxTcp6Client::Connect (const sockaddr_in6* addr, uint16_t port)
 	if (m_IOHandle != 0)
 		return 0;
 
-	m_endPoint = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	m_endPoint = socket (AF_INET6, SOCK_STREAM, IPPROTO_TCP);
 	if (m_endPoint < 0)
 	{
 		cout << "socket() failed, errno = " << errno << endl;

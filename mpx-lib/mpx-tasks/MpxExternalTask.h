@@ -68,6 +68,8 @@ class MpxExternalTask: public mpx::MpxTaskBase
 public:
 	MpxExternalTask (const char* connStr = 0);
 	virtual ~MpxExternalTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
 	void CreateListeners (const char* connStr);
 	const char* CreateLocalListener (const char* connStr);
@@ -75,27 +77,26 @@ private:
 	const char* CreateTcp6Listener (const char* connStr);
 	void Release ();
 
-	;mpx_event_handler(HandleStartEvent, MpxExternalTask)
-	;mpx_event_handler(HandleStopEvent, MpxExternalTask)
+	mpx_event_handler(HandleLocalTaskQueryEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp4TaskQueryEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp6TaskQueryEvent, MpxExternalTask)
 
-	;mpx_event_handler(HandleLocalTaskQueryEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp4TaskQueryEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp6TaskQueryEvent, MpxExternalTask)
+	mpx_event_handler(HandleLocalListenerEvent, MpxExternalTask)
+	mpx_event_handler(HandleLocalClientEvent, MpxExternalTask)
+	mpx_event_handler(HandleLocalEndPointEvent, MpxExternalTask)
 
-	;mpx_event_handler(HandleLocalListenerEvent, MpxExternalTask)
-	;mpx_event_handler(HandleLocalClientEvent, MpxExternalTask)
-	;mpx_event_handler(HandleLocalEndPointEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp4ListenerEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp4ClientEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp4EndPointEvent, MpxExternalTask)
 
-	;mpx_event_handler(HandleTcp4ListenerEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp4ClientEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp4EndPointEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp6ListenerEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp6ClientEvent, MpxExternalTask)
+	mpx_event_handler(HandleTcp6EndPointEvent, MpxExternalTask)
 
-	;mpx_event_handler(HandleTcp6ListenerEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp6ClientEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTcp6EndPointEvent, MpxExternalTask)
+	mpx_event_handler(HandleTaskQueryEvent, MpxExternalTask)
+	mpx_event_handler(HandleTaskResponseEvent, MpxExternalTask)
 
-	;mpx_event_handler(HandleTaskQueryEvent, MpxExternalTask)
-	;mpx_event_handler(HandleTaskResponseEvent, MpxExternalTask)
+	mpx_event_handler(HandleJobFinishedEvent, MpxExternalTask)
 
 private:
 	static const char* g_protocolField;
@@ -106,6 +107,7 @@ private:
 	static const char* g_addressField;
 	static const char* g_portField;
 	static EventDescriptor g_evntab[];
+	static evnset g_evnset;
 
 	string m_connStr;
 	bool m_started;

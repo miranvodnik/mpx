@@ -25,8 +25,8 @@
 
 #include <mpx-core/MpxRunningContext.h>
 #include <mpx-core/MpxTaskMultiplexer.h>
-#include <mpx-core/MpxXDRProcRegistry.h>
 #include <mpx-tasks/MpxTaskBase.h>
+#include <mpx-events/MpxEventXDRItf.h>
 
 #include "mpx-core/MpxUtilities.h"
 
@@ -38,7 +38,7 @@ template <typename T> class MpxSocket
 public:
 	typedef T MpxSocketEvent;
 	MpxSocket (MpxTaskBase* task, bool fast = false, long int timeOut = 1000 * 1000 * 1000, bool seqPacket = false) :
-		m_task (task), m_fast (fast), m_timeOut (timeOut), m_seqPacket (seqPacket)
+		m_debug (false), m_task (task), m_fast (fast), m_timeOut (timeOut), m_seqPacket (seqPacket)
 	{
 		MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
 		if (mpx->getTid () != syscall (SYS_gettid))
@@ -189,6 +189,15 @@ public:
 		return 0;
 	}
 
+	MpxEventBase* DecodeEvent (MpxEventXDRItf* evnXdr)
+	{
+		MpxEventBase* event = 0;
+		ssize_t size = evnXdr->Decode (event, (char*) m_readBufferUse, m_readBufferPtr - m_readBufferUse);
+		if (size > 0)
+			m_readBufferUse += size;
+		return event;
+	}
+
 	inline MpxTaskBase* task ()
 	{
 		return m_task;
@@ -220,6 +229,11 @@ public:
 	inline u_int writelost ()
 	{
 		return m_writeBufferPtr - m_writeBuffer;
+	}
+
+	inline void debug (bool debug)
+	{
+		m_debug = debug;
 	}
 
 protected:
@@ -287,8 +301,12 @@ protected:
 
 		if (flags & EPOLLIN)
 		{
+			if (m_debug)
+				cout << "EPOLLIN" << endl;
 			if (m_fast)
 			{
+				if (m_debug)
+					cout << "FAST" << endl;
 				if (m_readBufferUse > m_readBuffer)
 				{
 					u_char* src;
@@ -305,6 +323,8 @@ protected:
 
 				if (ioctl (fd, FIONREAD, &needSpace) < 0)
 				{
+					if (m_debug)
+						cout << "ioctl failed" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 					return;
@@ -312,6 +332,8 @@ protected:
 
 				if (needSpace == 0)
 				{
+					if (m_debug)
+						cout << "EOF" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, 0, 0), true);
 					return;
@@ -326,6 +348,8 @@ protected:
 					u_char* buffer = new u_char [needSpace];
 					if (buffer == 0)
 					{
+						if (m_debug)
+							cout << "malloc failed" << endl;
 						Release ();
 						m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 						return;
@@ -347,9 +371,13 @@ protected:
 				{
 					if (errno == EWOULDBLOCK)
 					{
+						if (m_debug)
+							cout << "would block" << endl;
 						StartTimer (ctx->realTime ());
 						return;
 					}
+					if (m_debug)
+						cout << "recv failed" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 					return;
@@ -357,8 +385,13 @@ protected:
 
 				m_rcvd += recvSize;
 				m_readBufferPtr += recvSize;
+				if (m_debug)
+					cout << "recv = " << recvSize << endl;
 
-				m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, recvSize, 0), true);
+				if (m_debug)
+					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, recvSize, 0), true);
+				else
+					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, recvSize, 0), true);
 			}
 			else
 			{
@@ -366,6 +399,8 @@ protected:
 
 				if (ioctl (fd, FIONREAD, &needSpace) < 0)
 				{
+					if (m_debug)
+						cout << "ioctl failed" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 					return;
@@ -373,6 +408,8 @@ protected:
 
 				if (needSpace == 0)
 				{
+					if (m_debug)
+						cout << "no space" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, 0, 0), true);
 					return;
@@ -381,6 +418,8 @@ protected:
 				u_char* buffer = new u_char [needSpace];
 				if (buffer == 0)
 				{
+					if (m_debug)
+						cout << "malloc failed" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 					return;
@@ -392,14 +431,20 @@ protected:
 					delete [] buffer;
 					if (errno == EWOULDBLOCK)
 					{
+						if (m_debug)
+							cout << "would block" << endl;
 						StartTimer (ctx->realTime ());
 						return;
 					}
+					if (m_debug)
+						cout << "recv failed" << endl;
 					Release ();
 					m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, errno, 0, 0), true);
 					return;
 				}
 
+				if (m_debug)
+					cout << "received " << recvSize << endl;
 				m_rcvd += recvSize;
 
 				m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN, 0, recvSize, buffer), true);
@@ -408,6 +453,8 @@ protected:
 		}
 		else if (flags & EPOLLOUT)
 		{
+			if (m_debug)
+				cout << "EPOLLOUT" << endl;
 			size_t size = m_writeBufferPtr - m_writeBuffer;
 			ssize_t count = send (fd, m_writeBuffer, size, 0);
 			if (count <= 0)
@@ -426,6 +473,8 @@ protected:
 		}
 		else
 		{
+			if (m_debug)
+				cout << "EPOLLNONE" << endl;
 			Release ();
 			m_task->Send (m_task, new MpxSocketEvent (this, EPOLLIN | EPOLLOUT, 0, 0, 0), true);
 			return;
@@ -433,8 +482,9 @@ protected:
 
 		StartTimer (ctx->realTime ());
 	}
-
 protected:
+	static const long int InfiniteTimer = -1;
+	bool m_debug;
 	MpxTaskBase* m_task;
 	bool m_fast;
 	long int m_timeOut;

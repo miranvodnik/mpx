@@ -28,7 +28,7 @@ class MpxTcp4ListenerEvent: public mpx::MpxEventBase
 {
 public:
 	MpxTcp4ListenerEvent (int fd) :
-		MpxEventBase (Tcp4ListenerEvent), m_fd (fd)
+		MpxEventBase (MpxTcp4ListenerEvent::EventCode), m_fd (fd)
 	{
 	}
 	virtual ~MpxTcp4ListenerEvent ()
@@ -42,18 +42,12 @@ public:
 	{
 		return new MpxTcp4ListenerEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline int fd ()
 	{
 		return m_fd;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTcp4ListenerEventCode;
 private:
 	int m_fd;
 };

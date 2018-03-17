@@ -8,6 +8,7 @@ C_SRCS += \
 
 CPP_SRCS += \
 ../mpx-events/MpxEventBase.cpp \
+../mpx-events/MpxEventXDRItf.cpp \
 ../mpx-events/MpxExternalTaskEvent.cpp \
 ../mpx-events/MpxJobFinishedEvent.cpp \
 ../mpx-events/MpxLocalClientEvent.cpp \
@@ -34,6 +35,7 @@ CPP_SRCS += \
 
 OBJS += \
 ./mpx-events/MpxEventBase.o \
+./mpx-events/MpxEventXDRItf.o \
 ./mpx-events/MpxExternalTaskEvent.o \
 ./mpx-events/MpxJobFinishedEvent.o \
 ./mpx-events/MpxLocalClientEvent.o \
@@ -64,6 +66,7 @@ C_DEPS += \
 
 CPP_DEPS += \
 ./mpx-events/MpxEventBase.d \
+./mpx-events/MpxEventXDRItf.d \
 ./mpx-events/MpxExternalTaskEvent.d \
 ./mpx-events/MpxJobFinishedEvent.d \
 ./mpx-events/MpxLocalClientEvent.d \

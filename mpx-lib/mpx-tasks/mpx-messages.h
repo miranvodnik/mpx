@@ -23,11 +23,13 @@ typedef enum MpxMessageCode MpxMessageCode;
 
 struct MpxExternalTaskRequest {
 	char *taskName;
+	char *encdeclib;
 };
 typedef struct MpxExternalTaskRequest MpxExternalTaskRequest;
 
 struct MpxExternalTaskReply {
 	long task;
+	char *encdeclib;
 };
 typedef struct MpxExternalTaskReply MpxExternalTaskReply;
 

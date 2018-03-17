@@ -17,25 +17,39 @@
 //    contact: miran.vodnik@siol.net
 
 #include <mpx-tasks/MpxTcp6EndPointProxyTask.h>
+#include <mpx-working-threads/MpxWorkingQueue.h>
+#include <mpx-jobs/MpxJobs.h>
 
 namespace mpx
 {
 
 EventDescriptor MpxTcp6EndPointProxyTask::g_evntab [] =
 {
-	{ AnyState, Tcp6EndPointEvent, HandleTcp6EndPointEvent, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxTcp6EndPointEvent::EventCode, HandleTcp6EndPointEvent },
+	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+	{ 0, 0, 0 }
 };
 
-MpxTcp6EndPointProxyTask::MpxTcp6EndPointProxyTask (MpxTaskBase* task, MpxTcp6EndPoint* tcp6EndPoint) :
-	MpxProxyTask (task, tcp6EndPoint)
+MpxTaskBase::evnset MpxTcp6EndPointProxyTask::g_evnset = MpxTaskBase::CreateEventSet(MpxTcp6EndPointProxyTask::g_evntab);
+
+MpxTcp6EndPointProxyTask::MpxTcp6EndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp6EndPoint* tcp6EndPoint) :
+	MpxProxyTask (g_evnset, task, tcp6EndPoint), m_encdeclib (encdeclib)
 {
 	tcp6EndPoint->task (this);
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxTcp6EndPointProxyTask::~MpxTcp6EndPointProxyTask ()
 {
+}
+
+void MpxTcp6EndPointProxyTask::StartTask ()
+{
+	MpxWorkingQueue::Put (new MpxOpenLibrary (this, m_encdeclib.c_str()));
+}
+
+void MpxTcp6EndPointProxyTask::StopTask ()
+{
+
 }
 
 void MpxTcp6EndPointProxyTask::HandleTcp6EndPointEvent (MpxEventBase *event)
@@ -53,33 +67,10 @@ void MpxTcp6EndPointProxyTask::HandleTcp6EndPointEvent (MpxEventBase *event)
 	case EPOLLIN:
 		if ((tcp6EndPointEvent->error () == 0) && (tcp6EndPointEvent->size () != 0))
 		{
-			MpxEventStruct* req = new MpxEventStruct;
-			memset (req, 0, sizeof(MpxEventStruct));
-			if (tcp6EndPoint->ReadXdrRequest ((xdrproc_t) xdr_MpxEventStruct, (void*) req) < 0)
-			{
-				delete req;
-				if (false)
-					cout << "proxy " << this << " event: tcp6 end point input error" << endl;
-			}
-			else
-			{
-				if (false)
-					cout << "proxy " << this << " event: tcp6 end point input ok" << endl;
-				xdrpair_t xdrPair = MpxXDRProcRegistry::Retrieve (req->m_code);
-				evnalloc_t evnAlloc = xdrPair.second.second;
-				if (evnAlloc == 0)
-				{
-					if (false)
-						cout << "proxy " << this << " missing event allocator" << endl;
-				}
-				else
-				{
-					MpxEventBase* event = evnAlloc ();
-					event->Decode (req);
-					Send (m_task, event, false);
-				}
-				xdr_free ((xdrproc_t) xdr_int, (char*) req);
-			}
+			MpxEventBase* event;
+			while ((event = tcp6EndPoint->DecodeEvent(m_eventXDR)) != 0)
+				Send (m_task, event, false);
+			break;
 		}
 		break;
 	case EPOLLOUT:
@@ -91,6 +82,35 @@ void MpxTcp6EndPointProxyTask::HandleTcp6EndPointEvent (MpxEventBase *event)
 			cout << "proxy " << this << " event: tcp6 end point default" << endl;
 		break;
 	}
+}
+
+void MpxTcp6EndPointProxyTask::HandleJobFinishedEvent (MpxEventBase *event)
+{
+	while (true)
+	{
+		MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
+		if (jobFinishedEvent == 0)
+			break;
+		MpxOpenLibrary* openLibrary = dynamic_cast < MpxOpenLibrary* > (jobFinishedEvent->job());
+		if (openLibrary == 0)
+			break;
+		if ((m_lib = openLibrary->lib()) == 0)
+			break;
+		if ((m_fcn = (edfunc) openLibrary->fcn()) == 0)
+			break;
+		if ((m_eventXDR = (*m_fcn) ()) == 0)
+			break;
+
+		MpxMessage msg;
+		msg.m_Code = ExternalTaskReplyCode;
+		msg.MpxMessage_u.m_externalTaskReply.task = (long) m_task;
+		msg.MpxMessage_u.m_externalTaskReply.encdeclib = strdup (m_encdeclib.c_str());
+		if (m_socket->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
+			break;
+
+		return;
+	}
+	Dispose (false);
 }
 
 } // namespace mpx

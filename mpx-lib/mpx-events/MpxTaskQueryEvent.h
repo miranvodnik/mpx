@@ -28,8 +28,9 @@ namespace mpx
 class MpxTaskQueryEvent: public MpxEventBase
 {
 public:
-	MpxTaskQueryEvent (const char* taskName, MpxTaskQueryEventType queryType, void* endPoint) :
-		MpxEventBase (TaskQueryEvent), m_taskName (taskName), m_queryType (queryType), m_endPoint (endPoint)
+	MpxTaskQueryEvent (const char* taskName, const char* encdeclib, MpxTaskQueryEventType queryType, void* endPoint) :
+		MpxEventBase (MpxTaskQueryEvent::EventCode), m_taskName (taskName), m_encdeclib (encdeclib), m_queryType (
+			queryType), m_endPoint (endPoint)
 	{
 	}
 	virtual ~MpxTaskQueryEvent ()
@@ -43,17 +44,13 @@ public:
 	{
 		return new MpxTaskQueryEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline const char* taskName ()
 	{
 		return m_taskName.c_str ();
+	}
+	inline const char* encdeclib ()
+	{
+		return m_encdeclib.c_str ();
 	}
 	inline MpxTaskQueryEventType queryType ()
 	{
@@ -63,8 +60,11 @@ public:
 	{
 		return m_endPoint;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTaskQueryEventCode;
 private:
 	string m_taskName;
+	string m_encdeclib;
 	MpxTaskQueryEventType m_queryType;
 	void* m_endPoint;
 };

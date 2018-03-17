@@ -43,16 +43,8 @@ public:
 	{
 		return new SftpClientStop (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 public:
-	static const int ClientStopEvent = 1003;
+	static const int EventCode = 1003;
 };
 
 } // namespace sftp

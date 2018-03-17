@@ -29,7 +29,7 @@ namespace sftp
 {
 
 SftpJobInfo::SftpJobInfo (u_int clientId, u_int jobCount, u_int sessionId, char* msg) :
-	MpxEventBase (SftpJobInfo::JobInfoEvent),
+	MpxEventBase (SftpJobInfo::EventCode),
 	m_clientId (clientId), m_jobCount (jobCount), m_sessionId (sessionId), m_msg (strdup(msg))
 {
 }

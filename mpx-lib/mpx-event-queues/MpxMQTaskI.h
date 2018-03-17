@@ -26,8 +26,8 @@ namespace mpx
 class MpxMQTaskI: public mpx::MpxTaskBase
 {
 public:
-	MpxMQTaskI (const char* name = 0) :
-		MpxTaskBase (name)
+	MpxMQTaskI (evnset& e, const char* name = 0) :
+		MpxTaskBase (e, name)
 	{
 	}
 

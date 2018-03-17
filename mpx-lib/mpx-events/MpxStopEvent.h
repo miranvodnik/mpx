@@ -28,7 +28,7 @@ class MpxStopEvent: public mpx::MpxEventBase
 {
 public:
 	MpxStopEvent () :
-		MpxEventBase (StopEvent)
+		MpxEventBase (MpxStopEvent::EventCode)
 	{
 	}
 	virtual ~MpxStopEvent ()
@@ -43,14 +43,8 @@ public:
 	{
 		return new MpxStopEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxStopEventCode;
 private:
 	void Dispose ();
 };

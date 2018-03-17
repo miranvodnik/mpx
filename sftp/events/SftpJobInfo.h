@@ -43,14 +43,6 @@ public:
 	{
 		return new SftpJobInfo (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline u_int clientId ()
 	{
 		return m_clientId;
@@ -68,7 +60,7 @@ public:
 		return m_msg;
 	}
 public:
-	static const int JobInfoEvent = 1006;
+	static const int EventCode = 1006;
 private:
 	u_int m_clientId;
 	u_int m_jobCount;

@@ -38,14 +38,6 @@ public:
 	{
 		return new MpxPosixMQTaskQueryEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline const char* path ()
 	{
 		return m_path.c_str ();
@@ -54,6 +46,8 @@ public:
 	{
 		return m_name.c_str ();
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxPosixMQTaskQueryEventCode;
 private:
 	string m_path;
 	string m_name;

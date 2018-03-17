@@ -31,7 +31,7 @@ sigset_t MpxRunningContext::g_sigset; //!< signals handled by all instances of M
 MpxRunningContext::MpxSignalContext* MpxRunningContext::g_sigActions [_NSIG]; //!< signal actions of all signals
 MpxRunningContext* MpxRunningContext::g_initializer = new MpxRunningContext (true);	//!< signals stuff initializer
 
-/*! @brief private constructor for signal stuff initializer
+/*! private constructor for signal stuff initializer
  *
  *  this constructor is private and cannot be used to create object instances
  *  Its purpose is to create single signal stuff initializer which initializes
@@ -98,7 +98,7 @@ MpxRunningContext::MpxRunningContext (initfunc f, exitfunc g, timehookfunc h, ct
 	m_epollSetId = 0;
 }
 
-/*! @brief I/O multiplexer destructor
+/*! I/O multiplexer destructor
  *
  *  stop internal message queue and release all internal
  *  data structures
@@ -153,7 +153,7 @@ MpxRunningContext::~MpxRunningContext ()
 	m_epollSetId = 0;
 }
 
-/*! @brief I/O multiplexer main loop
+/*! I/O multiplexer main loop
  *
  *  main loop of I/O multiplexer. It handles virtually unlimited number
  *  of file descriptors of any kind, timers and signal handlers
@@ -303,7 +303,7 @@ int MpxRunningContext::MainLoop (void)
 	return status;
 }
 
-/*! @brief check validity of time
+/*! check validity of time
  *
  *  function checks difference between CPU and real time. If CPU
  *  and real times elapsed from last iteration of I/O multiplexer
@@ -370,7 +370,7 @@ void MpxRunningContext::CheckTimeValidity ()
 	}
 }
 
-/*! @brief compensate timers
+/*! compensate timers
  *
  *  functions adjusts expiration times for all timers registered
  *  by an instance of I/O multiplexer. All timers are restarted:
@@ -408,7 +408,7 @@ void MpxRunningContext::CompensateTimers (long long timeDiff)
 	m_tmrset.clear ();
 }
 
-/*! @brief invoke timer call-back functions
+/*! invoke timer call-back functions
  *
  *  this function is called at the beginning of each iteration of
  *  I/O multiplexer main loop. Shortly before this function call
@@ -440,10 +440,10 @@ void MpxRunningContext::CompensateTimers (long long timeDiff)
  *  can be achieved by setting this difference to 0. This difference
  *  is finally saved into m_timer.
  *
- *  @return null there are no active timers in this instance of I/O
+ *  @return **null** there are no active timers in this instance of I/O
  *  multiplexer. Next iteration will wait forever until some I/O activity
  *  happens or until interrupted by signal
- *  @return other maximal time to wait until next iteration of I/O
+ *  @return **other** maximal time to wait until next iteration of I/O
  *  multiplexer main loop
  *
  */
@@ -519,7 +519,7 @@ struct timespec* MpxRunningContext::HandleTimers (void)
 	return tp;
 }
 
-/*! @brief register timer
+/*! register timer
  *
  *  create timer object and put it into list of prepared timers.
  *  This timer will be put into the set of active timers at the
@@ -542,7 +542,7 @@ ctx_timer_t MpxRunningContext::RegisterTimer (struct timespec timer, tmrfunc f, 
 	return (ctx_timer_t) tmr;
 }
 
-/*! @brief invoke I/O call-back functions
+/*! invoke I/O call-back functions
  *
  *  function will invoke call-back functions for all file descriptors
  *  which are ready for requested I/O operation in the current
@@ -577,7 +577,7 @@ void MpxRunningContext::HandleDescriptors (int count)
 	}
 }
 
-/*! @brief invoke I/O handler outside of I/O multiplexer environment
+/*! invoke I/O handler outside of I/O multiplexer environment
  *
  *  file descriptor call-back functions can be invoked also from the
  *  application environment, for example from other call-back functions
@@ -597,7 +597,7 @@ void MpxRunningContext::ReplyDescriptor (ctx_fddes_t hdlr, unsigned int flags, i
 	pthread_setcancelstate (PTHREAD_CANCEL_DISABLE, 0);
 }
 
-/*! @brief register call-back function for file descriptor
+/*! register call-back function for file descriptor
  *
  *  function creates new instance of CDescriptor object associated
  *  with given file descriptor and puts it into list of prepared
@@ -612,8 +612,8 @@ void MpxRunningContext::ReplyDescriptor (ctx_fddes_t hdlr, unsigned int flags, i
  *  @param appdata general reference to some data provided by user
  *  @param info any text which should be displayed by stat()
  *
- *  @return 0 cannot register file descriptor
- *  @return other address of newly created instance of CDescriptor
+ *  @return **0** cannot register file descriptor
+ *  @return **other** address of newly created instance of CDescriptor
  *
  */
 ctx_fddes_t MpxRunningContext::RegisterDescriptor (uint flags, int fd, cbfunc f, ctx_appdt_t appdata, const char* info)
@@ -625,7 +625,7 @@ ctx_fddes_t MpxRunningContext::RegisterDescriptor (uint flags, int fd, cbfunc f,
 	return hdlr;
 }
 
-/*! @brief active file descriptors
+/*! active file descriptors
  *
  *  at the beginning of every iteration of I/O multiplexer main loop
  *  objects associated with file descriptor call-back functions
@@ -697,7 +697,7 @@ void MpxRunningContext::ActivateDescriptors (void)
 	m_nfds = m_cbset.size ();
 }
 
-/*! @brief enable I/O handler activity
+/*! enable I/O handler activity
  *
  *  modifies EPOLL activity of file descriptor associated with I/O
  *  handler
@@ -725,7 +725,7 @@ void MpxRunningContext::EnableDescriptor (ctx_fddes_t h, uint flags)
 	epoll_ctl (m_epollSetId, EPOLL_CTL_MOD, fd, &event);
 }
 
-/*! @brief disable I/O handler activity
+/*! disable I/O handler activity
  *
  *  modifies EPOLL activity of file descriptor associated with I/O
  *  handler
@@ -753,7 +753,7 @@ void MpxRunningContext::DisableDescriptor (ctx_fddes_t h, uint flags)
 	epoll_ctl (m_epollSetId, EPOLL_CTL_MOD, fd, &event);
 }
 
-/*! @brief remove I/O handler
+/*! remove I/O handler
  *
  *  remove I/O handler from set of active handlers. Handler is
  *  marked for deletion and its reference will be put into set
@@ -784,7 +784,7 @@ void MpxRunningContext::RemoveDescriptor (ctx_fddes_t h)
 		m_cblist.push_back (hdlr);
 }
 
-/*! @brief register signal handler
+/*! register signal handler
  *
  *  registers signal handler using sigaction paradigm and creates
  *  an instance of CSignalContext (signal handler in terms of I/O
@@ -797,8 +797,8 @@ void MpxRunningContext::RemoveDescriptor (ctx_fddes_t h)
  *  @param f call-back function associated with this signal
  *  @param appdata general reference to application data
  *
- *  @return 0 signal handler cannot be created
- *  @return other generalized reference to an instance of
+ *  @return **0** signal handler cannot be created
+ *  @return **other** generalized reference to an instance of
  *  CSignalHandler (signal handler in terms of I/O multiplexer)
  *
  */
@@ -831,7 +831,7 @@ ctx_sig_t MpxRunningContext::RegisterSignal (int sig, sigfunc f, ctx_appdt_t app
 	return hdlr;
 }
 
-/*! @brief remove signal handler from shared list
+/*! remove signal handler from shared list
  *
  *  signal handler (reference to CSignalContext) is removed from
  *  shared list of signal handlers. Since it is shared between all
@@ -851,7 +851,7 @@ void MpxRunningContext::RemoveSignal (ctx_sig_t hdlr)
 	sigUnlock ();
 }
 
-/*! @brief OS signal handler for any signal
+/*! OS signal handler for any signal
  *  function is sigaction form of signal handler for specified signal.
  *  Its only purpose is to remember siginfo_t information reported
  *  by OS. This job is performed in signal context and must be as
@@ -871,7 +871,7 @@ void MpxRunningContext::HandleSignal (int sig, siginfo_t *info, void *data)
 	sigUnlock ();
 }
 
-/*! @brief handle all signals in sync with application
+/*! handle all signals in sync with application
  *
  *  function invokes signal handler call-back functions after epoll_wait()
  *  has been interrupted and are thus invoked in sync with application.
@@ -894,7 +894,7 @@ void MpxRunningContext::HandleAllSignals (MpxRunningContext* currentCtx)
 	sigUnlock ();
 }
 
-/* @brief report status for all registered I/O handlers
+/* report status for all registered I/O handlers
  *
  *  write status of all I/O handlers and timers
  *

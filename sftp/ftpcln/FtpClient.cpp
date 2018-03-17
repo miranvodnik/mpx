@@ -92,8 +92,8 @@ int FtpClient::verifyCallback (int okCode, X509_STORE_CTX* storeCtx)
 /*              is associated with single FTP client session    */
 /****************************************************************/
 
-FtpClient::FtpClient () :
-	FtpClientInterface (FtpProtocol)
+FtpClient::FtpClient (evnset& e) :
+	FtpClientInterface (e, FtpProtocol)
 {
 	m_ctx = 0;
 

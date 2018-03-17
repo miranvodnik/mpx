@@ -36,14 +36,6 @@ public:
 	{
 		return new MpxUdp6TaskQueryEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline const char* hostname ()
 	{
 		return m_hostname.c_str ();
@@ -56,6 +48,8 @@ public:
 	{
 		return m_name.c_str ();
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxUdp6TaskQueryEventCode;
 private:
 	string m_hostname;
 	string m_port;

@@ -29,7 +29,7 @@ namespace sftp
 {
 
 SftpClientStop::SftpClientStop () :
-	MpxEventBase (ClientStopEvent)
+	MpxEventBase (EventCode)
 {
 	// TODO Auto-generated constructor stub
 

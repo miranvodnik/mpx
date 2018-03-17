@@ -28,7 +28,7 @@ namespace mpx
 class MpxLocalTaskQueryEvent: public mpx::MpxEventBase
 {
 public:
-	MpxLocalTaskQueryEvent (const char* path, const char* name);
+	MpxLocalTaskQueryEvent (const char* path, const char* name, const char* encdeclib);
 	virtual ~MpxLocalTaskQueryEvent ();
 	virtual const char* Name ()
 	{
@@ -38,14 +38,6 @@ public:
 	{
 		return new MpxLocalTaskQueryEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline const char* path ()
 	{
 		return m_path.c_str ();
@@ -54,9 +46,16 @@ public:
 	{
 		return m_name.c_str ();
 	}
+	inline const char* encdeclib ()
+	{
+		return m_encdeclib.c_str ();
+	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxLocalTaskQueryEventCode;
 private:
 	string m_path;
 	string m_name;
+	string m_encdeclib;
 };
 
 } /* namespace mpx */

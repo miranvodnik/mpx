@@ -29,35 +29,17 @@ using namespace std;
 namespace mpx
 {
 
+/*! macro used to remember source file and source line
+ *
+ */
 #define	_MPX_STR2(line) #line
 #define	_MPX_STR(line) _MPX_STR2(line)
 #define	_mpx_src_info __FILE__ ":" _MPX_STR(__LINE__)
 
-class MpxError
-{
-public:
-	MpxError (u_int errorCode, const char* errorMessage, const char* sourceInfo = 0) :
-		m_errorCode (errorCode), m_errorMessage (errorMessage), m_sourceInfo (sourceInfo)
-	{
-	}
-	inline u_int errorCode ()
-	{
-		return m_errorCode;
-	}
-	inline const char* errorMessage ()
-	{
-		return m_errorMessage.c_str ();
-	}
-	inline const char* sourceInfo ()
-	{
-		return m_sourceInfo.c_str ();
-	}
-private:
-	u_int m_errorCode;
-	string m_errorMessage;
-	string m_sourceInfo;
-};
-
+/*! Utilities used in mpx-lib library
+ *
+ * Currently, there is only one utility function present in this class
+ */
 class MpxUtilities
 {
 private:

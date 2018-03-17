@@ -174,8 +174,10 @@ class FtpClient: public FtpClientInterface
 private:
 	FtpClient (bool initialize);
 public:
-	FtpClient ();
+	FtpClient (evnset& e);
 	virtual ~FtpClient ();
+	virtual void StartTask () {}
+	virtual void StopTask () {}
 
 	typedef void (FtpClient::*ReplyHandler) (const char*line);
 	typedef void (*FtpCallback) (FtpClient *ftp, FtpContext context, FtpStatus status, FtpState state, void* args [], void* appData);

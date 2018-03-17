@@ -162,8 +162,10 @@ class SftpClient: public FtpClientInterface
 private:
 	SftpClient (bool initialize);
 public:
-	SftpClient ();
+	SftpClient (evnset& e);
 	virtual ~SftpClient ();
+	virtual void StartTask () {}
+	virtual void StopTask () {}
 
 	typedef void (SftpClient::*ReplyHandler) (void*args []);
 	typedef void (SftpClient::*RequestHandler) (void*args []);

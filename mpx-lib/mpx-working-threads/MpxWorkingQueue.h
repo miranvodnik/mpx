@@ -18,9 +18,8 @@
 
 #pragma once
 
+#include <mpx-jobs/MpxJob.h>
 #include <pthread.h>
-#include <mpx-working-threads/MpxJob.h>
-
 #include <deque>
 using namespace std;
 

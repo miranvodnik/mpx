@@ -1,5 +1,5 @@
 
-SUBDIRS=mpx-lib sftp sftp-test
+SUBDIRS=mpx-lib sftp sftp-test mpx-test-1 mpx-test-02 mpx-test-03 mpx-edlib mpx-task-provider mpx-task-consumer
 
 .PHONY: subdirs $(SUBDIRS)
 

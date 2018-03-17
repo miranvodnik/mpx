@@ -22,19 +22,26 @@
 #include <mpx-sockets/MpxLocalEndPoint.h>
 #include <mpx-events/MpxLocalEndPointEvent.h>
 
+#include <string>
+using namespace std;
+
 namespace mpx
 {
 
 class MpxLocalEndPointProxyTask: public MpxProxyTask <MpxLocalEndPointEvent>
 {
 public:
-	MpxLocalEndPointProxyTask (MpxTaskBase* task, MpxLocalEndPoint* localEndPoint);
+	MpxLocalEndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxLocalEndPoint* localEndPoint);
 	virtual ~MpxLocalEndPointProxyTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
 	mpx_event_handler(HandleLocalEndPointEvent, MpxLocalEndPointProxyTask)
-	;
+	mpx_event_handler(HandleJobFinishedEvent, MpxLocalEndPointProxyTask)
 private:
 	static EventDescriptor g_evntab[];
+	static evnset g_evnset;
+	string m_encdeclib;
 };
 
 } // namespace mpx

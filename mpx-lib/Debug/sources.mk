@@ -26,6 +26,7 @@ SUBDIRS := \
 mpx-core \
 mpx-event-queues \
 mpx-events \
+mpx-jobs \
 mpx-sockets \
 mpx-tasks \
 mpx-working-threads \

@@ -20,8 +20,8 @@
 #include <mpx-event-queues/MpxLocalMQTask.h>
 #include <mpx-core/MpxEnvironment.h>
 #include <mpx-core/MpxTaskMultiplexer.h>
+#include <mpx-jobs/MpxJobGetAddrInfo.h>
 #include <mpx-tasks/MpxTaskBase.h>
-#include <mpx-working-threads/MpxJobGetAddrInfo.h>
 #include <mpx-working-threads/MpxWorkingQueue.h>
 using namespace mpx;
 #include <ftpwrk/FtpClientWorker.h>
@@ -217,13 +217,11 @@ static FtpRequest* CreateFtpRequest (int n, char*p [])
 class SftpTest: public MpxTaskBase
 {
 public:
-	SftpTest ()
+	SftpTest () : MpxTaskBase (g_evnset)
 	{
 		m_request = 0;
 		m_it = m_sftpSet.end ();
 		m_timer = 0;
-
-		RegisterEventHandlers (g_events);
 	}
 	~SftpTest ()
 	{
@@ -238,6 +236,8 @@ public:
 		m_ftpSet.clear ();
 		m_sftpSet.clear ();
 	}
+	virtual void StartTask ();
+	virtual void StopTask ();
 	inline void AddFtpWorker (MpxTaskBase* ftp)
 	{
 		m_ftpSet.insert (ftp);
@@ -292,8 +292,6 @@ public:
 		return false;
 	}
 private:
-	mpx_event_handler(HandleStartEvent, SftpTest)
-	mpx_event_handler(HandleStopEvent, SftpTest)
 	mpx_event_handler(HandleTimerEvent, SftpTest)
 	mpx_event_handler(HandleInviteReplyEvent, SftpTest)
 	mpx_event_handler(HandleClientStartEvent, SftpTest)
@@ -304,6 +302,7 @@ private:
 
 private:
 	static EventDescriptor g_events [];
+	static evnset g_evnset;
 	taskset m_ftpSet;
 	taskset m_sftpSet;
 	FtpRequest* m_request;
@@ -313,19 +312,19 @@ private:
 
 EventDescriptor SftpTest::g_events [] =
 {
-	{ AnyState, StartEvent, HandleStartEvent, 0 },
-	{ AnyState, StopEvent, HandleStopEvent, 0 },
-	{ AnyState, TimerEvent, HandleTimerEvent, 0 },
-	{ AnyState, SftpInviteReply::InviteReplyEvent, HandleInviteReplyEvent, 0 },
-	{ AnyState, SftpClientStart::ClientStartEvent, HandleClientStartEvent, 0 },
-	{ AnyState, SftpClientStop::ClientStopEvent, HandleClientStopEvent, 0 },
-	{ AnyState, SftpClientRequest::ClientRequestEvent, HandleClientRequestEvent, 0 },
-	{ AnyState, SftpClientReply::ClientReplyEvent, HandleClientReplyEvent, 0 },
-	{ AnyState, SftpJobInfo::JobInfoEvent, HandleJobInfoEvent, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxTimerEvent::EventCode, HandleTimerEvent },
+	{ AnyState, SftpInviteReply::EventCode, HandleInviteReplyEvent },
+	{ AnyState, SftpClientStart::EventCode, HandleClientStartEvent },
+	{ AnyState, SftpClientStop::EventCode, HandleClientStopEvent },
+	{ AnyState, SftpClientRequest::EventCode, HandleClientRequestEvent },
+	{ AnyState, SftpClientReply::EventCode, HandleClientReplyEvent },
+	{ AnyState, SftpJobInfo::EventCode, HandleJobInfoEvent },
+	{ 0, 0, 0 }
 };
 
-void SftpTest::HandleStartEvent (MpxEventBase* event)
+MpxTaskBase::evnset SftpTest::g_evnset = MpxTaskBase::CreateEventSet (SftpTest::g_events);
+
+void SftpTest::StartTask ()
 {
 	if (m_request == 0)
 		return;
@@ -334,7 +333,7 @@ void SftpTest::HandleStartEvent (MpxEventBase* event)
 	m_timer = StartTimer (GetCurrentTime ());
 }
 
-void SftpTest::HandleStopEvent (MpxEventBase* event)
+void SftpTest::StopTask ()
 {
 	m_ftpSet.clear ();
 	m_sftpSet.clear ();

@@ -22,20 +22,26 @@
 #include <mpx-sockets/MpxLocalClient.h>
 #include <mpx-events/MpxLocalClientEvent.h>
 
+#include <string>
+using namespace std;
+
 namespace mpx
 {
 
 class MpxLocalClientProxyTask: public MpxProxyTask <MpxLocalClientEvent>
 {
 public:
-	MpxLocalClientProxyTask (MpxTaskBase* task, MpxLocalClient* localClient);
+	MpxLocalClientProxyTask (MpxTaskBase* task, const char* encdeclib, MpxLocalClient* localClient);
 	virtual ~MpxLocalClientProxyTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
 	mpx_event_handler(HandleLocalClientEvent, MpxLocalClientProxyTask)
-	;
+	mpx_event_handler(HandleJobFinishedEvent, MpxLocalClientProxyTask)
 private:
 	static EventDescriptor g_evntab[];
-
+	static evnset g_evnset;
+	string m_encdeclib;
 };
 
 } // namespace mpx

@@ -20,8 +20,8 @@
 
 #include <mpx-events/MpxEvents.h>
 #include <mpx-core/MpxTaskMultiplexer.h>
+#include <mpx-jobs/MpxJobGetAddrInfo.h>
 #include <mpx-working-threads/MpxWorkingQueue.h>
-#include <mpx-working-threads/MpxJobGetAddrInfo.h>
 using namespace mpx;
 #include <events/SftpEvents.h>
 using namespace sftp;
@@ -112,11 +112,11 @@ private:
 public:
 	SftpClientWorker ();
 	virtual ~SftpClientWorker ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 
 private:
 
-	mpx_event_handler(HandleStartEvent, SftpClientWorker)
-	mpx_event_handler(HandleStopEvent, SftpClientWorker)
 	mpx_event_handler(HandleInviteRequestEvent, SftpClientWorker)
 	mpx_event_handler(HandleJobFinishedEvent, SftpClientWorker)
 
@@ -416,6 +416,7 @@ private:
 	static u_long m_connUnresolved;
 
 	static EventDescriptor g_evntab [];
+	static evnset g_evnset;
 };
 
 } /* namespace sftp */

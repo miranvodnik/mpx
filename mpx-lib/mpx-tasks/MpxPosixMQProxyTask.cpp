@@ -17,20 +17,22 @@
 //    contact: miran.vodnik@siol.net
 
 #include <mpx-tasks/MpxPosixMQProxyTask.h>
+#include <mpx-events/MpxPosixMQEvent.h>
 
 namespace mpx
 {
 
 EventDescriptor MpxPosixMQProxyTask::g_evntab[] =
 {
-	{ AnyState, PosixMQEvent, HandlePosixMQEvent, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxPosixMQEvent::EventCode, HandlePosixMQEvent },
+	{ 0, 0, 0 }
 };
 
+MpxTaskBase::evnset MpxPosixMQProxyTask::g_evnset = MpxTaskBase::CreateEventSet(MpxPosixMQProxyTask::g_evntab);
+
 MpxPosixMQProxyTask::MpxPosixMQProxyTask (MpxTaskBase* task, MpxPosixMQ* posixMQ) :
-	MpxTaskBase (), m_task (task), m_posixMQ (posixMQ)
+	MpxTaskBase (g_evnset), m_task (task), m_posixMQ (posixMQ)
 {
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxPosixMQProxyTask::~MpxPosixMQProxyTask ()

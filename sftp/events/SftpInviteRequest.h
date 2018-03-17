@@ -37,14 +37,6 @@ public:
 	{
 		return new SftpInviteRequest (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline FtpRequest* request ()
 	{
 		FtpRequest* request = m_request;
@@ -52,7 +44,7 @@ public:
 		return request;
 	}
 public:
-	static const int InviteRequestEvent = 1000;
+	static const int EventCode = 1000;
 private:
 	FtpRequest* m_request;
 };

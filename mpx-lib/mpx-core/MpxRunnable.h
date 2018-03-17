@@ -31,7 +31,7 @@
 namespace mpx
 {
 
-/*! @brief class representing single thread of execution
+/*! class representing single thread of execution
  *
  *  Interface MpxRunnable defines and partially implements class,
  *  which is capable to run and control its own program thread.
@@ -44,7 +44,7 @@ namespace mpx
 class MpxRunnable
 {
 public:
-	/*! @brief instance initialization
+	/*! instance initialization
 	 *
 	 *  initialize (clear) members. mutex p_mutex is set to be recursive,
 	 *  recursive locking from same thread will not block
@@ -62,7 +62,7 @@ public:
 		m_exitCode = -1;
 	}
 
-	/*! @brief delete an instance of this object
+	/*! delete an instance of this object
 	 *
 	 *  deleting this object when associated thread is still running
 	 *  is not recommended. Thread should be stopped, awaited and only
@@ -74,7 +74,7 @@ public:
 		pthread_mutex_destroy (&m_mutex);
 	}
 
-	/*! @brief start associated thread
+	/*! start associated thread
 	 *
 	 * function tries to create and start program thread associated
 	 * with this instance. Before creating new thread it calls
@@ -92,8 +92,8 @@ public:
 	 * @param flags flags which are used (as is) in pthread_create().
 	 * Default value of this parameter is 0
 	 *
-	 * @return 0 program thread has been created
-	 * @return other thread creation error, or error returned by InitInstance ()
+	 * @return **0** program thread has been created
+	 * @return **other** thread creation error, or error returned by InitInstance ()
 	 *
 	 */
 	int Start (int flags = 0)
@@ -126,7 +126,7 @@ public:
 		return hRes;
 	}
 
-	/*! @brief wait associated thread to terminate
+	/*! wait associated thread to terminate
 	 *
 	 *  function waits until associated program thread terminates or
 	 *  until timeout expires, whichever comes first
@@ -134,8 +134,8 @@ public:
 	 *  @param timeOut time to wait the associated thread to terminate.
 	 *  Default value is infinite, thus until program thread terminates
 	 *
-	 *  @return 0 program thread has not terminated
-	 *  @return other exit code of associated thread
+	 *  @return **0** program thread has not terminated
+	 *  @return **other** exit code of associated thread
 	 *
 	 */
 	int WaitForCompletion (int timeOut = -1)
@@ -160,12 +160,12 @@ public:
 		return m_exitCode;
 	}
 
-	/*! @brief suspend associated thread
+	/*! suspend associated thread
 	 *
 	 *  function tries to suspend program thread associated with this object
 	 *
-	 *  @return 0 thread is suspended
-	 *  @return other thread cannot be suspended
+	 *  @return **0** thread is suspended
+	 *  @return **other** thread cannot be suspended
 	 *
 	 */
 	int Suspend (void)
@@ -189,13 +189,13 @@ public:
 		return hRes;
 	}
 
-	/*! @brief resume suspended thread
+	/*! resume suspended thread
 	 *
 	 *  function tries to resume execution of program thread associated
 	 *  with this object
 	 *
-	 *  @return 0 thread execution is resumed
-	 *  @return other thread cannot be resumed
+	 *  @return **0** thread execution is resumed
+	 *  @return **other** thread cannot be resumed
 	 *
 	 */
 	int Resume (void)
@@ -219,11 +219,11 @@ public:
 		return hRes;
 	}
 
-	/*! @brief cancel execution of thread
+	/*! cancel execution of thread
 	 *
 	 *  function cancels thread execution and wait it to terminate
 	 *
-	 *  @return code exit code of terminated thread
+	 *  @return **code** exit code of terminated thread
 	 *
 	 */
 	int Terminate (int timeOut = -1)
@@ -248,7 +248,7 @@ public:
 		return hRes;
 	}
 
-	/*! @brief abort thread execution
+	/*! abort thread execution
 	 *
 	 *  function terminates execution of program thread associated with
 	 *  this object instance immediately. If it is terminated normally
@@ -257,8 +257,8 @@ public:
 	 *
 	 *  @param code thread exit code forced by the calling thread
 	 *
-	 *  @return code forced exit code
-	 *  @return other unsuccessful termination of associated thread
+	 *  @return **code** forced exit code
+	 *  @return **other** unsuccessful termination of associated thread
 	 *
 	 */
 	int Abort (int code)
@@ -268,7 +268,7 @@ public:
 		return ((hRes = Terminate ()) != 0) ? hRes : (m_exitCode = code);
 	}
 
-	/*! @brief thread running loop
+	/*! thread running loop
 	 *  this function is the only function of this interface which must
 	 *  be implemented by derived class. This function implements the
 	 *  running logic of associated program thread although this is not
@@ -280,12 +280,12 @@ public:
 	 *  or even in the middle of the job, especially when executing lengthy
 	 *  jobs
 	 *
-	 *  @return code return code of function Run() implemented by derived class
+	 *  @return **code** return code of function Run() implemented by derived class
 	 *
 	 */
 	virtual int Run (void) = 0;
 
-	/*! @brief initialize subclass prior to running thread
+	/*! initialize subclass prior to running thread
 	 *
 	 *  Default implementation of this function does nothing and returns
 	 *  0, thus telling to the calling environment that associated thread
@@ -304,9 +304,9 @@ public:
 	 *  on the context of the associated thread should be performed
 	 *  from Run() or some function called within it.
 	 *
-	 *  @return 0 successful initialization. Associated program thread
+	 *  @return **0** successful initialization. Associated program thread
 	 *  will be created and executed
-	 *  @return other initialization fault. Associated thread will not
+	 *  @return **other** initialization fault. Associated thread will not
 	 *  be created and thus not executed
 	 *
 	 */
@@ -315,7 +315,7 @@ public:
 		return 0;
 	}
 
-	/*! @brief function called when associated thread terminates
+	/*! function called when associated thread terminates
 	 *
 	 *  This function is provided to finish the execution of associated
 	 *  thread. It is called immediately after Run() terminates in the
@@ -323,7 +323,7 @@ public:
 	 *  This function gives to program the last chance to perform some
 	 *  actions which should be done when associated thread terminates
 	 *
-	 *  @return code Default implementation of this function returns
+	 *  @return **code** Default implementation of this function returns
 	 *  return code of Run(). If it is implemented by derived class it
 	 *  can return any integer value
 	 *
@@ -335,7 +335,7 @@ public:
 
 private:
 
-	/*! @brief running function of associated thread
+	/*! running function of associated thread
 	 *
 	 *  Function is global because it is 3rd parameter of pthread_create()
 	 *  and private so that it can be executed only by member functions
@@ -347,7 +347,7 @@ private:
 	 *  @param data void pointer to self; 4th parameter to pthread_create()
 	 *  is void*
 	 *
-	 *  @return code return code of Run()
+	 *  @return **code** return code of Run()
 	 *
 	 */
 	static void* _Run (void* data)
@@ -355,7 +355,7 @@ private:
 		return (((MpxRunnable *) data))->_Run ();
 	}
 
-	/*! @brief non-static version of _Run()
+	/*! non-static version of _Run()
 	 *
 	 *  function remembers task ID of associated thread and runs it
 	 *  by calling function Run(). Thread execution can be canceled
@@ -363,8 +363,8 @@ private:
 	 *  enabling ExitInstance() function to be called in any case,
 	 *  no matter how thread terminates, normally or by cancellation
 	 *
-	 *  @return 0 normal termination
-	 *  @return 1 abnormal termination
+	 *  @return **0** normal termination
+	 *  @return **1** abnormal termination
 	 *
 	 */
 	void* _Run ()
@@ -386,7 +386,7 @@ private:
 		return (eCode == 0) ? ((void*) 0) : ((void*) 1);
 	}
 
-	/*! @brief cancellation trigger
+	/*! cancellation trigger
 	 *
 	 *  Function is static as requested by pthread_cleanup() and private
 	 *  to disable invocation of this function by external entities.
@@ -405,7 +405,7 @@ private:
 		base->Cleanup ();
 	}
 
-	/*! @brief non-static version of cancellation trigger
+	/*! non-static version of cancellation trigger
 	 *
 	 */
 	void Cleanup (void)
@@ -413,9 +413,9 @@ private:
 	}
 public:
 
-	/*! @brief get task ID
+	/*! get task ID
 	 *
-	 *  @return id task ID of associated thread
+	 *  @return **id** task ID of associated thread
 	 *
 	 */
 	inline pid_t getTid (void)
@@ -423,10 +423,10 @@ public:
 		return m_threadId;
 	}
 
-	/*! @brief get thread handle
+	/*! get thread handle
 	 *
-	 *  @return NULL associated thread does not exist
-	 *  @return handle thread handle as returned from pthread_create()
+	 *  @return **NULL** associated thread does not exist
+	 *  @return **handle** thread handle as returned from pthread_create()
 	 *
 	 */
 	inline pthread_t getHandle (void)
@@ -434,10 +434,10 @@ public:
 		return m_handle;
 	}
 
-	/*! @brief get exit code of associated thread
+	/*! get exit code of associated thread
 	 *
-	 *  @return -1 associated thread is still running
-	 *  @return other return code of associated thread
+	 *  @return **-1** associated thread is still running
+	 *  @return **other** return code of associated thread
 	 *
 	 */
 	int getExitCode (void)
@@ -445,15 +445,15 @@ public:
 		return m_exitCode;
 	}
 
-	/*! @brief lock mutex
+	/*! lock mutex
 	 *
 	 *  function locks mutex m_mutex. If it is already locked by another
 	 *  thread, this function will block until it will be unlocked by
 	 *  owning thread. Function should be used to synchronize access to
 	 *  resources common to many threads
 	 *
-	 *  @return 0 associated thread is locked
-	 *  @return other error code returned by pthread_mutex_lock()
+	 *  @return **0** associated thread is locked
+	 *  @return **other** error code returned by pthread_mutex_lock()
 	 *
 	 */
 	inline int Lock ()
@@ -467,12 +467,12 @@ public:
 		return ret;
 	}
 
-	/*! @brief unlock mutex
+	/*! unlock mutex
 	 *
 	 *  function unlocks mutex m_mutex.
 	 *
-	 *  @return 0 associated thread is unlocked
-	 *  @return other error code returned by pthread_mutex_unlock()
+	 *  @return **0** associated thread is unlocked
+	 *  @return **other** error code returned by pthread_mutex_unlock()
 	 *
 	 */
 	inline int Unlock ()

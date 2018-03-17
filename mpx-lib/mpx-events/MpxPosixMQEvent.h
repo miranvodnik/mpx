@@ -38,14 +38,6 @@ public:
 	{
 		return new MpxPosixMQEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	void* listener ()
 	{
 		return m_listener;
@@ -66,6 +58,8 @@ public:
 	{
 		return m_buffer;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxPosixMQEventCode;
 private:
 	void* m_listener;
 	u_int m_flags;

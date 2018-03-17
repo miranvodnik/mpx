@@ -24,16 +24,15 @@ namespace mpx
 
 EventDescriptor MpxPosixMQTask::g_evntab[] =
 {
-	{ StartState, StartEvent, StartEventHandler, 0 },
-	{ AnyState, StopEvent, StopEventHandler, 0 },
-	{ AnyState, PosixMQEvent, PosixMQEventHandler, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxPosixMQEvent::EventCode , PosixMQEventHandler },
+	{ 0, 0, 0 }
 };
 
+MpxTaskBase::evnset MpxPosixMQTask::g_evnset = MpxTaskBase::CreateEventSet(MpxPosixMQTask::g_evntab);
+
 MpxPosixMQTask::MpxPosixMQTask () :
-	MpxMQTaskI ()
+	MpxMQTaskI (g_evnset)
 {
-	RegisterEventHandlers (g_evntab);
 	m_listener = 0;
 }
 
@@ -124,7 +123,7 @@ int MpxPosixMQTask::MQSend (tskmpx_t mpx, MpxEventBase* event)
 	return dstq->Write ((u_char*) msg, sizeof *msg);
 }
 
-void MpxPosixMQTask::StartEventHandler (MpxEventBase* event)
+void MpxPosixMQTask::StartTask ()
 {
 	if ((m_listener = new MpxPosixMQ (this, true, -1)) == 0)
 		return;
@@ -154,7 +153,7 @@ void MpxPosixMQTask::StartEventHandler (MpxEventBase* event)
 	}
 }
 
-void MpxPosixMQTask::StopEventHandler (MpxEventBase* event)
+void MpxPosixMQTask::StopTask ()
 {
 	Release ();
 }

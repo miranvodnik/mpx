@@ -21,8 +21,8 @@
 namespace mpx
 {
 
-MpxTimerEvent::MpxTimerEvent (MpxTaskBase* task, struct timespec timerStamp) :
-	MpxEventBase (TimerEvent), m_task (task), m_timerStamp (timerStamp), m_timer (0)
+MpxTimerEvent::MpxTimerEvent (MpxTaskBase* task, struct timespec timerStamp, void* ctx) :
+	MpxEventBase (MpxTimerEvent::EventCode), m_task (task), m_timerStamp (timerStamp), m_ctx (ctx), m_timer (0)
 {
 }
 

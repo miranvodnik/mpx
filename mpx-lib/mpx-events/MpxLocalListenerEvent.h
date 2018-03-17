@@ -28,7 +28,7 @@ class MpxLocalListenerEvent: public mpx::MpxEventBase
 {
 public:
 	MpxLocalListenerEvent (int fd) :
-		MpxEventBase (LocalListenerEvent), m_fd (fd)
+		MpxEventBase (MpxLocalListenerEvent::EventCode), m_fd (fd)
 	{
 	}
 	virtual ~MpxLocalListenerEvent ()
@@ -42,18 +42,12 @@ public:
 	{
 		return new MpxLocalListenerEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline int fd ()
 	{
 		return m_fd;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxLocalListenerEventCode;
 private:
 	int m_fd;
 };

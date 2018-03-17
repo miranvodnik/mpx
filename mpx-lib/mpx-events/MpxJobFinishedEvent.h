@@ -19,7 +19,7 @@
 #pragma once
 
 #include <mpx-events/MpxEventBase.h>
-#include <mpx-working-threads/MpxJob.h>
+#include <mpx-jobs/MpxJob.h>
 
 namespace mpx
 {
@@ -28,7 +28,7 @@ class MpxJobFinishedEvent: public mpx::MpxEventBase
 {
 public:
 	MpxJobFinishedEvent (MpxJob* job) :
-		MpxEventBase (JobFinishedEvent), m_job (job)
+		MpxEventBase (MpxJobFinishedEvent::EventCode), m_job (job)
 	{
 	}
 	virtual ~MpxJobFinishedEvent ()
@@ -42,18 +42,12 @@ public:
 	{
 		return new MpxJobFinishedEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline MpxJob* job ()
 	{
 		return m_job;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxJobFinishedEventCode;
 private:
 	MpxJob* m_job;
 };

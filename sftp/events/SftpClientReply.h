@@ -44,18 +44,10 @@ public:
 	{
 		return new SftpClientReply (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline u_long sessionId () { return m_sessionId; }
 	inline char** args () { return m_args; }
 public:
-	static const int ClientReplyEvent = 1005;
+	static const int EventCode = 1005;
 private:
 	u_long m_sessionId;
 	char** m_args;

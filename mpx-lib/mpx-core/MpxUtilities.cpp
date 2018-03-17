@@ -21,6 +21,18 @@
 namespace mpx
 {
 
+/*! custom memory copy function
+ *
+ * official memcpy() function behaves unusually when the source and
+ * destination fields overlap. Since mpx-lib always uses this function
+ * by copying source field 'back' to the destination field, algorithm
+ * used in this function does not corrupt source field, which is not
+ * the case with the official version of this function.
+ *
+ * @param dest destination field
+ * @param src source field
+ * @param n number of bytes to copy from source to destination
+ */
 void MpxUtilities::memcpy (void* dest, const void* src, size_t n)
 {
 	for (size_t i = 0; i < n; ++i)

@@ -38,6 +38,8 @@ public:
 	typedef map <void*, MpxPosixMQ*> mqset;
 	MpxPosixMQTask ();
 	virtual ~MpxPosixMQTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
 	void Release ();
 	MpxPosixMQ* Connect (tskmpx_t mpx);
@@ -45,12 +47,11 @@ private:
 	virtual int MQSend (tskmpx_t mpx, MpxEventBase* event);
 	virtual void UnlinkMQ (tskmpx_t mpx);
 private:
-	mpx_event_handler (StartEventHandler, MpxPosixMQTask)
-	;mpx_event_handler (StopEventHandler, MpxPosixMQTask)
 	;mpx_event_handler (PosixMQEventHandler, MpxPosixMQTask)
 	;
 private:
 	static EventDescriptor g_evntab[];
+	static evnset g_evnset;
 	MpxPosixMQ* m_listener;
 	mqset m_mqset;
 };

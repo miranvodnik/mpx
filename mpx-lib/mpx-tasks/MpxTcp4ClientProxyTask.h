@@ -22,20 +22,26 @@
 #include <mpx-sockets/MpxTcp4Client.h>
 #include <mpx-events/MpxTcp4ClientEvent.h>
 
+#include <string>
+using namespace std;
+
 namespace mpx
 {
 
 class MpxTcp4ClientProxyTask: public MpxProxyTask <MpxTcp4ClientEvent>
 {
 public:
-	MpxTcp4ClientProxyTask (MpxTaskBase* task, MpxTcp4Client* tcp4Client);
+	MpxTcp4ClientProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp4Client* tcp4Client);
 	virtual ~MpxTcp4ClientProxyTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
 	mpx_event_handler(HandleTcp4ClientEvent, MpxTcp4ClientProxyTask)
-	;
+	mpx_event_handler(HandleJobFinishedEvent, MpxTcp4ClientProxyTask)
 private:
 	static EventDescriptor g_evntab[];
-
+	static evnset g_evnset;
+	string m_encdeclib;
 };
 
 } // namespace mpx

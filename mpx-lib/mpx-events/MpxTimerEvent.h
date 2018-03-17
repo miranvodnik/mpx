@@ -29,7 +29,7 @@ namespace mpx
 class MpxTimerEvent: public mpx::MpxEventBase
 {
 public:
-	MpxTimerEvent (MpxTaskBase* task, struct timespec timerStamp);
+	MpxTimerEvent (MpxTaskBase* task, struct timespec timerStamp, void* ctx = 0);
 	virtual ~MpxTimerEvent ();
 	virtual const char* Name ()
 	{
@@ -41,6 +41,10 @@ public:
 	inline struct timespec timerStamp ()
 	{
 		return m_timerStamp;
+	}
+	inline void* ctx ()
+	{
+		return m_ctx;
 	}
 	inline ctx_timer_t timer ()
 	{
@@ -56,17 +60,12 @@ public:
 		{ 0, 0 };
 		return new MpxTimerEvent (0, t);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTimerEventCode;
 private:
 	MpxTaskBase* m_task;
 	struct timespec m_timerStamp;
+	void* m_ctx;
 	ctx_timer_t m_timer;
 };
 

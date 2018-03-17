@@ -27,21 +27,22 @@ namespace mpx
 
 const char* MpxLocalMQTask::g_localPath = "/var/run/";
 
+/*! event table for every instance of this class
+ */
 EventDescriptor MpxLocalMQTask::g_evntab[] =
 {
-	{ StartState, StartEvent, StartEventHandler, 0 },
-	{ AnyState, StopEvent, StopEventHandler, 0 },
-	{ AnyState, LocalListenerEvent, LocalListenerEventHandler, 0 },
-	{ AnyState, LocalEndPointEvent, LocalEndPointEventHandler, 0 },
-	{ AnyState, LocalClientEvent, LocalClientEventHandler, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxLocalListenerEvent::EventCode, LocalListenerEventHandler },
+	{ AnyState, MpxLocalEndPointEvent::EventCode, LocalEndPointEventHandler },
+	{ AnyState, MpxLocalClientEvent::EventCode, LocalClientEventHandler },
+	{ 0, 0, 0 }
 };
 
+MpxTaskBase::evnset MpxLocalMQTask::g_evnset = MpxTaskBase::CreateEventSet(MpxLocalMQTask::g_evntab);
+
 MpxLocalMQTask::MpxLocalMQTask () :
-	MpxMQTaskI ()
+	MpxMQTaskI (g_evnset)
 {
 	m_listener = 0;
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxLocalMQTask::~MpxLocalMQTask ()
@@ -103,13 +104,12 @@ MpxLocalClient* MpxLocalMQTask::Connect (tskmpx_t mpx)
 
 	string localPath = g_localPath;
 	localPath += name;
+	free ((void*) name);
 	if (localClient->Connect (localPath.c_str ()) != 0)
 	{
-		free ((void*) name);
 		delete localClient;
 		return 0;
 	}
-	free ((void*) name);
 
 	return m_clnset [mpx] = localClient;
 }
@@ -129,7 +129,7 @@ int MpxLocalMQTask::MQSend (tskmpx_t mpx, MpxEventBase* event)
 	return dstq->Write ((u_char*) &msg, sizeof msg);
 }
 
-void MpxLocalMQTask::StartEventHandler (MpxEventBase *event)
+void MpxLocalMQTask::StartTask ()
 {
 	const char* name = MpxEventQueueRepository::RetrieveEventQueue ((tskmpx_t) mpx ());
 	if (name == 0)
@@ -143,14 +143,13 @@ void MpxLocalMQTask::StartEventHandler (MpxEventBase *event)
 
 	string localPath = g_localPath;
 	localPath += name;
+	free ((void*) name);
 	if (m_listener->CreateListener (localPath.c_str ()) != 0)
 	{
-		free ((void*) name);
 		delete m_listener;
 		m_listener = 0;
 		return;
 	}
-	free ((void*) name);
 
 	if (m_listener->StartListener () < 0)
 	{
@@ -160,7 +159,7 @@ void MpxLocalMQTask::StartEventHandler (MpxEventBase *event)
 	}
 }
 
-void MpxLocalMQTask::StopEventHandler (MpxEventBase *event)
+void MpxLocalMQTask::StopTask ()
 {
 	Release ();
 }

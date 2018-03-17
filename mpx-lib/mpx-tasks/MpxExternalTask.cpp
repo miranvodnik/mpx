@@ -31,6 +31,8 @@
 #include <mpx-sockets/MpxTcp4Client.h>
 #include <mpx-sockets/MpxTcp6Client.h>
 #include <mpx-events/MpxEvents.h>
+#include <mpx-working-threads/MpxWorkingQueue.h>
+#include <mpx-jobs/MpxJobs.h>
 
 namespace mpx
 {
@@ -45,32 +47,31 @@ const char* MpxExternalTask::g_portField = "port:";
 
 EventDescriptor MpxExternalTask::g_evntab[] =
 {
-	{ AnyState, StartEvent, HandleStartEvent, 0 },
-	{ AnyState, StopEvent, HandleStopEvent, 0 },
-	{ AnyState, LocalTaskQueryEvent, HandleLocalTaskQueryEvent, 0 },
-	{ AnyState, Tcp4TaskQueryEvent, HandleTcp4TaskQueryEvent, 0 },
-	{ AnyState, Tcp6TaskQueryEvent, HandleTcp6TaskQueryEvent, 0 },
-	{ AnyState, LocalListenerEvent, HandleLocalListenerEvent, 0 },
-	{ AnyState, LocalClientEvent, HandleLocalClientEvent, 0 },
-	{ AnyState, LocalEndPointEvent, HandleLocalEndPointEvent, 0 },
-	{ AnyState, Tcp4ListenerEvent, HandleTcp4ListenerEvent, 0 },
-	{ AnyState, Tcp4ClientEvent, HandleTcp4ClientEvent, 0 },
-	{ AnyState, Tcp4EndPointEvent, HandleTcp4EndPointEvent, 0 },
-	{ AnyState, Tcp6ListenerEvent, HandleTcp6ListenerEvent, 0 },
-	{ AnyState, Tcp6ClientEvent, HandleTcp6ClientEvent, 0 },
-	{ AnyState, Tcp6EndPointEvent, HandleTcp6EndPointEvent, 0 },
-	{ AnyState, TaskQueryEvent, HandleTaskQueryEvent, 0 },
-	{ AnyState, TaskResponseEvent, HandleTaskResponseEvent, 0 },
-	{ 0, 0, 0, 0 }
+	{ AnyState, MpxLocalTaskQueryEvent::EventCode, HandleLocalTaskQueryEvent },
+	{ AnyState, MpxTcp4TaskQueryEvent::EventCode, HandleTcp4TaskQueryEvent },
+	{ AnyState, MpxTcp6TaskQueryEvent::EventCode, HandleTcp6TaskQueryEvent },
+	{ AnyState, MpxLocalListenerEvent::EventCode, HandleLocalListenerEvent },
+	{ AnyState, MpxLocalClientEvent::EventCode, HandleLocalClientEvent },
+	{ AnyState, MpxLocalEndPointEvent::EventCode, HandleLocalEndPointEvent },
+	{ AnyState, MpxTcp4ListenerEvent::EventCode, HandleTcp4ListenerEvent },
+	{ AnyState, MpxTcp4ClientEvent::EventCode, HandleTcp4ClientEvent },
+	{ AnyState, MpxTcp4EndPointEvent::EventCode, HandleTcp4EndPointEvent },
+	{ AnyState, MpxTcp6ListenerEvent::EventCode, HandleTcp6ListenerEvent },
+	{ AnyState, MpxTcp6ClientEvent::EventCode, HandleTcp6ClientEvent },
+	{ AnyState, MpxTcp6EndPointEvent::EventCode, HandleTcp6EndPointEvent },
+	{ AnyState, MpxTaskQueryEvent::EventCode, HandleTaskQueryEvent },
+	{ AnyState, MpxTaskResponseEvent::EventCode, HandleTaskResponseEvent },
+	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+	{ 0, 0, 0 }
 };
 
+MpxTaskBase::evnset MpxExternalTask::g_evnset = MpxTaskBase::CreateEventSet(MpxExternalTask::g_evntab);
+
 MpxExternalTask::MpxExternalTask (const char* connStr) :
-	MpxTaskBase ()
+	MpxTaskBase (g_evnset)
 {
 	m_connStr = (connStr != 0) ? connStr : "";
 	m_started = false;
-
-	RegisterEventHandlers (g_evntab);
 }
 
 MpxExternalTask::~MpxExternalTask ()
@@ -344,7 +345,7 @@ const char* MpxExternalTask::CreateTcp6Listener (const char* connStr)
 	return connStr;
 }
 
-void MpxExternalTask::HandleStartEvent (MpxEventBase* event)
+void MpxExternalTask::StartTask ()
 {
 	if (m_started)
 		return;
@@ -352,7 +353,7 @@ void MpxExternalTask::HandleStartEvent (MpxEventBase* event)
 	m_started = true;
 }
 
-void MpxExternalTask::HandleStopEvent (MpxEventBase* event)
+void MpxExternalTask::StopTask ()
 {
 	Release ();
 }
@@ -376,13 +377,15 @@ void MpxExternalTask::HandleLocalTaskQueryEvent (MpxEventBase* event)
 	}
 
 	const char* name = localTaskQueryEvent->name ();
+	const char* encdeclib = localTaskQueryEvent->encdeclib();
 	MpxMessage msg;
 	msg.m_Code = ExternalTaskRequestCode;
-	msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) name;
+	msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) strdup (name);
+	msg.MpxMessage_u.m_externalTaskRequest.encdeclib = (char*) strdup (encdeclib);
 	localClient->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, (void*) &msg);
 	m_lctmap [localClient] = srcTask;
 
-	if (true)
+	if (false)
 		cout << "EXTERNAL TASK: WRITE: " << name << endl;
 }
 
@@ -396,23 +399,14 @@ void MpxExternalTask::HandleTcp4TaskQueryEvent (MpxEventBase* event)
 	if (srcTask == 0)
 		return;
 
-	MpxTcp4Client* tcp4Client = new MpxTcp4Client (this, true, 10L * SEC_TO_NSEC, true);
-	if (tcp4Client->Connect (tcp4TaskQueryEvent->hostname (), atoi (tcp4TaskQueryEvent->port ())) != 0)
-	{
-		Send (srcTask, new MpxExternalTaskEvent (0, -1, 0, 0), true);
-		delete tcp4Client;
-		return;
-	}
+	addrinfo hint;
+	memset (&hint, 0, sizeof(addrinfo));
+	hint.ai_flags = AI_ALL;
+	hint.ai_family = AF_INET;
 
-	const char* name = tcp4TaskQueryEvent->name ();
-	MpxMessage msg;
-	msg.m_Code = ExternalTaskRequestCode;
-	msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) name;
-	tcp4Client->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, (void*) &msg);
-	m_t4tmap [tcp4Client] = srcTask;
-
-	if (true)
-		cout << "EXTERNAL TASK: WRITE: " << name << endl;
+//	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, srcTask, tcp4TaskQueryEvent->hostname(), tcp4TaskQueryEvent->name(), atoi (tcp4TaskQueryEvent->port ()), AF_INET, &hint);
+	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, tcp4TaskQueryEvent->hostname(), (MpxEventBase*) tcp4TaskQueryEvent->Copy(), AF_INET, &hint);
+	MpxWorkingQueue::Put (extTaskAddrInfo);
 }
 
 void MpxExternalTask::HandleTcp6TaskQueryEvent (MpxEventBase* event)
@@ -425,23 +419,105 @@ void MpxExternalTask::HandleTcp6TaskQueryEvent (MpxEventBase* event)
 	if (srcTask == 0)
 		return;
 
-	MpxTcp6Client* tcp6Client = new MpxTcp6Client (this, true, 10L * SEC_TO_NSEC, true);
-	if (tcp6Client->Connect (tcp6TaskQueryEvent->hostname (), atoi (tcp6TaskQueryEvent->port ())) != 0)
+	addrinfo hint;
+	memset (&hint, 0, sizeof(addrinfo));
+	hint.ai_flags = AI_ALL;
+	hint.ai_family = AF_INET6;
+
+//	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, srcTask, tcp6TaskQueryEvent->hostname(), tcp6TaskQueryEvent->name(), atoi (tcp6TaskQueryEvent->port ()), AF_INET6, &hint);
+	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, tcp6TaskQueryEvent->hostname(), (MpxEventBase*) tcp6TaskQueryEvent->Copy(), AF_INET6, &hint);
+	MpxWorkingQueue::Put (extTaskAddrInfo);
+}
+
+void MpxExternalTask::HandleJobFinishedEvent (MpxEventBase* event)
+{
+	MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
+	if (jobFinishedEvent == 0)
+		return;
+
+	MpxExtTaskAddrInfo* extTaskAddrInfo = dynamic_cast < MpxExtTaskAddrInfo* > ((MpxJob*) jobFinishedEvent->job());
+	if (extTaskAddrInfo == 0)
+		return;
+
+	struct addrinfo* results = extTaskAddrInfo->results();
+	addrinfo* addrPtr;
+	for (addrPtr = results; (addrPtr != 0) && (addrPtr->ai_protocol != IPPROTO_TCP); addrPtr = addrPtr->ai_next)
+		;
+	if (addrPtr == 0)
 	{
-		Send (srcTask, new MpxExternalTaskEvent (0, -1, 0, 0), true);
-		delete tcp6Client;
+		freeaddrinfo (results);
+		delete extTaskAddrInfo;
 		return;
 	}
 
-	const char* name = tcp6TaskQueryEvent->name ();
-	MpxMessage msg;
-	msg.m_Code = ExternalTaskRequestCode;
-	msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) name;
-	tcp6Client->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, (void*) &msg);
-	m_t6tmap [tcp6Client] = srcTask;
+	sockaddr* addr = addrPtr->ai_addr;
 
-	if (true)
-		cout << "EXTERNAL TASK: WRITE: " << name << endl;
+	switch (extTaskAddrInfo->family())
+	{
+	case AF_INET:
+		{
+			MpxTcp4TaskQueryEvent* tcp4TaskQueryEvent = dynamic_cast < MpxTcp4TaskQueryEvent* > (extTaskAddrInfo->query());
+			if (tcp4TaskQueryEvent == 0)
+				break;
+
+			MpxTcp4Client* tcp4Client = new MpxTcp4Client (this, true, -1, true);
+			MpxTaskBase* consumer = (MpxTaskBase*) tcp4TaskQueryEvent->src();
+			int port = atoi (tcp4TaskQueryEvent->port());
+			if (tcp4Client->Connect ((sockaddr_in*) addr, port) != 0)
+			{
+				Send (consumer, new MpxExternalTaskEvent (0, -1, 0, 0), true);
+				delete tcp4Client;
+				break;
+			}
+
+			const char* name = tcp4TaskQueryEvent->name();
+			const char* encdeclib = tcp4TaskQueryEvent->encdeclib();
+			MpxMessage msg;
+			msg.m_Code = ExternalTaskRequestCode;
+			msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) strdup (name);
+			msg.MpxMessage_u.m_externalTaskRequest.encdeclib = (char*) strdup (encdeclib);
+			tcp4Client->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, (void*) &msg);
+			m_t4tmap [tcp4Client] = consumer;
+
+			if (false)
+				cout << "EXTERNAL TASK: WRITE: " << name << endl;
+		}
+		break;
+	case AF_INET6:
+		{
+			MpxTcp6TaskQueryEvent* tcp6TaskQueryEvent = dynamic_cast < MpxTcp6TaskQueryEvent* > (extTaskAddrInfo->query());
+			if (tcp6TaskQueryEvent == 0)
+				break;
+
+			MpxTcp6Client* tcp6Client = new MpxTcp6Client (this, true, -1, true);
+			MpxTaskBase* consumer = (MpxTaskBase*) tcp6TaskQueryEvent->src();
+			int port = atoi (tcp6TaskQueryEvent->port());
+			if (tcp6Client->Connect ((sockaddr_in6*) addr, port) != 0)
+			{
+				Send (consumer, new MpxExternalTaskEvent (0, -1, 0, 0), true);
+				delete tcp6Client;
+				break;
+			}
+
+			const char* name = tcp6TaskQueryEvent->name();
+			const char* encdeclib = tcp6TaskQueryEvent->encdeclib();
+			MpxMessage msg;
+			msg.m_Code = ExternalTaskRequestCode;
+			msg.MpxMessage_u.m_externalTaskRequest.taskName = (char*) strdup (name);
+			msg.MpxMessage_u.m_externalTaskRequest.encdeclib = (char*) strdup (encdeclib);
+			tcp6Client->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, (void*) &msg);
+			m_t6tmap [tcp6Client] = consumer;
+
+			if (false)
+				cout << "EXTERNAL TASK: WRITE: " << name << endl;
+		}
+		break;
+	default:
+		break;
+	}
+
+	freeaddrinfo (results);
+	delete extTaskAddrInfo;
 }
 
 void MpxExternalTask::HandleLocalListenerEvent (MpxEventBase* event)
@@ -490,6 +566,7 @@ void MpxExternalTask::HandleLocalClientEvent (MpxEventBase* event)
 				{
 				case ExternalTaskReplyCode:
 				{
+					if (false) cout << "local external task reply" << endl;
 					MpxExternalTaskReply* externalTaskReply = &(rpl->MpxMessage_u.m_externalTaskReply);
 					if ((MpxTaskBase*) externalTaskReply->task == 0)
 						break;
@@ -497,10 +574,10 @@ void MpxExternalTask::HandleLocalClientEvent (MpxEventBase* event)
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					m_lctmap.erase (it);
 					MpxLocalClientProxyTask* proxyTask = new MpxLocalClientProxyTask (
-						(MpxTaskBase*) externalTaskReply->task, localClient);
+						task, externalTaskReply->encdeclib, localClient);
 					mpx->RegisterTask (proxyTask);
 					proxyTask->Send (proxyTask, new MpxStartEvent (), true);
-					proxyTask->Send (task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false);
+					if (false) cout << "local proxy client created" << endl;
 				}
 					break;
 				default:
@@ -577,7 +654,7 @@ void MpxExternalTask::HandleLocalEndPointEvent (MpxEventBase* event)
 					MpxExternalTaskRequest* externalTaskRequest = &(req->MpxMessage_u.m_externalTaskRequest);
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					MpxEnvironment::BroadcastExternalEvent (mpx->externalTask (),
-						new MpxTaskQueryEvent (externalTaskRequest->taskName, TaskQueryEventLocal,
+						new MpxTaskQueryEvent (externalTaskRequest->taskName, externalTaskRequest->encdeclib, TaskQueryEventLocal,
 							(void*) localEndPoint));
 				}
 					break;
@@ -655,6 +732,7 @@ void MpxExternalTask::HandleTcp4ClientEvent (MpxEventBase* event)
 				{
 				case ExternalTaskReplyCode:
 				{
+					if (false) cout << "tcp4 external task reply" << endl;
 					MpxExternalTaskReply* externalTaskReply = &(rpl->MpxMessage_u.m_externalTaskReply);
 					if ((MpxTaskBase*) externalTaskReply->task == 0)
 						break;
@@ -662,10 +740,10 @@ void MpxExternalTask::HandleTcp4ClientEvent (MpxEventBase* event)
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					m_t4tmap.erase (it);
 					MpxTcp4ClientProxyTask* proxyTask = new MpxTcp4ClientProxyTask (
-						(MpxTaskBase*) externalTaskReply->task, tcp4Client);
+						task, externalTaskReply->encdeclib, tcp4Client);
 					mpx->RegisterTask (proxyTask);
 					proxyTask->Send (proxyTask, new MpxStartEvent (), true);
-					proxyTask->Send (task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false);
+					if (true) cout << "tcp4 proxy client created" << endl;
 				}
 					break;
 				default:
@@ -741,7 +819,7 @@ void MpxExternalTask::HandleTcp4EndPointEvent (MpxEventBase* event)
 					MpxExternalTaskRequest* externalTaskRequest = &(req->MpxMessage_u.m_externalTaskRequest);
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					MpxEnvironment::BroadcastExternalEvent (mpx->externalTask (),
-						new MpxTaskQueryEvent (externalTaskRequest->taskName, TaskQueryEventTcp4,
+						new MpxTaskQueryEvent (externalTaskRequest->taskName, externalTaskRequest->encdeclib, TaskQueryEventTcp4,
 							(void*) tcp4EndPoint));
 				}
 					break;
@@ -819,6 +897,7 @@ void MpxExternalTask::HandleTcp6ClientEvent (MpxEventBase* event)
 				{
 				case ExternalTaskReplyCode:
 				{
+					if (false) cout << "tcp6 external task reply" << endl;
 					MpxExternalTaskReply* externalTaskReply = &(rpl->MpxMessage_u.m_externalTaskReply);
 					if ((MpxTaskBase*) externalTaskReply->task == 0)
 						break;
@@ -826,10 +905,10 @@ void MpxExternalTask::HandleTcp6ClientEvent (MpxEventBase* event)
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					m_t6tmap.erase (it);
 					MpxTcp6ClientProxyTask* proxyTask = new MpxTcp6ClientProxyTask (
-						(MpxTaskBase*) externalTaskReply->task, tcp6Client);
+						task, externalTaskReply->encdeclib, tcp6Client);
 					mpx->RegisterTask (proxyTask);
 					proxyTask->Send (proxyTask, new MpxStartEvent (), true);
-					proxyTask->Send (task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false);
+					if (false) cout << "tcp6 proxy client created" << endl;
 				}
 					break;
 				default:
@@ -905,7 +984,7 @@ void MpxExternalTask::HandleTcp6EndPointEvent (MpxEventBase* event)
 					MpxExternalTaskRequest* externalTaskRequest = &(req->MpxMessage_u.m_externalTaskRequest);
 					MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 					MpxEnvironment::BroadcastExternalEvent (mpx->externalTask (),
-						new MpxTaskQueryEvent (externalTaskRequest->taskName, TaskQueryEventTcp6,
+						new MpxTaskQueryEvent (externalTaskRequest->taskName, externalTaskRequest->encdeclib, TaskQueryEventTcp6,
 							(void*) tcp6EndPoint));
 				}
 					break;
@@ -946,7 +1025,7 @@ void MpxExternalTask::HandleTaskQueryEvent (MpxEventBase* event)
 	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 	MpxTaskBase* task = mpx->RetrieveTask (taskName);
 	Send ((MpxTaskBase*) event->src (),
-		new MpxTaskResponseEvent (task, taskQueryEvent->queryType (), taskQueryEvent->endPoint ()));
+		new MpxTaskResponseEvent (task, taskQueryEvent->encdeclib(), taskQueryEvent->queryType (), taskQueryEvent->endPoint ()));
 }
 
 void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
@@ -955,8 +1034,9 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 	if (taskResponseEvent == 0)
 		return;
 	MpxTaskBase* task = taskResponseEvent->task ();
+	const char* encdeclib = taskResponseEvent->encdeclib();
 	if (task != 0)
-		cout << "task = " << task << endl;
+		if (false) cout << "task = " << task << endl;
 	switch (taskResponseEvent->queryType ())
 	{
 	case TaskQueryEventLocal:
@@ -966,17 +1046,12 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 		if (it == m_leset.end ())
 			break;
 
-		MpxMessage msg;
-		msg.m_Code = ExternalTaskReplyCode;
-		msg.MpxMessage_u.m_externalTaskReply.task = (long) task;
-		if (localEndPoint->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
-			break;
-
 		MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 		m_leset.erase (it);
-		MpxLocalEndPointProxyTask* proxyTask = new MpxLocalEndPointProxyTask (task, localEndPoint);
+		MpxLocalEndPointProxyTask* proxyTask = new MpxLocalEndPointProxyTask (task, encdeclib, localEndPoint);
 		mpx->RegisterTask (proxyTask);
 		Send (proxyTask, new MpxStartEvent (), true);
+		if (false) cout << "local proxy end-point created" << endl;
 	}
 		break;
 	case TaskQueryEventTcp4:
@@ -986,17 +1061,12 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 		if (it == m_t4eset.end ())
 			break;
 
-		MpxMessage msg;
-		msg.m_Code = ExternalTaskReplyCode;
-		msg.MpxMessage_u.m_externalTaskReply.task = (long) task;
-		if (tcp4EndPoint->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
-			break;
-
 		MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 		m_t4eset.erase (it);
-		MpxTcp4EndPointProxyTask* proxyTask = new MpxTcp4EndPointProxyTask (task, tcp4EndPoint);
+		MpxTcp4EndPointProxyTask* proxyTask = new MpxTcp4EndPointProxyTask (task, encdeclib, tcp4EndPoint);
 		mpx->RegisterTask (proxyTask);
 		Send (proxyTask, new MpxStartEvent (), true);
+		if (true) cout << "tcp4 proxy end-point created" << endl;
 	}
 		break;
 	case TaskQueryEventTcp6:
@@ -1006,17 +1076,12 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 		if (it == m_t6eset.end ())
 			break;
 
-		MpxMessage msg;
-		msg.m_Code = ExternalTaskReplyCode;
-		msg.MpxMessage_u.m_externalTaskReply.task = (long) task;
-		if (tcp6EndPoint->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
-			break;
-
 		MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) this->mpx ();
 		m_t6eset.erase (it);
-		MpxTcp6EndPointProxyTask* proxyTask = new MpxTcp6EndPointProxyTask (task, tcp6EndPoint);
+		MpxTcp6EndPointProxyTask* proxyTask = new MpxTcp6EndPointProxyTask (task, encdeclib, tcp6EndPoint);
 		mpx->RegisterTask (proxyTask);
 		Send (proxyTask, new MpxStartEvent (), true);
+		if (false) cout << "tcp6 proxy end-point created" << endl;
 	}
 		break;
 	default:

@@ -28,6 +28,26 @@
 namespace mpx
 {
 
+/*! MPX environment
+ *
+ * This class represents environment in which all the multiplexers for
+ * event-controlled tasks are located. Instances of this class can not be
+ * created in the normal way because their constructor is private. However,
+ * a global instance is defined in this class, created by the running
+ * environment.The functionality implemented by this class is accessed
+ * through this instance. This is:
+ * - creating environment: creating environment data structures and task
+ * multiplexers
+ * - starting MPX environment: starting all task multiplexers
+ * - stoping MPX environment: stoping task multiplexers
+ * - broadcasting 'external task' events
+ *
+ * These are data structures used to implement MPX environment functionality:
+ * - The most important among them is a collection of multiplexers. All other
+ * data serve to make this collection easier to handle.
+ * - set of thread handles associated with multiplexers
+ * - synchronization mechanisms: locks and barriers
+ */
 class MpxEnvironment
 {
 private:
@@ -36,30 +56,88 @@ private:
 	MpxEnvironment ();
 	virtual ~MpxEnvironment ();
 public:
+
+	/*! Create new instance of task multiplexer
+	 *
+	 * this function mimics [_CreateTaskMultiplexer](@ref _CreateTaskMultiplexer)
+	 *
+	 * @param connStr connection string parameter - its default value is 0: this
+	 * multiplexer will not listen to external events
+	 * @param isWorker working thread indicator - its default value is false: this
+	 * multiplexer is not working thread invoking havy and long-lasting jobs
+	 * @return **null** - task multiplexer cannot be created
+	 * @return **other** - reference to new task multiplexer
+	 */
 	inline static MpxTaskMultiplexer* CreateTaskMultiplexer (const char* connStr = 0, bool isWorker = false)
 	{
 		return g_mpxEnvironment->_CreateTaskMultiplexer (connStr, isWorker);
 	}
+
+	/*! Start MPX environment
+	 *
+	 * it mimics [_Start function](@ref _Start)
+	 *
+	 * @param mqTask reference to waiting queue task which will be multipicated
+	 * by every instance of task multiplexer started within this environment
+	 * @return **0** - return code is not important
+	 */
 	inline static int Start (MpxMQTaskI* mqTask)
 	{
 		return g_mpxEnvironment->_Start (mqTask);
 	}
+
+	/*! Lower multiplexer barrier by one unit
+	 *
+	 * function mimics [_WaitMultiplexerBarrier](@ref _WaitMultiplexerBarrier)
+	 *
+	 * @return **0** - return code is not important
+	 */
 	inline static int WaitMultiplexerBarrier ()
 	{
 		return g_mpxEnvironment->_WaitMultiplexerBarrier ();
 	}
+
+	/*! Lower task barrier by one unit
+	 *
+	 * Function mimics [_WaitTasksBarrier](@ref _WaitTasksBarrier)
+	 * @return **0** - return code is not important
+	 */
 	inline static int WaitTasksBarrier ()
 	{
 		return g_mpxEnvironment->_WaitTasksBarrier ();
 	}
+
+	/*! Stop executing all multiplexers
+	 *
+	 * All multiplexers (task multiplexers or havy job working threads) are
+	 * sent termination request (broken pipe or cancellation trgger). Function
+	 * mimics [_Stop](@ref _Stop)
+	 *
+	 */
 	inline static void Stop ()
 	{
 		g_mpxEnvironment->_Stop ();
 	}
+
+	/*! Wait MPX environment until it terminates
+	 *
+	 * Function waits until all multiplexers within MPX environment terminate
+	 *
+	 */
 	inline static void Wait ()
 	{
 		g_mpxEnvironment->_Wait ();
 	}
+
+	/*! Broadcast 'external event'
+	 *
+	 * Function broadcasts copies of any event to all 'external tasks' in
+	 * task multiplexers.
+	 *
+	 * @param task sending task reference
+	 * @param event event reference
+	 * @return **0** - return code is not important
+	 */
 	inline static int BroadcastExternalEvent (MpxTaskBase* task, MpxEventBase* event)
 	{
 		return g_mpxEnvironment->_BroadcastExternalEvent (task, event);
@@ -73,12 +151,12 @@ private:
 	void _Wait ();
 	int _BroadcastExternalEvent (MpxTaskBase* task, MpxEventBase* event);
 private:
-	static MpxEnvironment* g_mpxEnvironment;
-	tskmpxset m_tskmpxset;
-	thrset m_thrset;
-	pthread_mutex_t m_lock;
-	pthread_barrier_t m_barrier;
-	pthread_barrier_t m_tbarrier;
+	static MpxEnvironment* g_mpxEnvironment; //!< reference to one and only one MPX environment object
+	tskmpxset m_tskmpxset; //!< set of all multiplexers within MPX environment
+	thrset m_thrset; //!< set of physical threads associated wizh multiplexers
+	pthread_mutex_t m_lock; //!< locking mutex for access synchronization
+	pthread_barrier_t m_barrier; //!< multiplexers barrier
+	pthread_barrier_t m_tbarrier; //!< tasks barrier
 	bool m_barrierActive;
 };
 

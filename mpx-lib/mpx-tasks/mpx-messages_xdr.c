@@ -22,6 +22,8 @@ xdr_MpxExternalTaskRequest (XDR *xdrs, MpxExternalTaskRequest *objp)
 
 	 if (!xdr_string (xdrs, &objp->taskName, ~0))
 		 return FALSE;
+	 if (!xdr_string (xdrs, &objp->encdeclib, ~0))
+		 return FALSE;
 	return TRUE;
 }
 
@@ -31,6 +33,8 @@ xdr_MpxExternalTaskReply (XDR *xdrs, MpxExternalTaskReply *objp)
 	register int32_t *buf;
 
 	 if (!xdr_long (xdrs, &objp->task))
+		 return FALSE;
+	 if (!xdr_string (xdrs, &objp->encdeclib, ~0))
 		 return FALSE;
 	return TRUE;
 }

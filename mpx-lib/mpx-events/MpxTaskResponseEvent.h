@@ -21,14 +21,18 @@
 #include <mpx-events/MpxEventBase.h>
 #include <mpx-tasks/MpxTaskBase.h>
 
+#include <string>
+using namespace std;
+
 namespace mpx
 {
 
 class MpxTaskResponseEvent: public MpxEventBase
 {
 public:
-	MpxTaskResponseEvent (MpxTaskBase* task, MpxTaskQueryEventType queryType, void* endPoint) :
-		MpxEventBase (TaskResponseEvent), m_task (task), m_queryType (queryType), m_endPoint (endPoint)
+	MpxTaskResponseEvent (MpxTaskBase* task, const char* encdeclib, MpxTaskQueryEventType queryType, void* endPoint) :
+		MpxEventBase (MpxTaskResponseEvent::EventCode), m_task (task), m_encdeclib (encdeclib), m_queryType (queryType), m_endPoint (
+			endPoint)
 	{
 	}
 	virtual ~MpxTaskResponseEvent ()
@@ -42,17 +46,13 @@ public:
 	{
 		return new MpxTaskResponseEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline MpxTaskBase* task ()
 	{
 		return m_task;
+	}
+	inline const char* encdeclib ()
+	{
+		return m_encdeclib.c_str ();
 	}
 	inline MpxTaskQueryEventType queryType ()
 	{
@@ -62,8 +62,11 @@ public:
 	{
 		return m_endPoint;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTaskResponseEventCode;
 private:
 	MpxTaskBase* m_task;
+	string m_encdeclib;
 	MpxTaskQueryEventType m_queryType;
 	void* m_endPoint;
 };

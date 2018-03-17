@@ -56,14 +56,14 @@ SftpClientWorker* SftpClientWorker::g_scenarioInitializer = new SftpClientWorker
 
 EventDescriptor SftpClientWorker::g_evntab [] =
 {
-	{ AnyState, StartEvent, HandleStartEvent, 0 },
-	{ AnyState, StopEvent, HandleStopEvent, 0 },
-	{ AnyState, SftpInviteRequest::InviteRequestEvent, HandleInviteRequestEvent, 0 },
-	{ AnyState, JobFinishedEvent, HandleJobFinishedEvent, 0 },
-	{ 0, 0, 0, 0 },
+	{ AnyState, SftpInviteRequest::EventCode, HandleInviteRequestEvent },
+	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+	{ 0, 0, 0 },
 };
 
-SftpClientWorker::SftpClientWorker (bool initialize)
+MpxTaskBase::evnset SftpClientWorker::g_evnset = MpxTaskBase::CreateEventSet (g_evntab);
+
+SftpClientWorker::SftpClientWorker (bool initialize) : SftpClient (g_evnset)
 {
 	if (!initialize)
 		return;
@@ -753,10 +753,8 @@ void SftpClientWorker::InitCleanDirScenario ()
 	g_cleanDirScenario [SCtrlIdleTimerExpiredEvent] = Common_CtrlIdleTimerExpiredEventHandler;
 }
 
-SftpClientWorker::SftpClientWorker ()
+SftpClientWorker::SftpClientWorker () : SftpClient (g_evnset)
 {
-	RegisterEventHandlers (g_evntab);
-
 	m_size = 0;
 	m_sessionId = 0;
 
@@ -3347,12 +3345,12 @@ void SftpClientWorker::GenErrorReport (void*args [])
 	}
 }
 
-void SftpClientWorker::HandleStartEvent (MpxEventBase* event)
+void SftpClientWorker::StartTask ()
 {
 	ctx (((MpxTaskMultiplexer*) mpx ())->ctx ());
 }
 
-void SftpClientWorker::HandleStopEvent (MpxEventBase* event)
+void SftpClientWorker::StopTask ()
 {
 	Dispose ();
 }

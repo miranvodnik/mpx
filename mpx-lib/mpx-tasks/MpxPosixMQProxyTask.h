@@ -42,6 +42,7 @@ private:
 	;
 private:
 	static EventDescriptor g_evntab[];
+	static evnset g_evnset;
 	MpxTaskBase* m_task;
 	MpxPosixMQ* m_posixMQ;
 };

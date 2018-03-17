@@ -36,20 +36,12 @@ public:
 	{
 		return new SftpInviteReply (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	inline bool invite ()
 	{
 		return m_invite;
 	}
 public:
-	static const int InviteReplyEvent = 1001;
+	static const int EventCode = 1001;
 private:
 	bool m_invite;
 };

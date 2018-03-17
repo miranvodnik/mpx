@@ -22,13 +22,13 @@ namespace mpx
 {
 
 MpxLocalEndPointEvent::MpxLocalEndPointEvent (void* endPoint, u_int flags, u_int error, u_int size, u_char* buffer) :
-	MpxEventBase (LocalEndPointEvent), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (size), m_buffer (
+	MpxEventBase (MpxLocalEndPointEvent::EventCode), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (size), m_buffer (
 		buffer)
 {
 }
 
 MpxLocalEndPointEvent::MpxLocalEndPointEvent (MpxLocalEndPointEvent& cln) :
-	MpxEventBase (LocalEndPointEvent)
+	MpxEventBase (MpxLocalEndPointEvent::EventCode)
 {
 	m_endPoint = cln.endPoint ();
 	m_flags = cln.flags ();

@@ -44,6 +44,12 @@ typedef enum
 class FtpClientInterface : public MpxTaskBase
 {
 public:
+	FtpClientInterface (evnset& e, FtpClientProtocol protocol) : MpxTaskBase (e),
+		m_protocol (protocol)
+	{
+		m_clientId = ++g_clientId;
+		m_jobCount = 0;
+	}
 	FtpClientInterface (FtpClientProtocol protocol) :
 		m_protocol (protocol)
 	{

@@ -16,6 +16,7 @@
 //
 //    contact: miran.vodnik@siol.net
 
+#include <mpx-events/MpxEventXDRItf.h>
 #include <mpx-events/MpxExternalTaskEvent.h>
 #include <mpx-events/MpxJobFinishedEvent.h>
 #include <mpx-events/MpxLocalClientEvent.h>

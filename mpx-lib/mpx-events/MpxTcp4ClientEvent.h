@@ -38,14 +38,6 @@ public:
 	{
 		return new MpxTcp4ClientEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
 	void* endPoint ()
 	{
 		return m_endPoint;
@@ -66,6 +58,8 @@ public:
 	{
 		return m_buffer;
 	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxTcp4ClientEventCode;
 private:
 	void* m_endPoint;
 	u_int m_flags;

@@ -20,6 +20,7 @@
 
 #include <mpx-tasks/MpxTaskBase.h>
 #include <mpx-sockets/MpxSocket.h>
+#include <mpx-events/MpxEvents.h>
 
 namespace mpx
 {
@@ -30,49 +31,55 @@ namespace mpx
 
 class MpxProxyTaskBase: public MpxTaskBase
 {
-public:
-	MpxProxyTaskBase () :
-		MpxTaskBase ()
+protected:
+	MpxProxyTaskBase (evnset& e) :
+		MpxTaskBase (e)
 	{
 	}
-	~MpxProxyTaskBase ()
+	virtual ~MpxProxyTaskBase ()
 	{
 	}
-	virtual int SendProxy (MpxTaskBase* task, MpxEventBase* event, bool invoke = false) = 0;
 };
 
 template <typename T> class MpxProxyTask: public MpxProxyTaskBase
 {
 public:
-	MpxProxyTask (MpxTaskBase* task, MpxSocket <T> * socket) :
-		MpxProxyTaskBase (), m_task (task), m_socket (socket)
+	typedef T MpxSocketEvent;
+	typedef MpxEventXDRItf* (*edfunc) ();
+	MpxProxyTask (evnset& e, MpxTaskBase* task, MpxSocket <MpxSocketEvent> * socket) :
+		MpxProxyTaskBase (e), m_task (task), m_socket (socket), m_lib (0), m_fcn (0), m_eventXDR (0)
 	{
 		if (false)
 			cout << "create proxy " << this << endl;
-		static EventDescriptor g_evntab[] =
-		{
-			{ AnyState, StartEvent, HandleStartEvent, 0 },
-			{ AnyState, StopEvent, HandleStopEvent, 0 },
-			{ 0, 0, 0, 0 }
-		};
-		RegisterEventHandlers (g_evntab);
 	}
 	virtual ~MpxProxyTask ()
 	{
-		delete m_socket;
+		if (m_socket != 0)
+			delete m_socket;
+		m_socket = 0;
+		if (m_eventXDR != 0)
+			delete m_eventXDR;
+		m_eventXDR = 0;
 	}
-	virtual int SendProxy (MpxTaskBase* task, MpxEventBase* event, bool invoke = false)
+	virtual int HandleEvent (MpxEventBase* event)
 	{
-		if (false)
-			cout << "proxy event: " << event->code () << endl;
-		xdrproc_t proc;
-		void* data;
-		if (event->Encode (proc, data) < 0)
+		if ((int) event->code () < 0)
+			return MpxTaskBase::HandleEvent (event);
+		if (m_eventXDR == 0)
 			return -1;
-		int n = m_socket->PostXdrRequest (proc, data);
-		xdr_free (proc, (char*) data);
-		delete event;
-		return n;
+		size_t xdrSize;
+		size_t size = xdrSize = m_eventXDR->Encode (event, 0, 0);
+		if (size < 0)
+		{
+			cout << "EVENT = " << event->code () << ", size = " << size << endl;
+		}
+		char* buffer = (char*) alloca(size);
+		if ((size = m_eventXDR->Encode (event, buffer, size)) < 0)
+		{
+			cout << "EVENT = " << event->code () << ", size = " << size << endl;
+		}
+		m_socket->Write ((u_char*) buffer, xdrSize);
+		return 0;
 	}
 	inline MpxTaskBase* task ()
 	{
@@ -82,31 +89,13 @@ public:
 	{
 		return m_socket;
 	}
-private:
-
-	inline static void HandleStartEvent (MpxEventBase *event, mpx_appdt_t appdata)
-	{
-		((MpxProxyTask*) appdata)->HandleStartEvent (event);
-	}
-	void HandleStartEvent (MpxEventBase *event)
-	{
-		if (false)
-			cout << "proxy event: start" << endl;
-	}
-
-	inline static void HandleStopEvent (MpxEventBase *event, mpx_appdt_t appdata)
-	{
-		((MpxProxyTask*) appdata)->HandleStopEvent (event);
-	}
-	void HandleStopEvent (MpxEventBase *event)
-	{
-		if (false)
-			cout << "proxy event: stop" << endl;
-	}
 
 protected:
 	MpxTaskBase* m_task;
-	MpxSocket <T> * m_socket;
+	MpxSocket <MpxSocketEvent> * m_socket;
+	void* m_lib;
+	edfunc m_fcn;
+	MpxEventXDRItf* m_eventXDR;
 };
 
 } // namespace mpx

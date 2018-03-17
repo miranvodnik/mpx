@@ -22,7 +22,7 @@ namespace sftp
 {
 
 SftpInviteReply::SftpInviteReply (bool invite) :
-	MpxEventBase (InviteReplyEvent), m_invite (invite)
+	MpxEventBase (EventCode), m_invite (invite)
 {
 }
 

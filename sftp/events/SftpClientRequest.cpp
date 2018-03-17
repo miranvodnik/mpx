@@ -31,7 +31,7 @@ namespace sftp
 {
 
 SftpClientRequest::SftpClientRequest (u_long sessionId, char*args []) :
-	MpxEventBase (SftpClientRequest::ClientRequestEvent), m_sessionId (sessionId)
+	MpxEventBase (SftpClientRequest::EventCode), m_sessionId (sessionId)
 {
 	int size;
 	char** ptr;
@@ -45,7 +45,7 @@ SftpClientRequest::SftpClientRequest (u_long sessionId, char*args []) :
 }
 
 SftpClientRequest::SftpClientRequest (u_long sessionId, char*args) :
-	MpxEventBase (SftpClientRequest::ClientRequestEvent), m_sessionId (sessionId)
+	MpxEventBase (SftpClientRequest::EventCode), m_sessionId (sessionId)
 {
 	m_args = new char* [2];
 	m_args [0] = strdup (args);

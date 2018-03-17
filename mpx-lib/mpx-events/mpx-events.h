@@ -3,8 +3,7 @@
  * It was generated using rpcgen.
  */
 
-#ifndef _MPX_EVENTS_H_RPCGEN
-#define _MPX_EVENTS_H_RPCGEN
+#pragma once
 
 #include <rpc/rpc.h>
 
@@ -39,7 +38,6 @@ enum MpxEventCode {
 	MpxExternalTaskEventCode = -21,
 	MpxTaskQueryEventCode = -22,
 	MpxTaskResponseEventCode = -23,
-	MpxConsumerEventCode = 1,
 };
 typedef enum MpxEventCode MpxEventCode;
 
@@ -52,330 +50,20 @@ struct MpxEventBaseStruct {
 };
 typedef struct MpxEventBaseStruct MpxEventBaseStruct;
 
-struct MpxExternalTaskEventStruct {
-	MpxEventBaseStruct base;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxExternalTaskEventStruct MpxExternalTaskEventStruct;
-
-struct MpxJobFinishedEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_job;
-};
-typedef struct MpxJobFinishedEventStruct MpxJobFinishedEventStruct;
-
-struct MpxLocalClientEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxLocalClientEventStruct MpxLocalClientEventStruct;
-
-struct MpxLocalEndPointEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxLocalEndPointEventStruct MpxLocalEndPointEventStruct;
-
-struct MpxLocalListenerEventStruct {
-	MpxEventBaseStruct base;
-	int m_fd;
-};
-typedef struct MpxLocalListenerEventStruct MpxLocalListenerEventStruct;
-
-struct MpxLocalTaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_path;
-	char *m_name;
-};
-typedef struct MpxLocalTaskQueryEventStruct MpxLocalTaskQueryEventStruct;
-
-struct MpxPosixMQEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_listener;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxPosixMQEventStruct MpxPosixMQEventStruct;
-
-struct MpxPosixMQTaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_path;
-	char *m_name;
-};
-typedef struct MpxPosixMQTaskQueryEventStruct MpxPosixMQTaskQueryEventStruct;
-
-struct MpxStartEventStruct {
-	MpxEventBaseStruct base;
-};
-typedef struct MpxStartEventStruct MpxStartEventStruct;
-
-struct MpxStopEventStruct {
-	MpxEventBaseStruct base;
-};
-typedef struct MpxStopEventStruct MpxStopEventStruct;
-
-enum MpxTaskQueryEventType {
-	TaskQueryEventNone = 0,
-	TaskQueryEventLocal = 1,
-	TaskQueryEventPosixMQ = 2,
-	TaskQueryEventTcp4 = 3,
-	TaskQueryEventUdp4 = 4,
-	TaskQueryEventTcp6 = 5,
-	TaskQueryEventUdp6 = 6,
-};
-typedef enum MpxTaskQueryEventType MpxTaskQueryEventType;
-
-struct MpxTaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_taskName;
-	MpxTaskQueryEventType m_queryType;
-	u_long m_endPoint;
-};
-typedef struct MpxTaskQueryEventStruct MpxTaskQueryEventStruct;
-
-struct MpxTaskResponseEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_task;
-	MpxTaskQueryEventType m_queryType;
-	u_long m_endPoint;
-};
-typedef struct MpxTaskResponseEventStruct MpxTaskResponseEventStruct;
-
-struct MpxTcp4ClientEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxTcp4ClientEventStruct MpxTcp4ClientEventStruct;
-
-struct MpxTcp4EndPointEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxTcp4EndPointEventStruct MpxTcp4EndPointEventStruct;
-
-struct MpxTcp4ListenerEventStruct {
-	MpxEventBaseStruct base;
-	int m_fd;
-};
-typedef struct MpxTcp4ListenerEventStruct MpxTcp4ListenerEventStruct;
-
-struct MpxTcp4TaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_hostname;
-	char *m_port;
-	char *m_name;
-};
-typedef struct MpxTcp4TaskQueryEventStruct MpxTcp4TaskQueryEventStruct;
-
-struct MpxTcp6ClientEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxTcp6ClientEventStruct MpxTcp6ClientEventStruct;
-
-struct MpxTcp6EndPointEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_endPoint;
-	u_int m_flags;
-	u_int m_error;
-	u_int m_size;
-	struct {
-		u_int m_buffer_len;
-		char *m_buffer_val;
-	} m_buffer;
-};
-typedef struct MpxTcp6EndPointEventStruct MpxTcp6EndPointEventStruct;
-
-struct MpxTcp6ListenerEventStruct {
-	MpxEventBaseStruct base;
-	int m_fd;
-};
-typedef struct MpxTcp6ListenerEventStruct MpxTcp6ListenerEventStruct;
-
-struct MpxTcp6TaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_hostname;
-	char *m_port;
-	char *m_name;
-};
-typedef struct MpxTcp6TaskQueryEventStruct MpxTcp6TaskQueryEventStruct;
-
-struct MpxTimerEventStruct {
-	MpxEventBaseStruct base;
-	u_long m_task;
-	u_long m_timerStamp;
-	u_long m_timer;
-};
-typedef struct MpxTimerEventStruct MpxTimerEventStruct;
-
-struct MpxUdp4TaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_hostname;
-	char *m_port;
-	char *m_name;
-};
-typedef struct MpxUdp4TaskQueryEventStruct MpxUdp4TaskQueryEventStruct;
-
-struct MpxUdp6TaskQueryEventStruct {
-	MpxEventBaseStruct base;
-	char *m_hostname;
-	char *m_port;
-	char *m_name;
-};
-typedef struct MpxUdp6TaskQueryEventStruct MpxUdp6TaskQueryEventStruct;
-
-struct MpxConsumerEventStruct {
-	MpxEventBaseStruct base;
-	char *m_string;
-};
-typedef struct MpxConsumerEventStruct MpxConsumerEventStruct;
-
-struct MpxEventStruct {
-	MpxEventCode m_code;
-	union {
-		MpxEventBaseStruct m_EventBasw;
-		MpxExternalTaskEventStruct m_ExternalTaskEvent;
-		MpxJobFinishedEventStruct m_JobFinishedEvent;
-		MpxLocalClientEventStruct m_LocalClientEvent;
-		MpxLocalEndPointEventStruct m_LocalEndPointEvent;
-		MpxLocalListenerEventStruct m_LocalListenerEvent;
-		MpxLocalTaskQueryEventStruct m_LocalTaskQueryEvent;
-		MpxPosixMQEventStruct m_PosixMQEvent;
-		MpxPosixMQTaskQueryEventStruct m_PosixMQTaskQueryEvent;
-		MpxStartEventStruct m_StartEvent;
-		MpxStopEventStruct m_StopEvent;
-		MpxTaskQueryEventStruct m_TaskQueryEvent;
-		MpxTaskResponseEventStruct m_TaskResponseEvent;
-		MpxTcp4ClientEventStruct m_Tcp4ClientEvent;
-		MpxTcp4EndPointEventStruct m_Tcp4EndPointEvent;
-		MpxTcp4ListenerEventStruct m_Tcp4ListenerEvent;
-		MpxTcp4TaskQueryEventStruct m_Tcp4TaskQueryEvent;
-		MpxTcp6ClientEventStruct m_Tcp6ClientEvent;
-		MpxTcp6EndPointEventStruct m_Tcp6EndPointEvent;
-		MpxTcp6ListenerEventStruct m_Tcp6ListenerEvent;
-		MpxTcp6TaskQueryEventStruct m_Tcp6TaskQueryEvent;
-		MpxTimerEventStruct m_TimerEvent;
-		MpxUdp4TaskQueryEventStruct m_Udp4TaskQueryEvent;
-		MpxUdp6TaskQueryEventStruct m_Udp6TaskQueryEvent;
-		MpxConsumerEventStruct m_ConsumerEvent;
-	} MpxEventStruct_u;
-};
-typedef struct MpxEventStruct MpxEventStruct;
-
 /* the xdr functions */
 
 #if defined(__STDC__) || defined(__cplusplus)
 extern  bool_t xdr_MpxEventCode (XDR *, MpxEventCode*);
 extern  bool_t xdr_taskid_t (XDR *, taskid_t*);
 extern  bool_t xdr_MpxEventBaseStruct (XDR *, MpxEventBaseStruct*);
-extern  bool_t xdr_MpxExternalTaskEventStruct (XDR *, MpxExternalTaskEventStruct*);
-extern  bool_t xdr_MpxJobFinishedEventStruct (XDR *, MpxJobFinishedEventStruct*);
-extern  bool_t xdr_MpxLocalClientEventStruct (XDR *, MpxLocalClientEventStruct*);
-extern  bool_t xdr_MpxLocalEndPointEventStruct (XDR *, MpxLocalEndPointEventStruct*);
-extern  bool_t xdr_MpxLocalListenerEventStruct (XDR *, MpxLocalListenerEventStruct*);
-extern  bool_t xdr_MpxLocalTaskQueryEventStruct (XDR *, MpxLocalTaskQueryEventStruct*);
-extern  bool_t xdr_MpxPosixMQEventStruct (XDR *, MpxPosixMQEventStruct*);
-extern  bool_t xdr_MpxPosixMQTaskQueryEventStruct (XDR *, MpxPosixMQTaskQueryEventStruct*);
-extern  bool_t xdr_MpxStartEventStruct (XDR *, MpxStartEventStruct*);
-extern  bool_t xdr_MpxStopEventStruct (XDR *, MpxStopEventStruct*);
-extern  bool_t xdr_MpxTaskQueryEventType (XDR *, MpxTaskQueryEventType*);
-extern  bool_t xdr_MpxTaskQueryEventStruct (XDR *, MpxTaskQueryEventStruct*);
-extern  bool_t xdr_MpxTaskResponseEventStruct (XDR *, MpxTaskResponseEventStruct*);
-extern  bool_t xdr_MpxTcp4ClientEventStruct (XDR *, MpxTcp4ClientEventStruct*);
-extern  bool_t xdr_MpxTcp4EndPointEventStruct (XDR *, MpxTcp4EndPointEventStruct*);
-extern  bool_t xdr_MpxTcp4ListenerEventStruct (XDR *, MpxTcp4ListenerEventStruct*);
-extern  bool_t xdr_MpxTcp4TaskQueryEventStruct (XDR *, MpxTcp4TaskQueryEventStruct*);
-extern  bool_t xdr_MpxTcp6ClientEventStruct (XDR *, MpxTcp6ClientEventStruct*);
-extern  bool_t xdr_MpxTcp6EndPointEventStruct (XDR *, MpxTcp6EndPointEventStruct*);
-extern  bool_t xdr_MpxTcp6ListenerEventStruct (XDR *, MpxTcp6ListenerEventStruct*);
-extern  bool_t xdr_MpxTcp6TaskQueryEventStruct (XDR *, MpxTcp6TaskQueryEventStruct*);
-extern  bool_t xdr_MpxTimerEventStruct (XDR *, MpxTimerEventStruct*);
-extern  bool_t xdr_MpxUdp4TaskQueryEventStruct (XDR *, MpxUdp4TaskQueryEventStruct*);
-extern  bool_t xdr_MpxUdp6TaskQueryEventStruct (XDR *, MpxUdp6TaskQueryEventStruct*);
-extern  bool_t xdr_MpxConsumerEventStruct (XDR *, MpxConsumerEventStruct*);
-extern  bool_t xdr_MpxEventStruct (XDR *, MpxEventStruct*);
 
 #else /* K&R C */
 extern bool_t xdr_MpxEventCode ();
 extern bool_t xdr_taskid_t ();
 extern bool_t xdr_MpxEventBaseStruct ();
-extern bool_t xdr_MpxExternalTaskEventStruct ();
-extern bool_t xdr_MpxJobFinishedEventStruct ();
-extern bool_t xdr_MpxLocalClientEventStruct ();
-extern bool_t xdr_MpxLocalEndPointEventStruct ();
-extern bool_t xdr_MpxLocalListenerEventStruct ();
-extern bool_t xdr_MpxLocalTaskQueryEventStruct ();
-extern bool_t xdr_MpxPosixMQEventStruct ();
-extern bool_t xdr_MpxPosixMQTaskQueryEventStruct ();
-extern bool_t xdr_MpxStartEventStruct ();
-extern bool_t xdr_MpxStopEventStruct ();
-extern bool_t xdr_MpxTaskQueryEventType ();
-extern bool_t xdr_MpxTaskQueryEventStruct ();
-extern bool_t xdr_MpxTaskResponseEventStruct ();
-extern bool_t xdr_MpxTcp4ClientEventStruct ();
-extern bool_t xdr_MpxTcp4EndPointEventStruct ();
-extern bool_t xdr_MpxTcp4ListenerEventStruct ();
-extern bool_t xdr_MpxTcp4TaskQueryEventStruct ();
-extern bool_t xdr_MpxTcp6ClientEventStruct ();
-extern bool_t xdr_MpxTcp6EndPointEventStruct ();
-extern bool_t xdr_MpxTcp6ListenerEventStruct ();
-extern bool_t xdr_MpxTcp6TaskQueryEventStruct ();
-extern bool_t xdr_MpxTimerEventStruct ();
-extern bool_t xdr_MpxUdp4TaskQueryEventStruct ();
-extern bool_t xdr_MpxUdp6TaskQueryEventStruct ();
-extern bool_t xdr_MpxConsumerEventStruct ();
-extern bool_t xdr_MpxEventStruct ();
 
 #endif /* K&R C */
 
 #ifdef __cplusplus
 }
 #endif
-
-#endif /* !_MPX_EVENTS_H_RPCGEN */

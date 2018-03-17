@@ -22,13 +22,13 @@ namespace mpx
 {
 
 MpxTcp4ClientEvent::MpxTcp4ClientEvent (void* endPoint, u_int flags, u_int error, u_int size, u_char* buffer) :
-	MpxEventBase (Tcp4ClientEvent), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (size), m_buffer (
+	MpxEventBase (MpxTcp4ClientEvent::EventCode), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (size), m_buffer (
 		buffer)
 {
 }
 
 MpxTcp4ClientEvent::MpxTcp4ClientEvent (MpxTcp4ClientEvent& cln) :
-	MpxEventBase (Tcp4ClientEvent)
+	MpxEventBase (MpxTcp4ClientEvent::EventCode)
 {
 	m_endPoint = cln.endPoint ();
 	m_flags = cln.flags ();

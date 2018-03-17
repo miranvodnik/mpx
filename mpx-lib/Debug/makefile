@@ -11,6 +11,7 @@ RM := rm -rf
 -include mpx-working-threads/subdir.mk
 -include mpx-tasks/subdir.mk
 -include mpx-sockets/subdir.mk
+-include mpx-jobs/subdir.mk
 -include mpx-events/subdir.mk
 -include mpx-event-queues/subdir.mk
 -include mpx-core/subdir.mk

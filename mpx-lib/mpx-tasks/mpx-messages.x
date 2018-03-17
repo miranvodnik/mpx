@@ -28,11 +28,13 @@ enum MpxMessageCode
 struct MpxExternalTaskRequest
 {
 	string taskName<>;
+	string encdeclib<>;
 };
 
 struct MpxExternalTaskReply
 {
 	long task;
+	string encdeclib<>;
 };
 
 union MpxMessage

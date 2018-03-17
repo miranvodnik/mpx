@@ -19,7 +19,7 @@
 #pragma once
 
 #include <mpx-core/MpxUtilities.h>
-#include <mpx-working-threads/MpxJob.h>
+#include <mpx-jobs/MpxJob.h>
 #include <mpx-tasks/MpxTaskBase.h>
 
 namespace mpx
@@ -30,9 +30,9 @@ class MpxWorkerTask: public mpx::MpxTaskBase
 public:
 	MpxWorkerTask (const char* name = 0);
 	virtual ~MpxWorkerTask ();
+	virtual void StartTask ();
+	virtual void StopTask ();
 private:
-	mpx_event_handler (StartEventHandler, MpxWorkerTask)
-	;mpx_event_handler (StopEventHandler, MpxWorkerTask)
 	;mpx_event_handler (TimerEventHandler, MpxWorkerTask)
 	;
 
@@ -46,6 +46,7 @@ private:
 	void* m_sendTimer;
 	MpxJob* m_job;
 	static EventDescriptor g_evntab[];
+	static evnset g_evnset;
 };
 
 } /* namespace mpx */

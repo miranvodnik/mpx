@@ -28,7 +28,7 @@ class MpxStartEvent: public mpx::MpxEventBase
 {
 public:
 	MpxStartEvent () :
-		MpxEventBase (StartEvent)
+		MpxEventBase (MpxStartEvent::EventCode)
 	{
 	}
 	virtual ~MpxStartEvent ()
@@ -42,14 +42,8 @@ public:
 	{
 		return new MpxStartEvent (*this);
 	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data)
-	{
-		return 0;
-	}
-	virtual int Decode (MpxEventStruct* eventStruct)
-	{
-		return 0;
-	}
+public:
+	static const unsigned int EventCode = (unsigned int) ::MpxStartEventCode;
 };
 
 } /* namespace mpx */

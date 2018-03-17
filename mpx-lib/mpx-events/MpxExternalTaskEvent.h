@@ -28,11 +28,11 @@ class MpxExternalTaskEvent: public MpxEventBase
 {
 public:
 	MpxExternalTaskEvent () :
-		MpxEventBase (ExternalTaskEvent), m_flags (0), m_error (0), m_size (0), m_buffer (0)
+		MpxEventBase (MpxExternalTaskEvent::EventCode), m_flags (0), m_error (0), m_size (0), m_buffer (0)
 	{
 	}
 	MpxExternalTaskEvent (u_int flags, u_int error, u_int size, u_char* buffer) :
-		MpxEventBase (ExternalTaskEvent), m_flags (flags), m_error (error), m_size (size), m_buffer (buffer)
+		MpxEventBase (MpxExternalTaskEvent::EventCode), m_flags (flags), m_error (error), m_size (size), m_buffer (buffer)
 	{
 	}
 	virtual ~MpxExternalTaskEvent ()
@@ -45,16 +45,6 @@ public:
 	virtual MpxEventBase* Copy ()
 	{
 		return new MpxExternalTaskEvent (*this);
-	}
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data);
-	virtual int Decode (MpxEventStruct* eventStruct);
-	static inline MpxEventBase* ObjAllocator ()
-	{
-		return new MpxExternalTaskEvent ();
-	}
-	static inline void* XdrAllocator ()
-	{
-		return (void*) new MpxEventStruct;
 	}
 	inline u_int flags ()
 	{
@@ -72,7 +62,9 @@ public:
 	{
 		return m_buffer;
 	}
-	static const int g_xdrId = ExternalTaskEvent;
+public:
+	static const int g_xdrId = ::MpxExternalTaskEventCode;
+	static const unsigned int EventCode = (unsigned int) ::MpxExternalTaskEventCode;
 private:
 	u_int m_flags;
 	u_int m_error;

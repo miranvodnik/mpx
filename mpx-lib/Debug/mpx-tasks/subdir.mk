@@ -7,7 +7,6 @@ C_SRCS += \
 ../mpx-tasks/mpx-messages_xdr.c 
 
 CPP_SRCS += \
-../mpx-tasks/MpxExtTaskI.cpp \
 ../mpx-tasks/MpxExternalTask.cpp \
 ../mpx-tasks/MpxLocalClientProxyTask.cpp \
 ../mpx-tasks/MpxLocalEndPointProxyTask.cpp \
@@ -19,7 +18,6 @@ CPP_SRCS += \
 ../mpx-tasks/MpxTcp6EndPointProxyTask.cpp 
 
 OBJS += \
-./mpx-tasks/MpxExtTaskI.o \
 ./mpx-tasks/MpxExternalTask.o \
 ./mpx-tasks/MpxLocalClientProxyTask.o \
 ./mpx-tasks/MpxLocalEndPointProxyTask.o \
@@ -35,7 +33,6 @@ C_DEPS += \
 ./mpx-tasks/mpx-messages_xdr.d 
 
 CPP_DEPS += \
-./mpx-tasks/MpxExtTaskI.d \
 ./mpx-tasks/MpxExternalTask.d \
 ./mpx-tasks/MpxLocalClientProxyTask.d \
 ./mpx-tasks/MpxLocalEndPointProxyTask.d \

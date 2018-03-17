@@ -64,8 +64,8 @@ void SftpClient::FinalTimerExpiredEventHandler (SftpClient *ftp, SftpContext con
 	Dispose ("finalizer");
 }
 
-SftpClient::SftpClient () :
-	FtpClientInterface (Ssh2Protocol)
+SftpClient::SftpClient (evnset& e) :
+	FtpClientInterface (e, Ssh2Protocol)
 {
 	m_ctx = 0;
 	memset (m_ftpEvents, 0, sizeof(m_ftpEvents));

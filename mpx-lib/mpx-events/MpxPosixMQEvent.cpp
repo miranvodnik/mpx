@@ -22,13 +22,13 @@ namespace mpx
 {
 
 MpxPosixMQEvent::MpxPosixMQEvent (void* listener, u_int flags, u_int error, u_int size, u_char* buffer) :
-	MpxEventBase (PosixMQEvent), m_listener (listener), m_flags (flags), m_error (error), m_size (size), m_buffer (
+	MpxEventBase (MpxPosixMQEvent::EventCode), m_listener (listener), m_flags (flags), m_error (error), m_size (size), m_buffer (
 		buffer)
 {
 }
 
 MpxPosixMQEvent::MpxPosixMQEvent (MpxPosixMQEvent& cln) :
-	MpxEventBase (PosixMQEvent)
+	MpxEventBase (MpxPosixMQEvent::EventCode)
 {
 	m_listener = cln.listener ();
 	m_flags = cln.flags ();

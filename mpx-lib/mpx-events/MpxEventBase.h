@@ -27,29 +27,6 @@ namespace mpx
 enum MpxEventCode
 {
 	InvalidEvent,
-	StartEvent = (u_int) -1,
-	TimerEvent = (u_int) -2,
-	StopEvent = (u_int) -3,
-	Tcp4ListenerEvent = (u_int) -4,
-	Tcp4EndPointEvent = (u_int) -5,
-	Tcp4ClientEvent = (u_int) -6,
-	Tcp6ListenerEvent = (u_int) -7,
-	Tcp6EndPointEvent = (u_int) -8,
-	Tcp6ClientEvent = (u_int) -9,
-	LocalListenerEvent = (u_int) -10,
-	LocalEndPointEvent = (u_int) -11,
-	LocalClientEvent = (u_int) -12,
-	PosixMQEvent = (u_int) -13,
-	JobFinishedEvent = (u_int) -14,
-	LocalTaskQueryEvent = (u_int) -15,
-	PosixMQTaskQueryEvent = (u_int) -16,
-	Tcp4TaskQueryEvent = (u_int) -17,
-	Tcp6TaskQueryEvent = (u_int) -18,
-	Udp4TaskQueryEvent = (u_int) -19,
-	Udp6TaskQueryEvent = (u_int) -20,
-	ExternalTaskEvent = (u_int) -21,
-	TaskQueryEvent = (u_int) -22,
-	TaskResponseEvent = (u_int) -23,
 };
 
 enum MpxTaskQueryEventType
@@ -80,8 +57,6 @@ public:
 	int Invoke ();
 	virtual const char* Name () = 0;
 	virtual MpxEventBase* Copy () = 0;
-	virtual int Encode (xdrproc_t& proc, xdrdata_t& data) = 0;
-	virtual int Decode (MpxEventStruct* eventStruct) = 0;
 
 	inline u_int code ()
 	{

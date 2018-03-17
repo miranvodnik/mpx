@@ -21,8 +21,8 @@
 namespace mpx
 {
 
-MpxLocalTaskQueryEvent::MpxLocalTaskQueryEvent (const char* path, const char* name) :
-	MpxEventBase (LocalTaskQueryEvent), m_path (path), m_name (name)
+MpxLocalTaskQueryEvent::MpxLocalTaskQueryEvent (const char* path, const char* name, const char* encdeclib) :
+	MpxEventBase (MpxLocalTaskQueryEvent::EventCode), m_path (path), m_name (name), m_encdeclib (encdeclib)
 {
 }
 
