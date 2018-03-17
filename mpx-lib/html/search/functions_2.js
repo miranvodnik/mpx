@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['broadcast',['Broadcast',['../de/dcf/classmpx_1_1MpxTaskMultiplexer.html#a28ae6f8a7d45c2ad377578c5fd59e903',1,'mpx::MpxTaskMultiplexer']]],
-  ['broadcastexternalevent',['BroadcastExternalEvent',['../d9/dd8/classmpx_1_1MpxEnvironment.html#ac903a46572eb6ea84f8292250f6af61f',1,'mpx::MpxEnvironment']]],
-  ['buffer',['buffer',['../d9/de0/classmpx_1_1MpxExternalTaskEvent.html#ad0dfea0dc2e43a983be218e04c3218c5',1,'mpx::MpxExternalTaskEvent::buffer()'],['../dc/df1/classmpx_1_1MpxLocalClientEvent.html#a4f7726574e53d908c9eba7d3bc019e2c',1,'mpx::MpxLocalClientEvent::buffer()'],['../d7/df7/classmpx_1_1MpxLocalEndPointEvent.html#a4d3fbfa41bf114a8a22a6d8f63d9a2b3',1,'mpx::MpxLocalEndPointEvent::buffer()'],['../db/da8/classmpx_1_1MpxPosixMQEvent.html#a3883525f39701ee82e1b33611b57b607',1,'mpx::MpxPosixMQEvent::buffer()'],['../d1/df2/classmpx_1_1MpxTcp4ClientEvent.html#adb67e2bcf9777642a278d71b010c1643',1,'mpx::MpxTcp4ClientEvent::buffer()'],['../df/dc1/classmpx_1_1MpxTcp4EndPointEvent.html#a5485577cf427ee7a24070b59861236d4',1,'mpx::MpxTcp4EndPointEvent::buffer()'],['../de/d9d/classmpx_1_1MpxTcp6ClientEvent.html#aeb0ef7c5dcb2d32bf2fda33ad985347b',1,'mpx::MpxTcp6ClientEvent::buffer()'],['../da/ddb/classmpx_1_1MpxTcp6EndPointEvent.html#a7d69a2591d348ba7b10d5e7cfccea223',1,'mpx::MpxTcp6EndPointEvent::buffer()']]]
-];

@@ -1,5 +1,0 @@
-<map id="mpx::MpxRunningContext::MpxDescriptor" name="mpx::MpxRunningContext::MpxDescriptor">
-<area shape="rect" id="node2" href="$d4/dc1/classmpx_1_1MpxRunningContext.html" title="I/O multiplexer superclass. " alt="" coords="591,133,765,159"/>
-<area shape="rect" id="node4" href="$d7/de7/classmpx_1_1MpxRunningContext_1_1MpxSignalContext.html" title="signal handler " alt="" coords="893,44,1068,85"/>
-<area shape="rect" id="node6" href="$de/dfc/classmpx_1_1MpxRunningContext_1_1MpxTimer.html" title="timer class " alt="" coords="893,195,1068,236"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="MpxEventQueueRepository.h" name="MpxEventQueueRepository.h">
-<area shape="rect" id="node2" href="$dd/dd7/MpxTaskMultiplexer_8cpp.html" title="MpxTaskMultiplexer.cpp" alt="" coords="5,80,169,107"/>
-<area shape="rect" id="node3" href="$d7/d39/MpxEventQueueRepository_8cpp.html" title="MpxEventQueueRepository.cpp" alt="" coords="193,80,400,107"/>
-<area shape="rect" id="node4" href="$db/df5/MpxLocalMQTask_8cpp.html" title="MpxLocalMQTask.cpp" alt="" coords="424,80,577,107"/>
-<area shape="rect" id="node5" href="$db/d80/MpxPosixMQTask_8cpp.html" title="MpxPosixMQTask.cpp" alt="" coords="602,80,757,107"/>
-<area shape="rect" id="node6" href="$d6/dd9/MpxTaskBase_8cpp.html" title="MpxTaskBase.cpp" alt="" coords="781,80,911,107"/>
-</map>
