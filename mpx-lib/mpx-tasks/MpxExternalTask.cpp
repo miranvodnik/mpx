@@ -404,9 +404,7 @@ void MpxExternalTask::HandleTcp4TaskQueryEvent (MpxEventBase* event)
 	hint.ai_flags = AI_ALL;
 	hint.ai_family = AF_INET;
 
-//	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, srcTask, tcp4TaskQueryEvent->hostname(), tcp4TaskQueryEvent->name(), atoi (tcp4TaskQueryEvent->port ()), AF_INET, &hint);
-	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, tcp4TaskQueryEvent->hostname(), (MpxEventBase*) tcp4TaskQueryEvent->Copy(), AF_INET, &hint);
-	MpxWorkingQueue::Put (extTaskAddrInfo);
+	MpxWorkingQueue::Put (new MpxExtTaskAddrInfo (this, tcp4TaskQueryEvent->hostname(), (MpxEventBase*) tcp4TaskQueryEvent->Copy(), AF_INET, &hint));
 }
 
 void MpxExternalTask::HandleTcp6TaskQueryEvent (MpxEventBase* event)
@@ -424,9 +422,7 @@ void MpxExternalTask::HandleTcp6TaskQueryEvent (MpxEventBase* event)
 	hint.ai_flags = AI_ALL;
 	hint.ai_family = AF_INET6;
 
-//	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, srcTask, tcp6TaskQueryEvent->hostname(), tcp6TaskQueryEvent->name(), atoi (tcp6TaskQueryEvent->port ()), AF_INET6, &hint);
-	MpxExtTaskAddrInfo* extTaskAddrInfo = new MpxExtTaskAddrInfo (this, tcp6TaskQueryEvent->hostname(), (MpxEventBase*) tcp6TaskQueryEvent->Copy(), AF_INET6, &hint);
-	MpxWorkingQueue::Put (extTaskAddrInfo);
+	MpxWorkingQueue::Put (new MpxExtTaskAddrInfo (this, tcp6TaskQueryEvent->hostname(), (MpxEventBase*) tcp6TaskQueryEvent->Copy(), AF_INET6, &hint));
 }
 
 void MpxExternalTask::HandleJobFinishedEvent (MpxEventBase* event)

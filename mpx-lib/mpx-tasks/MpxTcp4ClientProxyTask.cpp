@@ -23,17 +23,8 @@
 namespace mpx
 {
 
-EventDescriptor MpxTcp4ClientProxyTask::g_evntab[] =
-{
-	{ AnyState, MpxTcp4ClientEvent::EventCode, HandleTcp4ClientEvent },
-	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
-	{ 0, 0, 0 }
-};
-
-MpxTaskBase::evnset MpxTcp4ClientProxyTask::g_evnset = MpxTaskBase::CreateEventSet(MpxTcp4ClientProxyTask::g_evntab);
-
 MpxTcp4ClientProxyTask::MpxTcp4ClientProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp4Client* tcp4Client) :
-	MpxProxyTask (g_evnset, task, tcp4Client), m_encdeclib (encdeclib)
+	MpxProxyTask (task, tcp4Client, encdeclib, true)
 {
 	tcp4Client->task (this);
 }
@@ -42,17 +33,7 @@ MpxTcp4ClientProxyTask::~MpxTcp4ClientProxyTask ()
 {
 }
 
-void MpxTcp4ClientProxyTask::StartTask ()
-{
-	MpxWorkingQueue::Put (new MpxOpenLibrary (this, m_encdeclib.c_str()));
-}
-
-void MpxTcp4ClientProxyTask::StopTask ()
-{
-
-}
-
-void MpxTcp4ClientProxyTask::HandleTcp4ClientEvent (MpxEventBase *event)
+void MpxTcp4ClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 {
 	MpxTcp4ClientEvent* tcp4ClientEvent = dynamic_cast <MpxTcp4ClientEvent*> (event);
 	if (tcp4ClientEvent == 0)
@@ -81,28 +62,6 @@ void MpxTcp4ClientProxyTask::HandleTcp4ClientEvent (MpxEventBase *event)
 			cout << "proxy " << this << " event: tcp4 client default" << endl;
 		break;
 	}
-}
-
-void MpxTcp4ClientProxyTask::HandleJobFinishedEvent (MpxEventBase *event)
-{
-	while (true)
-	{
-		MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
-		if (jobFinishedEvent == 0)
-			break;
-		MpxOpenLibrary* openLibrary = dynamic_cast < MpxOpenLibrary* > (jobFinishedEvent->job());
-		if (openLibrary == 0)
-			break;
-		if ((m_lib = openLibrary->lib()) == 0)
-			break;
-		if ((m_fcn = (edfunc) openLibrary->fcn()) == 0)
-			break;
-		if ((m_eventXDR = (*m_fcn) ()) == 0)
-			break;
-		Send (m_task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false);
-		return;
-	}
-	Dispose (false);
 }
 
 } // namespace mpx

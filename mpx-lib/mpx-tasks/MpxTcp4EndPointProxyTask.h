@@ -22,26 +22,16 @@
 #include <mpx-sockets/MpxTcp4EndPoint.h>
 #include <mpx-events/MpxTcp4EndPointEvent.h>
 
-#include <string>
-using namespace std;
-
 namespace mpx
 {
 
-class MpxTcp4EndPointProxyTask: public MpxProxyTask <MpxTcp4EndPointEvent>
+class MpxTcp4EndPointProxyTask: public MpxProxyTask <MpxTcp4EndPointEvent, MpxTcp4EndPointProxyTask>
 {
 public:
 	MpxTcp4EndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp4EndPoint* tcp4EndPoint);
 	virtual ~MpxTcp4EndPointProxyTask ();
-	virtual void StartTask ();
-	virtual void StopTask ();
-private:
-	mpx_event_handler(HandleTcp4EndPointEvent, MpxTcp4EndPointProxyTask)
-	mpx_event_handler(HandleJobFinishedEvent, MpxTcp4EndPointProxyTask)
-private:
-	static EventDescriptor g_evntab[];
-	static evnset g_evnset;
-	string m_encdeclib;
+public:
+	mpx_event_handler(HandleSocketEvent, MpxTcp4EndPointProxyTask)
 };
 
 } // namespace mpx

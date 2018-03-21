@@ -43,7 +43,7 @@ all: libmpx-edlib.so
 libmpx-edlib.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++ -L"/home/miran/eclipse-workspace/mpx/mpx-lib/Debug" -shared -o "libmpx-edlib.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/miran/eclipse-workspace/mpx/mpx-lib/Debug" -L"/home/miran/eclipse-workspace/mpx/mpx-lib/Release" -shared -o "libmpx-edlib.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

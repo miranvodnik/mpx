@@ -23,17 +23,8 @@
 namespace mpx
 {
 
-EventDescriptor MpxTcp4EndPointProxyTask::g_evntab[] =
-{
-	{ AnyState, MpxTcp4EndPointEvent::EventCode, HandleTcp4EndPointEvent },
-	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
-	{ 0, 0, 0 }
-};
-
-MpxTaskBase::evnset MpxTcp4EndPointProxyTask::g_evnset = MpxTaskBase::CreateEventSet(MpxTcp4EndPointProxyTask::g_evntab);
-
 MpxTcp4EndPointProxyTask::MpxTcp4EndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp4EndPoint* tcp4EndPoint) :
-	MpxProxyTask (g_evnset, task, tcp4EndPoint), m_encdeclib (encdeclib)
+	MpxProxyTask (task, tcp4EndPoint, encdeclib, false)
 {
 	tcp4EndPoint->task (this);
 }
@@ -42,17 +33,7 @@ MpxTcp4EndPointProxyTask::~MpxTcp4EndPointProxyTask ()
 {
 }
 
-void MpxTcp4EndPointProxyTask::StartTask ()
-{
-	MpxWorkingQueue::Put (new MpxOpenLibrary (this, m_encdeclib.c_str()));
-}
-
-void MpxTcp4EndPointProxyTask::StopTask ()
-{
-
-}
-
-void MpxTcp4EndPointProxyTask::HandleTcp4EndPointEvent (MpxEventBase *event)
+void MpxTcp4EndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 {
 	MpxTcp4EndPointEvent* tcp4EndPointEvent = dynamic_cast <MpxTcp4EndPointEvent*> (event);
 	if (tcp4EndPointEvent == 0)
@@ -81,35 +62,6 @@ void MpxTcp4EndPointProxyTask::HandleTcp4EndPointEvent (MpxEventBase *event)
 			cout << "proxy " << this << " event: tcp4 end point default" << endl;
 		break;
 	}
-}
-
-void MpxTcp4EndPointProxyTask::HandleJobFinishedEvent (MpxEventBase *event)
-{
-	while (true)
-	{
-		MpxJobFinishedEvent* jobFinishedEvent = dynamic_cast < MpxJobFinishedEvent* > (event);
-		if (jobFinishedEvent == 0)
-			break;
-		MpxOpenLibrary* openLibrary = dynamic_cast < MpxOpenLibrary* > (jobFinishedEvent->job());
-		if (openLibrary == 0)
-			break;
-		if ((m_lib = openLibrary->lib()) == 0)
-			break;
-		if ((m_fcn = (edfunc) openLibrary->fcn()) == 0)
-			break;
-		if ((m_eventXDR = (*m_fcn) ()) == 0)
-			break;
-
-		MpxMessage msg;
-		msg.m_Code = ExternalTaskReplyCode;
-		msg.MpxMessage_u.m_externalTaskReply.task = (long) m_task;
-		msg.MpxMessage_u.m_externalTaskReply.encdeclib = strdup (m_encdeclib.c_str());
-		if (m_socket->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
-			break;
-
-		return;
-	}
-	Dispose(false);
 }
 
 } // namespace mpx

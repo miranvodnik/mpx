@@ -22,26 +22,16 @@
 #include <mpx-sockets/MpxTcp6Client.h>
 #include <mpx-events/MpxTcp6ClientEvent.h>
 
-#include <string>
-using namespace std;
-
 namespace mpx
 {
 
-class MpxTcp6ClientProxyTask: public MpxProxyTask <MpxTcp6ClientEvent>
+class MpxTcp6ClientProxyTask: public MpxProxyTask <MpxTcp6ClientEvent, MpxTcp6ClientProxyTask>
 {
 public:
 	MpxTcp6ClientProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp6Client* tcp6Client);
 	virtual ~MpxTcp6ClientProxyTask ();
-	virtual void StartTask ();
-	virtual void StopTask ();
-private:
-	mpx_event_handler(HandleTcp6ClientEvent, MpxTcp6ClientProxyTask)
-	mpx_event_handler(HandleJobFinishedEvent, MpxTcp6ClientProxyTask)
-private:
-	static EventDescriptor g_evntab[];
-	static evnset g_evnset;
-	string m_encdeclib;
+public:
+	mpx_event_handler(HandleSocketEvent, MpxTcp6ClientProxyTask)
 };
 
 } // namespace mpx

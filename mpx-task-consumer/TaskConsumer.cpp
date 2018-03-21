@@ -55,7 +55,8 @@ TaskConsumer::~TaskConsumer ()
 
 void TaskConsumer::StartTask ()
 {
-	RetrieveExternalTask ("protocol:tcp4,hostname:192.168.1.64,port:22220,name:task-provider;", "libmpx-edlib.so");
+	RetrieveExternalTask ("protocol:tcp4,hostname:172.30.19.23,port:22220,name:task-provider;", "libmpx-edlib.so");
+//	RetrieveExternalTask ("protocol:tcp4,hostname:192.168.1.64,port:22220,name:task-provider;", "libmpx-edlib.so");
 }
 
 void TaskConsumer::StopTask ()
