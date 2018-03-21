@@ -28,9 +28,14 @@
 namespace mpx_edlib
 {
 
+MpxConsumerEventB::MpxConsumerEventB (MpxConsumerEventStruct* eventStruct) :
+		MpxConsumerEvent <MpxConsumerEventB> (eventStruct)
+{
+
+}
+
 MpxConsumerEventB::MpxConsumerEventB (int alpha, int beta, int gama) :
 	MpxConsumerEvent (MpxConsumerEventB::EventCode)
-
 {
 	m_eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha = alpha;
 	m_eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta = beta;

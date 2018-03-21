@@ -39,8 +39,8 @@ protected:
 		MpxEventBase (e.code ())
 	{
 		MpxConsumerEventStruct* eventStruct = e.eventStruct ();
-		u_long size = xdr_sizeof ((xdrproc_t) xdr_MpxConsumerEventStruct, (char*) eventStruct);
-		char* data = (char*) alloca(size);
+		u_long size = xdr_sizeof (reinterpret_cast <xdrproc_t> (xdr_MpxConsumerEventStruct), reinterpret_cast <char*> (eventStruct));
+		char* data = static_cast <char*> (alloca(size));
 		XDR xdr;
 		xdrmem_create (&xdr, data, size, XDR_ENCODE);
 		xdr_MpxConsumerEventStruct (&xdr, eventStruct);
@@ -59,14 +59,14 @@ public:
 	{
 		m_eventStruct = new MpxConsumerEventStruct;
 		memset (m_eventStruct, 0, sizeof *m_eventStruct);
-		m_eventStruct->m_code = (MpxConsumerEventCode) eventCode;
+		m_eventStruct->m_code = static_cast <MpxConsumerEventCode> (eventCode);
 	}
 
 	virtual ~MpxConsumerEventBase ()
 	{
 		if (m_eventStruct != 0)
 		{
-			xdr_free ((xdrproc_t) xdr_MpxConsumerEventStruct, (char*) m_eventStruct);
+			xdr_free (reinterpret_cast <xdrproc_t> (xdr_MpxConsumerEventStruct), reinterpret_cast <char*> (m_eventStruct));
 			delete m_eventStruct;
 		}
 		m_eventStruct = 0;
@@ -84,7 +84,7 @@ protected:
 //
 template <typename T> class MpxConsumerEvent: public MpxConsumerEventBase
 {
-private:
+protected:
 	MpxConsumerEvent (MpxConsumerEventStruct* eventStruct) :
 		MpxConsumerEventBase (eventStruct)
 	{
@@ -106,11 +106,11 @@ public:
 	}
 	inline MpxEventBase* Copy ()
 	{
-		return new MpxConsumerEventType (*((MpxConsumerEventType*) this));
+		return new MpxConsumerEventType (*(dynamic_cast <MpxConsumerEventType*> (this)));
 	}
 	static MpxEventBase* CreateConsumerEvent (MpxConsumerEventStruct* eventStruct)
 	{
-		return new MpxConsumerEvent < MpxConsumerEventType > (eventStruct);
+		return new MpxConsumerEventType (eventStruct);
 	}
 };
 

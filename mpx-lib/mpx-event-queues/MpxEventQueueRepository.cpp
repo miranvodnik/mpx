@@ -55,7 +55,7 @@ MpxEventQueueRepository::~MpxEventQueueRepository ()
 	mpxset::iterator it;
 
 	for (it = m_mpxset.begin (); it != m_mpxset.end (); ++it)
-		free ((void*) it->second);
+		free ((void*) (it->second));
 	m_mpxset.clear ();
 }
 
@@ -97,10 +97,10 @@ const char* MpxEventQueueRepository::_RegisterEventQueue (tskmpx_t id, const cha
 		uuid_generate (uuid);
 		uuid_unparse (uuid, uuidstr + 1);
 
-		name = (const char*) uuidstr;
+		name = static_cast <const char*> (uuidstr);
 	}
 
-	if ((name = (const char*) strdup (name)) == 0)
+	if ((name = static_cast <const char*> (strdup (name))) == 0)
 	{
 		pthread_mutex_unlock (&m_lock);
 		return 0;

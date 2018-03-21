@@ -37,6 +37,7 @@ namespace mpx_edlib
 class MpxConsumerEventA: public MpxConsumerEvent <MpxConsumerEventA>
 {
 public:
+	MpxConsumerEventA (MpxConsumerEventStruct* eventStruct);
 	MpxConsumerEventA (const char* str);
 	virtual ~MpxConsumerEventA ();
 	inline const char* str ()
@@ -44,7 +45,7 @@ public:
 		return m_eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxConsumerEventACode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxConsumerEventACode);
 };
 
 } // namespace mpx_edlib

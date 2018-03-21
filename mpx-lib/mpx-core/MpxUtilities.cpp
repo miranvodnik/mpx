@@ -36,7 +36,7 @@ namespace mpx
 void MpxUtilities::memcpy (void* dest, const void* src, size_t n)
 {
 	for (size_t i = 0; i < n; ++i)
-		((u_char*) dest) [i] = ((const u_char*) src) [i];
+		((u_char*) dest) [i] = (reinterpret_cast <const u_char*> (src)) [i];
 }
 
 } /* namespace mpx */

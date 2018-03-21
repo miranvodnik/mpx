@@ -31,8 +31,13 @@ using namespace mpx_task_consumer;
 
 int main (int n, char* p [])
 {
+	if (n < 5)
+	{
+		cout << "usage: %s <protocol> <hostname> <port> <taskname>" << endl;
+		return 0;
+	}
 	MpxTaskMultiplexer* mpx = MpxEnvironment::CreateTaskMultiplexer ();
-	TaskConsumer* task = new TaskConsumer ();
+	TaskConsumer* task = new TaskConsumer (p[1], p[2], p[3], p[4]);
 	mpx->RegisterTask(task);
 
 	MpxEnvironment::Start (new MpxLocalMQTask ());

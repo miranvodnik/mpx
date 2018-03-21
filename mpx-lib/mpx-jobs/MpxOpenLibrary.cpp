@@ -40,7 +40,9 @@ MpxOpenLibrary::~MpxOpenLibrary ()
 
 int MpxOpenLibrary::Execute ()
 {
-	return (((m_lib = dlopen (m_libName.c_str(), RTLD_LAZY)) == 0) || ((m_fcn = dlsym (m_lib, "CreateMpxEventXDR")) == 0)) ? -1 : 0;
+	return
+		(((m_lib = dlopen (m_libName.c_str (), RTLD_LAZY)) == 0) || ((m_fcn = dlsym (m_lib, "CreateMpxEventXDR")) == 0)) ?
+			-1 : 0;
 }
 
 } // namespace mpx

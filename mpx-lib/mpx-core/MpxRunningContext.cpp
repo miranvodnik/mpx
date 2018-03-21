@@ -711,7 +711,7 @@ void MpxRunningContext::EnableDescriptor (ctx_fddes_t h, uint flags)
 {
 	if (h == NULL)
 		return;
-	MpxDescriptor* hdlr = (MpxDescriptor*) h;
+	MpxDescriptor* hdlr = reinterpret_cast <MpxDescriptor*> (h);
 	if (hdlr->deleted ())
 		return;
 
@@ -739,7 +739,7 @@ void MpxRunningContext::DisableDescriptor (ctx_fddes_t h, uint flags)
 {
 	if (h == NULL)
 		return;
-	MpxDescriptor* hdlr = (MpxDescriptor*) h;
+	MpxDescriptor* hdlr = reinterpret_cast <MpxDescriptor*> (h);
 	if (hdlr->deleted ())
 		return;
 
@@ -769,7 +769,7 @@ void MpxRunningContext::RemoveDescriptor (ctx_fddes_t h)
 	if (h == NULL)
 		return;
 
-	MpxDescriptor* hdlr = (MpxDescriptor*) h;
+	MpxDescriptor* hdlr = reinterpret_cast <MpxDescriptor*> (h);
 	if (hdlr->deleted ())
 		return;
 
@@ -847,7 +847,7 @@ void MpxRunningContext::RemoveSignal (ctx_sig_t hdlr)
 		return;
 
 	sigLock ();
-	MpxSignalContext::removeFromList (&(g_sigActions [signo]), (MpxSignalContext*) hdlr);
+	MpxSignalContext::removeFromList (&(g_sigActions [signo]), reinterpret_cast <MpxSignalContext*> (hdlr));
 	sigUnlock ();
 }
 

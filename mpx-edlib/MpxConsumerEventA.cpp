@@ -28,6 +28,12 @@
 namespace mpx_edlib
 {
 
+MpxConsumerEventA::MpxConsumerEventA (MpxConsumerEventStruct* eventStruct) :
+		MpxConsumerEvent <MpxConsumerEventA> (eventStruct)
+{
+
+}
+
 MpxConsumerEventA::MpxConsumerEventA (const char* str) :
 	MpxConsumerEvent (MpxConsumerEventA::EventCode)
 {

@@ -159,7 +159,7 @@ private:
 
 	inline static void CleanupMultiplexer (void* arg)
 	{
-		((MpxTaskMultiplexer*) arg)->_CleanupMultiplexer ();
+		(reinterpret_cast <MpxTaskMultiplexer*> (arg))->_CleanupMultiplexer ();
 	}
 	void _CleanupMultiplexer ();
 

@@ -33,6 +33,7 @@ namespace mpx_task_provider
 
 EventDescriptor TaskProvider::g_evntab [] =
 {
+	{ AnyState, MpxExternalTaskEvent::EventCode, ExternalTaskEventHandler },
 { AnyState, MpxConsumerEventA::EventCode, ConsumerEventAHandler },
 { AnyState, MpxConsumerEventB::EventCode, ConsumerEventBHandler },
 { 0, 0, 0 } };
@@ -56,31 +57,53 @@ void TaskProvider::StopTask ()
 {
 }
 
-void TaskProvider::ConsumerEventAHandler (MpxEventBase* event)
+void TaskProvider::ExternalTaskEventHandler (MpxEventBase* event)
 {
-	MpxConsumerEventA* consumerEventA = static_cast <MpxConsumerEventA*> (event);
-	if (consumerEventA == 0)
+	MpxExternalTaskEvent* externalTaskEvent = dynamic_cast <MpxExternalTaskEvent*> (event);
+	if (externalTaskEvent == 0)
 		return;
 
-	MpxConsumerEventStruct* eventStruct = consumerEventA->eventStruct ();
-	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
+	if (externalTaskEvent->error () != 0)
+	{
+		cout << "not connected to external task" << endl;
+		return;
+	}
+	if (externalTaskEvent->flags () != EPOLLIN)
+		return;
+	cout << "provider proxy = " << (reinterpret_cast <MpxTaskBase*> (event->src ())) << endl;
+}
 
-	Send ((MpxTaskBase*) event->src (),
+void TaskProvider::ConsumerEventAHandler (MpxEventBase* event)
+{
+	MpxConsumerEventA* consumerEventA = dynamic_cast <MpxConsumerEventA*> (event);
+	if (consumerEventA == 0)
+	{
+		cout << "cannot cast to MpxConsumerEventA" << endl;
+		return;
+	}
+
+	MpxConsumerEventStruct* eventStruct = consumerEventA->eventStruct ();
+	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
+
+	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventA (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string));
 }
 
 void TaskProvider::ConsumerEventBHandler (MpxEventBase* event)
 {
-	MpxConsumerEventB* consumerEventB = static_cast <MpxConsumerEventB*> (event);
+	MpxConsumerEventB* consumerEventB = dynamic_cast <MpxConsumerEventB*> (event);
 	if (consumerEventB == 0)
+	{
+		cout << "cannot cast to MpxConsumerEventB" << endl;
 		return;
+	}
 
 	MpxConsumerEventStruct* eventStruct = consumerEventB->eventStruct ();
-	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
+	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
 	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta << endl;
 	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama << endl;
 
-	Send ((MpxTaskBase*) event->src (),
+	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventB (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha,
 			eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta,
 			eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama));

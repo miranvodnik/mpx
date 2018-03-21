@@ -44,7 +44,7 @@ int MpxConsumerEventXDR::Encode (MpxEventBase*& event, char* buffer, size_t size
 	MpxConsumerEventBase* consumerEvent = dynamic_cast <MpxConsumerEventBase*> (event);
 	if (consumerEvent == 0)
 		return -1;
-	size_t xdrSize = xdr_sizeof ((xdrproc_t) xdr_MpxConsumerEventStruct, (char*) consumerEvent->eventStruct ());
+	size_t xdrSize = xdr_sizeof (reinterpret_cast <xdrproc_t> (xdr_MpxConsumerEventStruct), reinterpret_cast <char*> (consumerEvent->eventStruct ()));
 	if (xdrSize > size)
 		return xdrSize;
 	XDR xdr;
@@ -64,14 +64,14 @@ int MpxConsumerEventXDR::Decode (MpxEventBase*& event, char* buffer, size_t size
 	switch (eventStruct->m_code)
 	{
 	case MpxConsumerEventACode:
-		event = MpxConsumerEvent <MpxConsumerEventA>::CreateConsumerEvent (eventStruct);
+		event = MpxConsumerEventA::CreateConsumerEvent (eventStruct);
 		break;
 	case MpxConsumerEventBCode:
-		event = MpxConsumerEvent <MpxConsumerEventB>::CreateConsumerEvent (eventStruct);
+		event = MpxConsumerEventB::CreateConsumerEvent (eventStruct);
 		break;
 	default:
 		event = 0;
-		xdr_free ((xdrproc_t) xdr_MpxConsumerEventStruct, (char*) eventStruct);
+		xdr_free (reinterpret_cast <xdrproc_t> (xdr_MpxConsumerEventStruct), reinterpret_cast <char*> (eventStruct));
 		delete eventStruct;
 		return -1;
 		break;

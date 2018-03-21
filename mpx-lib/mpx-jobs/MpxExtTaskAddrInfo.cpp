@@ -36,7 +36,7 @@ MpxExtTaskAddrInfo::MpxExtTaskAddrInfo (MpxTaskBase* sender, const char* hostNam
 	struct addrinfo** info = &m_hints;
 	for (; hints != 0; hints = hints->ai_next)
 	{
-		*info = (struct addrinfo*) malloc (sizeof(struct addrinfo));
+		*info = reinterpret_cast <struct addrinfo*> (malloc (sizeof(struct addrinfo)));
 		if (*info == 0)
 			break;
 		**info = *hints;

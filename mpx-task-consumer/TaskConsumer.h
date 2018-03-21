@@ -29,6 +29,9 @@
 #include <mpx-events/MpxEvents.h>
 using namespace mpx;
 
+#include <iostream>
+using namespace std;
+
 namespace mpx_task_consumer
 {
 
@@ -38,7 +41,7 @@ namespace mpx_task_consumer
 class TaskConsumer: public mpx::MpxTaskBase
 {
 public:
-	TaskConsumer ();
+	TaskConsumer (const char* protocol, const char* hostname, const char* port, const char* taskName);
 	virtual ~TaskConsumer ();
 private:
 	virtual void StartTask ();
@@ -47,12 +50,33 @@ private:
 	mpx_event_handler(ExternalTaskEventHandler, TaskConsumer)
 	mpx_event_handler(ConsumerEventAHandler, TaskConsumer)
 	mpx_event_handler(ConsumerEventBHandler, TaskConsumer)
+public:
+	inline string protocol ()
+	{
+		return m_protocol;
+	}
+	inline string hostname ()
+	{
+		return m_hostname;
+	}
+	inline int port ()
+	{
+		return m_port;
+	}
+	inline string taskName ()
+	{
+		return m_taskName;
+	}
 private:
-	static EventDescriptor g_evntab[];
+	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
 	static int m_acount;
 	static int m_bcount;
 	MpxProxyTaskBase* m_provider;
+	string m_protocol;
+	string m_hostname;
+	int m_port;
+	string m_taskName;
 };
 
 } // namespace mpx_task_consumer

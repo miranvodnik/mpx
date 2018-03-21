@@ -387,7 +387,7 @@ void* MpxTaskMultiplexer::StartTimer (MpxTaskBase* task, struct timespec timerSt
 
 	MpxTimerEvent* timerEvent = new MpxTimerEvent (task, timerStamp, ctx);
 	timerEvent->timer (m_ctx->RegisterTimer (timerStamp, MpxTimerEvent::HandleTimer, timerEvent));
-	return (void*) timerEvent;
+	return reinterpret_cast <void*> (timerEvent);
 }
 
 /*! Stop high level timer
@@ -404,7 +404,7 @@ void MpxTaskMultiplexer::StopTimer (void* timer)
 {
 	if (m_ctx != 0)
 		m_ctx->DisableTimer (((MpxTimerEvent*) timer)->timer ());
-	delete ((MpxTimerEvent*) timer);
+	delete (reinterpret_cast <MpxTimerEvent*> (timer));
 }
 
 /*! Broadcast arbitrary event

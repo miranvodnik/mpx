@@ -106,7 +106,7 @@ typedef void* ctx_sig_t;	//!< general pointer representing signal handler associ
 #define	ctx_starter(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, ctx_appdt_t appdata) \
 { \
-	((y*)appdata)->x (ctx); \
+	(reinterpret_cast <y*> (appdata))->x (ctx); \
 } \
 void	x (MpxRunningContext *ctx);
 
@@ -141,7 +141,7 @@ void	x (MpxRunningContext *ctx);
 #define	ctx_finisher(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, ctx_appdt_t appdata) \
 { \
-	((y*)appdata)->x (ctx); \
+	(reinterpret_cast <y*> (appdata))->x (ctx); \
 } \
 void	x (MpxRunningContext *ctx);
 
@@ -183,7 +183,7 @@ void	x (MpxRunningContext *ctx);
 #define	ctx_timehook(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime, long long timeDiff, ctx_appdt_t appdata) \
 { \
-	((y*)appdata)->x (ctx, oldTime, newTime, timeDiff); \
+	(reinterpret_cast <y*> (appdata))->x (ctx, oldTime, newTime, timeDiff); \
 } \
 void	x (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime, long long timeDiff);
 
@@ -223,7 +223,7 @@ void	x (MpxRunningContext *ctx, struct timespec oldTime, struct timespec newTime
 #define	timer_handler(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, ctx_appdt_t appdata) \
 { \
-	((y*) appdata)->x (ctx, handler, t); \
+	(reinterpret_cast <y*> (appdata))->x (ctx, handler, t); \
 } \
 void	x (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t);
 
@@ -268,7 +268,7 @@ void	x (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t);
 #define	fd_handler(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd, ctx_appdt_t appdata) \
 { \
-	((y*)appdata)->x (ctx, flags, handler, fd); \
+	(reinterpret_cast <y*> (appdata))->x (ctx, flags, handler, fd); \
 } \
 void	x (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd);
 
@@ -309,7 +309,7 @@ void	x (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd);
 #define	sig_handler(x,y) \
 inline	static	void	x (MpxRunningContext *ctx, ctx_sig_t handler, siginfo_t* info, ctx_appdt_t appdata) \
 { \
-	((y*)appdata)->x (ctx, handler, info); \
+	(reinterpret_cast <y*> (appdata))->x (ctx, handler, info); \
 } \
 void	x (MpxRunningContext *ctx, ctx_fddes_t handler, siginfo_t* info);
 
@@ -688,7 +688,7 @@ public:
 	 */
 	inline MpxSignalContext* signext (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->next ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->next ();
 	}
 	/*! link signal handler
 	 *
@@ -705,7 +705,7 @@ public:
 	 */
 	inline MpxSignalContext* siglink (ctx_sig_t ctx, MpxSignalContext* sig)
 	{
-		return ((MpxSignalContext*) ctx)->link (sig);
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->link (sig);
 	}
 	/*! reference to owning I/O multiplexer
 	 *
@@ -716,7 +716,7 @@ public:
 	 */
 	inline MpxRunningContext* sigctx (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->ctx ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->ctx ();
 	}
 	/*! signal number of handler
 	 *
@@ -727,7 +727,7 @@ public:
 	 */
 	inline int sigsigno (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->signo ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->signo ();
 	}
 	/*! call-back function of signal handler
 	 *
@@ -738,7 +738,7 @@ public:
 	 */
 	inline sigfunc sigf (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->f ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->f ();
 	}
 	/*! application data of signal handler
 	 *
@@ -749,7 +749,7 @@ public:
 	 */
 	inline ctx_appdt_t sigdata (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->data ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->data ();
 	}
 	/*! sigaction of current signal handler
 	 *
@@ -760,7 +760,7 @@ public:
 	 */
 	inline struct sigaction* sigsigAction (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->sigAction ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->sigAction ();
 	}
 	/*! sigaction of previous signal handler
 	 *
@@ -771,7 +771,7 @@ public:
 	 */
 	inline struct sigaction* sigoldAction (ctx_sig_t ctx)
 	{
-		return ((MpxSignalContext*) ctx)->oldAction ();
+		return (reinterpret_cast <MpxSignalContext*> (ctx))->oldAction ();
 	}
 
 private:
@@ -809,7 +809,7 @@ public:
 	inline void ChangeDescriptorHandler (ctx_fddes_t des, cbfunc f)
 	{
 		if (des)
-			((MpxDescriptor*) des)->f (f);
+			(reinterpret_cast <MpxDescriptor*> (des))->f (f);
 	}
 	/*! change application data reference of I/O handler
 	 *
@@ -820,7 +820,7 @@ public:
 	inline void ChangeDescriptorAppData (ctx_fddes_t des, ctx_appdt_t appdata)
 	{
 		if (des)
-			((MpxDescriptor*) des)->data (appdata);
+			(reinterpret_cast <MpxDescriptor*> (des))->data (appdata);
 	}
 	void EnableDescriptor (ctx_fddes_t hdlr, uint flags);
 	void DisableDescriptor (ctx_fddes_t hdlr, uint flags);
@@ -836,8 +836,8 @@ public:
 	 */
 	inline void EnableTimer (ctx_timer_t tmr)
 	{
-		if (tmr)
-			((MpxTimer*) tmr)->active (true);
+		if (tmr != 0)
+			(reinterpret_cast <MpxTimer*> (tmr))->active (true);
 	}
 	/*! disable timer
 	 *
@@ -847,8 +847,8 @@ public:
 	 */
 	inline void DisableTimer (ctx_timer_t tmr)
 	{
-		if (tmr)
-			((MpxTimer*) tmr)->active (false);
+		if (tmr != 0)
+			(reinterpret_cast <MpxTimer*> (tmr))->active (false);
 	}
 	/*! real time stamp
 	 *

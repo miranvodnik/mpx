@@ -103,7 +103,7 @@ public:
 		switch (hRes = Lock ())
 		{
 		case 0:
-			if (m_handle != (pthread_t) 0)
+			if (m_handle != static_cast <pthread_t> (0))
 			{
 				Unlock ();
 				return 0;
@@ -145,7 +145,7 @@ public:
 		switch (hRes = Lock ())
 		{
 		case 0:
-			if (m_handle == (pthread_t) 0)
+			if (m_handle == static_cast <pthread_t> (0))
 			{
 				Unlock ();
 				return 0;
@@ -175,7 +175,7 @@ public:
 		switch (hRes = Lock ())
 		{
 		case 0:
-			if (m_handle == (pthread_t) 0)
+			if (m_handle == static_cast <pthread_t> (0))
 			{
 				Unlock ();
 				return -1;
@@ -205,7 +205,7 @@ public:
 		switch (hRes = Lock ())
 		{
 		case 0:
-			if (m_handle == (pthread_t) 0)
+			if (m_handle == static_cast <pthread_t> (0))
 			{
 				Unlock ();
 				return -1;
@@ -233,7 +233,7 @@ public:
 		switch (hRes = Lock ())
 		{
 		case 0:
-			if (m_handle == (pthread_t) 0)
+			if (m_handle == static_cast <pthread_t> (0))
 			{
 				Unlock ();
 				return 0;
@@ -352,7 +352,7 @@ private:
 	 */
 	static void* _Run (void* data)
 	{
-		return (((MpxRunnable *) data))->_Run ();
+		return ((reinterpret_cast <MpxRunnable *> (data)))->_Run ();
 	}
 
 	/*! non-static version of _Run()
@@ -382,8 +382,8 @@ private:
 #endif
 			pthread_cleanup_pop(0);
 		base->ExitInstance ();
-		pthread_exit ((eCode == 0) ? ((void*) 0) : ((void*) 1));
-		return (eCode == 0) ? ((void*) 0) : ((void*) 1);
+		pthread_exit (reinterpret_cast <void*> ((eCode == 0) ? 0 : 1));
+		return reinterpret_cast <void*> ((eCode == 0) ? 0 : 1);
 	}
 
 	/*! cancellation trigger
@@ -401,7 +401,7 @@ private:
 	 */
 	static void _Cleanup (void* data)
 	{
-		MpxRunnable *base = (MpxRunnable *) data;
+		MpxRunnable *base = reinterpret_cast <MpxRunnable *> (data);
 		base->Cleanup ();
 	}
 

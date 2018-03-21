@@ -34,7 +34,36 @@ int main (int n, char* p [])
 	MpxTaskMultiplexer* mpx = MpxEnvironment::CreateTaskMultiplexer ("protocol:tcp4,address:all,port:22220;"
 		"protocol:tcp6,address:all,port:22220;"
 		"protocol:local,path:mpx-test-22220;");
-	TaskProvider* task = new TaskProvider ("task-provider");
+	TaskProvider* task;
+
+	task = new TaskProvider ("task-provider-0");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-1");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-2");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-3");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-4");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-5");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-6");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-7");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-8");
+	mpx->RegisterTask (task);
+
+	task = new TaskProvider ("task-provider-9");
 	mpx->RegisterTask (task);
 
 	MpxEnvironment::Start (new MpxLocalMQTask ());

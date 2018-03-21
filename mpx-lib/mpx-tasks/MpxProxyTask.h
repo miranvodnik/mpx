@@ -127,10 +127,11 @@ protected:
 			if ((m_eventXDR = (*m_fcn) ()) == 0)
 				break;
 
+			if (Send (m_task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false) < 0)
+				break;
+
 			if (m_client)
 			{
-				if (Send (m_task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false) < 0)
-					break;
 			}
 			else
 			{

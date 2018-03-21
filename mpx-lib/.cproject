@@ -66,7 +66,6 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.2057163520.1081913334" name="MpxExtTaskI.h" rcbsApplicability="disable" resourcePath="mpx-tasks/MpxExtTaskI.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.debug.2057163520.320851728" name="MpxXDRProcRegistry-1.h" rcbsApplicability="disable" resourcePath="mpx-core/MpxXDRProcRegistry-1.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry excluding="mpx-events/mpx-event-base.h|mpx-core/MpxXDRProcRegistry-1.h|mpx-core/MpxXDRProcRegistry-1.cpp|mpx-core/MpxXDRProcRegistry.h|mpx-core/MpxXDRProcRegistry.cpp|mpx-jobs|mpx-tasks/MpxExtTaskI.h|mpx-tasks/MpxExtTaskI.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="mpx-jobs"/>
@@ -140,7 +139,6 @@
 						</toolChain>
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.release.358694888.1956435750" name="MpxExtTaskI.h" rcbsApplicability="disable" resourcePath="mpx-tasks/MpxExtTaskI.h" toolsToInvoke=""/>
-					<fileInfo id="cdt.managedbuild.config.gnu.cross.so.release.358694888.1462898524" name="MpxXDRProcRegistry-1.h" rcbsApplicability="disable" resourcePath="mpx-core/MpxXDRProcRegistry-1.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry excluding="mpx-events/mpx-event-base.h|mpx-core/MpxXDRProcRegistry-1.h|mpx-core/MpxXDRProcRegistry-1.cpp|mpx-jobs|mpx-tasks/MpxExtTaskI.h|mpx-tasks/MpxExtTaskI.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="mpx-jobs"/>
