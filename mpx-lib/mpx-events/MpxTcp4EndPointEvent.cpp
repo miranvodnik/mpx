@@ -34,7 +34,7 @@ MpxTcp4EndPointEvent::MpxTcp4EndPointEvent (MpxTcp4EndPointEvent& cln) :
 	m_flags = cln.flags ();
 	m_error = cln.error ();
 	m_size = cln.size ();
-	if ((m_buffer = (u_char*) malloc (m_size)) != 0)
+	if ((m_buffer = static_cast <u_char*> (malloc (m_size))) != 0)
 		memcpy (m_buffer, cln.buffer (), m_size);
 	else
 		m_buffer = 0;

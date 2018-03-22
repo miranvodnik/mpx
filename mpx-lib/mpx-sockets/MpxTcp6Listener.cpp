@@ -37,7 +37,7 @@ MpxTcp6Listener::~MpxTcp6Listener ()
 		close (m_listenSocket);
 	m_listenSocket = 0;
 	if (m_handler != 0)
-		((MpxTaskMultiplexer*) m_task->mpx ())->ctx ()->RemoveDescriptor (m_handler);
+		(reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ()))->ctx ()->RemoveDescriptor (m_handler);
 	m_handler = 0;
 }
 
@@ -49,7 +49,7 @@ int MpxTcp6Listener::CreateListener (in_port_t listenPort)
 		return -1;
 
 	int reuse = 1;
-	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, (const void*) &reuse, sizeof(int));
+	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast <const void*> (&reuse), sizeof(int));
 	int one = 1;
 	setsockopt (m_listenSocket, SOL_IPV6, IPV6_V6ONLY, &one, sizeof(one));
 
@@ -60,7 +60,7 @@ int MpxTcp6Listener::CreateListener (in_port_t listenPort)
 	srvaddr.sin6_family = AF_INET6;
 	srvaddr.sin6_port = (listenPort <= 0) ? 0 : htons (listenPort);
 	srvaddr.sin6_addr = in6addr_any;
-	if (bind (m_listenSocket, (sockaddr*) &srvaddr, sizeof(srvaddr)) < 0)
+	if (bind (m_listenSocket, reinterpret_cast <sockaddr*> (&srvaddr), sizeof(srvaddr)) < 0)
 	{
 		close (m_listenSocket);
 		m_listenSocket = -1;
@@ -69,7 +69,7 @@ int MpxTcp6Listener::CreateListener (in_port_t listenPort)
 
 	socklen_t slen = sizeof(struct sockaddr_in6);
 	memset (&srvaddr, 0, sizeof(struct sockaddr_in6));
-	getsockname (m_listenSocket, (struct sockaddr*) &srvaddr, &slen);
+	getsockname (m_listenSocket, reinterpret_cast <struct sockaddr*> (&srvaddr), &slen);
 	m_listenPort = ntohs (srvaddr.sin6_port);
 
 	if (listen (m_listenSocket, SOMAXCONN) < 0)
@@ -115,13 +115,13 @@ int MpxTcp6Listener::CreateListener (const char* localAddress, in_port_t listenP
 		return -1;
 
 	int reuse = 1;
-	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, (const void*) &reuse, sizeof(int));
+	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast <const void*> (&reuse), sizeof(int));
 	int one = 1;
 	setsockopt (m_listenSocket, SOL_IPV6, IPV6_V6ONLY, &one, sizeof(one));
 
 	srvaddr.sin6_family = AF_INET6;
 	srvaddr.sin6_port = (listenPort <= 0) ? 0 : htons (listenPort);
-	if (bind (m_listenSocket, (sockaddr*) &srvaddr, sizeof(srvaddr)) < 0)
+	if (bind (m_listenSocket, reinterpret_cast <sockaddr*> (&srvaddr), sizeof(srvaddr)) < 0)
 	{
 		close (m_listenSocket);
 		m_listenSocket = -1;
@@ -130,7 +130,7 @@ int MpxTcp6Listener::CreateListener (const char* localAddress, in_port_t listenP
 
 	socklen_t slen = sizeof(struct sockaddr_in6);
 	memset (&srvaddr, 0, sizeof(struct sockaddr_in6));
-	getsockname (m_listenSocket, (struct sockaddr*) &srvaddr, &slen);
+	getsockname (m_listenSocket, reinterpret_cast <struct sockaddr*> (&srvaddr), &slen);
 	m_listenPort = ntohs (srvaddr.sin6_port);
 
 	if (listen (m_listenSocket, SOMAXCONN) < 0)
@@ -166,18 +166,18 @@ int MpxTcp6Listener::CreateListener (struct sockaddr* localAddress, in_port_t li
 	if (false)
 		cout << "CREATING TCP V6 LISTENER" << endl;
 
-	struct sockaddr_in6 srvaddr = *((struct sockaddr_in6*) localAddress);
+	struct sockaddr_in6 srvaddr = *(reinterpret_cast <struct sockaddr_in6*> (localAddress));
 
 	if ((m_listenSocket = socket (AF_INET6, (m_seqPacket != true) ? SOCK_STREAM : SOCK_SEQPACKET, IPPROTO_TCP)) < 0)
 		return -1;
 
 	int reuse = 1;
-	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, (const void*) &reuse, sizeof(int));
+	setsockopt (m_listenSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast <const void*> (&reuse), sizeof(int));
 	int one = 1;
 	setsockopt (m_listenSocket, SOL_IPV6, IPV6_V6ONLY, &one, sizeof(one));
 
 	srvaddr.sin6_port = (listenPort <= 0) ? 0 : htons (listenPort);
-	if (bind (m_listenSocket, (sockaddr*) &srvaddr, sizeof(srvaddr)) < 0)
+	if (bind (m_listenSocket, reinterpret_cast <sockaddr*> (&srvaddr), sizeof(srvaddr)) < 0)
 	{
 		close (m_listenSocket);
 		m_listenSocket = -1;
@@ -186,7 +186,7 @@ int MpxTcp6Listener::CreateListener (struct sockaddr* localAddress, in_port_t li
 
 	socklen_t slen = sizeof(struct sockaddr_in6);
 	memset (&srvaddr, 0, sizeof(struct sockaddr_in6));
-	getsockname (m_listenSocket, (struct sockaddr*) &srvaddr, &slen);
+	getsockname (m_listenSocket, reinterpret_cast <struct sockaddr*> (&srvaddr), &slen);
 	m_listenPort = ntohs (srvaddr.sin6_port);
 
 	if (listen (m_listenSocket, SOMAXCONN) < 0)
@@ -219,7 +219,7 @@ int MpxTcp6Listener::CreateListener (struct sockaddr* localAddress, in_port_t li
 
 int MpxTcp6Listener::StartListener ()
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 
 	if (false)
 		cout << "STARTING TCP LISTENER" << endl;
@@ -235,7 +235,7 @@ int MpxTcp6Listener::StartListener ()
 
 int MpxTcp6Listener::StopListener ()
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 
 	if (mpx->getTid () != syscall (SYS_gettid))
 		return -1;
@@ -256,7 +256,7 @@ void MpxTcp6Listener::HandleListener (MpxRunningContext *ctx, uint flags, ctx_fd
 	if (false)
 		cout << "CREATING TCP END POINT" << endl;
 	memset (&addr, 0, sizeof(struct sockaddr_in6));
-	if ((localClientSocket = accept (fd, (struct sockaddr*) &addr, &slen)) < 0)
+	if ((localClientSocket = accept (fd, reinterpret_cast <struct sockaddr*> (&addr), &slen)) < 0)
 	{
 		return;
 	}

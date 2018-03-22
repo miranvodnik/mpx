@@ -39,7 +39,7 @@ void MpxTcp6ClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 	if (tcp6ClientEvent == 0)
 		return;
 
-	MpxTcp6Client* tcp6Client = dynamic_cast <MpxTcp6Client*> ((MpxTcp6Client*) tcp6ClientEvent->endPoint ());
+	MpxTcp6Client* tcp6Client = reinterpret_cast <MpxTcp6Client*> (tcp6ClientEvent->endPoint ());
 	if (tcp6Client == 0)
 		return;
 

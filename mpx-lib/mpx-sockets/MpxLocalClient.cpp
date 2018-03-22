@@ -84,7 +84,7 @@ int MpxLocalClient::Connect (const char* localPath)
 	MpxRunningContext* ctx = mpx->ctx ();
 
 	int status;
-	if ((status = connect (m_endPoint, (struct sockaddr*) &addr, sizeof(struct sockaddr_un))) < 0)
+	if ((status = connect (m_endPoint, reinterpret_cast <struct sockaddr*> (&addr), sizeof(struct sockaddr_un))) < 0)
 	{
 		if ((errno != EINPROGRESS) && (errno != EAGAIN))
 		{

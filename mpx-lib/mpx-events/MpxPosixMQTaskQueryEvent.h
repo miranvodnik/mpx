@@ -47,7 +47,7 @@ public:
 		return m_name.c_str ();
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxPosixMQTaskQueryEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxPosixMQTaskQueryEventCode);
 private:
 	string m_path;
 	string m_name;

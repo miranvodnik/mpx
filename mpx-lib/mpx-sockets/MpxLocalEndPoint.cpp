@@ -25,7 +25,7 @@ namespace mpx
 MpxLocalEndPoint::MpxLocalEndPoint (MpxTaskBase* task, int endPoint, bool fast, long int timeOut, bool seqPacket) :
 	MpxSocket (task, fast, timeOut, seqPacket), m_endPoint (endPoint)
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	if (mpx->getTid () != syscall (SYS_gettid))
 	{
 		close (m_endPoint);

@@ -25,7 +25,7 @@ namespace mpx
 MpxTcp6Client::MpxTcp6Client (MpxTaskBase* task, bool fast, long int timeOut, bool seqPacket) :
 	MpxSocket (task, fast, timeOut, seqPacket)
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	if (mpx->getTid () != syscall (SYS_gettid))
 		return;
 
@@ -90,16 +90,16 @@ int MpxTcp6Client::Connect (const char* hostname, uint16_t port)
 		return -1;
 	}
 
-	struct sockaddr_in6 addr = *((struct sockaddr_in6*) (addrPtr->ai_addr));
+	struct sockaddr_in6 addr = *(reinterpret_cast <struct sockaddr_in6*> (addrPtr->ai_addr));
 	addr.sin6_port = htons (port);
 
 	freeaddrinfo (res);
 
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	MpxRunningContext* ctx = mpx->ctx ();
 
 	int status;
-	if ((status = connect (m_endPoint, (struct sockaddr*) &addr, sizeof(struct sockaddr_in6))) < 0)
+	if ((status = connect (m_endPoint, reinterpret_cast <struct sockaddr*> (&addr), sizeof(struct sockaddr_in6))) < 0)
 	{
 		if ((errno != EINPROGRESS) && (errno != EAGAIN))
 		{
@@ -143,11 +143,11 @@ int MpxTcp6Client::Connect (const sockaddr_in6* addr, uint16_t port)
 	sockaddr_in6 saddr = *addr;
 	saddr.sin6_port = htons (port);
 
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	MpxRunningContext* ctx = mpx->ctx ();
 
 	int status;
-	if ((status = connect (m_endPoint, (struct sockaddr*) &saddr, sizeof(struct sockaddr_in6))) < 0)
+	if ((status = connect (m_endPoint, reinterpret_cast <struct sockaddr*> (&saddr), sizeof(struct sockaddr_in6))) < 0)
 	{
 		if ((errno != EINPROGRESS) && (errno != EAGAIN))
 		{

@@ -38,7 +38,7 @@ private:
 
 	inline static void CleanupExecute (void* arg)
 	{
-		((MpxWorkerTask*) arg)->_CleanupExecute ();
+		(reinterpret_cast <MpxWorkerTask*> (arg))->_CleanupExecute ();
 	}
 	void _CleanupExecute ();
 private:

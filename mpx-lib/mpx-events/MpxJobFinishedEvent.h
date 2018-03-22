@@ -47,7 +47,7 @@ public:
 		return m_job;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxJobFinishedEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxJobFinishedEventCode);
 private:
 	MpxJob* m_job;
 };

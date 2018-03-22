@@ -61,7 +61,7 @@ public:
 		return new MpxTimerEvent (0, t);
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxTimerEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxTimerEventCode);
 private:
 	MpxTaskBase* m_task;
 	struct timespec m_timerStamp;

@@ -59,7 +59,7 @@ public:
 		return m_buffer;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxLocalClientEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxLocalClientEventCode);
 private:
 	void* m_endPoint;
 	u_int m_flags;

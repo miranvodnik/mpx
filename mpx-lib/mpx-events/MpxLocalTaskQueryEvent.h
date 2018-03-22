@@ -51,7 +51,7 @@ public:
 		return m_encdeclib.c_str ();
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxLocalTaskQueryEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxLocalTaskQueryEventCode);
 private:
 	string m_path;
 	string m_name;

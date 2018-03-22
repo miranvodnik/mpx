@@ -64,7 +64,7 @@ public:
 	}
 public:
 	static const int g_xdrId = ::MpxExternalTaskEventCode;
-	static const unsigned int EventCode = (unsigned int) ::MpxExternalTaskEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxExternalTaskEventCode);
 private:
 	u_int m_flags;
 	u_int m_error;

@@ -61,7 +61,7 @@ public:
 		return m_endPoint;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxTaskQueryEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxTaskQueryEventCode);
 private:
 	string m_taskName;
 	string m_encdeclib;

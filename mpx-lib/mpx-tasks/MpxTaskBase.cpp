@@ -122,7 +122,7 @@ MpxTaskBase::~MpxTaskBase ()
  */
 void MpxTaskBase::Dispose (bool release)
 {
-	((MpxTaskMultiplexer*) mpx ())->DisposeTask (this, release);
+	(reinterpret_cast <MpxTaskMultiplexer*> (mpx ()))->DisposeTask (this, release);
 }
 
 MpxTaskBase::evnset& MpxTaskBase::CreateEventSet (EventDescriptor eventTab[])
@@ -344,7 +344,7 @@ void MpxTaskBase::StopEventHandler (MpxEventBase* event)
  */
 struct timespec MpxTaskBase::GetCurrentTime ()
 {
-	return ((MpxTaskMultiplexer*) m_mpx)->GetCurrentTime ();
+	return (reinterpret_cast <MpxTaskMultiplexer*> (m_mpx))->GetCurrentTime ();
 }
 
 /*! start timer
@@ -367,7 +367,7 @@ struct timespec MpxTaskBase::GetCurrentTime ()
  */
 void* MpxTaskBase::StartTimer (struct timespec timerStamp, void* ctx)
 {
-	return ((MpxTaskMultiplexer*) m_mpx)->StartTimer (this, timerStamp, ctx);
+	return (reinterpret_cast <MpxTaskMultiplexer*> (m_mpx))->StartTimer (this, timerStamp, ctx);
 }
 
 /*! stop timer
@@ -382,7 +382,7 @@ void* MpxTaskBase::StartTimer (struct timespec timerStamp, void* ctx)
  */
 void MpxTaskBase::StopTimer (void* timer)
 {
-	((MpxTaskMultiplexer*) m_mpx)->StopTimer (timer);
+	(reinterpret_cast <MpxTaskMultiplexer*> (m_mpx))->StopTimer (timer);
 }
 
 /*! retrieve reference of an external task
@@ -469,7 +469,7 @@ int MpxTaskBase::RetrieveExternalTaskLocal (const char* connString, const char* 
 		return -1;
 
 	connString++;
-	char* mpath = (char*) alloca(size = connString - path);
+	char* mpath = reinterpret_cast <char*> (alloca(size = connString - path));
 	strncpy (mpath, path, size);
 	mpath [size - 1] = 0;
 
@@ -483,11 +483,11 @@ int MpxTaskBase::RetrieveExternalTaskLocal (const char* connString, const char* 
 		return -1;
 
 	connString++;
-	char* mname = (char*) alloca(size = connString - name);
+	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));
 	strncpy (mname, name, size);
 	mname [size - 1] = 0;
 
-	return Send (((MpxTaskMultiplexer*) mpx ())->externalTask (), new MpxLocalTaskQueryEvent (mpath, mname, encdeclib), true);
+	return Send ((reinterpret_cast <MpxTaskMultiplexer*> (mpx ()))->externalTask (), new MpxLocalTaskQueryEvent (mpath, mname, encdeclib), true);
 }
 
 /*! retrieve reference of external task using tcp4 protocol
@@ -527,7 +527,7 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mhostname = (char*) alloca(size = connString - hostname);
+	char* mhostname = reinterpret_cast <char*> (alloca(size = connString - hostname));
 	strncpy (mhostname, hostname, size);
 	mhostname [size - 1] = 0;
 
@@ -541,7 +541,7 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mport = (char*) alloca(size = connString - port);
+	char* mport = reinterpret_cast <char*> (alloca(size = connString - port));
 	strncpy (mport, port, size);
 	mport [size - 1] = 0;
 
@@ -555,11 +555,11 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mname = (char*) alloca(size = connString - name);
+	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));
 	strncpy (mname, name, size);
 	mname [size - 1] = 0;
 
-	return Send (((MpxTaskMultiplexer*) mpx ())->externalTask (), new MpxTcp4TaskQueryEvent (mhostname, mport, mname, encdeclib),
+	return Send ((reinterpret_cast <MpxTaskMultiplexer*> (mpx ()))->externalTask (), new MpxTcp4TaskQueryEvent (mhostname, mport, mname, encdeclib),
 		true);
 }
 
@@ -600,7 +600,7 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mhostname = (char*) alloca(size = connString - hostname);
+	char* mhostname = reinterpret_cast <char*> (alloca(size = connString - hostname));
 	strncpy (mhostname, hostname, size);
 	mhostname [size - 1] = 0;
 
@@ -614,7 +614,7 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mport = (char*) alloca(size = connString - port);
+	char* mport = reinterpret_cast <char*> (alloca(size = connString - port));
 	strncpy (mport, port, size);
 	mport [size - 1] = 0;
 
@@ -628,11 +628,11 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 		return -1;
 
 	connString++;
-	char* mname = (char*) alloca(size = connString - name);
+	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));
 	strncpy (mname, name, size);
 	mname [size - 1] = 0;
 
-	return Send (((MpxTaskMultiplexer*) mpx ())->externalTask (), new MpxTcp6TaskQueryEvent (mhostname, mport, mname, encdeclib),
+	return Send ((reinterpret_cast <MpxTaskMultiplexer*> (mpx ()))->externalTask (), new MpxTcp6TaskQueryEvent (mhostname, mport, mname, encdeclib),
 		true);
 }
 

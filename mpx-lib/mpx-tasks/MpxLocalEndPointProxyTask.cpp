@@ -40,7 +40,7 @@ void MpxLocalEndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 		return;
 
 	MpxLocalEndPoint* localEndPoint =
-		dynamic_cast <MpxLocalEndPoint*> ((MpxLocalEndPoint*) localEndPointEvent->endPoint ());
+		reinterpret_cast <MpxLocalEndPoint*> (localEndPointEvent->endPoint ());
 	if (localEndPoint == 0)
 		return;
 

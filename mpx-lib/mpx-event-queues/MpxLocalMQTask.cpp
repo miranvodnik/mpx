@@ -126,7 +126,7 @@ int MpxLocalMQTask::MQSend (tskmpx_t mpx, MpxEventBase* event)
 		MpxEventBase* event;
 	} msg;
 	msg.event = event;
-	return dstq->Write ((u_char*) &msg, sizeof msg);
+	return dstq->Write (reinterpret_cast <u_char*> (&msg), sizeof msg);
 }
 
 void MpxLocalMQTask::StartTask ()

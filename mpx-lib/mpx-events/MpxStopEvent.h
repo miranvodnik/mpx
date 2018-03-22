@@ -44,7 +44,7 @@ public:
 		return new MpxStopEvent (*this);
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxStopEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxStopEventCode);
 private:
 	void Dispose ();
 };

@@ -120,7 +120,7 @@ int MpxPosixMQTask::MQSend (tskmpx_t mpx, MpxEventBase* event)
 		MpxEventBase* event;
 	}*msg = new struct msg;
 	msg->event = event;
-	return dstq->Write ((u_char*) msg, sizeof *msg);
+	return dstq->Write (reinterpret_cast <u_char*> (msg), sizeof *msg);
 }
 
 void MpxPosixMQTask::StartTask ()
@@ -172,7 +172,7 @@ void MpxPosixMQTask::PosixMQEventHandler (MpxEventBase* event)
 			struct msg
 			{
 				MpxEventBase* event;
-			} msg = *((struct msg*) posixMQEvent->buffer ());
+			} msg = *(reinterpret_cast <struct msg*> (posixMQEvent->buffer ()));
 
 			msg.event->Invoke ();
 			delete msg.event;

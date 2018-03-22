@@ -47,7 +47,7 @@ public:
 		return m_fd;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxLocalListenerEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxLocalListenerEventCode);
 private:
 	int m_fd;
 };

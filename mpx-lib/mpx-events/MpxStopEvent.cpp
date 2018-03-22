@@ -26,7 +26,7 @@ void MpxStopEvent::Dispose ()
 {
 	if (dst () == 0)
 		return;
-	((MpxTaskBase*) dst ())->Dispose (true);
+	(reinterpret_cast <MpxTaskBase*> (dst ()))->Dispose (true);
 }
 
 } /* namespace mpx */

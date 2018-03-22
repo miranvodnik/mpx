@@ -43,7 +43,7 @@ public:
 		return new MpxStartEvent (*this);
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxStartEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxStartEventCode);
 };
 
 } /* namespace mpx */

@@ -46,7 +46,7 @@ private:
 	MpxJob* _Get ();
 	inline static void Cleanup (void* arg)
 	{
-		((MpxWorkingQueue*) arg)->_Cleanup ();
+		(reinterpret_cast <MpxWorkingQueue*> (arg))->_Cleanup ();
 	}
 	void _Cleanup ();
 private:

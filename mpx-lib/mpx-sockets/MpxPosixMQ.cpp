@@ -80,7 +80,7 @@ void MpxPosixMQ::StartTimer (timespec t)
 		t.tv_nsec += m_timeOut;
 		t.tv_sec += t.tv_nsec / SEC_TO_NSEC;
 		t.tv_nsec %= SEC_TO_NSEC;
-		m_idleTimer = ((MpxTaskMultiplexer*) m_task->mpx ())->ctx ()->RegisterTimer (t, IdleTimer, this, ctx_info);
+		m_idleTimer = (reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ()))->ctx ()->RegisterTimer (t, IdleTimer, this, ctx_info);
 	}
 	else
 		m_idleTimer = 0;
@@ -151,7 +151,7 @@ int MpxPosixMQ::Connect (const char* mqPath, long int msgSize)
 
 int MpxPosixMQ::Start ()
 {
-	m_mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	m_mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 
 	if ((m_mpx == 0) || (m_mpx->getTid () != syscall (SYS_gettid)))
 		return -1;
@@ -202,7 +202,7 @@ void MpxPosixMQ::HandleMqConsumerIO (MpxRunningContext *ctx, uint flags, ctx_fdd
 		while (true)
 		{
 			int recvSize;
-			if ((recvSize = mq_receive (fd, (char*) m_msg, m_msgSize, &prio)) <= 0)
+			if ((recvSize = mq_receive (fd, reinterpret_cast <char*> (m_msg), m_msgSize, &prio)) <= 0)
 			{
 				if (errno == EWOULDBLOCK)
 				{
@@ -235,12 +235,12 @@ void MpxPosixMQ::HandleMqProviderIO (MpxRunningContext *ctx, uint flags, ctx_fdd
 		u_char* msg;
 		while ((msg = GetChunk ()) != 0)
 		{
-			ssize_t count = mq_send (fd, (char*) msg, m_msgSize, 0);
+			ssize_t count = mq_send (fd, reinterpret_cast <char*> (msg), m_msgSize, 0);
 			if (count < 0)
 			{
 				if (errno == EWOULDBLOCK)
 				{
-					RestoreChunk ((u_char*) msg);
+					RestoreChunk (msg);
 					StartTimer (ctx->realTime ());
 					return;
 				}
@@ -267,7 +267,7 @@ void MpxPosixMQ::HandleMqProviderIO (MpxRunningContext *ctx, uint flags, ctx_fdd
 int MpxPosixMQ::PostXdrRequest (xdrproc_t proc, void* data)
 {
 	u_int dummy = 0;
-	u_int intSize = xdr_sizeof ((xdrproc_t) xdr_int, &dummy);
+	u_int intSize = xdr_sizeof (reinterpret_cast <xdrproc_t> (xdr_int), &dummy);
 	u_int msgSize = xdr_sizeof (proc, data);
 	u_int needSpace = intSize + msgSize;
 
@@ -281,14 +281,14 @@ int MpxPosixMQ::PostXdrRequest (xdrproc_t proc, void* data)
 	XDR xdr;
 
 	xdrmem_create (&xdr, chunk, needSpace, XDR_ENCODE);
-	if (xdr_int (&xdr, (int*) &msgSize) != TRUE)
+	if (xdr_int (&xdr, reinterpret_cast <int*> (&msgSize)) != TRUE)
 		return -1;
 
 	xdrmem_create (&xdr, chunk + intSize, needSpace - intSize, XDR_ENCODE);
 	if (proc (&xdr, data) != TRUE)
 		return -1;
 
-	if (PutChunk ((u_char*) chunk) < 0)
+	if (PutChunk (reinterpret_cast <u_char*> (chunk)) < 0)
 	{
 		delete [] chunk;
 		return -1;
@@ -304,7 +304,7 @@ int MpxPosixMQ::Write (u_char* buffer, size_t size)
 	if (result < 0)
 		return result;
 
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	MpxRunningContext* ctx = mpx->ctx ();
 	ctx->EnableDescriptor (m_IOHandle, EPOLLOUT);
 

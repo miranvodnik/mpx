@@ -90,16 +90,16 @@ int MpxTcp4Client::Connect (const char* hostname, uint16_t port)
 		return -1;
 	}
 
-	struct sockaddr_in addr = *((struct sockaddr_in*) (addrPtr->ai_addr));
+	struct sockaddr_in addr = *(reinterpret_cast <struct sockaddr_in*> (addrPtr->ai_addr));
 	addr.sin_port = htons (port);
 
 	freeaddrinfo (res);
 
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	MpxRunningContext* ctx = mpx->ctx ();
 
 	int status;
-	if ((status = connect (m_endPoint, (struct sockaddr*) &addr, sizeof(struct sockaddr_in))) < 0)
+	if ((status = connect (m_endPoint, reinterpret_cast <struct sockaddr*> (&addr), sizeof(struct sockaddr_in))) < 0)
 	{
 		if ((errno != EINPROGRESS) && (errno != EAGAIN))
 		{
@@ -147,7 +147,7 @@ int MpxTcp4Client::Connect (const sockaddr_in* addr, uint16_t port)
 	MpxRunningContext* ctx = mpx->ctx ();
 
 	int status;
-	if ((status = connect (m_endPoint, (struct sockaddr*) &saddr, sizeof(struct sockaddr_in))) < 0)
+	if ((status = connect (m_endPoint, reinterpret_cast <struct sockaddr*> (&saddr), sizeof(struct sockaddr_in))) < 0)
 	{
 		if ((errno != EINPROGRESS) && (errno != EAGAIN))
 		{

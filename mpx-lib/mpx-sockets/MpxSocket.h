@@ -40,7 +40,7 @@ public:
 	MpxSocket (MpxTaskBase* task, bool fast = false, long int timeOut = 1000 * 1000 * 1000, bool seqPacket = false) :
 		m_debug (false), m_task (task), m_fast (fast), m_timeOut (timeOut), m_seqPacket (seqPacket)
 	{
-		MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+		MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 		if (mpx->getTid () != syscall (SYS_gettid))
 			return;
 
@@ -127,7 +127,7 @@ public:
 	int PostXdrRequest (xdrproc_t proc, void* data)
 	{
 		u_int dummy = 0;
-		u_int intSize = xdr_sizeof ((xdrproc_t) xdr_int, &dummy);
+		u_int intSize = xdr_sizeof (reinterpret_cast <xdrproc_t> (xdr_int), &dummy);
 		u_int msgSize = xdr_sizeof (proc, data);
 		u_int freeSpace = m_writeBufferEnd - m_writeBufferPtr;
 
@@ -152,11 +152,11 @@ public:
 
 		XDR xdr;
 
-		xdrmem_create (&xdr, (char*) m_writeBufferPtr, freeSpace, XDR_ENCODE);
-		if (xdr_int (&xdr, (int*) &msgSize) != TRUE)
+		xdrmem_create (&xdr, reinterpret_cast <char*> (m_writeBufferPtr), freeSpace, XDR_ENCODE);
+		if (xdr_int (&xdr, reinterpret_cast <int*> (&msgSize)) != TRUE)
 			return -1;
 
-		xdrmem_create (&xdr, (char*) (m_writeBufferPtr + intSize), freeSpace - intSize, XDR_ENCODE);
+		xdrmem_create (&xdr, reinterpret_cast <char*> ((m_writeBufferPtr + intSize)), freeSpace - intSize, XDR_ENCODE);
 		if (proc (&xdr, data) != TRUE)
 			return -1;
 
@@ -170,19 +170,19 @@ public:
 	int ReadXdrRequest (xdrproc_t proc, void* data)
 	{
 		u_int dummy = 0;
-		u_int intSize = xdr_sizeof ((xdrproc_t) xdr_int, &dummy);
+		u_int intSize = xdr_sizeof (reinterpret_cast <xdrproc_t> (xdr_int), &dummy);
 		u_int usedSpace = m_readBufferPtr - m_readBufferUse;
 
 		if (usedSpace < intSize)
 			return -1;
 		XDR xdr;
 		u_int msgSize;
-		xdrmem_create (&xdr, (char*) m_readBufferUse, intSize, XDR_DECODE);
-		if (xdr_int (&xdr, (int*) &msgSize) != TRUE)
+		xdrmem_create (&xdr, reinterpret_cast <char*> (m_readBufferUse), intSize, XDR_DECODE);
+		if (xdr_int (&xdr, reinterpret_cast <int*> (&msgSize)) != TRUE)
 			return -1;
 		if (usedSpace < msgSize + intSize)
 			return -1;
-		xdrmem_create (&xdr, (char*) (m_readBufferUse + intSize), msgSize, XDR_DECODE);
+		xdrmem_create (&xdr, reinterpret_cast <char*> ((m_readBufferUse + intSize)), msgSize, XDR_DECODE);
 		if (proc (&xdr, data) != TRUE)
 			return -1;
 		m_readBufferUse += intSize + msgSize;
@@ -192,7 +192,7 @@ public:
 	MpxEventBase* DecodeEvent (MpxEventXDRItf* evnXdr)
 	{
 		MpxEventBase* event = 0;
-		ssize_t size = evnXdr->Decode (event, (char*) m_readBufferUse, m_readBufferPtr - m_readBufferUse);
+		ssize_t size = evnXdr->Decode (event, reinterpret_cast <char*> (m_readBufferUse), m_readBufferPtr - m_readBufferUse);
 		if (size > 0)
 			m_readBufferUse += size;
 		return event;
@@ -278,7 +278,7 @@ protected:
 
 	inline static void IdleTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, ctx_appdt_t appdata)
 	{
-		((MpxSocket*) appdata)->IdleTimer (ctx, handler, t);
+		(reinterpret_cast <MpxSocket*> (appdata))->IdleTimer (ctx, handler, t);
 	}
 
 	void IdleTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t)
@@ -291,7 +291,7 @@ protected:
 	inline static void HandleSocketIO (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd,
 		ctx_appdt_t appdata)
 	{
-		((MpxSocket*) appdata)->HandleSocketIO (ctx, flags, handler, fd);
+		(reinterpret_cast <MpxSocket*> (appdata))->HandleSocketIO (ctx, flags, handler, fd);
 	}
 
 	void HandleSocketIO (MpxRunningContext *ctx, uint flags, ctx_fddes_t handler, int fd)

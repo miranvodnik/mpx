@@ -39,7 +39,7 @@ void MpxTcp4ClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 	if (tcp4ClientEvent == 0)
 		return;
 
-	MpxTcp4Client* tcp4Client = dynamic_cast <MpxTcp4Client*> ((MpxTcp4Client*) tcp4ClientEvent->endPoint ());
+	MpxTcp4Client* tcp4Client = reinterpret_cast <MpxTcp4Client*> (tcp4ClientEvent->endPoint ());
 	if (tcp4Client == 0)
 		return;
 

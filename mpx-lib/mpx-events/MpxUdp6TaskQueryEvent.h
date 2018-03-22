@@ -49,7 +49,7 @@ public:
 		return m_name.c_str ();
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxUdp6TaskQueryEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxUdp6TaskQueryEventCode);
 private:
 	string m_hostname;
 	string m_port;

@@ -39,7 +39,7 @@ void MpxTcp4EndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 	if (tcp4EndPointEvent == 0)
 		return;
 
-	MpxTcp4EndPoint* tcp4EndPoint = dynamic_cast <MpxTcp4EndPoint*> ((MpxTcp4EndPoint*) tcp4EndPointEvent->endPoint ());
+	MpxTcp4EndPoint* tcp4EndPoint = reinterpret_cast <MpxTcp4EndPoint*> (tcp4EndPointEvent->endPoint ());
 	if (tcp4EndPoint == 0)
 		return;
 

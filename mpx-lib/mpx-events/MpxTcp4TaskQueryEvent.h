@@ -55,7 +55,7 @@ public:
 		return m_encdeclib.c_str ();
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxTcp4TaskQueryEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxTcp4TaskQueryEventCode);
 private:
 	string m_hostname;
 	string m_port;

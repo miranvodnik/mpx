@@ -36,14 +36,14 @@ MpxLocalListener::~MpxLocalListener ()
 		close (m_listenSocket);
 	m_listenSocket = 0;
 	unlink (m_listenPath.c_str ());
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 	if (mpx != 0)
 	{
 		MpxRunningContext* ctx = mpx->ctx ();
 		if (ctx != 0)
 		{
 			if (m_handler != 0)
-				((MpxTaskMultiplexer*) m_task->mpx ())->ctx ()->RemoveDescriptor (m_handler);
+				ctx->RemoveDescriptor (m_handler);
 			m_handler = 0;
 		}
 	}
@@ -62,7 +62,7 @@ int MpxLocalListener::CreateListener (const char* path)
 	bzero (&srvaddr, sizeof(srvaddr));
 	srvaddr.sun_family = AF_LOCAL;
 	strncpy (srvaddr.sun_path, path, sizeof(srvaddr.sun_path) - 1);
-	if (bind (m_listenSocket, (sockaddr*) &srvaddr, sizeof(srvaddr)) < 0)
+	if (bind (m_listenSocket, reinterpret_cast <sockaddr*> (&srvaddr), sizeof(srvaddr)) < 0)
 	{
 		close (m_listenSocket);
 		m_listenSocket = -1;
@@ -97,7 +97,7 @@ int MpxLocalListener::CreateListener (const char* path)
 
 int MpxLocalListener::StartListener ()
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 
 	if (mpx->getTid () != syscall (SYS_gettid))
 		return -1;
@@ -109,7 +109,7 @@ int MpxLocalListener::StartListener ()
 
 int MpxLocalListener::StopListener ()
 {
-	MpxTaskMultiplexer* mpx = (MpxTaskMultiplexer*) m_task->mpx ();
+	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
 
 	if (mpx->getTid () != syscall (SYS_gettid))
 		return -1;
@@ -128,7 +128,7 @@ void MpxLocalListener::HandleListener (MpxRunningContext *ctx, uint flags, ctx_f
 	socklen_t slen = sizeof(struct sockaddr_un);
 
 	memset (&addr, 0, sizeof(struct sockaddr_un));
-	if ((localClientSocket = accept (fd, (struct sockaddr*) &addr, &slen)) < 0)
+	if ((localClientSocket = accept (fd, reinterpret_cast <struct sockaddr*> (&addr), &slen)) < 0)
 	{
 		cout << "ACCEPT LOCAL CLIENT Failed: accept (), errno = " << errno << endl;
 		return;

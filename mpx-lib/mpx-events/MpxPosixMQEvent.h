@@ -59,7 +59,7 @@ public:
 		return m_buffer;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxPosixMQEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxPosixMQEventCode);
 private:
 	void* m_listener;
 	u_int m_flags;

@@ -28,15 +28,4 @@
 namespace mpx
 {
 
-MpxEventXDRItf::MpxEventXDRItf ()
-{
-	// TODO Auto-generated constructor stub
-
-}
-
-MpxEventXDRItf::~MpxEventXDRItf ()
-{
-	// TODO Auto-generated destructor stub
-}
-
 } // namespace mpx

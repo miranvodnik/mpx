@@ -46,7 +46,7 @@ public:
 		return m_fd;
 	}
 public:
-	static const unsigned int EventCode = (unsigned int) ::MpxTcp6ListenerEventCode;
+	static const unsigned int EventCode = static_cast <unsigned int> (::MpxTcp6ListenerEventCode);
 private:
 	int m_fd;
 };

@@ -88,12 +88,12 @@ public:
 		{
 			cout << "EVENT = " << event->code () << ", size = " << size << endl;
 		}
-		char* buffer = (char*) alloca(size);
+		char* buffer = reinterpret_cast <char*> (alloca(size));
 		if ((size = m_eventXDR->Encode (event, buffer, size)) < 0)
 		{
 			cout << "EVENT = " << event->code () << ", size = " << size << endl;
 		}
-		m_socket->Write ((u_char*) buffer, xdrSize);
+		m_socket->Write (reinterpret_cast <u_char*> (buffer), xdrSize);
 		return 0;
 	}
 	inline MpxTaskBase* task ()
@@ -108,7 +108,7 @@ public:
 protected:
 	inline static void HandleJobFinishedEvent (MpxEventBase *event, mpx_appdt_t appdata)
 	{
-		(dynamic_cast <MpxProxyTask*> ((MpxTaskBase*) appdata))->HandleJobFinishedEvent (event);
+		(dynamic_cast <MpxProxyTask*> (reinterpret_cast <MpxTaskBase*> (appdata)))->HandleJobFinishedEvent (event);
 	}
 	void HandleJobFinishedEvent (MpxEventBase *event)
 	{
@@ -122,7 +122,7 @@ protected:
 				break;
 			if ((m_lib = openLibrary->lib ()) == 0)
 				break;
-			if ((m_fcn = (edfunc) openLibrary->fcn ()) == 0)
+			if ((m_fcn = reinterpret_cast <edfunc> (openLibrary->fcn ())) == 0)
 				break;
 			if ((m_eventXDR = (*m_fcn) ()) == 0)
 				break;
@@ -130,16 +130,13 @@ protected:
 			if (Send (m_task, new MpxExternalTaskEvent (EPOLLIN, 0, 0, 0), false) < 0)
 				break;
 
-			if (m_client)
-			{
-			}
-			else
+			if (!m_client)
 			{
 				MpxMessage msg;
 				msg.m_Code = ExternalTaskReplyCode;
-				msg.MpxMessage_u.m_externalTaskReply.task = (long) m_task;
+				msg.MpxMessage_u.m_externalTaskReply.task = reinterpret_cast <long> (m_task);
 				msg.MpxMessage_u.m_externalTaskReply.encdeclib = strdup (m_encdeclib.c_str ());
-				if (m_socket->PostXdrRequest ((xdrproc_t) xdr_MpxMessage, &msg) < 0)
+				if (m_socket->PostXdrRequest (reinterpret_cast <xdrproc_t> (xdr_MpxMessage), &msg) < 0)
 					break;
 			}
 
@@ -166,6 +163,7 @@ template <typename T, typename V> EventDescriptor MpxProxyTask < T, V > ::g_evnt
 	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
 	{ 0, 0, 0 }
 };
+
 template <typename T, typename V> MpxTaskBase::evnset MpxProxyTask < T, V > ::g_evnset = MpxTaskBase::CreateEventSet(g_evntab);
 
 } // namespace mpx

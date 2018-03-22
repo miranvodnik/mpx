@@ -66,7 +66,7 @@ void MpxWorkerTask::StopTask ()
 
 void MpxWorkerTask::TimerEventHandler (MpxEventBase *event)
 {
-	MpxTimerEvent* timerEvent = (MpxTimerEvent*) event;
+	MpxTimerEvent* timerEvent = dynamic_cast <MpxTimerEvent*> (event);
 
 	if (timerEvent == m_getTimer)
 	{

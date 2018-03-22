@@ -39,7 +39,7 @@ void MpxLocalClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 	if (localClientEvent == 0)
 		return;
 
-	MpxLocalClient* localClient = dynamic_cast <MpxLocalClient*> ((MpxLocalClient*) localClientEvent->endPoint ());
+	MpxLocalClient* localClient = reinterpret_cast <MpxLocalClient*> (localClientEvent->endPoint ());
 	if (localClient == 0)
 		return;
 
