@@ -24,13 +24,12 @@
 namespace mpx
 {
 
-EventDescriptor MpxWorkerTask::g_evntab[] =
+EventDescriptor MpxWorkerTask::g_evntab [] =
 {
-	{ AnyState, MpxTimerEvent::EventCode, TimerEventHandler},
-	{ 0, 0, 0}
-};
+{ AnyState, MpxTimerEvent::EventCode, TimerEventHandler },
+{ 0, 0, 0 } };
 
-MpxTaskBase::evnset MpxWorkerTask::g_evnset = MpxTaskBase::CreateEventSet(MpxWorkerTask::g_evntab);
+MpxTaskBase::evnset MpxWorkerTask::g_evnset = MpxTaskBase::CreateEventSet (MpxWorkerTask::g_evntab);
 
 MpxWorkerTask::MpxWorkerTask (const char* name) :
 	MpxTaskBase (g_evnset, name)

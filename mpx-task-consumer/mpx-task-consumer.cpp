@@ -29,6 +29,11 @@ using namespace mpx;
 #include "TaskConsumer.h"
 using namespace mpx_task_consumer;
 
+static void sigint (int signo)
+{
+
+}
+
 int main (int n, char* p [])
 {
 	if (n < 5)
@@ -36,12 +41,17 @@ int main (int n, char* p [])
 		cout << "usage: %s <protocol> <hostname> <port> <taskname>" << endl;
 		return 0;
 	}
+	signal (SIGINT, sigint);
 	MpxTaskMultiplexer* mpx = MpxEnvironment::CreateTaskMultiplexer ();
 	TaskConsumer* task = new TaskConsumer (p[1], p[2], p[3], p[4]);
 	mpx->RegisterTask(task);
 
 	MpxEnvironment::Start (new MpxLocalMQTask ());
-	while (true)
-		sleep (1);
+	pause (); // waiting for SIGINT from TaskConsumer instance
+	cout << "ACOUNT = " << TaskConsumer::acount() << endl;
+	cout << "BCOUNT = " << TaskConsumer::bcount() << endl;
+	MpxEnvironment::Stop ();
+	cout << "ACOUNT = " << TaskConsumer::acount() << endl;
+	cout << "BCOUNT = " << TaskConsumer::bcount() << endl;
 	return 0;
 }

@@ -49,19 +49,25 @@ void MpxTcp4ClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 		if ((tcp4ClientEvent->error () == 0) && (tcp4ClientEvent->size () != 0))
 		{
 			MpxEventBase* event;
-			while ((event = tcp4Client->DecodeEvent(m_eventXDR)) != 0)
-				Send (m_task, event, false);
+			while ((event = tcp4Client->DecodeEvent (m_eventXDR)) != 0)
+				Send (m_task, event, true);
+			return;
 		}
 		break;
 	case EPOLLOUT:
 		if (false)
 			cout << "proxy " << this << " event: tcp4 client output" << endl;
+		if ((tcp4ClientEvent->error () == 0) && (tcp4ClientEvent->size () != 0))
+			return;
 		break;
 	default:
 		if (false)
 			cout << "proxy " << this << " event: tcp4 client default" << endl;
 		break;
 	}
+	cout << "CONNECTION BROKEN" << endl;
+	Send (m_task, new MpxProxyTaskEvent (MpxProxyTaskEvent::ReasonConnectionBroken), true);
+	Dispose (false);
 }
 
 } // namespace mpx

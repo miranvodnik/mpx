@@ -50,7 +50,6 @@ private:
 
 private:
 	string m_localPath;
-	int m_endPoint;
 };
 
 } /* namespace mpx */

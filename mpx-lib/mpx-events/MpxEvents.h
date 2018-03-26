@@ -40,3 +40,5 @@
 #include <mpx-events/MpxTimerEvent.h>
 #include <mpx-events/MpxUdp4TaskQueryEvent.h>
 #include <mpx-events/MpxUdp6TaskQueryEvent.h>
+#include <mpx-events/MpxProxyTaskEvent.h>
+#include <mpx-events/MpxProxyTaskRelocationEvent.h>

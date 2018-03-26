@@ -97,6 +97,7 @@ private:
 	mpx_event_handler(HandleTaskResponseEvent, MpxExternalTask)
 
 	mpx_event_handler(HandleJobFinishedEvent, MpxExternalTask)
+	mpx_event_handler(HandleProxyTaskRelocationEvent, MpxExternalTask)
 
 private:
 	static const char* g_protocolField;

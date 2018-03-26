@@ -49,19 +49,25 @@ void MpxLocalClientProxyTask::HandleSocketEvent (MpxEventBase *event)
 		if ((localClientEvent->error () == 0) && (localClientEvent->size () != 0))
 		{
 			MpxEventBase* event;
-			while ((event = localClient->DecodeEvent(m_eventXDR)) != 0)
-				Send (m_task, event, false);
+			while ((event = localClient->DecodeEvent (m_eventXDR)) != 0)
+				Send (m_task, event, true);
+			return;
 		}
 		break;
 	case EPOLLOUT:
 		if (false)
 			cout << "proxy " << this << " event: local client output" << endl;
+		if ((localClientEvent->error () == 0) && (localClientEvent->size () != 0))
+			return;
 		break;
 	default:
 		if (false)
 			cout << "proxy " << this << " event: local client default" << endl;
 		break;
 	}
+	cout << "CONNECTION BROKEN" << endl;
+	Send (m_task, new MpxProxyTaskEvent (MpxProxyTaskEvent::ReasonConnectionBroken), true);
+	Dispose (false);
 }
 
 } // namespace mpx

@@ -275,30 +275,41 @@ int MpxTaskBase::Send (MpxTaskBase* task, MpxEventBase* event, bool invoke)
 	++g_sentCount;
 
 	if (task == 0)
+	{
+		cout << "Send() failed, missing destination task" << endl;
 		return -1;
+	}
 
 	if ((!g_enableSend) && (event->code () != MpxStopEvent::EventCode))
+	{
+		cout << "Send() failed, send disabled" << endl;
 		return -1;
+	}
 
 	if (event->src () == 0)
 		event->src (this);
 	if (event->dst () == 0)
 		event->dst (task);
 
+	int status;
 	MpxTaskMultiplexer* src = (MpxTaskMultiplexer*) m_mpx;
 	MpxTaskMultiplexer* dst = (MpxTaskMultiplexer*) task->mpx ();
 
-	if ((src == dst) && (invoke == true))
+	if (src == dst)
 	{
-		if (false)
-			cout << "INVOKE : " << event->code () << endl;
-		if (event->Invoke () == 0)
+		if ((invoke == true) ||
+			(dynamic_cast < MpxProxyTaskBase* > (task) != 0) ||
+			(dynamic_cast < MpxProxyTaskBase* > (this) != 0))
+		{
+			if (false)
+				cout << "INVOKE : " << event->code () << endl;
+			status = event->Invoke ();
 			delete event;
-		return 0;
+			return status;
+		}
 	}
 
-	int status = src->Send (dst, event);
-	if (status < 0)
+	if ((status = src->Send (dst, event)) < 0)
 		delete event;
 	return status;
 }
@@ -411,9 +422,15 @@ void MpxTaskBase::StopTimer (void* timer)
 int MpxTaskBase::RetrieveExternalTask (const char* connString, const char* encdeclib)
 {
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTask () failed, missing connection string" << endl;
 		return -1;
+	}
 	if (strncasecmp (connString, g_protocolField, strlen (g_protocolField)) != 0)
+	{
+		cout << "RetrieveExternalTask () failed, cannot find protocol specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_protocolField);
 	if (strncasecmp (connString, g_protocolLocal, strlen (g_protocolLocal)) == 0)
@@ -432,6 +449,7 @@ int MpxTaskBase::RetrieveExternalTask (const char* connString, const char* encde
 		return RetrieveExternalTaskTcp6 (connString, encdeclib);
 	}
 
+	cout << "RetrieveExternalTask () failed, unknown protocol specifier in connection string '" << connString << "'" << endl;
 	return -1;
 }
 
@@ -460,13 +478,19 @@ int MpxTaskBase::RetrieveExternalTaskLocal (const char* connString, const char* 
 	size_t size;
 
 	if (strncasecmp (connString, g_pathField, strlen (g_pathField)) != 0)
+	{
+		cout << "RetrieveExternalTaskLocal () failed, cannot find path specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_pathField);
 	const char* path = connString;
 	connString = strchr (connString, ',');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskLocal () failed, cannot find path delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mpath = reinterpret_cast <char*> (alloca(size = connString - path));
@@ -474,13 +498,19 @@ int MpxTaskBase::RetrieveExternalTaskLocal (const char* connString, const char* 
 	mpath [size - 1] = 0;
 
 	if (strncasecmp (connString, g_nameField, strlen (g_nameField)) != 0)
+	{
+		cout << "RetrieveExternalTaskLocal () failed, cannot find task name specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_nameField);
 	const char* name = connString;
 	connString = strchr (connString, ';');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskLocal () failed, cannot find task name delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));
@@ -518,13 +548,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 	size_t size;
 
 	if (strncasecmp (connString, g_hostnameField, strlen (g_hostnameField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find hostname specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_hostnameField);
 	const char* hostname = connString;
 	connString = strchr (connString, ',');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find hostname delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mhostname = reinterpret_cast <char*> (alloca(size = connString - hostname));
@@ -532,13 +568,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 	mhostname [size - 1] = 0;
 
 	if (strncasecmp (connString, g_portField, strlen (g_portField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find port specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_portField);
 	const char* port = connString;
 	connString = strchr (connString, ',');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find port delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mport = reinterpret_cast <char*> (alloca(size = connString - port));
@@ -546,13 +588,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp4 (const char* connString, const char* e
 	mport [size - 1] = 0;
 
 	if (strncasecmp (connString, g_nameField, strlen (g_nameField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find task name specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_nameField);
 	const char* name = connString;
 	connString = strchr (connString, ';');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp4 () failed, cannot find task name delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));
@@ -591,13 +639,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 	size_t size;
 
 	if (strncasecmp (connString, g_hostnameField, strlen (g_hostnameField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find hostname specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_hostnameField);
 	const char* hostname = connString;
 	connString = strchr (connString, ',');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find hostname delimiterin connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mhostname = reinterpret_cast <char*> (alloca(size = connString - hostname));
@@ -605,13 +659,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 	mhostname [size - 1] = 0;
 
 	if (strncasecmp (connString, g_portField, strlen (g_portField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find port specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_portField);
 	const char* port = connString;
 	connString = strchr (connString, ',');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find port delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mport = reinterpret_cast <char*> (alloca(size = connString - port));
@@ -619,13 +679,19 @@ int MpxTaskBase::RetrieveExternalTaskTcp6 (const char* connString, const char* e
 	mport [size - 1] = 0;
 
 	if (strncasecmp (connString, g_nameField, strlen (g_nameField)) != 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find task name specifier in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString += strlen (g_nameField);
 	const char* name = connString;
 	connString = strchr (connString, ';');
 	if (connString == 0)
+	{
+		cout << "RetrieveExternalTaskTcp6 () failed, cannot find task name delimiter in connection string '" << connString << "'" << endl;
 		return -1;
+	}
 
 	connString++;
 	char* mname = reinterpret_cast <char*> (alloca(size = connString - name));

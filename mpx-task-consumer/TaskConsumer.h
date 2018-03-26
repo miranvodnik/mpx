@@ -41,13 +41,15 @@ namespace mpx_task_consumer
 class TaskConsumer: public mpx::MpxTaskBase
 {
 public:
-	TaskConsumer (const char* protocol, const char* hostname, const char* port, const char* taskName);
+	TaskConsumer (const char* protocol, const char* hostname, const char* port,
+		const char* taskName);
 	virtual ~TaskConsumer ();
 private:
 	virtual void StartTask ();
 	virtual void StopTask ();
 private:
 	mpx_event_handler(ExternalTaskEventHandler, TaskConsumer)
+	mpx_event_handler(ProxyTaskEventHandler, TaskConsumer)
 	mpx_event_handler(ConsumerEventAHandler, TaskConsumer)
 	mpx_event_handler(ConsumerEventBHandler, TaskConsumer)
 public:
@@ -67,6 +69,14 @@ public:
 	{
 		return m_taskName;
 	}
+	static inline int acount ()
+	{
+		return m_acount;
+	}
+	static inline int bcount ()
+	{
+		return m_bcount;
+	}
 private:
 	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
@@ -77,6 +87,7 @@ private:
 	string m_hostname;
 	int m_port;
 	string m_taskName;
+	bool m_afterProxy;
 };
 
 } // namespace mpx_task_consumer

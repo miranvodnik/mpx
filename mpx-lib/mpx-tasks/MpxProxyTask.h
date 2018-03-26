@@ -44,6 +44,11 @@ protected:
 	virtual ~MpxProxyTaskBase ()
 	{
 	}
+public:
+	virtual MpxTaskBase* task () = 0;
+	virtual void* socket () = 0;
+	virtual void Disconnect () = 0;
+	virtual void ConnectToContext () = 0;
 };
 
 template <typename T, typename V> class MpxProxyTask: public MpxProxyTaskBase
@@ -53,8 +58,8 @@ public:
 	typedef V MpxSocketTask;
 	typedef MpxEventXDRItf* (*edfunc) ();
 	MpxProxyTask (MpxTaskBase* task, MpxSocket <MpxSocketEvent> * socket, const char* encdeclib, bool client) :
-		MpxProxyTaskBase (g_evnset), m_task (task), m_socket (socket), m_encdeclib (encdeclib), m_client (client), m_lib (0), m_fcn (
-			0), m_eventXDR (0)
+		MpxProxyTaskBase (g_evnset), m_task (task), m_socket (socket), m_encdeclib (encdeclib), m_client (client), m_lib (
+			0), m_fcn (0), m_eventXDR (0)
 	{
 		if (false)
 			cout << "create proxy " << this << endl;
@@ -67,6 +72,7 @@ public:
 		if (m_eventXDR != 0)
 			delete m_eventXDR;
 		m_eventXDR = 0;
+		cout << "proxy deleted" << endl;
 	}
 	virtual void StartTask ()
 	{
@@ -74,7 +80,6 @@ public:
 	}
 	virtual void StopTask ()
 	{
-
 	}
 	virtual int HandleEvent (MpxEventBase* event)
 	{
@@ -96,13 +101,22 @@ public:
 		m_socket->Write (reinterpret_cast <u_char*> (buffer), xdrSize);
 		return 0;
 	}
-	inline MpxTaskBase* task ()
+	virtual MpxTaskBase* task ()
 	{
 		return m_task;
 	}
-	inline void* socket ()
+	virtual void* socket ()
 	{
 		return m_socket;
+	}
+	virtual void Disconnect ()
+	{
+		if (m_socket != 0)
+			m_socket->Close ();
+	}
+	virtual void ConnectToContext ()
+	{
+		m_socket->ConnectToContext (this);
 	}
 
 protected:
@@ -146,7 +160,7 @@ protected:
 	}
 
 protected:
-	static EventDescriptor g_evntab[];
+	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
 	MpxTaskBase* m_task;
 	MpxSocket <MpxSocketEvent> * m_socket;
@@ -157,13 +171,13 @@ protected:
 	MpxEventXDRItf* m_eventXDR;
 };
 
-template <typename T, typename V> EventDescriptor MpxProxyTask < T, V > ::g_evntab[] =
+template <typename T, typename V> EventDescriptor MpxProxyTask <T, V>::g_evntab [] =
 {
-	{ AnyState, T::EventCode, V::HandleSocketEvent },
-	{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
-	{ 0, 0, 0 }
-};
+{ AnyState, T::EventCode, V::HandleSocketEvent },
+{ AnyState, MpxJobFinishedEvent::EventCode, HandleJobFinishedEvent },
+{ 0, 0, 0 } };
 
-template <typename T, typename V> MpxTaskBase::evnset MpxProxyTask < T, V > ::g_evnset = MpxTaskBase::CreateEventSet(g_evntab);
+template <typename T, typename V> MpxTaskBase::evnset MpxProxyTask <T, V>::g_evnset = MpxTaskBase::CreateEventSet (
+	g_evntab);
 
 } // namespace mpx

@@ -23,7 +23,8 @@
 namespace mpx
 {
 
-MpxTcp6EndPointProxyTask::MpxTcp6EndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxTcp6EndPoint* tcp6EndPoint) :
+MpxTcp6EndPointProxyTask::MpxTcp6EndPointProxyTask (MpxTaskBase* task, const char* encdeclib,
+	MpxTcp6EndPoint* tcp6EndPoint) :
 	MpxProxyTask (task, tcp6EndPoint, encdeclib, false)
 {
 	tcp6EndPoint->task (this);
@@ -49,20 +50,25 @@ void MpxTcp6EndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 		if ((tcp6EndPointEvent->error () == 0) && (tcp6EndPointEvent->size () != 0))
 		{
 			MpxEventBase* event;
-			while ((event = tcp6EndPoint->DecodeEvent(m_eventXDR)) != 0)
-				Send (m_task, event, false);
-			break;
+			while ((event = tcp6EndPoint->DecodeEvent (m_eventXDR)) != 0)
+				Send (m_task, event, true);
+			return;
 		}
 		break;
 	case EPOLLOUT:
 		if (false)
 			cout << "proxy " << this << " event: tcp6 end point output" << endl;
+		if ((tcp6EndPointEvent->error () == 0) && (tcp6EndPointEvent->size () != 0))
+			return;
 		break;
 	default:
 		if (false)
 			cout << "proxy " << this << " event: tcp6 end point default" << endl;
 		break;
 	}
+	cout << "CONNECTION BROKEN" << endl;
+	Send (m_task, new MpxProxyTaskEvent (MpxProxyTaskEvent::ReasonConnectionBroken), true);
+	Dispose (false);
 }
 
 } // namespace mpx

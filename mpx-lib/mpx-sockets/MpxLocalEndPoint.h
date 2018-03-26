@@ -46,9 +46,6 @@ public:
 
 private:
 	virtual void Release ();
-
-private:
-	int m_endPoint;
 };
 
 } /* namespace mpx */

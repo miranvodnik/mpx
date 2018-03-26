@@ -33,7 +33,8 @@ namespace mpx_task_provider
 
 EventDescriptor TaskProvider::g_evntab [] =
 {
-	{ AnyState, MpxExternalTaskEvent::EventCode, ExternalTaskEventHandler },
+{ AnyState, MpxExternalTaskEvent::EventCode, ExternalTaskEventHandler },
+{ AnyState, MpxTimerEvent::EventCode, TimerEventHandler },
 { AnyState, MpxConsumerEventA::EventCode, ConsumerEventAHandler },
 { AnyState, MpxConsumerEventB::EventCode, ConsumerEventBHandler },
 { 0, 0, 0 } };
@@ -70,7 +71,25 @@ void TaskProvider::ExternalTaskEventHandler (MpxEventBase* event)
 	}
 	if (externalTaskEvent->flags () != EPOLLIN)
 		return;
-	cout << "provider proxy = " << (reinterpret_cast <MpxTaskBase*> (event->src ())) << endl;
+	MpxTaskBase* proxyTask = reinterpret_cast <MpxTaskBase*> (event->src ());
+	timespec t = GetCurrentTime ();
+	t.tv_sec += 1;
+	m_proxyset [StartTimer (t)] = proxyTask;
+	cout << "provider proxy = " << proxyTask << endl;
+}
+
+void TaskProvider::TimerEventHandler (MpxEventBase* event)
+{
+	MpxTimerEvent* timerEvent = dynamic_cast <MpxTimerEvent*> (event);
+	if (timerEvent == 0)
+		return;
+
+	proxyset::iterator it = m_proxyset.find (timerEvent);
+	if (it == m_proxyset.end ())
+		return;
+
+	((MpxProxyTaskBase*)it->second)->Disconnect ();
+	m_proxyset.erase (it);
 }
 
 void TaskProvider::ConsumerEventAHandler (MpxEventBase* event)
@@ -83,7 +102,7 @@ void TaskProvider::ConsumerEventAHandler (MpxEventBase* event)
 	}
 
 	MpxConsumerEventStruct* eventStruct = consumerEventA->eventStruct ();
-	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
+//	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
 
 	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventA (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string));
@@ -99,9 +118,9 @@ void TaskProvider::ConsumerEventBHandler (MpxEventBase* event)
 	}
 
 	MpxConsumerEventStruct* eventStruct = consumerEventB->eventStruct ();
-	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
-	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta << endl;
-	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama << endl;
+//	cout << name() << ": " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
+//	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta << endl;
+//	cout << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama << endl;
 
 	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventB (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha,

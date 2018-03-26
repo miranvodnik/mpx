@@ -25,9 +25,12 @@
 
 #pragma once
 
-#include <mpx-tasks/MpxTaskBase.h>
+#include <mpx-tasks/MpxProxyTask.h>
 #include <mpx-events/MpxEvents.h>
 using namespace mpx;
+
+#include <map>
+using namespace std;
 
 namespace mpx_task_provider
 {
@@ -37,6 +40,7 @@ namespace mpx_task_provider
 //
 class TaskProvider: public mpx::MpxTaskBase
 {
+	typedef map < void*, MpxTaskBase* > proxyset;
 public:
 	TaskProvider (const char* name);
 	virtual ~TaskProvider ();
@@ -45,11 +49,13 @@ private:
 	virtual void StopTask ();
 private:
 	mpx_event_handler(ExternalTaskEventHandler, TaskProvider)
+	mpx_event_handler(TimerEventHandler, TaskProvider)
 	mpx_event_handler(ConsumerEventAHandler, TaskProvider)
 	mpx_event_handler(ConsumerEventBHandler, TaskProvider)
 private:
 	static EventDescriptor g_evntab[];
 	static evnset g_evnset;
+	proxyset m_proxyset;
 };
 
 } // namespace mpx_task_provider

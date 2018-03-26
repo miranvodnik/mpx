@@ -17,6 +17,7 @@ CPP_SRCS += \
 ../mpx-events/MpxLocalTaskQueryEvent.cpp \
 ../mpx-events/MpxPosixMQEvent.cpp \
 ../mpx-events/MpxPosixMQTaskQueryEvent.cpp \
+../mpx-events/MpxProxyTaskEvent.cpp \
 ../mpx-events/MpxStartEvent.cpp \
 ../mpx-events/MpxStopEvent.cpp \
 ../mpx-events/MpxTaskQueryEvent.cpp \
@@ -44,6 +45,7 @@ OBJS += \
 ./mpx-events/MpxLocalTaskQueryEvent.o \
 ./mpx-events/MpxPosixMQEvent.o \
 ./mpx-events/MpxPosixMQTaskQueryEvent.o \
+./mpx-events/MpxProxyTaskEvent.o \
 ./mpx-events/MpxStartEvent.o \
 ./mpx-events/MpxStopEvent.o \
 ./mpx-events/MpxTaskQueryEvent.o \
@@ -75,6 +77,7 @@ CPP_DEPS += \
 ./mpx-events/MpxLocalTaskQueryEvent.d \
 ./mpx-events/MpxPosixMQEvent.d \
 ./mpx-events/MpxPosixMQTaskQueryEvent.d \
+./mpx-events/MpxProxyTaskEvent.d \
 ./mpx-events/MpxStartEvent.d \
 ./mpx-events/MpxStopEvent.d \
 ./mpx-events/MpxTaskQueryEvent.d \

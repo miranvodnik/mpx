@@ -25,7 +25,10 @@ namespace mpx
 int MpxEventBase::Invoke ()
 {
 	if (this == 0)
+	{
+		cout << "MpxEventBase::Invoke () failed, null event" << endl;
 		return -1;
+	}
 	MpxTaskBase* dstTask = dynamic_cast <MpxTaskBase*> ((MpxTaskBase*) m_dst);
 	return (m_dst != 0) ? dstTask->HandleEvent (this) : -1;
 }

@@ -51,7 +51,6 @@ private:
 private:
 	string m_hostname;
 	uint16_t m_port;
-	int m_endPoint;
 };
 
 } /* namespace mpx */

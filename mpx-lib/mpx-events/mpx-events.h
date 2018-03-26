@@ -38,6 +38,8 @@ enum MpxEventCode {
 	MpxExternalTaskEventCode = -21,
 	MpxTaskQueryEventCode = -22,
 	MpxTaskResponseEventCode = -23,
+	MpxProxyTaskEventCode = -24,
+	MpxProxyTaskRelocationEventCode = -25,
 };
 typedef enum MpxEventCode MpxEventCode;
 

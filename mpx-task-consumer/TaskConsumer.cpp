@@ -37,6 +37,7 @@ int TaskConsumer::m_bcount = 0;
 EventDescriptor TaskConsumer::g_evntab [] =
 {
 { AnyState, MpxExternalTaskEvent::EventCode, ExternalTaskEventHandler },
+{ AnyState, MpxProxyTaskEvent::EventCode, ProxyTaskEventHandler },
 { AnyState, MpxConsumerEventA::EventCode, ConsumerEventAHandler },
 { AnyState, MpxConsumerEventB::EventCode, ConsumerEventBHandler },
 { 0, 0, 0 } };
@@ -44,7 +45,7 @@ EventDescriptor TaskConsumer::g_evntab [] =
 MpxTaskBase::evnset TaskConsumer::g_evnset = MpxTaskBase::CreateEventSet (g_evntab);
 
 TaskConsumer::TaskConsumer (const char* protocol, const char* hostname, const char* port, const char* taskName) :
-	MpxTaskBase (g_evnset), m_protocol (protocol), m_hostname (hostname), m_port (atoi (port)), m_taskName (taskName)
+	MpxTaskBase (g_evnset), m_protocol (protocol), m_hostname (hostname), m_port (atoi (port)), m_taskName (taskName), m_afterProxy (false)
 {
 	m_provider = 0;
 }
@@ -58,7 +59,10 @@ void TaskConsumer::StartTask ()
 	stringstream connString;
 	connString << "protocol:" << m_protocol << ",hostname:" << m_hostname << ",port:" << m_port << ",name:"
 		<< m_taskName << ";" << ends;
-	RetrieveExternalTask (connString.str ().c_str (), "libmpx-edlib.so");
+	if (RetrieveExternalTask (connString.str ().c_str (), "libmpx-edlib.so") < 0)
+	{
+		cout << "TASK RETRIEVAL FAILED" << endl;
+	}
 }
 
 void TaskConsumer::StopTask ()
@@ -82,8 +86,19 @@ void TaskConsumer::ExternalTaskEventHandler (MpxEventBase* event)
 	cout << "consumer proxy = " << (reinterpret_cast <MpxTaskBase*> (event->src ())) << endl;
 	if ((m_provider = dynamic_cast <MpxProxyTaskBase*> (reinterpret_cast <MpxTaskBase*> (event->src ()))) == 0)
 		return;
+
 	Send (m_provider, new MpxConsumerEventA ("asdfasdfasdf"));
 	Send (m_provider, new MpxConsumerEventB (10, 20, 30));
+}
+
+void TaskConsumer::ProxyTaskEventHandler (MpxEventBase* event)
+{
+	MpxProxyTaskEvent* proxyTaskEvent = dynamic_cast <MpxProxyTaskEvent*> (event);
+	if (proxyTaskEvent == 0)
+		return;
+
+	m_afterProxy = true;
+	kill (getpid(), SIGINT);
 }
 
 void TaskConsumer::ConsumerEventAHandler (MpxEventBase* event)
@@ -97,7 +112,10 @@ void TaskConsumer::ConsumerEventAHandler (MpxEventBase* event)
 
 	MpxConsumerEventStruct* eventStruct = consumerEventA->eventStruct ();
 	++m_acount;
-	cout << m_acount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
+//	cout << m_acount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string << endl;
+
+	if (m_afterProxy)
+		cout << "AFTER PROXY" << endl;
 
 	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventA (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventA.m_string));
@@ -114,9 +132,12 @@ void TaskConsumer::ConsumerEventBHandler (MpxEventBase* event)
 
 	MpxConsumerEventStruct* eventStruct = consumerEventB->eventStruct ();
 	++m_bcount;
-	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
-	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta << endl;
-	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama << endl;
+//	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha << endl;
+//	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.beta << endl;
+//	cout << m_bcount << " " << eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.gama << endl;
+
+	if (m_afterProxy)
+		cout << "AFTER PROXY" << endl;
 
 	Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 		new MpxConsumerEventB (eventStruct->MpxConsumerEventStruct_u.m_ConsumerEventB.alpha,

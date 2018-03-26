@@ -43,7 +43,9 @@ enum MpxEventCode
 	MpxUdp6TaskQueryEventCode = -20,
 	MpxExternalTaskEventCode = -21,
 	MpxTaskQueryEventCode = -22,
-	MpxTaskResponseEventCode = -23
+	MpxTaskResponseEventCode = -23,
+	MpxProxyTaskEventCode = -24,
+	MpxProxyTaskRelocationEventCode = -25
 };
 
 typedef u_long taskid_t;

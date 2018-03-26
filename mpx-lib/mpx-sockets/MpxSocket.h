@@ -68,6 +68,12 @@ public:
 		Release ();
 	}
 
+	void Close ()
+	{
+//		Release ();
+		m_task->Send (m_task, new MpxSocketEvent (this, 0, 0, 0, 0), true);
+	}
+
 	inline size_t size ()
 	{
 		return m_readBufferPtr - m_readBufferUse;
@@ -236,6 +242,37 @@ public:
 		m_debug = debug;
 	}
 
+	void DisconnectFromContext ()
+	{
+		if (m_ctx == 0)
+			return;
+
+		if (m_idleTimer != 0)
+			m_ctx->DisableTimer (m_idleTimer);
+		m_idleTimer = 0;
+
+		if (m_IOHandle != 0)
+			m_ctx->RemoveDescriptor (m_IOHandle);
+		m_IOHandle = 0;
+
+		m_task = 0;
+	}
+
+	void ConnectToContext (MpxTaskBase* task)
+	{
+		if ((m_task = task) == 0)
+			return;
+
+		MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
+		if (mpx->getTid () != syscall (SYS_gettid))
+			return;
+
+		m_ctx = mpx->ctx ();
+
+		m_idleTimer = 0;
+		StartTimer (m_ctx->realTime ());
+		m_IOHandle = m_ctx->RegisterDescriptor (EPOLLIN, m_endPoint, HandleSocketIO, this, ctx_info);
+	}
 protected:
 	virtual void Release ()
 	{
@@ -489,6 +526,7 @@ protected:
 	bool m_fast;
 	long int m_timeOut;
 	bool m_seqPacket;
+	int m_endPoint;
 
 	u_int m_sent;
 	u_int m_rcvd;

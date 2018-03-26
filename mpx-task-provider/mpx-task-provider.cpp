@@ -31,9 +31,12 @@ using namespace mpx_task_provider;
 
 int main (int n, char* p [])
 {
-	MpxTaskMultiplexer* mpx = MpxEnvironment::CreateTaskMultiplexer ("protocol:tcp4,address:all,port:22220;"
+	MpxEnvironment::CreateTaskMultiplexer ("protocol:tcp4,address:all,port:22220;"
 		"protocol:tcp6,address:all,port:22220;"
 		"protocol:local,path:mpx-test-22220;");
+
+	MpxTaskMultiplexer* mpx = MpxEnvironment::CreateTaskMultiplexer ();
+
 	TaskProvider* task;
 
 	task = new TaskProvider ("task-provider-0");

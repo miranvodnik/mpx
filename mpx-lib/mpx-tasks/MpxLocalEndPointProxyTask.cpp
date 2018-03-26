@@ -23,7 +23,8 @@
 namespace mpx
 {
 
-MpxLocalEndPointProxyTask::MpxLocalEndPointProxyTask (MpxTaskBase* task, const char* encdeclib, MpxLocalEndPoint* localEndPoint) :
+MpxLocalEndPointProxyTask::MpxLocalEndPointProxyTask (MpxTaskBase* task, const char* encdeclib,
+	MpxLocalEndPoint* localEndPoint) :
 	MpxProxyTask (task, localEndPoint, encdeclib, false)
 {
 	localEndPoint->task (this);
@@ -39,8 +40,7 @@ void MpxLocalEndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 	if (localEndPointEvent == 0)
 		return;
 
-	MpxLocalEndPoint* localEndPoint =
-		reinterpret_cast <MpxLocalEndPoint*> (localEndPointEvent->endPoint ());
+	MpxLocalEndPoint* localEndPoint = reinterpret_cast <MpxLocalEndPoint*> (localEndPointEvent->endPoint ());
 	if (localEndPoint == 0)
 		return;
 
@@ -50,19 +50,25 @@ void MpxLocalEndPointProxyTask::HandleSocketEvent (MpxEventBase *event)
 		if ((localEndPointEvent->error () == 0) && (localEndPointEvent->size () != 0))
 		{
 			MpxEventBase* event;
-			while ((event = localEndPoint->DecodeEvent(m_eventXDR)) != 0)
-				Send (m_task, event, false);
+			while ((event = localEndPoint->DecodeEvent (m_eventXDR)) != 0)
+				Send (m_task, event, true);
+			return;
 		}
 		break;
 	case EPOLLOUT:
 		if (false)
 			cout << "proxy " << this << " event: local end point output" << endl;
+		if ((localEndPointEvent->error () == 0) && (localEndPointEvent->size () != 0))
+			return;
 		break;
 	default:
 		if (false)
 			cout << "proxy " << this << " event: local end point default" << endl;
 		break;
 	}
+	cout << "CONNECTION BROKEN" << endl;
+	Send (m_task, new MpxProxyTaskEvent (MpxProxyTaskEvent::ReasonConnectionBroken), true);
+	Dispose (false);
 }
 
 } // namespace mpx
