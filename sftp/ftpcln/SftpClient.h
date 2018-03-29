@@ -37,6 +37,7 @@
 #include <mpx-core/MpxRunningContext.h>
 using namespace mpx;
 #include "FtpClientInterface.h"
+#include "SftpClientEnums.h"
 
 #include <string>
 #include <map>
@@ -54,67 +55,11 @@ void	x (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state
 namespace sftp
 {
 
-enum SftpContext
-{
-	sftp_unknown, sftp_ctrl, sftp_data, sftp_request, sftp_reply, sftp_start, sftp_stop, sftp_progress
-};
-
-enum SftpStatus
-{
-	sftp_success, sftp_failure, sftp_error
-};
-
-typedef enum SftpState
-{
-	//	initial state (value = 0)
-	SNull,
-
-	SStartup, SConnectPrepared, SConnected, SHandshakePrepared,
-	SHandshakeFinished, SHashPrepared, Sha1Hash, Md5Hash,
-	SAuthPrepared, SAuthFinished, SSftpPrepared, SSftpFinished,
-	SPwdPrepared, SPwdFinished, SCwdPrepared, SCwdFinished,
-	SCdupPrepared, SCdupFinished, SLPwdPrepared, SLPwdFinished,
-	SLCwdPrepared, SLCwdFinished, SLCdupPrepared, SLCdupFinished,
-	SMkdirPrepared, SMkdirFinished, SRmdirPrepared, SRmdirFinished,
-	SListDirPrepared, SListDirProgress, SListDirFinished, SPutFilePrepared,
-	SPutFileProgress, SPutFileFinished, SGetFilePrepared, SGetFileProgress,
-	SGetFileFinished, SRenamePrepared, SRenameFinished, SRemovePrepared,
-	SRemoveFinished, SListPrepared, SListFinished, SDisposed,
-
-	SFtpStateCount
-} SftpState;
-
-typedef enum SftpEventIndex
-{
-	//	initial event (value = 0)
-	SftpNullEvent,
-
-	//	pure protocol events
-	SStartupEvent, SConnectPreparedEvent, SConnectedEvent, SHandshakePreparedEvent,
-	SHandshakeFinishedEvent, SHashPreparedEvent, Sha1HashEvent, Md5HashEvent,
-	SAuthPreparedEvent, SAuthFinishedEvent, SSftpPreparedEvent, SSftpFinishedEvent,
-	SPwdPreparedEvent, SPwdFinishedEvent, SCwdPreparedEvent, SCwdFinishedEvent,
-	SCdupPreparedEvent, SCdupFinishedEvent, SLPwdPreparedEvent, SLPwdFinishedEvent,
-	SLCwdPreparedEvent, SLCwdFinishedEvent, SLCdupPreparedEvent, SLCdupFinishedEvent,
-	SMkdirPreparedEvent, SMkdirFinishedEvent, SRmdirPreparedEvent, SRmdirFinishedEvent,
-	SListDirPreparedEvent, SListDirProgressEvent, SListDirFinishedEvent, SPutFilePreparedEvent,
-	SPutFileProgressEvent, SPutFileFinishedEvent, SGetFilePreparedEvent, SGetFileProgressEvent,
-	SGetFileFinishedEvent, SRenamePreparedEvent, SRenameFinishedEvent, SRemovePreparedEvent,
-	SRemoveFinishedEvent, SListPreparedEvent, SListFinishedEvent, SDisposedEvent,
-
-	//	utility events
-	SErrorEvent, SRequestEvent, SReplyEvent,
-
-	//	control events
-	SCtrlBusyTimerExpiredEvent, SCtrlIdleTimerExpiredEvent,
-
-	SftpEventCount
-} SftpEventIndex;
-
 class CBInvokeInfo
 {
 public:
-	CBInvokeInfo (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args [], void* _this) :
+	CBInvokeInfo (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args [],
+		void* _this) :
 		m_index (index), m_context (context), m_status (status), m_state (state), m_args (args), m_this (_this)
 	{
 		++g_counter;
@@ -164,14 +109,19 @@ private:
 public:
 	SftpClient (evnset& e);
 	virtual ~SftpClient ();
-	virtual void StartTask () {}
-	virtual void StopTask () {}
+	virtual void StartTask ()
+	{
+	}
+	virtual void StopTask ()
+	{
+	}
 
 	typedef void (SftpClient::*ReplyHandler) (void*args []);
 	typedef void (SftpClient::*RequestHandler) (void*args []);
-	typedef void (*SftpCallback) (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state, void* args [], void* appData);
-	typedef map < SftpEventIndex, pair < SftpCallback, void* > * > ftpcbset;
-	typedef pair < SftpCallback, void* > ftpcbdes;
+	typedef void (*SftpCallback) (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state,
+		void* args [], void* appData);
+	typedef map <SftpEventIndex, pair <SftpCallback, void*> *> ftpcbset;
+	typedef pair <SftpCallback, void*> ftpcbdes;
 private:
 	void Dispose (const char* msg);
 
@@ -190,7 +140,9 @@ public:
 	}
 	virtual void Start ();
 	virtual void Stop ();
-	virtual void Execute (FtpRequest* req, void* addInfo = 0) {}
+	virtual void Execute (FtpRequest* req, void* addInfo = 0)
+	{
+	}
 
 	void RegisterFtpCallback (SftpEventIndex index, SftpCallback cb, void* appData);
 	void UnregisterFtpCallback (SftpEventIndex index);
@@ -242,8 +194,10 @@ public:
 	void ListFile (string targetFile);
 
 private:
-	void InvokeFtpCallback (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args []);
-	void InvokeFtpCallbackTimer (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args []);
+	void InvokeFtpCallback (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state,
+		void* args []);
+	void InvokeFtpCallbackTimer (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state,
+		void* args []);
 	void _Handshake ();
 	void LoginPassword ();
 	void LoginPublickey ();
@@ -359,7 +313,7 @@ private:
 
 class SftpTrash
 {
-	typedef	enum
+	typedef enum
 	{
 		InitialStage,
 		ReleaseRemoteFileHandleStage,
@@ -368,40 +322,39 @@ class SftpTrash
 		ReleaseSessionStage,
 		ReleaseConnSocketStage,
 		FinalStage
-	}	Stage;
+	} Stage;
 
 public:
-	SftpTrash
-	(
-		MpxRunningContext* ctx,
-			int connSocket,
-			LIBSSH2_SESSION* session,
-			LIBSSH2_SFTP* sftp,
-			LIBSSH2_SFTP_HANDLE* dirHandle,
-			LIBSSH2_SFTP_HANDLE* remoteFileHandle
-	);
+	SftpTrash (MpxRunningContext* ctx, int connSocket, LIBSSH2_SESSION* session, LIBSSH2_SFTP* sftp,
+		LIBSSH2_SFTP_HANDLE* dirHandle, LIBSSH2_SFTP_HANDLE* remoteFileHandle);
 	virtual ~SftpTrash ();
 
 	void CleanUp ();
-	static inline bool debug () { return g_debug; }
-	static inline void debug (bool debug) { g_debug = debug; }
+	static inline bool debug ()
+	{
+		return g_debug;
+	}
+	static inline void debug (bool debug)
+	{
+		g_debug = debug;
+	}
 
 private:
 	fd_handler (HandleClientConnection, SftpTrash)
 	timer_handler (StageTimer, SftpTrash)
 	timer_handler (ConnectionTimer, SftpTrash)
 
-	void	InvokeStageOperation ();
+	void InvokeStageOperation ();
 
-	int	ReleaseRemoteFileHandle ();
-	int	ReleaseDirHandle ();
-	int	ReleaseSftp ();
-	int	ReleaseSession ();
-	int	ReleaseConnSocket ();
+	int ReleaseRemoteFileHandle ();
+	int ReleaseDirHandle ();
+	int ReleaseSftp ();
+	int ReleaseSession ();
+	int ReleaseConnSocket ();
 private:
-	static	bool	g_debug;
-	static	long	g_trashId;
-	long	m_trashId;
+	static bool g_debug;
+	static long g_trashId;
+	long m_trashId;
 	MpxRunningContext* m_ctx;
 	int m_connSocket;
 	LIBSSH2_SESSION* m_session;
@@ -411,8 +364,8 @@ private:
 
 	ctx_timer_t m_stageTimer;
 	ctx_timer_t m_connTimer;
-	ctx_fddes_t	m_connHandle;
-	Stage	m_stage;
+	ctx_fddes_t m_connHandle;
+	Stage m_stage;
 };
 
 } /* namespace sftp */

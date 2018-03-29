@@ -41,7 +41,7 @@ SftpClient::SftpCallback* SftpClient::g_disposedScenario = 0;
 SftpClient* SftpClient::g_disposedScenarioInitializer = new SftpClient (true);
 
 SftpClient::SftpClient (bool initialize) :
-			FtpClientInterface (Ssh2Protocol)
+	FtpClientInterface (Ssh2Protocol)
 {
 	if (!initialize)
 		return;
@@ -57,7 +57,8 @@ void SftpClient::InitDisposedScenario ()
 	g_disposedScenario [SCtrlIdleTimerExpiredEvent] = FinalTimerExpiredEventHandler;
 }
 
-void SftpClient::FinalTimerExpiredEventHandler (SftpClient *ftp, SftpContext context, SftpStatus status, SftpState state, void* args [])
+void SftpClient::FinalTimerExpiredEventHandler (SftpClient *ftp, SftpContext context, SftpStatus status,
+	SftpState state, void* args [])
 {
 	if (g_debug)
 		cout << "INVOKE SFTP FINALIZER - client = " << clientId () << endl;
@@ -122,8 +123,8 @@ void SftpClient::Dispose (const char* msg)
 	if (m_useTrash)
 	{
 		//	create clean-up object for SSH resources within current running context
-		SftpTrash*	trash = new SftpTrash (m_ctx, m_connSocket, m_session, m_sftp, m_dirHandle, m_remoteFileHandle);
-		trash->CleanUp();	// initiate clean-up and leave trash object to cease within current running context
+		SftpTrash* trash = new SftpTrash (m_ctx, m_connSocket, m_session, m_sftp, m_dirHandle, m_remoteFileHandle);
+		trash->CleanUp ();	// initiate clean-up and leave trash object to cease within current running context
 
 		m_connSocket = -1;	// clean-up will be done by SftpTrash
 		m_session = 0;	// clean-up will be done by SftpTrash
@@ -146,7 +147,7 @@ void SftpClient::Dispose (const char* msg)
 		m_sftp = 0;
 
 		if (m_session != 0)
-			libssh2_session_disconnect (m_session, "");
+			libssh2_session_disconnect(m_session, "");
 		m_session = 0;
 
 		if (m_connSocket > 0)
@@ -177,8 +178,8 @@ void SftpClient::Dispose (const char* msg)
 		++m_connTimerDisabled;
 		m_ctx->DisableTimer (m_connTmr);
 		if (g_debug)
-			cout << "DISABLE CONN TIMER - client = " << clientId () << ", enabled = " << m_connTimerEnabled << ", disabled = "
-				<< m_connTimerDisabled << endl;
+			cout << "DISABLE CONN TIMER - client = " << clientId () << ", enabled = " << m_connTimerEnabled
+				<< ", disabled = " << m_connTimerDisabled << endl;
 	}
 	m_connTmr = 0;
 
@@ -251,7 +252,7 @@ void SftpClient::ConnIdleTimerHandler (MpxRunningContext *ctx, ctx_timer_t handl
 {
 	m_connTmr = 0;
 	void* args [] =
-		{ (void*) clientId (), (void*) (long) m_connTimerEnabled, (void*) (long) m_connTimerDisabled };
+	{ (void*) clientId (), (void*) (long) m_connTimerEnabled, (void*) (long) m_connTimerDisabled };
 	InvokeFtpCallback (SCtrlIdleTimerExpiredEvent, sftp_ctrl, m_status, m_state, args);
 	Dispose ("ConnIdleTimerHandler"); // m_ctrlTmr = NULL;
 }
@@ -276,7 +277,7 @@ void SftpClient::ConnIdleTimerHandler (MpxRunningContext *ctx, ctx_timer_t handl
 void SftpClient::RegisterFtpCallback (SftpEventIndex index, SftpCallback cb, void* appData)
 {
 	delete m_ftpEvents [index];
-	m_ftpEvents [index] = new pair < SftpCallback, void* > (cb, appData);
+	m_ftpEvents [index] = new pair <SftpCallback, void*> (cb, appData);
 }
 
 /****************************************************************/
@@ -336,7 +337,8 @@ void SftpClient::UnregisterAllFtpCallbacks ()
 void SftpClient::RegisterFtpScenario (SftpCallback* scenarioEvents, void*appData)
 {
 	if (g_debug)
-		cout << "REGISTER SFTP SCENARIO - client = " << clientId () << ", scenario = " << (u_long) scenarioEvents << endl;
+		cout << "REGISTER SFTP SCENARIO - client = " << clientId () << ", scenario = " << (u_long) scenarioEvents
+			<< endl;
 	m_scenarioEvents = scenarioEvents;
 	m_appData = appData;
 }
@@ -371,10 +373,12 @@ void SftpClient::UnregisterFtpScenario ()
 /*              event immediately in the next step of main loop */
 /****************************************************************/
 
-void SftpClient::InvokeFtpCallbackTimer (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args [])
+void SftpClient::InvokeFtpCallbackTimer (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state,
+	void* args [])
 {
 	if (g_debug)
-		cout << "FTP CALLBACK TIMER  (index = " << index << ", context = " << context << ", status = " << status << ", state = " << state << ")" << endl;
+		cout << "FTP CALLBACK TIMER  (index = " << index << ", context = " << context << ", status = " << status
+			<< ", state = " << state << ")" << endl;
 	CBInvokeInfo* info = new CBInvokeInfo (index, context, status, state, args, (void*) this); // !!! this stored in info
 	m_ctx->RegisterTimer (m_ctx->realTime (), FtpCallbackInvoker, info, ctx_info); // !!! this 'becomes' info
 }
@@ -386,18 +390,21 @@ void SftpClient::FtpCallbackInvoker (MpxRunningContext *ctx, ctx_timer_t handler
 	delete info;
 }
 
-void SftpClient::RealFtpCallbackInvoker (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t, CBInvokeInfo* info)
+void SftpClient::RealFtpCallbackInvoker (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t,
+	CBInvokeInfo* info)
 {
 	InvokeFtpCallback (info->index (), info->context (), info->status (), info->state (), info->args ());
 }
 
-void SftpClient::InvokeFtpCallback (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state, void* args [])
+void SftpClient::InvokeFtpCallback (SftpEventIndex index, SftpContext context, SftpStatus status, SftpState state,
+	void* args [])
 {
 	if (g_debug)
-		cout << "INVOKE FTP CALLBACK (index = " << index << ", context = " << context << ", status = " << status << ", state = " << state << ")" << endl;
+		cout << "INVOKE FTP CALLBACK (index = " << index << ", context = " << context << ", status = " << status
+			<< ", state = " << state << ")" << endl;
 
 	void* nullArgs [] =
-		{ (void*) index, 0 };
+	{ (void*) index, 0 };
 	if (m_scenarioEvents == NULL)
 	{
 		ftpcbdes* it = m_ftpEvents [index];
@@ -438,7 +445,7 @@ void SftpClient::Start ()
 		cout << "Start ()" << endl;
 	{
 		void* args [] =
-			{ (void*) "started", 0 };
+		{ (void*) "started", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_start, sftp_success, m_state, args);
 	}
 	InvokeFtpCallbackTimer (SStartupEvent, sftp_start, sftp_success, m_state = SStartup, NULL);
@@ -460,8 +467,8 @@ void SftpClient::Stop ()
 		cout << "Stop ()" << endl;
 	{
 		void* args [] =
-			{ (void*) "ssh disposed", (void*) m_targetPath, 0 };
-		InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
+		{ (void*) "ssh disposed", (void*) m_targetPath, 0 };
+		InvokeFtpCallback (SReplyEvent, sftp_stop, sftp_success, m_state, args);
 	}
 	Dispose ("STOP");
 }
@@ -481,7 +488,7 @@ void SftpClient::Connect (string hostname)
 	InvokeFtpCallback (SConnectPreparedEvent, sftp_ctrl, sftp_success, m_state = SConnectPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "connect to ", (void*) hostname.c_str (), 0 };
+		{ (void*) "connect to ", (void*) hostname.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -492,7 +499,7 @@ void SftpClient::Connect (string hostname)
 	if (m_connSocket < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot create SFTP control connection socket", (void*) "socket", (void*) (long) errno };
+		{ (void*) "cannot create SFTP control connection socket", (void*) "socket", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("socket");
 		return;
@@ -504,7 +511,7 @@ void SftpClient::Connect (string hostname)
 		string msg = "cannot get host info ";
 		msg += hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "gethostbyname", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "gethostbyname", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("gethostbyname");
 		return;
@@ -514,7 +521,7 @@ void SftpClient::Connect (string hostname)
 	if (flags < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot acquire SFTP control socket status", (void*) "fcntl", (void*) (long) errno };
+		{ (void*) "cannot acquire SFTP control socket status", (void*) "fcntl", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("fcntl");
 		return;
@@ -523,7 +530,7 @@ void SftpClient::Connect (string hostname)
 	if (fcntl (m_connSocket, F_SETFL, flags | O_NONBLOCK) < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot change SFTP control socket to nonblocking mode", (void*) "fcntl", (void*) (long) errno };
+		{ (void*) "cannot change SFTP control socket to nonblocking mode", (void*) "fcntl", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("fcntl");
 		return;
@@ -543,7 +550,7 @@ void SftpClient::Connect (string hostname)
 			string msg = "cannot connect to ";
 			msg += hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "connect", (void*) (long) errno };
+			{ (void*) msg.c_str (), (void*) "connect", (void*) (long) errno };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			Dispose ("connect");
 			return;
@@ -558,7 +565,7 @@ void SftpClient::Connect (string hostname)
 		string msg = "cannot create SSH2 session for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_session_init", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "libssh2_session_init", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("libssh2_session_init");
 		return;
@@ -587,7 +594,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 	InvokeFtpCallback (SConnectPreparedEvent, sftp_ctrl, sftp_success, m_state = SConnectPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "connect to ", (void*) hostname.c_str (), 0 };
+		{ (void*) "connect to ", (void*) hostname.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -606,7 +613,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 	if (m_connSocket < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot create SFTP control connection socket", (void*) "socket", (void*) (long) errno };
+		{ (void*) "cannot create SFTP control connection socket", (void*) "socket", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("socket");
 		return;
@@ -616,7 +623,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 	if (flags < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot acquire SFTP control socket status", (void*) "fcntl", (void*) (long) errno };
+		{ (void*) "cannot acquire SFTP control socket status", (void*) "fcntl", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("fcntl");
 		return;
@@ -625,7 +632,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 	if (fcntl (m_connSocket, F_SETFL, flags | O_NONBLOCK) < 0)
 	{
 		void* args [] =
-			{ (void*) "cannot change SFTP control socket to nonblocking mode", (void*) "fcntl", (void*) (long) errno };
+		{ (void*) "cannot change SFTP control socket to nonblocking mode", (void*) "fcntl", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("fcntl");
 		return;
@@ -639,7 +646,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 			string msg = "cannot connect to ";
 			msg += hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "connect", (void*) (long) errno };
+			{ (void*) msg.c_str (), (void*) "connect", (void*) (long) errno };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			Dispose ("connect");
 			return;
@@ -652,7 +659,7 @@ void SftpClient::Connect (string hostname, sockaddr* addr, socklen_t addrlen)
 		string msg = "cannot create SSH2 session for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_session_init", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "libssh2_session_init", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("libssh2_session_init");
 		return;
@@ -671,7 +678,7 @@ void SftpClient::Handshake ()
 	InvokeFtpCallback (SHandshakePreparedEvent, sftp_ctrl, sftp_success, m_state = SHandshakePrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "handshake", 0 };
+		{ (void*) "handshake", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -695,23 +702,23 @@ void SftpClient::_Handshake ()
 		m_requestHandler = 0;
 		{
 			void* args [] =
-				{ (void*) "handshake succeeded", 0 };
+			{ (void*) "handshake succeeded", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 
 		if (false)
 		{
-			LIBSSH2_AGENT*	agent = libssh2_agent_init (m_session);
+			LIBSSH2_AGENT* agent = libssh2_agent_init (m_session);
 			if (agent != 0)
 			{
-				int	reason = libssh2_agent_connect (agent);
+				int reason = libssh2_agent_connect (agent);
 				if (reason == 0)
 				{
 					reason = libssh2_agent_list_identities (agent);
 					if (reason == 0)
 					{
-						struct libssh2_agent_publickey*	store = 0;
-						struct libssh2_agent_publickey*	prev = 0;
+						struct libssh2_agent_publickey* store = 0;
+						struct libssh2_agent_publickey* prev = 0;
 						while ((reason = libssh2_agent_get_identity (agent, &store, prev)) == 0)
 						{
 							prev = store;
@@ -743,7 +750,7 @@ void SftpClient::_Handshake ()
 		string msg = "SSH2 handshake failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_session_handshake", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_session_handshake", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		Dispose ("libssh2_session_handshake");
 		return;
@@ -760,12 +767,10 @@ void SftpClient::CheckHash (int algorithm)
 	InvokeFtpCallback (SHashPreparedEvent, sftp_ctrl, sftp_success, m_state = SHashPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "hash ", (void*) (
-				(algorithm == LIBSSH2_HOSTKEY_HASH_MD5) ? "md5" : (algorithm == LIBSSH2_HOSTKEY_HASH_SHA1) ? "sha1" : "unknown"),
-				0
-			};
-			InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
-		}
+		{ (void*) "hash ", (void*) ((algorithm == LIBSSH2_HOSTKEY_HASH_MD5) ? "md5" :
+									(algorithm == LIBSSH2_HOSTKEY_HASH_SHA1) ? "sha1" : "unknown"), 0 };
+		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
+	}
 	if (g_debug)
 		cout << "CheckHash (" << ")" << endl;
 
@@ -779,7 +784,7 @@ void SftpClient::CheckHash (int algorithm)
 				cout << "HASH MD5" << endl;
 			{
 				void* args [] =
-					{ (void*) "md5 ok", 0 };
+				{ (void*) "md5 ok", 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
 			InvokeFtpCallbackTimer (Md5HashEvent, sftp_ctrl, sftp_success, m_state, (void**) hash);
@@ -794,7 +799,7 @@ void SftpClient::CheckHash (int algorithm)
 				cout << "HASH SHA1" << endl;
 			{
 				void* args [] =
-					{ (void*) "sha1 ok", 0 };
+				{ (void*) "sha1 ok", 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
 			InvokeFtpCallbackTimer (Sha1HashEvent, sftp_ctrl, sftp_success, m_state, (void**) hash);
@@ -811,7 +816,7 @@ void SftpClient::CheckHash (int algorithm)
 		string msg = "SSH2 host key hash failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_hostkey_hash", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "libssh2_hostkey_hash", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		return;
 	}
@@ -822,7 +827,7 @@ void SftpClient::LoginPublickey (string user, string publickey)
 	InvokeFtpCallback (SAuthPreparedEvent, sftp_ctrl, sftp_success, m_state = SAuthPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "login ", (void*) user.c_str (), (void*) ", ******", 0 };
+		{ (void*) "login ", (void*) user.c_str (), (void*) ", ******", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -836,9 +841,10 @@ void SftpClient::LoginPublickey (string user, string publickey)
 void SftpClient::LoginPublickey ()
 {
 	int status;
-	string	pub = m_publickey + ".pub";
+	string pub = m_publickey + ".pub";
 
-	switch (status = libssh2_userauth_publickey_fromfile (m_session, m_user.c_str(), pub.c_str(), m_publickey.c_str(), 0))
+	switch (status = libssh2_userauth_publickey_fromfile(m_session, m_user.c_str (), pub.c_str (), m_publickey.c_str (),
+		0))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -850,7 +856,7 @@ void SftpClient::LoginPublickey ()
 			cout << "AUTH FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "authenticated", 0 };
+			{ (void*) "authenticated", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SAuthFinishedEvent, sftp_ctrl, sftp_success, m_state = SAuthFinished, 0);
@@ -862,7 +868,7 @@ void SftpClient::LoginPublickey ()
 		string msg = "SSH2 user authentication failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_userauth_publickey_fromfile", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_userauth_publickey_fromfile", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		return;
 	}
@@ -875,7 +881,7 @@ void SftpClient::LoginPassword (string user, string password)
 	InvokeFtpCallback (SAuthPreparedEvent, sftp_ctrl, sftp_success, m_state = SAuthPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "login ", (void*) user.c_str (), (void*) ", ******", 0 };
+		{ (void*) "login ", (void*) user.c_str (), (void*) ", ******", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -890,7 +896,7 @@ void SftpClient::LoginPassword ()
 {
 	int status;
 
-	switch (status = libssh2_userauth_password (m_session, m_user.c_str(), m_password.c_str()))
+	switch (status = libssh2_userauth_password(m_session, m_user.c_str (), m_password.c_str ()))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -902,7 +908,7 @@ void SftpClient::LoginPassword ()
 			cout << "AUTH FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "authenticated", 0 };
+			{ (void*) "authenticated", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SAuthFinishedEvent, sftp_ctrl, sftp_success, m_state = SAuthFinished, 0);
@@ -914,7 +920,7 @@ void SftpClient::LoginPassword ()
 		string msg = "SSH2 user authentication failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_userauth_password", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_userauth_password", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_userauth_password");
 		return;
@@ -928,7 +934,7 @@ void SftpClient::CreateFtp ()
 	InvokeFtpCallback (SSftpPreparedEvent, sftp_ctrl, sftp_success, m_state = SSftpPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "init sftp", 0 };
+		{ (void*) "init sftp", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	_CreateFtp ();
@@ -944,7 +950,7 @@ void SftpClient::_CreateFtp ()
 			cout << "SFTP FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "sftp connection established", 0 };
+			{ (void*) "sftp connection established", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		_GetHomeDirectory ();
@@ -972,7 +978,7 @@ void SftpClient::_CreateFtp ()
 		string msg = "SSH2 cannot create sftp for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_init", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_init", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_init");
 		return;
@@ -989,14 +995,15 @@ void SftpClient::_GetHomeDirectory ()
 	int len;
 	while (true)
 	{
-		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath, m_targetPathLen,
+		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath,
+			m_targetPathLen,
 			LIBSSH2_SFTP_REALPATH)) > 0)
 		{
 			m_targetPath [len] = 0;
 			m_currentRemoteDir = m_homeDir = m_targetPath;
 			{
 				void* args [] =
-					{ (void*) "home = ", (void*) m_targetPath, 0 };
+				{ (void*) "home = ", (void*) m_targetPath, 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
 			InvokeFtpCallbackTimer (SSftpFinishedEvent, sftp_ctrl, sftp_success, m_state = SSftpFinished, 0);
@@ -1052,7 +1059,7 @@ void SftpClient::_GetHomeDirectory ()
 					string msg = "SSH2 cannot allocate memory for home directory for ";
 					msg += m_hostname;
 					void* args [] =
-						{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 					InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 					// Dispose ("libssh2_sftp_symlink_ex");
 					return;
@@ -1071,7 +1078,7 @@ void SftpClient::_GetHomeDirectory ()
 			string msg = "SSH2 cannot get home directory for ";
 			msg += m_hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
+			{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			// Dispose ("libssh2_sftp_symlink_ex");
 			return;
@@ -1087,7 +1094,7 @@ void SftpClient::PrintWorkingDirectory ()
 	InvokeFtpCallback (SPwdPreparedEvent, sftp_ctrl, sftp_success, m_state = SPwdPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "pwd", 0 };
+		{ (void*) "pwd", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	m_remoteDirName = GetRemoteDirectoryPath ("");
@@ -1101,17 +1108,19 @@ void SftpClient::_PrintWorkingDirectory ()
 	int len;
 	while (true)
 	{
-		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath, m_targetPathLen,
+		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath,
+			m_targetPathLen,
 			LIBSSH2_SFTP_REALPATH)) > 0)
 		{
 			m_targetPath [len] = 0;
 			m_currentRemoteDir = m_targetPath;
 			{
 				void* args [] =
-					{ (void*) "pwd = ", (void*) m_targetPath, 0 };
+				{ (void*) "pwd = ", (void*) m_targetPath, 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
-			InvokeFtpCallbackTimer (SPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SPwdFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SPwdFinished,
+				(void**) m_targetPath);
 			return;
 		}
 
@@ -1125,7 +1134,8 @@ void SftpClient::_PrintWorkingDirectory ()
 		case LIBSSH2_ERROR_NONE:
 			if (g_debug)
 				cout << "PWD FINISHED" << endl;
-			InvokeFtpCallbackTimer (SPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SPwdFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SPwdFinished,
+				(void**) m_targetPath);
 			break;
 		case LIBSSH2_ERROR_BUFFER_TOO_SMALL:
 			if (g_debug)
@@ -1144,7 +1154,7 @@ void SftpClient::_PrintWorkingDirectory ()
 					string msg = "SSH2 cannot allocate memory for working directory for ";
 					msg += m_hostname;
 					void* args [] =
-						{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 					InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 					// Dispose ("libssh2_sftp_symlink_ex");
 					return;
@@ -1163,7 +1173,7 @@ void SftpClient::_PrintWorkingDirectory ()
 			string msg = "SSH2 cannot print working directory for ";
 			msg += m_hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
+			{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			// Dispose ("libssh2_sftp_symlink_ex");
 			return;
@@ -1176,12 +1186,12 @@ void SftpClient::_PrintWorkingDirectory ()
 
 void SftpClient::ChangeWorkingDirectory (string dir)
 {
-	if ((!dir.empty()) && ((*dir.end()) != '/'))
-			dir += '/';
+	if ((!dir.empty ()) && ((*dir.end ()) != '/'))
+		dir += '/';
 	InvokeFtpCallback (SCwdPreparedEvent, sftp_ctrl, sftp_success, m_state = SCwdPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "cwd ", (void*) dir.c_str (), 0 };
+		{ (void*) "cwd ", (void*) dir.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -1197,17 +1207,19 @@ void SftpClient::ChangeWorkingDirectory ()
 	{
 		if (g_debug)
 			cout << "ChangeWorkingDirectory (" << m_remoteDirName << ")" << endl;
-		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath, m_targetPathLen,
+		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath,
+			m_targetPathLen,
 			LIBSSH2_SFTP_REALPATH)) > 0)
 		{
 			m_targetPath [len] = 0;
 			m_currentRemoteDir = m_targetPath;
 			{
 				void* args [] =
-					{ (void*) "cwd = ", (void*) m_targetPath, 0 };
+				{ (void*) "cwd = ", (void*) m_targetPath, 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
-			InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished,
+				(void**) m_targetPath);
 			return;
 		}
 
@@ -1221,7 +1233,8 @@ void SftpClient::ChangeWorkingDirectory ()
 		case LIBSSH2_ERROR_NONE:
 			if (g_debug)
 				cout << "CWD FINISHED" << endl;
-			InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished,
+				(void**) m_targetPath);
 			break;
 		case LIBSSH2_ERROR_BUFFER_TOO_SMALL:
 			if (g_debug)
@@ -1240,7 +1253,7 @@ void SftpClient::ChangeWorkingDirectory ()
 					string msg = "SSH2 cannot allocate memory for change working directory for ";
 					msg += m_hostname;
 					void* args [] =
-						{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 					InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 					// Dispose ("libssh2_sftp_symlink_ex");
 					return;
@@ -1259,7 +1272,7 @@ void SftpClient::ChangeWorkingDirectory ()
 			string msg = "SSH2 cannot change working directory for ";
 			msg += m_hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
+			{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			// Dispose ("libssh2_sftp_symlink_ex");
 			return;
@@ -1275,7 +1288,7 @@ void SftpClient::CheckTargetPath ()
 	LIBSSH2_SFTP_ATTRIBUTES attrs;
 
 	memset (&attrs, 0, sizeof(LIBSSH2_SFTP_ATTRIBUTES));
-	switch (libssh2_sftp_stat (m_sftp, m_targetPath, &attrs))
+	switch (libssh2_sftp_stat(m_sftp, m_targetPath, &attrs))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -1285,7 +1298,8 @@ void SftpClient::CheckTargetPath ()
 	case LIBSSH2_ERROR_NONE:
 		if (g_debug)
 			cout << "STAT FINISHED" << endl;
-		InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished, (void**) m_targetPath);
+		InvokeFtpCallbackTimer (SCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SCwdFinished,
+			(void**) m_targetPath);
 		break;
 	}
 }
@@ -1295,7 +1309,7 @@ void SftpClient::ChangeToParentDirectory ()
 	InvokeFtpCallback (SCdupPreparedEvent, sftp_ctrl, sftp_success, m_state = SCdupPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "cdup", 0 };
+		{ (void*) "cdup", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	m_remoteDirName = GetRemoteDirectoryPath ("..");
@@ -1310,17 +1324,19 @@ void SftpClient::_ChangeToParentDirectory ()
 	int len;
 	while (true)
 	{
-		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath, m_targetPathLen,
+		if ((len = libssh2_sftp_symlink_ex (m_sftp, m_remoteDirName.c_str (), m_remoteDirName.size (), m_targetPath,
+			m_targetPathLen,
 			LIBSSH2_SFTP_REALPATH)) > 0)
 		{
 			m_targetPath [len] = 0;
 			m_currentRemoteDir = m_targetPath;
 			{
 				void* args [] =
-					{ (void*) "cdup = ", (void*) m_targetPath, 0 };
+				{ (void*) "cdup = ", (void*) m_targetPath, 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
-			InvokeFtpCallbackTimer (SCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SCdupFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SCdupFinished,
+				(void**) m_targetPath);
 			return;
 		}
 
@@ -1334,7 +1350,8 @@ void SftpClient::_ChangeToParentDirectory ()
 		case LIBSSH2_ERROR_NONE:
 			if (g_debug)
 				cout << "CDUP FINISHED" << endl;
-			InvokeFtpCallbackTimer (SCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SCdupFinished, (void**) m_targetPath);
+			InvokeFtpCallbackTimer (SCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SCdupFinished,
+				(void**) m_targetPath);
 			break;
 		case LIBSSH2_ERROR_BUFFER_TOO_SMALL:
 			if (g_debug)
@@ -1353,7 +1370,7 @@ void SftpClient::_ChangeToParentDirectory ()
 					string msg = "SSH2 cannot allocate memory for change to parent directory for ";
 					msg += m_hostname;
 					void* args [] =
-						{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 					InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 					// Dispose ("libssh2_sftp_symlink_ex");
 					return;
@@ -1372,7 +1389,7 @@ void SftpClient::_ChangeToParentDirectory ()
 			string msg = "SSH2 cannot change to parent directory for ";
 			msg += m_hostname;
 			void* args [] =
-				{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
+			{ (void*) msg.c_str (), (void*) "libssh2_sftp_symlink_ex", (void*) (long) len };
 			InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 			// Dispose ("libssh2_sftp_symlink_ex");
 			return;
@@ -1388,7 +1405,7 @@ void SftpClient::MakeDirectory (string dir, int mode)
 	InvokeFtpCallback (SMkdirPreparedEvent, sftp_ctrl, sftp_success, m_state = SMkdirPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "mkdir ", (void*) dir.c_str (), 0 };
+		{ (void*) "mkdir ", (void*) dir.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -1414,10 +1431,11 @@ void SftpClient::MakeDirectory ()
 			cout << "MKDIR FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "mkdir = ", (void*) m_remoteDirName.c_str (), 0 };
+			{ (void*) "mkdir = ", (void*) m_remoteDirName.c_str (), 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
-		InvokeFtpCallbackTimer (SMkdirFinishedEvent, sftp_ctrl, sftp_success, m_state = SMkdirFinished, (void**) m_remoteDirName.c_str ());
+		InvokeFtpCallbackTimer (SMkdirFinishedEvent, sftp_ctrl, sftp_success, m_state = SMkdirFinished,
+			(void**) m_remoteDirName.c_str ());
 		break;
 	default:
 	{
@@ -1426,7 +1444,7 @@ void SftpClient::MakeDirectory ()
 		string msg = "SSH2 mkdir failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_mkdir_ex", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_mkdir_ex", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_userauth_password");
 		return;
@@ -1440,7 +1458,7 @@ void SftpClient::DeleteDirectory (string dir)
 	InvokeFtpCallback (SRmdirPreparedEvent, sftp_ctrl, sftp_success, m_state = SRmdirPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "rmdir ", (void*) dir.c_str (), 0 };
+		{ (void*) "rmdir ", (void*) dir.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -1465,7 +1483,7 @@ void SftpClient::DeleteDirectory ()
 			cout << "RMDIR FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "rmdir ok", 0 };
+			{ (void*) "rmdir ok", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SRmdirFinishedEvent, sftp_ctrl, sftp_success, m_state = SRmdirFinished, 0);
@@ -1477,7 +1495,7 @@ void SftpClient::DeleteDirectory ()
 		string msg = "SSH2 rmdir failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_rmdir_ex", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_rmdir_ex", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_userauth_password");
 		return;
@@ -1494,7 +1512,7 @@ void SftpClient::ListDirectory (string dir)
 	m_remoteDirName = GetRemoteDirectoryPath (dir);
 	{
 		void* args [] =
-			{ (void*) "list dir ", (void*) m_remoteDirName.c_str (), 0 };
+		{ (void*) "list dir ", (void*) m_remoteDirName.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	ListDirectory ();
@@ -1502,7 +1520,7 @@ void SftpClient::ListDirectory (string dir)
 
 void SftpClient::ListDirectory ()
 {
-	if ((m_dirHandle = libssh2_sftp_opendir (m_sftp, m_remoteDirName.c_str())) != 0)
+	if ((m_dirHandle = libssh2_sftp_opendir(m_sftp, m_remoteDirName.c_str ())) != 0)
 	{
 		if (g_debug)
 			cout << "LIST DIR FINISHED" << endl;
@@ -1525,7 +1543,7 @@ void SftpClient::ListDirectory ()
 		string msg = "SSH2 list directory failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_opendir", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_opendir", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_opendir");
 		return;
@@ -1552,10 +1570,10 @@ void SftpClient::ReadDirectoryEntry ()
 		{
 			buffer [len] = 0;
 			void* args [] =
-				{ (void*) buffer, (void*) longentry, (void*) &attrs };
+			{ (void*) buffer, (void*) longentry, (void*) &attrs };
 			{
 				void* args [] =
-					{ (void*) longentry, 0 };
+				{ (void*) longentry, 0 };
 				InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 			}
 			InvokeFtpCallback (SListDirProgressEvent, sftp_ctrl, sftp_success, m_state = SListDirProgress, args);
@@ -1576,7 +1594,7 @@ void SftpClient::ReadDirectoryEntry ()
 		string msg = "SSH2 list directory failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_opendir", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_opendir", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_opendir");
 		return;
@@ -1600,7 +1618,7 @@ void SftpClient::CloseDirHandle ()
 			cout << "CLOSE DIR FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "list dir ok", 0 };
+			{ (void*) "list dir ok", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SListDirFinishedEvent, sftp_ctrl, sftp_success, m_state = SListDirFinished, 0);
@@ -1624,23 +1642,24 @@ void SftpClient::PrintLocalWorkingDirectory ()
 	string localDirName = m_currentLocalDir;
 	{
 		void* args [] =
-			{ (void*) "pwd", 0 };
+		{ (void*) "pwd", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	GetLocalDirectory (localDirName);
 	{
 		void* args [] =
-			{ (void*) "lpwd = ", (void*) m_currentLocalDir.c_str (), 0 };
+		{ (void*) "lpwd = ", (void*) m_currentLocalDir.c_str (), 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 	}
-	InvokeFtpCallbackTimer (SLPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SLPwdPrepared, (void**) m_currentLocalDir.c_str ());
+	InvokeFtpCallbackTimer (SLPwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SLPwdPrepared,
+		(void**) m_currentLocalDir.c_str ());
 }
 
 void SftpClient::ChangeLocalWorkingDirectory (string dir)
 {
 	{
 		void* args [] =
-			{ (void*) "lcwd ", (void*) dir.c_str (), 0 };
+		{ (void*) "lcwd ", (void*) dir.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	string localDirName;
@@ -1660,17 +1679,18 @@ void SftpClient::ChangeLocalWorkingDirectory (string dir)
 	GetLocalDirectory (localDirName);
 	{
 		void* args [] =
-			{ (void*) "lcwd = ", (void*) m_currentLocalDir.c_str (), 0 };
+		{ (void*) "lcwd = ", (void*) m_currentLocalDir.c_str (), 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 	}
-	InvokeFtpCallbackTimer (SLCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SLCwdPrepared, (void**) m_currentLocalDir.c_str ());
+	InvokeFtpCallbackTimer (SLCwdFinishedEvent, sftp_ctrl, sftp_success, m_state = SLCwdPrepared,
+		(void**) m_currentLocalDir.c_str ());
 }
 
 void SftpClient::ChangeToLocalParentDirectory ()
 {
 	{
 		void* args [] =
-			{ (void*) "lcdup", 0 };
+		{ (void*) "lcdup", 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	string localDirName = m_currentLocalDir;
@@ -1678,10 +1698,11 @@ void SftpClient::ChangeToLocalParentDirectory ()
 	GetLocalDirectory (localDirName);
 	{
 		void* args [] =
-			{ (void*) "lcdup = ", (void*) m_currentLocalDir.c_str (), 0 };
+		{ (void*) "lcdup = ", (void*) m_currentLocalDir.c_str (), 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 	}
-	InvokeFtpCallbackTimer (SLCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SLCdupPrepared, (void**) m_currentLocalDir.c_str ());
+	InvokeFtpCallbackTimer (SLCdupFinishedEvent, sftp_ctrl, sftp_success, m_state = SLCdupPrepared,
+		(void**) m_currentLocalDir.c_str ());
 }
 
 string SftpClient::GetLocalFilePath (string filePath)
@@ -1752,7 +1773,7 @@ void SftpClient::PutFile (string sourceFile, string targetFile, long mode)
 	InvokeFtpCallback (SPutFilePreparedEvent, sftp_ctrl, sftp_success, m_state = SPutFilePrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "put ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
+		{ (void*) "put ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -1769,7 +1790,7 @@ void SftpClient::PutFile (string sourceFile, string targetFile, long mode)
 		string msg = "SSH2 put file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "fopen", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "fopen", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("fopen");
 		return;
@@ -1782,7 +1803,7 @@ void SftpClient::PutFile ()
 {
 	unsigned long flags = LIBSSH2_FXF_WRITE | LIBSSH2_FXF_CREAT | LIBSSH2_FXF_TRUNC;
 
-	if ((m_remoteFileHandle = libssh2_sftp_open (m_sftp, m_targetFile.c_str(), flags, m_mode)) != 0)
+	if ((m_remoteFileHandle = libssh2_sftp_open(m_sftp, m_targetFile.c_str (), flags, m_mode)) != 0)
 	{
 		if (g_debug)
 			cout << "PUT FILE OPEN" << endl;
@@ -1798,7 +1819,7 @@ void SftpClient::PutFile ()
 				string msg = "SSH2 put file failed for ";
 				msg += m_hostname;
 				void* args [] =
-					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+				{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 				InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 				// Dispose ("libssh2_sftp_open");
 				return;
@@ -1827,7 +1848,7 @@ void SftpClient::PutFile ()
 		string msg = "SSH2 put file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_open", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_open", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_open");
 		return;
@@ -1858,7 +1879,7 @@ void SftpClient::ReadFileChunk ()
 		string msg = "SSH2 put file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "fread", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "fread", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_open");
 		return;
@@ -1882,10 +1903,11 @@ void SftpClient::PutFileChunk ()
 	{
 		{
 			void* args [] =
-				{ (void*) "put in progress", 0 };
+			{ (void*) "put in progress", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 		}
-		InvokeFtpCallback (SPutFileProgressEvent, sftp_ctrl, m_status = sftp_success, m_state = SPutFileProgress, (void**) wsize);
+		InvokeFtpCallback (SPutFileProgressEvent, sftp_ctrl, m_status = sftp_success, m_state = SPutFileProgress,
+			(void**) wsize);
 		if (g_debug)
 			cout << "PUT FILE CHUNK - write " << wsize << endl;
 		if ((chunkSpace > wsize) && (wsize > 0))
@@ -1922,7 +1944,7 @@ void SftpClient::PutFileChunk ()
 		string msg = "SSH2 put file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_write", (void*) wsize };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_write", (void*) wsize };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_open");
 		return;
@@ -1953,7 +1975,7 @@ void SftpClient::PutFileCloseHandle ()
 			cout << "CLOSE FILE FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "put ok", 0 };
+			{ (void*) "put ok", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallback (SPutFileFinishedEvent, sftp_ctrl, m_status = sftp_success, m_state = SPutFileFinished, 0);
@@ -1968,7 +1990,7 @@ void SftpClient::GetFile (string sourceFile, string targetFile, long mode)
 	InvokeFtpCallback (SGetFilePreparedEvent, sftp_ctrl, sftp_success, m_state = SGetFilePrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "get ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
+		{ (void*) "get ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -1985,7 +2007,7 @@ void SftpClient::GetFile (string sourceFile, string targetFile, long mode)
 		string msg = "SSH2 get file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "fopen", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "fopen", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("fopen");
 		return;
@@ -1998,7 +2020,7 @@ void SftpClient::GetFile ()
 {
 	unsigned long flags = LIBSSH2_FXF_READ;
 
-	if ((m_remoteFileHandle = libssh2_sftp_open (m_sftp, m_targetFile.c_str(), flags, 0)) != 0)
+	if ((m_remoteFileHandle = libssh2_sftp_open(m_sftp, m_targetFile.c_str (), flags, 0)) != 0)
 	{
 		if (g_debug)
 			cout << "GET FILE OPEN" << endl;
@@ -2014,7 +2036,7 @@ void SftpClient::GetFile ()
 				string msg = "SSH2 put file failed for ";
 				msg += m_hostname;
 				void* args [] =
-					{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
+				{ (void*) msg.c_str (), (void*) "malloc", (void*) (long) errno };
 				InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 				// Dispose ("libssh2_sftp_open");
 				return;
@@ -2044,7 +2066,7 @@ void SftpClient::GetFile ()
 		string msg = "SSH2 get file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_open", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_open", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_open");
 		return;
@@ -2076,10 +2098,11 @@ void SftpClient::GetFileChunk ()
 		WriteFileChunk ();
 		{
 			void* args [] =
-				{ (void*) "get file in progress", 0 };
+			{ (void*) "get file in progress", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 		}
-		InvokeFtpCallback (SGetFileProgressEvent, sftp_ctrl, m_status = sftp_success, m_state = SGetFileProgress, (void**) wsize);
+		InvokeFtpCallback (SGetFileProgressEvent, sftp_ctrl, m_status = sftp_success, m_state = SGetFileProgress,
+			(void**) wsize);
 		if (g_debug)
 			cout << "GET FILE CHUNK - read " << wsize << endl;
 	}
@@ -2113,7 +2136,7 @@ void SftpClient::GetFileChunk ()
 		string msg = "SSH2 get file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_read", (void*) wsize };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_read", (void*) wsize };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_open");
 		return;
@@ -2140,7 +2163,7 @@ void SftpClient::WriteFileChunk ()
 		string msg = "SSH2 get file failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "fwrite", (void*) (long) errno };
+		{ (void*) msg.c_str (), (void*) "fwrite", (void*) (long) errno };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("fwrite");
 	}
@@ -2173,7 +2196,7 @@ void SftpClient::GetFileCloseHandle ()
 			cout << "CLOSE FILE FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "get file ok", 0 };
+			{ (void*) "get file ok", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallback (SGetFileFinishedEvent, sftp_ctrl, m_status = sftp_success, m_state = SGetFileFinished, 0);
@@ -2188,7 +2211,7 @@ void SftpClient::RenameFile (string sourceFile, string targetFile)
 	InvokeFtpCallback (SRenamePreparedEvent, sftp_ctrl, sftp_success, m_state = SRenamePrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "rename ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
+		{ (void*) "rename ", (void*) sourceFile.c_str (), (void*) ", ", (void*) targetFile.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -2202,7 +2225,7 @@ void SftpClient::RenameFile (string sourceFile, string targetFile)
 void SftpClient::RenameFile ()
 {
 	int status;
-	switch (status = libssh2_sftp_rename (m_sftp, m_sourceFile.c_str(), m_targetFile.c_str()))
+	switch (status = libssh2_sftp_rename(m_sftp, m_sourceFile.c_str (), m_targetFile.c_str ()))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -2214,7 +2237,7 @@ void SftpClient::RenameFile ()
 			cout << "RENAME FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "rename ok", 0 };
+			{ (void*) "rename ok", 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SRenameFinishedEvent, sftp_ctrl, sftp_success, m_state = SRenameFinished, 0);
@@ -2226,7 +2249,8 @@ void SftpClient::RenameFile ()
 		string msg = "SSH2 rename failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) (string ("SSH2 rename failed for ") + m_hostname).c_str (), (void*) "libssh2_sftp_rename", (void*) (long) status };
+		{ (void*) (string ("SSH2 rename failed for ") + m_hostname).c_str (), (void*) "libssh2_sftp_rename",
+			(void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_rename");
 		return;
@@ -2240,7 +2264,7 @@ void SftpClient::RemoveFile (string targetFile)
 	InvokeFtpCallback (SRemovePreparedEvent, sftp_ctrl, sftp_success, m_state = SRemovePrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "rm ", (void*) targetFile.c_str (), 0 };
+		{ (void*) "rm ", (void*) targetFile.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -2253,7 +2277,7 @@ void SftpClient::RemoveFile (string targetFile)
 void SftpClient::RemoveFile ()
 {
 	int status;
-	switch (status = libssh2_sftp_unlink (m_sftp, m_targetFile.c_str()))
+	switch (status = libssh2_sftp_unlink(m_sftp, m_targetFile.c_str ()))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -2265,7 +2289,7 @@ void SftpClient::RemoveFile ()
 			cout << "REMOVE FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) "removed ", (void*) m_targetFile.c_str (), 0 };
+			{ (void*) "removed ", (void*) m_targetFile.c_str (), 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallbackTimer (SRemoveFinishedEvent, sftp_ctrl, sftp_success, m_state = SRemoveFinished, 0);
@@ -2277,7 +2301,7 @@ void SftpClient::RemoveFile ()
 		string msg = "SSH2 remove failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_unlink", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_unlink", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_unlink");
 		return;
@@ -2291,7 +2315,7 @@ void SftpClient::ListFile (string targetFile)
 	InvokeFtpCallback (SListPreparedEvent, sftp_ctrl, sftp_success, m_state = SListPrepared, 0);
 	{
 		void* args [] =
-			{ (void*) "list ", (void*) targetFile.c_str (), 0 };
+		{ (void*) "list ", (void*) targetFile.c_str (), 0 };
 		InvokeFtpCallback (SRequestEvent, sftp_request, sftp_success, m_state, args);
 	}
 	if (g_debug)
@@ -2306,7 +2330,7 @@ void SftpClient::ListFile ()
 	int status;
 	LIBSSH2_SFTP_ATTRIBUTES attrs;
 
-	switch (status = libssh2_sftp_stat (m_sftp, m_targetFile.c_str(), &attrs))
+	switch (status = libssh2_sftp_stat(m_sftp, m_targetFile.c_str (), &attrs))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		if (g_debug)
@@ -2318,7 +2342,7 @@ void SftpClient::ListFile ()
 			cout << "LIST FINISHED" << endl;
 		{
 			void* args [] =
-				{ (void*) m_targetFile.c_str (), 0 };
+			{ (void*) m_targetFile.c_str (), 0 };
 			InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 		}
 		InvokeFtpCallback (SListFinishedEvent, sftp_ctrl, sftp_success, m_state = SListFinished, (void**) &attrs);
@@ -2330,7 +2354,7 @@ void SftpClient::ListFile ()
 		string msg = "SSH2 list failed for ";
 		msg += m_hostname;
 		void* args [] =
-			{ (void*) msg.c_str (), (void*) "libssh2_sftp_stat", (void*) (long) status };
+		{ (void*) msg.c_str (), (void*) "libssh2_sftp_stat", (void*) (long) status };
 		InvokeFtpCallback (SErrorEvent, sftp_ctrl, m_status = sftp_error, m_state, args);
 		// Dispose ("libssh2_sftp_stat");
 		return;
@@ -2345,7 +2369,7 @@ void SftpClient::HandleConnectReply (void* args [])
 	m_connTmr = 0;
 	{
 		void* args [] =
-			{ (void*) "connected", 0 };
+		{ (void*) "connected", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_reply, sftp_success, m_state, args);
 	}
 	InvokeFtpCallback (SConnectedEvent, sftp_ctrl, sftp_success, m_state = SConnected, 0);
@@ -2355,7 +2379,7 @@ void SftpClient::HandleHandshakeBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "handshake in progress", 0 };
+		{ (void*) "handshake in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	_Handshake ();
@@ -2365,7 +2389,7 @@ void SftpClient::HandleAuthPasswordBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "authentication in progress", 0 };
+		{ (void*) "authentication in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	LoginPassword ();
@@ -2375,7 +2399,7 @@ void SftpClient::HandleAuthPublickeyBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "authentication in progress", 0 };
+		{ (void*) "authentication in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	LoginPublickey ();
@@ -2385,7 +2409,7 @@ void SftpClient::HandleSftpBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "sftp initialization in progress", 0 };
+		{ (void*) "sftp initialization in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	_CreateFtp ();
@@ -2395,7 +2419,7 @@ void SftpClient::HandleHomeBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "home-dir in progress", 0 };
+		{ (void*) "home-dir in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	_GetHomeDirectory ();
@@ -2405,7 +2429,7 @@ void SftpClient::HandlePwdBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "pwd in progress", 0 };
+		{ (void*) "pwd in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	_PrintWorkingDirectory ();
@@ -2415,7 +2439,7 @@ void SftpClient::HandleCwdBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "cwd in progress", 0 };
+		{ (void*) "cwd in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	ChangeWorkingDirectory ();
@@ -2425,7 +2449,7 @@ void SftpClient::HandleCdupBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "cdup in progress", 0 };
+		{ (void*) "cdup in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	_ChangeToParentDirectory ();
@@ -2435,7 +2459,7 @@ void SftpClient::HandleMkdirBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "mkdir in progress", 0 };
+		{ (void*) "mkdir in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	MakeDirectory ();
@@ -2445,7 +2469,7 @@ void SftpClient::HandleRmdirBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "rmdir in progress", 0 };
+		{ (void*) "rmdir in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	DeleteDirectory ();
@@ -2455,7 +2479,7 @@ void SftpClient::HandleListDirBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "list dir in progress", 0 };
+		{ (void*) "list dir in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	ListDirectory ();
@@ -2465,7 +2489,7 @@ void SftpClient::HandleReadDirEntryReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "list dir-read in progress", 0 };
+		{ (void*) "list dir-read in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	ReadDirectoryEntry ();
@@ -2475,7 +2499,7 @@ void SftpClient::HandleListDirCloseReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "list dir-close in progress", 0 };
+		{ (void*) "list dir-close in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	CloseDirHandle ();
@@ -2485,7 +2509,7 @@ void SftpClient::HandlePutFileBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "put in progress", 0 };
+		{ (void*) "put in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	PutFile ();
@@ -2495,7 +2519,7 @@ void SftpClient::HandlePutFileChunkReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "put-write in progress", 0 };
+		{ (void*) "put-write in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	PutFileChunk ();
@@ -2510,7 +2534,7 @@ void SftpClient::HandlePutFileCloseReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "put-close in progress", 0 };
+		{ (void*) "put-close in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	PutFileCloseHandle ();
@@ -2525,7 +2549,7 @@ void SftpClient::HandleGetFileChunkReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "get-read in progress", 0 };
+		{ (void*) "get-read in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	GetFileChunk ();
@@ -2535,7 +2559,7 @@ void SftpClient::HandleGetFileCloseReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "get-close in progress", 0 };
+		{ (void*) "get-close in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	GetFileCloseHandle ();
@@ -2545,7 +2569,7 @@ void SftpClient::HandleRenameBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "rename in progress", 0 };
+		{ (void*) "rename in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	RenameFile ();
@@ -2555,7 +2579,7 @@ void SftpClient::HandleRemoveBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "remove in progress", 0 };
+		{ (void*) "remove in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	RemoveFile ();
@@ -2565,41 +2589,31 @@ void SftpClient::HandleListBusyReply (void* args [])
 {
 	{
 		void* args [] =
-			{ (void*) "list in progress", 0 };
+		{ (void*) "list in progress", 0 };
 		InvokeFtpCallback (SReplyEvent, sftp_progress, sftp_success, m_state, args);
 	}
 	ListFile ();
 }
 
-bool	SftpTrash::g_debug = false;
-long	SftpTrash::g_trashId = 0;
+bool SftpTrash::g_debug = false;
+long SftpTrash::g_trashId = 0;
 
 void printtrailer (bool force)
 {
-	if (!(SftpTrash::debug() || force))
+	if (!(SftpTrash::debug () || force))
 		return;
 
 	time_t now = time (0);
 	struct tm lt = *localtime (&now);
 
-	fprintf (stdout, "%04d-%02d-%02d %02d:%02d:%02d: ", lt.tm_year + 1900, lt.tm_mon + 1, lt.tm_mday, lt.tm_hour, lt.tm_min, lt.tm_sec);
+	fprintf (stdout, "%04d-%02d-%02d %02d:%02d:%02d: ", lt.tm_year + 1900, lt.tm_mon + 1, lt.tm_mday, lt.tm_hour,
+		lt.tm_min, lt.tm_sec);
 }
 
-SftpTrash::SftpTrash
-(
-	MpxRunningContext* ctx,
-		int connSocket,
-		LIBSSH2_SESSION* session,
-		LIBSSH2_SFTP* sftp,
-		LIBSSH2_SFTP_HANDLE* dirHandle,
-		LIBSSH2_SFTP_HANDLE* remoteFileHandle
-) :
-		m_ctx (ctx),
-		m_connSocket (connSocket),
-		m_session (session),
-		m_sftp (sftp),
-		m_dirHandle (dirHandle),
-		m_remoteFileHandle (remoteFileHandle)
+SftpTrash::SftpTrash (MpxRunningContext* ctx, int connSocket, LIBSSH2_SESSION* session, LIBSSH2_SFTP* sftp,
+	LIBSSH2_SFTP_HANDLE* dirHandle, LIBSSH2_SFTP_HANDLE* remoteFileHandle) :
+	m_ctx (ctx), m_connSocket (connSocket), m_session (session), m_sftp (sftp), m_dirHandle (dirHandle), m_remoteFileHandle (
+		remoteFileHandle)
 {
 	printtrailer (false);
 	if (g_debug)
@@ -2637,7 +2651,7 @@ SftpTrash::~SftpTrash ()
 	m_sftp = 0;
 
 	if (m_session != 0)
-		libssh2_session_disconnect (m_session, "");
+		libssh2_session_disconnect(m_session, "");
 	m_session = 0;
 
 	if (m_connSocket > 0)
@@ -2657,7 +2671,7 @@ SftpTrash::~SftpTrash ()
 	m_connHandle = 0;
 }
 
-void SftpTrash::CleanUp()
+void SftpTrash::CleanUp ()
 {
 	InvokeStageOperation ();
 }
@@ -2670,7 +2684,7 @@ void SftpTrash::HandleClientConnection (MpxRunningContext *ctx, uint flags, ctx_
 void SftpTrash::StageTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t)
 {
 	m_stageTimer = 0;
-	InvokeStageOperation();
+	InvokeStageOperation ();
 }
 
 void SftpTrash::ConnectionTimer (MpxRunningContext *ctx, ctx_timer_t handler, struct timespec t)
@@ -2680,75 +2694,76 @@ void SftpTrash::ConnectionTimer (MpxRunningContext *ctx, ctx_timer_t handler, st
 	if (g_debug)
 		cout << "*** SFTP-TRASH " << m_trashId << " KILLED" << endl;
 	if ((m_stage = (Stage) ((int) m_stage + 1)) >= FinalStage)
-		delete	this;
+		delete this;
 	else
 	{
 		printtrailer (false);
 		if (g_debug)
 			cout << "*** SFTP-TRASH " << m_trashId << " FORCE " << m_stage << endl;
 		if (m_stageTimer != 0)
-			m_ctx->DisableTimer(m_stageTimer);
-		m_stageTimer = m_ctx->RegisterTimer (m_ctx->realTime(), StageTimer, this, ctx_info);
+			m_ctx->DisableTimer (m_stageTimer);
+		m_stageTimer = m_ctx->RegisterTimer (m_ctx->realTime (), StageTimer, this, ctx_info);
 	}
 }
 
-void SftpTrash::InvokeStageOperation()
+void SftpTrash::InvokeStageOperation ()
 {
 	printtrailer (false);
 	if (g_debug)
 		cout << "*** SFTP-TRASH " << m_trashId << " STAGE " << m_stage << " INVOKED" << endl;
 
-	int	reason = 0;
+	int reason = 0;
 	m_ctx->DisableTimer (m_connTimer);
 	m_connTimer = 0;
 	switch (m_stage)
 	{
-	case	InitialStage:
-		m_connHandle = m_ctx->RegisterDescriptor (EPOLLIN | EPOLLOUT, m_connSocket, HandleClientConnection, this, ctx_info);
+	case InitialStage:
+		m_connHandle = m_ctx->RegisterDescriptor (EPOLLIN | EPOLLOUT, m_connSocket, HandleClientConnection, this,
+			ctx_info);
 		m_ctx->DisableDescriptor (m_connHandle, EPOLLOUT);
 		m_stage = ReleaseRemoteFileHandleStage;
 		reason = LIBSSH2_ERROR_NONE;
 		break;
-	case	ReleaseRemoteFileHandleStage:
+	case ReleaseRemoteFileHandleStage:
 		reason = ReleaseRemoteFileHandle ();
 		break;
-	case	ReleaseDirHandleStage:
+	case ReleaseDirHandleStage:
 		reason = ReleaseDirHandle ();
 		break;
-	case	ReleaseSftpStage:
+	case ReleaseSftpStage:
 		reason = ReleaseSftp ();
 		break;
-	case	ReleaseSessionStage:
+	case ReleaseSessionStage:
 		reason = ReleaseSession ();
 		break;
-	case	ReleaseConnSocketStage:
+	case ReleaseConnSocketStage:
 		reason = ReleaseConnSocket ();
 		break;
-	case	FinalStage:
-		delete	this;
+	case FinalStage:
+		delete this;
 		return;
 	}
 
 	switch (reason)
 	{
-	case	LIBSSH2_ERROR_EAGAIN:
+	case LIBSSH2_ERROR_EAGAIN:
+	{
+		printtrailer (false);
+		if (g_debug)
+			cout << "*** SFTP-TRASH " << m_trashId << " EAGAIN STAGE " << m_stage << endl;
+		struct timespec t = m_ctx->realTime ();
+		t.tv_sec += 10;
+		m_connTimer = m_ctx->RegisterTimer (t, ConnectionTimer, this, ctx_info);
+		t = m_ctx->realTime ();
+		if ((t.tv_nsec += 10 * 1000 * 1000) >= 1000 * 1000 * 1000)
 		{
-			printtrailer (false);
-			if (g_debug)
-				cout << "*** SFTP-TRASH " << m_trashId << " EAGAIN STAGE " << m_stage << endl;
-			struct	timespec	t = m_ctx->realTime();
-			t.tv_sec += 10;
-			m_connTimer = m_ctx->RegisterTimer (t, ConnectionTimer, this, ctx_info);
-			t = m_ctx->realTime();
-			if ((t.tv_nsec += 10 * 1000 * 1000) >= 1000 * 1000 * 1000)
-			{
-				t.tv_nsec -= 1000 * 1000 * 1000;
-				t.tv_sec += 1;
-			}
-			if (m_stageTimer != 0)
-				m_ctx->DisableTimer(m_stageTimer);
-			m_stageTimer = m_ctx->RegisterTimer (t, StageTimer, this, ctx_info);
+			t.tv_nsec -= 1000 * 1000 * 1000;
+			t.tv_sec += 1;
 		}
+		if (m_stageTimer != 0)
+			m_ctx->DisableTimer (m_stageTimer);
+		m_stageTimer = m_ctx->RegisterTimer (t, StageTimer, this, ctx_info);
+	}
 		break;
 	default:
 		if (reason != LIBSSH2_ERROR_NONE)
@@ -2758,15 +2773,15 @@ void SftpTrash::InvokeStageOperation()
 				cout << "*** SFTP-TRASH " << m_trashId << " ERROR " << reason << " STAGE " << m_stage << endl;
 		}
 		if (m_stageTimer != 0)
-			m_ctx->DisableTimer(m_stageTimer);
-		m_stageTimer = m_ctx->RegisterTimer (m_ctx->realTime(), StageTimer, this, ctx_info);
+			m_ctx->DisableTimer (m_stageTimer);
+		m_stageTimer = m_ctx->RegisterTimer (m_ctx->realTime (), StageTimer, this, ctx_info);
 		break;
 	}
 
 	if (m_session != 0)
 	{
-		bool	in, out;
-		CheckIODirections(m_session, in, out);
+		bool in, out;
+		CheckIODirections (m_session, in, out);
 		if (out)
 			m_ctx->EnableDescriptor (m_connHandle, EPOLLOUT);
 		else
@@ -2776,15 +2791,15 @@ void SftpTrash::InvokeStageOperation()
 		m_ctx->DisableDescriptor (m_connHandle, EPOLLOUT);
 }
 
-int	SftpTrash::ReleaseRemoteFileHandle ()
+int SftpTrash::ReleaseRemoteFileHandle ()
 {
 	if (m_remoteFileHandle == 0)
 	{
 		m_stage = ReleaseDirHandleStage;
-		return	LIBSSH2_ERROR_NONE;
+		return LIBSSH2_ERROR_NONE;
 	}
 
-	int	result;
+	int result;
 	switch (result = libssh2_sftp_close_handle (m_remoteFileHandle))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
@@ -2798,7 +2813,7 @@ int	SftpTrash::ReleaseRemoteFileHandle ()
 		break;
 	}
 
-	return	result;
+	return result;
 }
 
 int SftpTrash::ReleaseDirHandle ()
@@ -2806,10 +2821,10 @@ int SftpTrash::ReleaseDirHandle ()
 	if (m_dirHandle == 0)
 	{
 		m_stage = ReleaseSftpStage;
-		return	LIBSSH2_ERROR_NONE;
+		return LIBSSH2_ERROR_NONE;
 	}
 
-	int	result;
+	int result;
 	switch (result = libssh2_sftp_close_handle (m_dirHandle))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
@@ -2823,7 +2838,7 @@ int SftpTrash::ReleaseDirHandle ()
 		break;
 	}
 
-	return	result;
+	return result;
 }
 
 int SftpTrash::ReleaseSftp ()
@@ -2831,10 +2846,10 @@ int SftpTrash::ReleaseSftp ()
 	if (m_sftp == 0)
 	{
 		m_stage = ReleaseSessionStage;
-		return	LIBSSH2_ERROR_NONE;
+		return LIBSSH2_ERROR_NONE;
 	}
 
-	int	result;
+	int result;
 	switch (result = libssh2_sftp_shutdown (m_sftp))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
@@ -2851,7 +2866,7 @@ int SftpTrash::ReleaseSftp ()
 		break;
 	}
 
-	return	result;
+	return result;
 }
 
 int SftpTrash::ReleaseSession ()
@@ -2859,11 +2874,11 @@ int SftpTrash::ReleaseSession ()
 	if (m_session == 0)
 	{
 		m_stage = ReleaseConnSocketStage;
-		return	LIBSSH2_ERROR_NONE;
+		return LIBSSH2_ERROR_NONE;
 	}
 
-	int	result;
-	switch (result = libssh2_session_disconnect (m_session, ""))
+	int result;
+	switch (result = libssh2_session_disconnect(m_session, ""))
 	{
 	case LIBSSH2_ERROR_EAGAIN:
 		break;
@@ -2876,7 +2891,7 @@ int SftpTrash::ReleaseSession ()
 		break;
 	}
 
-	return	result;
+	return result;
 }
 
 int SftpTrash::ReleaseConnSocket ()
@@ -2885,11 +2900,11 @@ int SftpTrash::ReleaseConnSocket ()
 		close (m_connSocket);
 	m_connSocket = 0;
 	if (m_connHandle)
-		m_ctx->RemoveDescriptor(m_connHandle);
+		m_ctx->RemoveDescriptor (m_connHandle);
 	m_connHandle = 0;
 	m_stage = FinalStage;
 
-	return	LIBSSH2_ERROR_NONE;
+	return LIBSSH2_ERROR_NONE;
 }
 
 } /* namespace sftp */

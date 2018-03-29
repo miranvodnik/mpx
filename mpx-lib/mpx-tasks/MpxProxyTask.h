@@ -49,6 +49,7 @@ public:
 	virtual void* socket () = 0;
 	virtual void Disconnect () = 0;
 	virtual void ConnectToContext () = 0;
+	virtual void DisconnectFromContext () = 0;
 };
 
 template <typename T, typename V> class MpxProxyTask: public MpxProxyTaskBase
@@ -117,6 +118,10 @@ public:
 	virtual void ConnectToContext ()
 	{
 		m_socket->ConnectToContext (this);
+	}
+	virtual void DisconnectFromContext ()
+	{
+		m_socket->DisconnectFromContext();
 	}
 
 protected:

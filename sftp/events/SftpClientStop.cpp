@@ -28,8 +28,8 @@
 namespace sftp
 {
 
-SftpClientStop::SftpClientStop () :
-	MpxEventBase (EventCode)
+SftpClientStop::SftpClientStop (int sessionId, int reason) :
+	MpxEventBase (EventCode), m_sessionId (sessionId), m_reason (reason)
 {
 	// TODO Auto-generated constructor stub
 

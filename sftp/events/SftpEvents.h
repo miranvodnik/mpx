@@ -25,3 +25,4 @@
 #include <events/SftpClientRequest.h>
 #include <events/SftpClientReply.h>
 #include <events/SftpJobInfo.h>
+#include <events/SftpCallbackEvent.h>

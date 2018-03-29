@@ -48,8 +48,6 @@ int main (int n, char* p [])
 
 	MpxEnvironment::Start (new MpxLocalMQTask ());
 	pause (); // waiting for SIGINT from TaskConsumer instance
-	cout << "ACOUNT = " << TaskConsumer::acount() << endl;
-	cout << "BCOUNT = " << TaskConsumer::bcount() << endl;
 	MpxEnvironment::Stop ();
 	cout << "ACOUNT = " << TaskConsumer::acount() << endl;
 	cout << "BCOUNT = " << TaskConsumer::bcount() << endl;

@@ -1406,7 +1406,7 @@ void FtpClientWorker::Dispose ()
 		cout << "FtpClientWorker::Dispose" << endl;
 
 	if (m_ctrlTask != 0)
-		Send (m_ctrlTask, new SftpClientStop ());
+		Send (m_ctrlTask, new SftpClientStop (m_sessionId, 0));
 	m_ctrlTask = 0;
 	if (m_request != 0)
 		xdr_free ((xdrproc_t) xdr_FtpRequest, (char*) m_request);
@@ -1435,7 +1435,7 @@ void FtpClientWorker::Release (int result, const char* const msg [], const char*
 		return;
 	m_released = true;
 	if (m_ctrlTask != 0)
-		Send (m_ctrlTask, new SftpClientStop ());
+		Send (m_ctrlTask, new SftpClientStop (m_sessionId, result));
 	m_ctrlTask = 0;
 
 	buffer [0] = 0;

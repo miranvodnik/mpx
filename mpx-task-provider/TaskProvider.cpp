@@ -34,6 +34,7 @@ namespace mpx_task_provider
 EventDescriptor TaskProvider::g_evntab [] =
 {
 { AnyState, MpxExternalTaskEvent::EventCode, ExternalTaskEventHandler },
+{ AnyState, MpxProxyTaskEvent::EventCode, ProxyTaskEventHandler },
 { AnyState, MpxTimerEvent::EventCode, TimerEventHandler },
 { AnyState, MpxConsumerEventA::EventCode, ConsumerEventAHandler },
 { AnyState, MpxConsumerEventB::EventCode, ConsumerEventBHandler },
@@ -76,6 +77,13 @@ void TaskProvider::ExternalTaskEventHandler (MpxEventBase* event)
 	t.tv_sec += 1;
 	m_proxyset [StartTimer (t)] = proxyTask;
 	cout << "provider proxy = " << proxyTask << endl;
+}
+
+void TaskProvider::ProxyTaskEventHandler (MpxEventBase* event)
+{
+	MpxProxyTaskEvent* proxyTaskEvent = dynamic_cast <MpxProxyTaskEvent*> (event);
+	if (proxyTaskEvent == 0)
+		return;
 }
 
 void TaskProvider::TimerEventHandler (MpxEventBase* event)

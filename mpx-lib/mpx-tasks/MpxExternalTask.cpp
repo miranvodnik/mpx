@@ -619,7 +619,7 @@ void MpxExternalTask::HandleLocalClientEvent (MpxEventBase* event)
 		break;
 	}
 
-	Send (task, new MpxExternalTaskEvent (localClientEvent->flags (), localClientEvent->error (), 0, 0), true);
+	Send (task, new MpxExternalTaskEvent (0, -1, 0, 0), true);
 	m_lctmap.erase (it);
 	delete localClient;
 }
@@ -786,7 +786,7 @@ void MpxExternalTask::HandleTcp4ClientEvent (MpxEventBase* event)
 		break;
 	}
 
-	Send (task, new MpxExternalTaskEvent (tcp4ClientEvent->flags (), tcp4ClientEvent->error (), 0, 0), true);
+	Send (task, new MpxExternalTaskEvent (0, -1, 0, 0), true);
 	m_t4tmap.erase (it);
 	delete tcp4Client;
 }
@@ -953,7 +953,7 @@ void MpxExternalTask::HandleTcp6ClientEvent (MpxEventBase* event)
 		break;
 	}
 
-	Send (task, new MpxExternalTaskEvent (tcp6ClientEvent->flags (), tcp6ClientEvent->error (), 0, 0), true);
+	Send (task, new MpxExternalTaskEvent (0, -1, 0, 0), true);
 	m_t6tmap.erase (it);
 	delete tcp6Client;
 }
@@ -1068,7 +1068,7 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 				MpxLocalEndPointProxyTask *proxyTask = new MpxLocalEndPointProxyTask (task, encdeclib, localEndPoint);
 				if (task->mpx() != mpx())
 				{
-					localEndPoint->DisconnectFromContext();
+					proxyTask->DisconnectFromContext();
 					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 						new MpxProxyTaskRelocationEvent (proxyTask));
 				}
@@ -1093,7 +1093,7 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 				MpxTcp4EndPointProxyTask *proxyTask = new MpxTcp4EndPointProxyTask (task, encdeclib, tcp4EndPoint);
 				if (task->mpx() != mpx())
 				{
-					tcp4EndPoint->DisconnectFromContext();
+					proxyTask->DisconnectFromContext();
 					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 						new MpxProxyTaskRelocationEvent (proxyTask));
 				}
@@ -1118,7 +1118,7 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 				MpxTcp6EndPointProxyTask *proxyTask = new MpxTcp6EndPointProxyTask (task, encdeclib, tcp6EndPoint);
 				if (task->mpx() != mpx())
 				{
-					tcp6EndPoint->DisconnectFromContext();
+					proxyTask->DisconnectFromContext();
 					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
 						new MpxProxyTaskRelocationEvent (proxyTask));
 				}
@@ -1147,7 +1147,7 @@ void MpxExternalTask::HandleProxyTaskRelocationEvent (MpxEventBase* event)
 	if (proxyTaskRelocationEvent == 0)
 		return;
 
-	MpxProxyTaskBase* proxyTask = (MpxProxyTaskBase*) proxyTaskRelocationEvent->proxyTask ();
+	MpxProxyTaskBase* proxyTask = dynamic_cast <MpxProxyTaskBase*> (proxyTaskRelocationEvent->proxyTask ());
 	MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
 	mpx->RegisterTask (proxyTask);
 	proxyTask->ConnectToContext ();

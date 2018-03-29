@@ -36,6 +36,7 @@ SftpJobInfo::SftpJobInfo (u_int clientId, u_int jobCount, u_int sessionId, char*
 
 SftpJobInfo::~SftpJobInfo ()
 {
+	free (m_msg);
 }
 
 } // namespace sftp

@@ -33,7 +33,7 @@ namespace sftp
 class SftpClientStop: public mpx::MpxEventBase
 {
 public:
-	SftpClientStop ();
+	SftpClientStop (int sessionId, int reason);
 	virtual ~SftpClientStop ();
 	virtual const char* Name ()
 	{
@@ -43,8 +43,19 @@ public:
 	{
 		return new SftpClientStop (*this);
 	}
+	inline int sessionId ()
+	{
+		return m_sessionId;
+	}
+	inline int reason ()
+	{
+		return m_reason;
+	}
 public:
 	static const int EventCode = 1003;
+private:
+	int m_sessionId;
+	int m_reason;
 };
 
 } // namespace sftp

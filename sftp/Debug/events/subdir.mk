@@ -4,6 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../events/SftpBaseEvent.cpp \
+../events/SftpCallbackEvent.cpp \
 ../events/SftpClientReply.cpp \
 ../events/SftpClientRequest.cpp \
 ../events/SftpClientStart.cpp \
@@ -13,6 +15,8 @@ CPP_SRCS += \
 ../events/SftpJobInfo.cpp 
 
 OBJS += \
+./events/SftpBaseEvent.o \
+./events/SftpCallbackEvent.o \
 ./events/SftpClientReply.o \
 ./events/SftpClientRequest.o \
 ./events/SftpClientStart.o \
@@ -22,6 +26,8 @@ OBJS += \
 ./events/SftpJobInfo.o 
 
 CPP_DEPS += \
+./events/SftpBaseEvent.d \
+./events/SftpCallbackEvent.d \
 ./events/SftpClientReply.d \
 ./events/SftpClientRequest.d \
 ./events/SftpClientStart.d \

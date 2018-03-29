@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../SftpTest.cpp \
 ../sftp-test.cpp 
 
 OBJS += \
+./SftpTest.o \
 ./sftp-test.o 
 
 CPP_DEPS += \
+./SftpTest.d \
 ./sftp-test.d 
 
 

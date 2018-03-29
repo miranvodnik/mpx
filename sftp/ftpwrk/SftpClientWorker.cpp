@@ -798,6 +798,8 @@ void SftpClientWorker::Dispose ()
 	if (g_debug)
 		cout << "SftpClientWorker::Dispose - client = " << clientId () << endl;
 
+	if (m_ctrlTask != 0)
+		Send (m_ctrlTask, new SftpClientStop (m_sessionId, 0));
 	m_ctrlTask = 0;
 	if (m_request != 0)
 		xdr_free ((xdrproc_t) xdr_FtpRequest, (char*) m_request);
@@ -851,6 +853,8 @@ void SftpClientWorker::Release (int result, const char* const msg [], const char
 	if (m_released)
 		return;
 	m_released = true;
+	if (m_ctrlTask != 0)
+		Send (m_ctrlTask, new SftpClientStop (m_sessionId, result));
 	m_ctrlTask = 0;
 
 	buffer [0] = 0;
@@ -3390,6 +3394,7 @@ void SftpClientWorker::HandleJobFinishedEvent (MpxEventBase* event)
 
 	m_addrinfo = jobGetAddrInfo->results();
 	delete jobGetAddrInfo;
+	Send (m_ctrlTask, new SftpClientStart ());
 	Execute (m_request);
 }
 

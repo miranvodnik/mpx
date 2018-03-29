@@ -49,6 +49,7 @@ private:
 	virtual void StopTask ();
 private:
 	mpx_event_handler(ExternalTaskEventHandler, TaskProvider)
+	mpx_event_handler(ProxyTaskEventHandler, TaskProvider)
 	mpx_event_handler(TimerEventHandler, TaskProvider)
 	mpx_event_handler(ConsumerEventAHandler, TaskProvider)
 	mpx_event_handler(ConsumerEventBHandler, TaskProvider)
