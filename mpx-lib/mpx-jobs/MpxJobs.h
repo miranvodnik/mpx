@@ -23,7 +23,6 @@
 //      Author: miran
 //
 
-
 #pragma once
 
 #include <mpx-jobs/MpxJob.h>

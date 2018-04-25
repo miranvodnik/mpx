@@ -43,10 +43,7 @@ namespace mpx
 
 enum MpxExternalTaskType
 {
-	InvalidTaskType,
-	LocalListenerTaskType,
-	Tcp4ListenerTaskType,
-	Tcp6ListenerTaskType,
+	InvalidTaskType, LocalListenerTaskType, Tcp4ListenerTaskType, Tcp6ListenerTaskType,
 };
 
 class MpxExternalTask: public mpx::MpxTaskBase
@@ -107,7 +104,7 @@ private:
 	static const char* g_pathField;
 	static const char* g_addressField;
 	static const char* g_portField;
-	static EventDescriptor g_evntab[];
+	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
 
 	string m_connStr;

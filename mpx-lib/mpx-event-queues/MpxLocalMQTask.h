@@ -151,7 +151,7 @@ private:
 	/*!
 	 *  event registration table for callback functions defined by this class
 	 */
-	static EventDescriptor g_evntab[];
+	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
 
 	/*!

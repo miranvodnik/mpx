@@ -73,7 +73,8 @@ public:
 		if (m_eventXDR != 0)
 			delete m_eventXDR;
 		m_eventXDR = 0;
-		cout << "proxy deleted" << endl;
+		if (false)
+			cout << "proxy deleted" << endl;
 	}
 	virtual void StartTask ()
 	{
@@ -121,7 +122,7 @@ public:
 	}
 	virtual void DisconnectFromContext ()
 	{
-		m_socket->DisconnectFromContext();
+		m_socket->DisconnectFromContext ();
 	}
 
 protected:
@@ -157,6 +158,7 @@ protected:
 				msg.MpxMessage_u.m_externalTaskReply.encdeclib = strdup (m_encdeclib.c_str ());
 				if (m_socket->PostXdrRequest (reinterpret_cast <xdrproc_t> (xdr_MpxMessage), &msg) < 0)
 					break;
+				free (msg.MpxMessage_u.m_externalTaskReply.encdeclib);
 			}
 
 			return;

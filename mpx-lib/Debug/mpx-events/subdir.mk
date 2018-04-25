@@ -18,6 +18,7 @@ CPP_SRCS += \
 ../mpx-events/MpxPosixMQEvent.cpp \
 ../mpx-events/MpxPosixMQTaskQueryEvent.cpp \
 ../mpx-events/MpxProxyTaskEvent.cpp \
+../mpx-events/MpxProxyTaskRelocationEvent.cpp \
 ../mpx-events/MpxStartEvent.cpp \
 ../mpx-events/MpxStopEvent.cpp \
 ../mpx-events/MpxTaskQueryEvent.cpp \
@@ -46,6 +47,7 @@ OBJS += \
 ./mpx-events/MpxPosixMQEvent.o \
 ./mpx-events/MpxPosixMQTaskQueryEvent.o \
 ./mpx-events/MpxProxyTaskEvent.o \
+./mpx-events/MpxProxyTaskRelocationEvent.o \
 ./mpx-events/MpxStartEvent.o \
 ./mpx-events/MpxStopEvent.o \
 ./mpx-events/MpxTaskQueryEvent.o \
@@ -78,6 +80,7 @@ CPP_DEPS += \
 ./mpx-events/MpxPosixMQEvent.d \
 ./mpx-events/MpxPosixMQTaskQueryEvent.d \
 ./mpx-events/MpxProxyTaskEvent.d \
+./mpx-events/MpxProxyTaskRelocationEvent.d \
 ./mpx-events/MpxStartEvent.d \
 ./mpx-events/MpxStopEvent.d \
 ./mpx-events/MpxTaskQueryEvent.d \
@@ -99,14 +102,14 @@ CPP_DEPS += \
 mpx-events/%.o: ../mpx-events/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -I"/home/miran/eclipse-workspace/mpx/mpx-lib" -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"/home/miran/eclipse-workspace/mpx/mpx-lib" -I/usr/include/libxml2 -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 mpx-events/%.o: ../mpx-events/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross GCC Compiler'
-	gcc -I"/home/miran/eclipse-workspace/mpx/mpx-lib" -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	gcc -I"/home/miran/eclipse-workspace/mpx/mpx-lib" -I/usr/include/libxml2 -O0 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

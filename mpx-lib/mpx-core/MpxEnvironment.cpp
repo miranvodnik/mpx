@@ -16,6 +16,8 @@
 //
 //    contact: miran.vodnik@siol.net
 
+#include <libxml/parser.h>
+
 #include <mpx-core/MpxEnvironment.h>
 #include <mpx-event-queues/MpxLocalMQTask.h>
 #include <mpx-working-threads/MpxWorkerTask.h>
@@ -54,6 +56,340 @@ MpxEnvironment::MpxEnvironment ()
 
 MpxEnvironment::~MpxEnvironment ()
 {
+}
+
+/*!
+ *
+ * @param configFile
+ * @return
+ */
+int MpxEnvironment::_CreateEnvironment (const char* configFile)
+{
+	xmlDocPtr xmlDoc = xmlReadFile (configFile, 0, 0);
+	if (xmlDoc == 0)
+		return -1;
+
+	int status = ParseConfigDoc (reinterpret_cast <void*> (xmlDoc));
+
+	xmlFreeDoc (xmlDoc);
+	return status;
+}
+
+int MpxEnvironment::ParseConfigDoc (void* xmlDoc)
+{
+	for (xmlNode* child = (reinterpret_cast <xmlDocPtr> (xmlDoc))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "mpx") == 0)
+		{
+			if (ParseMpxNode (reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseMpxNode (void* node)
+{
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "common-settings") == 0)
+		{
+			if (ParseCommonSettingsNode (reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "specific-settings") == 0)
+		{
+			if (ParseSpecificSettingsNode (reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseCommonSettingsNode (void* node)
+{
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "environment") == 0)
+		{
+			if (ParseEnvironmentNode (reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseSpecificSettingsNode (void* node)
+{
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "task-multiplexers") == 0)
+		{
+			if (ParseTaskMultiplexersNode (reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseEnvironmentNode (void* node)
+{
+	int mpxCount = -1;
+	int workerCount = -1;
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "mpx-count") == 0)
+		{
+			mpxCount = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "worker-count") == 0)
+		{
+			workerCount = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else
+			continue;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseTaskMultiplexersNode (void* node)
+{
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "task-multiplexer") == 0)
+		{
+			mpxStruct mpxStr;
+			if (ParseTaskMultiplexerNode (mpxStr, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseTaskMultiplexerNode (mpxStruct& mpxStr, void* node)
+{
+	int index = -1;
+	string name = "";
+	stringstream connStr ("");
+	int threadAffinity = -1;
+	connectionString connStruct;
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "index") == 0)
+		{
+			index = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "name") == 0)
+		{
+			name = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "connection-string") == 0)
+		{
+			connStr << reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "thread-affinity") == 0)
+		{
+			threadAffinity = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else
+			return -1;
+	}
+
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "connection-string") == 0)
+		{
+			string cStr;
+			if (ParseConnectionStringNode (connStruct, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+			if ((cStr = connStruct.CreateConnectionString()).empty())
+				return -1;
+			connStr << cStr;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+
+	connStr << ends;
+
+	mpxStr.index = index;
+	mpxStr.name = name;
+	mpxStr.connStr = connStr.str();
+	mpxStr.threadAffinity = threadAffinity;
+
+	return 0;
+}
+
+int MpxEnvironment::ParseConnectionStringNode (connectionString& connStruct, void* node)
+{
+//	memset (&connStruct, 0, sizeof connStruct);
+//	connStruct.protocol = "";
+//	connStruct.address = "";
+//	connStruct.path = "";
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "protocol") == 0)
+		{
+			connStruct.protocol = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "address") == 0)
+		{
+			connStruct.address = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "path") == 0)
+		{
+			connStruct.path = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else if (strcmp (reinterpret_cast <const char*> (property->name), "port") == 0)
+		{
+			connStruct.port = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else
+			return -1;
+	}
+
+	for (xmlNode* child = (reinterpret_cast <xmlNode*> (node))->children; child != 0; child = child->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (child->name), "protocol") == 0)
+		{
+			if (ParseProtocolNode (connStruct.protocol, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "address") == 0)
+		{
+			if (ParseAddressNode (connStruct.address, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "path") == 0)
+		{
+			if (ParsePathNode (connStruct.path, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "port") == 0)
+		{
+			if (ParsePortNode (connStruct.port, reinterpret_cast <void*> (child)) != 0)
+				return -1;
+		}
+		else if (strcmp (reinterpret_cast <const char*> (child->name), "text") == 0)
+			continue;
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseProtocolNode (string& protocol, void* node)
+{
+	protocol = "";
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "value") == 0)
+		{
+			protocol = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParseAddressNode (string& address, void* node)
+{
+	address = "";
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "value") == 0)
+		{
+			address = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParsePathNode (string& path, void* node)
+{
+	path = "";
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "value") == 0)
+		{
+			path = reinterpret_cast <const char*> (strdup (reinterpret_cast <const char*> (property->children->content)));
+		}
+		else
+			return -1;
+	}
+	return 0;
+}
+
+int MpxEnvironment::ParsePortNode (int& port, void* node)
+{
+	port = -1;
+
+	for (xmlAttr* property = (reinterpret_cast <xmlNode*> (node))->properties; property != 0; property = property->next)
+	{
+		if (strcmp (reinterpret_cast <const char*> (property->name), "value") == 0)
+		{
+			port = atoi (reinterpret_cast <const char*> (property->children->content));
+		}
+		else
+			return -1;
+	}
+	return 0;
+}
+
+string MpxEnvironment::connectionString::CreateConnectionString()
+{
+	stringstream connStr("");
+
+	if (protocol.empty())
+		return "";
+	if (protocol.compare("local") == 0)
+	{
+		if (path.empty())
+			return 0;
+		connStr << "protocol:local,path:" << path << ";" << ends;
+		return connStr.str();
+	}
+	if ((protocol.compare("tcp4") == 0) || (protocol.compare("tcp6") == 0))
+	{
+		if (address.empty())
+			return 0;
+		if (port < 0)
+			return 0;
+		connStr << "protocol:" << protocol << ",address:" << address << ",port:" << port << ";" << ends;
+		return connStr.str();
+	}
+	return "";
 }
 
 /*! @brief create new task multiplexer

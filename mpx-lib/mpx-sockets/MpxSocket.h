@@ -161,10 +161,12 @@ public:
 		xdrmem_create (&xdr, reinterpret_cast <char*> (m_writeBufferPtr), freeSpace, XDR_ENCODE);
 		if (xdr_int (&xdr, reinterpret_cast <int*> (&msgSize)) != TRUE)
 			return -1;
+		xdr_destroy(&xdr);
 
 		xdrmem_create (&xdr, reinterpret_cast <char*> ((m_writeBufferPtr + intSize)), freeSpace - intSize, XDR_ENCODE);
 		if (proc (&xdr, data) != TRUE)
 			return -1;
+		xdr_destroy(&xdr);
 
 		u_int pos = xdr_getpos(&xdr);
 		m_writeBufferPtr += pos + intSize;
@@ -198,7 +200,8 @@ public:
 	MpxEventBase* DecodeEvent (MpxEventXDRItf* evnXdr)
 	{
 		MpxEventBase* event = 0;
-		ssize_t size = evnXdr->Decode (event, reinterpret_cast <char*> (m_readBufferUse), m_readBufferPtr - m_readBufferUse);
+		ssize_t size = evnXdr->Decode (event, reinterpret_cast <char*> (m_readBufferUse),
+			m_readBufferPtr - m_readBufferUse);
 		if (size > 0)
 			m_readBufferUse += size;
 		return event;
@@ -245,6 +248,10 @@ public:
 	void DisconnectFromContext ()
 	{
 		if (m_ctx == 0)
+			return;
+
+		MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ());
+		if ((mpx != 0) && (mpx->getTid () != syscall (SYS_gettid)))
 			return;
 
 		if (m_idleTimer != 0)

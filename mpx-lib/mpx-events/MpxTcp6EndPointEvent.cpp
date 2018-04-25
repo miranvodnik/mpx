@@ -22,8 +22,8 @@ namespace mpx
 {
 
 MpxTcp6EndPointEvent::MpxTcp6EndPointEvent (void* endPoint, u_int flags, u_int error, u_int size, u_char* buffer) :
-	MpxEventBase (MpxTcp6EndPointEvent::EventCode), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (size), m_buffer (
-		buffer)
+	MpxEventBase (MpxTcp6EndPointEvent::EventCode), m_endPoint (endPoint), m_flags (flags), m_error (error), m_size (
+		size), m_buffer (buffer)
 {
 }
 

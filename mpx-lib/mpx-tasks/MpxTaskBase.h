@@ -237,8 +237,8 @@ public:
 	virtual ~MpxTaskBase ();
 	void Dispose (bool release);
 
-	static evnset& CreateEventSet (EventDescriptor eventTab[]);
-	void RegisterEventHandlers (EventDescriptor evntab[]);
+	static evnset& CreateEventSet (EventDescriptor eventTab []);
+	void RegisterEventHandlers (EventDescriptor evntab []);
 	evnfunc RegisterEventHandler (unsigned int stateCode, unsigned int eventCode, evnfunc f);
 	evnfunc RetrieveEventHandler (u_int state, u_int event);
 	int Send (MpxTaskBase* task, MpxEventBase* event, bool invoke = false);
@@ -331,7 +331,10 @@ public:
 	{
 		g_enableSend = false;
 	}
-	static inline int sentCount () { return g_sentCount; }
+	static inline int sentCount ()
+	{
+		return g_sentCount;
+	}
 
 private:
 	int RetrieveExternalTaskLocal (const char* connString, const char* encdeclib);
@@ -352,7 +355,7 @@ private:
 	static const char* g_hostnameField; //!< parsing field: hostname
 
 private:
-	static EventDescriptor g_evntab[]; //!< table containing descriptions of start and stop events
+	static EventDescriptor g_evntab []; //!< table containing descriptions of start and stop events
 	static int g_sentCount; //!< number of events sent by all tasks in the system
 	static bool g_enableSend; //!< enables sending of events
 	tskmpx_t m_mpx; //!< reference to owning task multiplexer

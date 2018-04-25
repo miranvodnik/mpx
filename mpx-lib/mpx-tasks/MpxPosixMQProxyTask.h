@@ -40,7 +40,7 @@ public:
 private:
 	mpx_event_handler(HandlePosixMQEvent, MpxPosixMQProxyTask)
 private:
-	static EventDescriptor g_evntab[];
+	static EventDescriptor g_evntab [];
 	static evnset g_evnset;
 	MpxTaskBase* m_task;
 	MpxPosixMQ* m_posixMQ;

@@ -36,8 +36,12 @@ namespace mpx
 class MpxEventXDRItf
 {
 public:
-	MpxEventXDRItf () {}
-	virtual ~MpxEventXDRItf () {}
+	MpxEventXDRItf ()
+	{
+	}
+	virtual ~MpxEventXDRItf ()
+	{
+	}
 	virtual int Encode (MpxEventBase*& event, char* buffer, size_t size) = 0;
 	virtual int Decode (MpxEventBase*& event, char* buffer, size_t size) = 0;
 };

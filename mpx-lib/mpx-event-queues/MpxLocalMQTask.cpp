@@ -29,15 +29,14 @@ const char* MpxLocalMQTask::g_localPath = "/var/run/";
 
 /*! event table for every instance of this class
  */
-EventDescriptor MpxLocalMQTask::g_evntab[] =
+EventDescriptor MpxLocalMQTask::g_evntab [] =
 {
-	{ AnyState, MpxLocalListenerEvent::EventCode, LocalListenerEventHandler },
-	{ AnyState, MpxLocalEndPointEvent::EventCode, LocalEndPointEventHandler },
-	{ AnyState, MpxLocalClientEvent::EventCode, LocalClientEventHandler },
-	{ 0, 0, 0 }
-};
+{ AnyState, MpxLocalListenerEvent::EventCode, LocalListenerEventHandler },
+{ AnyState, MpxLocalEndPointEvent::EventCode, LocalEndPointEventHandler },
+{ AnyState, MpxLocalClientEvent::EventCode, LocalClientEventHandler },
+{ 0, 0, 0 } };
 
-MpxTaskBase::evnset MpxLocalMQTask::g_evnset = MpxTaskBase::CreateEventSet(MpxLocalMQTask::g_evntab);
+MpxTaskBase::evnset MpxLocalMQTask::g_evnset = MpxTaskBase::CreateEventSet (MpxLocalMQTask::g_evntab);
 
 MpxLocalMQTask::MpxLocalMQTask () :
 	MpxMQTaskI (g_evnset)

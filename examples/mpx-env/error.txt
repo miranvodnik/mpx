@@ -1,0 +1,104 @@
+../mpx-tasks/mpx-messages_xdr.c: In function ‘xdr_MpxMessageCode’:
+../mpx-tasks/mpx-messages_xdr.c:11:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-tasks/mpx-messages_xdr.c: In function ‘xdr_MpxExternalTaskRequest’:
+../mpx-tasks/mpx-messages_xdr.c:21:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-tasks/mpx-messages_xdr.c: In function ‘xdr_MpxExternalTaskReply’:
+../mpx-tasks/mpx-messages_xdr.c:31:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-tasks/mpx-messages_xdr.c: In function ‘xdr_MpxMessage’:
+../mpx-tasks/mpx-messages_xdr.c:41:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxEventCode’:
+../mpx-events/mpx-events_xdr.c:11:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_taskid_t’:
+../mpx-events/mpx-events_xdr.c:21:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxEventBaseStruct’:
+../mpx-events/mpx-events_xdr.c:31:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxJobFinishedEventStruct’:
+../mpx-events/mpx-events_xdr.c:109:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxLocalListenerEventStruct’:
+../mpx-events/mpx-events_xdr.c:265:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxLocalTaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:277:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxPosixMQTaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:363:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxStartEventStruct’:
+../mpx-events/mpx-events_xdr.c:377:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxStopEventStruct’:
+../mpx-events/mpx-events_xdr.c:387:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTaskQueryEventType’:
+../mpx-events/mpx-events_xdr.c:397:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:407:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTaskResponseEventStruct’:
+../mpx-events/mpx-events_xdr.c:423:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTcp4ListenerEventStruct’:
+../mpx-events/mpx-events_xdr.c:583:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTcp4TaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:595:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTcp6ListenerEventStruct’:
+../mpx-events/mpx-events_xdr.c:755:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTcp6TaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:767:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxTimerEventStruct’:
+../mpx-events/mpx-events_xdr.c:783:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxUdp4TaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:799:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxUdp6TaskQueryEventStruct’:
+../mpx-events/mpx-events_xdr.c:815:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxConsumerEventStruct’:
+../mpx-events/mpx-events_xdr.c:831:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-events/mpx-events_xdr.c: In function ‘xdr_MpxEventStruct’:
+../mpx-events/mpx-events_xdr.c:843:20: warning: unused variable ‘buf’ [-Wunused-variable]
+  register int32_t *buf;
+                    ^
+../mpx-env.cpp: In member function ‘void TaskABC::LocalClientEventHandler(mpx::MpxEventBase*)’:
+../mpx-env.cpp:400:23: warning: unused variable ‘localClientEvent’ [-Wunused-variable]
+  MpxLocalClientEvent* localClientEvent = dynamic_cast <MpxLocalClientEvent*> (event);
+                       ^

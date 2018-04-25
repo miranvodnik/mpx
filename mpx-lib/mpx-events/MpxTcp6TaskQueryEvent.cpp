@@ -22,7 +22,8 @@ namespace mpx
 {
 
 MpxTcp6TaskQueryEvent::MpxTcp6TaskQueryEvent (const char* hostname, char* port, char* name, const char* encdeclib) :
-	MpxEventBase (MpxTcp6TaskQueryEvent::EventCode), m_hostname (hostname), m_port (port), m_name (name), m_encdeclib (encdeclib)
+	MpxEventBase (MpxTcp6TaskQueryEvent::EventCode), m_hostname (hostname), m_port (port), m_name (name), m_encdeclib (
+		encdeclib)
 {
 }
 

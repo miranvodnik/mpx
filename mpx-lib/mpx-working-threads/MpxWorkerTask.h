@@ -33,8 +33,7 @@ public:
 	virtual void StartTask ();
 	virtual void StopTask ();
 private:
-	;mpx_event_handler (TimerEventHandler, MpxWorkerTask)
-	;
+	mpx_event_handler (TimerEventHandler, MpxWorkerTask)
 
 	inline static void CleanupExecute (void* arg)
 	{

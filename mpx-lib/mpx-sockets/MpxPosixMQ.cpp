@@ -80,7 +80,8 @@ void MpxPosixMQ::StartTimer (timespec t)
 		t.tv_nsec += m_timeOut;
 		t.tv_sec += t.tv_nsec / SEC_TO_NSEC;
 		t.tv_nsec %= SEC_TO_NSEC;
-		m_idleTimer = (reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ()))->ctx ()->RegisterTimer (t, IdleTimer, this, ctx_info);
+		m_idleTimer = (reinterpret_cast <MpxTaskMultiplexer*> (m_task->mpx ()))->ctx ()->RegisterTimer (t, IdleTimer,
+			this, ctx_info);
 	}
 	else
 		m_idleTimer = 0;

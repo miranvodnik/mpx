@@ -1058,86 +1058,84 @@ void MpxExternalTask::HandleTaskResponseEvent (MpxEventBase* event)
 		switch (taskResponseEvent->queryType ())
 		{
 		case TaskQueryEventLocal:
-			{
-				MpxLocalEndPoint* localEndPoint = reinterpret_cast <MpxLocalEndPoint*> (taskResponseEvent->endPoint ());
-				leset::iterator it = m_leset.find (localEndPoint);
-				if (it == m_leset.end ())
-					break;
+		{
+			MpxLocalEndPoint* localEndPoint = reinterpret_cast <MpxLocalEndPoint*> (taskResponseEvent->endPoint ());
+			leset::iterator it = m_leset.find (localEndPoint);
+			if (it == m_leset.end ())
+				break;
 
-				m_leset.erase (it);
-				MpxLocalEndPointProxyTask *proxyTask = new MpxLocalEndPointProxyTask (task, encdeclib, localEndPoint);
-				if (task->mpx() != mpx())
-				{
-					proxyTask->DisconnectFromContext();
-					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
-						new MpxProxyTaskRelocationEvent (proxyTask));
-				}
-				else
-				{
-					MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
-					mpx->RegisterTask (proxyTask);
-					Send (proxyTask, new MpxStartEvent (), true);
-				}
-				if (false)
-					cout << "local proxy end-point created" << endl;
+			m_leset.erase (it);
+			MpxLocalEndPointProxyTask *proxyTask = new MpxLocalEndPointProxyTask (task, encdeclib, localEndPoint);
+			if (task->mpx () != mpx ())
+			{
+				proxyTask->DisconnectFromContext ();
+				Send (reinterpret_cast <MpxTaskBase*> (event->src ()), new MpxProxyTaskRelocationEvent (proxyTask));
 			}
+			else
+			{
+				MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
+				mpx->RegisterTask (proxyTask);
+				Send (proxyTask, new MpxStartEvent (), true);
+			}
+			if (false)
+				cout << "local proxy end-point created" << endl;
+		}
 			break;
 		case TaskQueryEventTcp4:
-			{
-				MpxTcp4EndPoint* tcp4EndPoint = reinterpret_cast <MpxTcp4EndPoint*> (taskResponseEvent->endPoint ());
-				t4eset::iterator it = m_t4eset.find (tcp4EndPoint);
-				if (it == m_t4eset.end ())
-					break;
+		{
+			MpxTcp4EndPoint* tcp4EndPoint = reinterpret_cast <MpxTcp4EndPoint*> (taskResponseEvent->endPoint ());
+			t4eset::iterator it = m_t4eset.find (tcp4EndPoint);
+			if (it == m_t4eset.end ())
+				break;
 
-				m_t4eset.erase (it);
-				MpxTcp4EndPointProxyTask *proxyTask = new MpxTcp4EndPointProxyTask (task, encdeclib, tcp4EndPoint);
-				if (task->mpx() != mpx())
-				{
-					proxyTask->DisconnectFromContext();
-					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
-						new MpxProxyTaskRelocationEvent (proxyTask));
-				}
-				else
-				{
-					MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
-					mpx->RegisterTask (proxyTask);
-					Send (proxyTask, new MpxStartEvent (), true);
-				}
-				if (true)
-					cout << "tcp4 proxy end-point created" << endl;
+			m_t4eset.erase (it);
+			MpxTcp4EndPointProxyTask *proxyTask = new MpxTcp4EndPointProxyTask (task, encdeclib, tcp4EndPoint);
+			if (task->mpx () != mpx ())
+			{
+				proxyTask->DisconnectFromContext ();
+				Send (reinterpret_cast <MpxTaskBase*> (event->src ()), new MpxProxyTaskRelocationEvent (proxyTask));
 			}
+			else
+			{
+				MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
+				mpx->RegisterTask (proxyTask);
+				Send (proxyTask, new MpxStartEvent (), true);
+			}
+			if (true)
+				cout << "tcp4 proxy end-point created" << endl;
+		}
 			break;
 		case TaskQueryEventTcp6:
-			{
-				MpxTcp6EndPoint* tcp6EndPoint = reinterpret_cast <MpxTcp6EndPoint*> (taskResponseEvent->endPoint ());
-				t6eset::iterator it = m_t6eset.find (tcp6EndPoint);
-				if (it == m_t6eset.end ())
-					break;
+		{
+			MpxTcp6EndPoint* tcp6EndPoint = reinterpret_cast <MpxTcp6EndPoint*> (taskResponseEvent->endPoint ());
+			t6eset::iterator it = m_t6eset.find (tcp6EndPoint);
+			if (it == m_t6eset.end ())
+				break;
 
-				m_t6eset.erase (it);
-				MpxTcp6EndPointProxyTask *proxyTask = new MpxTcp6EndPointProxyTask (task, encdeclib, tcp6EndPoint);
-				if (task->mpx() != mpx())
-				{
-					proxyTask->DisconnectFromContext();
-					Send (reinterpret_cast <MpxTaskBase*> (event->src ()),
-						new MpxProxyTaskRelocationEvent (proxyTask));
-				}
-				else
-				{
-					MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
-					mpx->RegisterTask (proxyTask);
-					Send (proxyTask, new MpxStartEvent (), true);
-				}
-				if (false)
-					cout << "tcp6 proxy end-point created" << endl;
+			m_t6eset.erase (it);
+			MpxTcp6EndPointProxyTask *proxyTask = new MpxTcp6EndPointProxyTask (task, encdeclib, tcp6EndPoint);
+			if (task->mpx () != mpx ())
+			{
+				proxyTask->DisconnectFromContext ();
+				Send (reinterpret_cast <MpxTaskBase*> (event->src ()), new MpxProxyTaskRelocationEvent (proxyTask));
 			}
+			else
+			{
+				MpxTaskMultiplexer* mpx = reinterpret_cast <MpxTaskMultiplexer*> (this->mpx ());
+				mpx->RegisterTask (proxyTask);
+				Send (proxyTask, new MpxStartEvent (), true);
+			}
+			if (false)
+				cout << "tcp6 proxy end-point created" << endl;
+		}
 			break;
 		default:
 			break;
 		}
 	else
 	{
-		cout << "NO TASK FOUND" << endl;
+		if (false)
+			cout << "NO TASK FOUND" << endl;
 	}
 }
 

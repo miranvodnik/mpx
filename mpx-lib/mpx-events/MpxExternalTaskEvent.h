@@ -32,7 +32,8 @@ public:
 	{
 	}
 	MpxExternalTaskEvent (u_int flags, u_int error, u_int size, u_char* buffer) :
-		MpxEventBase (MpxExternalTaskEvent::EventCode), m_flags (flags), m_error (error), m_size (size), m_buffer (buffer)
+		MpxEventBase (MpxExternalTaskEvent::EventCode), m_flags (flags), m_error (error), m_size (size), m_buffer (
+			buffer)
 	{
 	}
 	virtual ~MpxExternalTaskEvent ()

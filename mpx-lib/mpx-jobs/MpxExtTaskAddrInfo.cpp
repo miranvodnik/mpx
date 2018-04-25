@@ -28,7 +28,8 @@
 namespace mpx
 {
 
-MpxExtTaskAddrInfo::MpxExtTaskAddrInfo (MpxTaskBase* sender, const char* hostName, MpxEventBase* query, int family, const addrinfo* hints) :
+MpxExtTaskAddrInfo::MpxExtTaskAddrInfo (MpxTaskBase* sender, const char* hostName, MpxEventBase* query, int family,
+	const addrinfo* hints) :
 	MpxJob (sender), m_hostName (hostName), m_query (query), m_family (family)
 {
 	m_hints = 0;

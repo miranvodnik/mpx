@@ -36,6 +36,7 @@ MpxOpenLibrary::MpxOpenLibrary (MpxTaskBase* task, const char* libName) :
 
 MpxOpenLibrary::~MpxOpenLibrary ()
 {
+	dlclose (m_lib);
 }
 
 int MpxOpenLibrary::Execute ()

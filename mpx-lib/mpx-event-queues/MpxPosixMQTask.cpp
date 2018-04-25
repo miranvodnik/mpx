@@ -22,13 +22,12 @@
 namespace mpx
 {
 
-EventDescriptor MpxPosixMQTask::g_evntab[] =
+EventDescriptor MpxPosixMQTask::g_evntab [] =
 {
-	{ AnyState, MpxPosixMQEvent::EventCode , PosixMQEventHandler },
-	{ 0, 0, 0 }
-};
+{ AnyState, MpxPosixMQEvent::EventCode, PosixMQEventHandler },
+{ 0, 0, 0 } };
 
-MpxTaskBase::evnset MpxPosixMQTask::g_evnset = MpxTaskBase::CreateEventSet(MpxPosixMQTask::g_evntab);
+MpxTaskBase::evnset MpxPosixMQTask::g_evnset = MpxTaskBase::CreateEventSet (MpxPosixMQTask::g_evntab);
 
 MpxPosixMQTask::MpxPosixMQTask () :
 	MpxMQTaskI (g_evnset)

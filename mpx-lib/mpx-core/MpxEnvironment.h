@@ -20,6 +20,7 @@
 
 #include <pthread.h>
 #include <map>
+using namespace std;
 
 #include <mpx-core/MpxTaskMultiplexer.h>
 #include <mpx-core/MpxUtilities.h>
@@ -57,6 +58,10 @@ private:
 	virtual ~MpxEnvironment ();
 public:
 
+	inline static int CreateEnvironment (const char* configFile)
+	{
+		return g_mpxEnvironment->_CreateEnvironment (configFile);
+	}
 	/*! Create new instance of task multiplexer
 	 *
 	 * this function mimics [_CreateTaskMultiplexer](@ref _CreateTaskMultiplexer)
@@ -143,6 +148,35 @@ public:
 		return g_mpxEnvironment->_BroadcastExternalEvent (task, event);
 	}
 private:
+	typedef struct
+	{
+		string protocol;
+		string address;
+		string path;
+		int port;
+		string CreateConnectionString ();
+	} connectionString;
+	typedef struct
+	{
+		int index;
+		string name;
+		string connStr;
+		int threadAffinity;
+	} mpxStruct;
+private:
+	int _CreateEnvironment (const char* configFile);
+	int ParseConfigDoc (void* doc);
+	int ParseMpxNode (void* node);
+	int ParseCommonSettingsNode (void* node);
+	int ParseSpecificSettingsNode (void* node);
+	int ParseEnvironmentNode (void* node);
+	int ParseTaskMultiplexersNode (void* node);
+	int ParseTaskMultiplexerNode (mpxStruct& mpxStr, void* node);
+	int ParseConnectionStringNode (connectionString& connStr, void* node);
+	int ParseProtocolNode (string& protocol, void* node);
+	int ParseAddressNode (string& address, void* node);
+	int ParsePathNode (string& path, void* node);
+	int ParsePortNode (int& port, void* node);
 	MpxTaskMultiplexer* _CreateTaskMultiplexer (const char* connStr, bool isWorker);
 	int _Start (MpxMQTaskI* mqTask);
 	int _WaitMultiplexerBarrier ();
